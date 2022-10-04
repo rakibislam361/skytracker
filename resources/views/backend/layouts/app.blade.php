@@ -10,7 +10,13 @@
   <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
   @yield('meta')
 
-  <link href="{{ asset('css/icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('icon_img/assets/icons/flaticon.css') }}" rel="stylesheet">
+  <link href="{{ asset('icon_img/assets/icons/ionicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('icon_img/assets/icons/linearicons.css') }}" rel="stylesheet">
+  <link href="{{ asset('icon_img/assets/icons/simple-line-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('icon_img/assets/icons/themify-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/all.css') }}" rel="stylesheet">
+
   @stack('before-styles')
   <link href="{{ mix('css/backend.css') }}" rel="stylesheet">
   <livewire:styles />
@@ -32,8 +38,8 @@
 
       <section class="content-header">
         @include('includes.partials.messages')
-        @include('backend.includes.partials.breadcrumbs') 
-        
+        @include('backend.includes.partials.breadcrumbs')
+
       </section> <!-- section -->
 
       <section class="content">
@@ -48,6 +54,8 @@
   <script src="{{ mix('js/manifest.js') }}"></script>
   <script src="{{ mix('js/vendor.js') }}"></script>
   <script src="{{ mix('js/backend.js') }}"></script>
+
+
   <livewire:scripts />
   @stack('after-scripts')
 </body>

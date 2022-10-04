@@ -98,7 +98,7 @@ class LoginController
      */
     protected function authenticated(Request $request, $user)
     {
-        if (! $user->isActive()) {
+        if (!$user->isActive()) {
             auth()->logout();
 
             return redirect()->route('frontend.auth.login')->withFlashDanger(__('Your account has been deactivated.'));

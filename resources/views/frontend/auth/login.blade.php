@@ -1,70 +1,56 @@
-@extends('frontend.layouts.app')
+<div class="modal fade login-popup" id="login-popup" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <a class="close close-btn" data-dismiss="modal" aria-label="Close"> x </a>
 
-@section('title', __('Login'))
-
-@section('content')
-    <div class="container py-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="modal-content">
+            <div class="login-wrap text-center">
+                <h2 class="title-3"> sign in </h2>
+                <p> Sign in to <strong> GO </strong> for getting all details </p>
                 <x-frontend.card>
-                    <x-slot name="header">
-                        @lang('Login')
-                    </x-slot>
-
                     <x-slot name="body">
-                        <x-forms.post :action="route('frontend.auth.login')">
-                            <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">@lang('E-mail Address')</label>
+                        <div class="login-form clrbg-before">
+                            <x-forms.post :action="route('frontend.auth.login')">
 
-                                <div class="col-md-6">
-                                    <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" />
+                                <div class="form-group"> <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" /></div>
+                                <div class="form-group"> <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password') }}" maxlength="100" required autocomplete="current-password" /></div>
+                                <div class="form-check">
+                                    <input name="remember" id="remember" class="form-check-input" type="checkbox" {{ old('remember') ? 'checked' : '' }} />
+
+                                    <label class="form-check-label" for="remember">
+                                        @lang('Remember Me')
+                                    </label>
                                 </div>
-                            </div><!--form-group-->
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">@lang('Password')</label>
-
-                                <div class="col-md-6">
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password') }}" maxlength="100" required autocomplete="current-password" />
+                                @if(config('boilerplate.access.captcha.login'))
+                                <div class="col">
+                                    @captcha
+                                    <input type="hidden" name="captcha_status" value="true" />
                                 </div>
-                            </div><!--form-group-->
+                                @endif
 
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input name="remember" id="remember" class="form-check-input" type="checkbox" {{ old('remember') ? 'checked' : '' }} />
-
-                                        <label class="form-check-label" for="remember">
-                                            @lang('Remember Me')
-                                        </label>
-                                    </div><!--form-check-->
-                                </div>
-                            </div><!--form-group-->
-
-                            @if(config('boilerplate.access.captcha.login'))
-                                <div class="row">
-                                    <div class="col">
-                                        @captcha
-                                        <input type="hidden" name="captcha_status" value="true" />
-                                    </div><!--col-->
-                                </div><!--row-->
-                            @endif
-
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button class="btn btn-primary" type="submit">@lang('Login')</button>
-
+                                <div>
+                                    <button class="btn-1" type="submit">@lang('Sign in now')</button>
                                     <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
                                 </div>
-                            </div><!--form-group-->
-
-                            <div class="text-center">
-                                @include('frontend.auth.includes.social')
-                            </div>
-                        </x-forms.post>
+                                <div class="text-center">
+                                    @include('frontend.auth.includes.social')
+                                </div>
+                            </x-forms.post>
+                        </div>
                     </x-slot>
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>doesn't match</strong>
+                    </span>
+
+                    @enderror
                 </x-frontend.card>
-            </div><!--col-md-8-->
-        </div><!--row-->
-    </div><!--container-->
-@endsection
+            </div>
+            <div class="create-accnt">
+                <a href="{{ route('frontend.auth.register') }}" class="white-clr"> Don’t have an account? </a>
+                <h2 class="title-2"> <a href="{{ route('frontend.auth.register') }}" class="green-clr under-line">Create a free account</a>
+                </h2>
+            </div>
+        </div>
+    </div>
+</div>
