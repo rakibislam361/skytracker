@@ -1,10 +1,9 @@
 <div class="modal fade login-popup" id="login-popup" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <a class="close close-btn" data-dismiss="modal" aria-label="Close"> x </a>
-
         <div class="modal-content">
             <div class="login-wrap text-center">
-                <h2 class="title-3"> sign in </h2>
+                <h2 class="title-3"> SIGN IN </h2>
                 <p> Sign in to <strong> GO </strong> for getting all details </p>
                 <x-frontend.card>
                     <x-slot name="body">
@@ -29,9 +28,8 @@
                                 @endif
 
                                 <div>
-                                    <button class="btn-1" type="submit">@lang('Sign In Now')</button>
-                                    <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
-                                    
+                                    <button class="btn-1" type="submit">@lang('Sign In Now')</button>                                   
+                                    <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />                               
                                 </div>
                                 <div class="text-center">
                                     @include('frontend.auth.includes.social')
