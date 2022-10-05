@@ -29,21 +29,18 @@
                                 @endif
 
                                 <div>
-                                    <button class="btn-1" type="submit">@lang('Sign in now')</button>
+                                    <button class="btn-1" type="submit">@lang('Sign In Now')</button>
                                     <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
+                                    
+                                   
+
                                 </div>
                                 <div class="text-center">
                                     @include('frontend.auth.includes.social')
                                 </div>
                             </x-forms.post>
                         </div>
-                    </x-slot>
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>doesn't match</strong>
-                    </span>
-
-                    @enderror
+                    </x-slot>      
                 </x-frontend.card>
             </div>
             <div class="create-accnt">

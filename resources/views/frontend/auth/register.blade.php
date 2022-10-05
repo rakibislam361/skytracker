@@ -1,6 +1,5 @@
 @include('frontend.style.style')
 @include('frontend.content.header')
-{{-- @include('frontend.auth.login') --}}
 @extends('frontend.layouts.app')
 
 @section('title', __('Register'))

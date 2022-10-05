@@ -357,7 +357,7 @@ img{
     color: #f6f6f6;
     font-size: 114px;    
     position: absolute;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     top: 8%;
     left: -2%;
 }
@@ -400,7 +400,7 @@ img{
     display: inline-block;
     margin: 0 5px;
     position: relative;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .list-items{ margin-bottom: 0; margin-left: -5px;}
 .black-arrow i,.white-arrow i{   
@@ -548,7 +548,7 @@ h2,h3,h4,h5,h6{
     font-size: 14px;
     border-radius: 3px;
     color: #ffffff;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 
     transition: all 0.4s ease-in-out;    
     -webkit-transition: all 0.4s ease-in-out;
@@ -586,7 +586,7 @@ h2,h3,h4,h5,h6{
     padding: 10px;
     font-size: 14px;    
     color: #222;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     letter-spacing: 1px;
     min-width: 200px;
 
@@ -619,13 +619,13 @@ label{
     height: 46px;    
     padding: 10px 20px;
     font-weight: 300;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 textarea.form-control {
     height: auto;
 }
 .bootstrap-select .btn {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .form-control.submit-btn{
     height: auto;
@@ -1075,7 +1075,7 @@ textarea:focus:-ms-input-placeholder {
 .top-bar2 ul {
     display: inline-block;
     margin: 10px 0 0;    
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     width: 100%;
 }
 .top-bar2 .font2-title1 {
@@ -1672,7 +1672,7 @@ textarea:focus:-ms-input-placeholder {
     margin: 20px 0 0;
     letter-spacing: 1px;
     text-align: right;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .breadcrumb-menubar > li + li::before {
     color: #9f9f9f;
@@ -1703,7 +1703,7 @@ textarea:focus:-ms-input-placeholder {
     display: inline-block;    
     padding: 15px 22px;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .pagintn > li a:hover, .pagintn > li a:focus {
     color: #fff;
@@ -2251,7 +2251,7 @@ textarea:focus:-ms-input-placeholder {
     margin-right: 6px;
 }
 .theme-countdown {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .theme-countdown > span + span {
     padding-left: 25px;
@@ -2275,7 +2275,7 @@ textarea:focus:-ms-input-placeholder {
 }
 .footer-widget ul li a {
     font-size: 12px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .footer-widget li {
     padding: 5px 0;
