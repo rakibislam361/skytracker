@@ -23,7 +23,7 @@
         </main>
     </div>
     <!--app-->
-    @include('frontend.auth.login')
+   
 </body>
 
 </html>
