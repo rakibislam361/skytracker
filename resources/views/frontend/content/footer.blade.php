@@ -23,7 +23,7 @@
         <div class="col-md-3 col-sm-6 footer-widget">
           <h2 class="title-1 fw-900">get in touch</h2>
           <ul class="social-icons list-inline">
-            <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".20s"> <a href="https://www.facebook.com/www.avanteca.com.bd" class="fa fa-facebook"></a> </li>
+            <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".20s"> <a href="#" class="fa fa-facebook"></a> </li>
             <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".25s"> <a href="#" class="fa fa-twitter"></a> </li>
             <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".30s"> <a href="#" class="fa fa-google-plus"></a> </li>
             <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".35s"> <a href="#" class="fa fa-linkedin"></a> </li>
