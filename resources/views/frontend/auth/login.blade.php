@@ -32,8 +32,6 @@
                                     <button class="btn-1" type="submit">@lang('Sign In Now')</button>
                                     <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
                                     
-                                   
-
                                 </div>
                                 <div class="text-center">
                                     @include('frontend.auth.includes.social')
