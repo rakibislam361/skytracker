@@ -14,6 +14,7 @@
     <div class="content-justify-center shadow">
         <div class="signupimg">
             <a class="signup" href="{{ route('frontend.auth.register') }}">
+                @csrf
                 <img src="assets/img/signup/signup_rmvbg.png" alt="img" width="200" height="120" />
             </a>
         </div>
