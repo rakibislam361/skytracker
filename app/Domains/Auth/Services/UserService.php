@@ -27,6 +27,7 @@ class UserService extends BaseService
      */
     public function __construct(User $user)
     {
+
         $this->model = $user;
     }
 
@@ -37,6 +38,7 @@ class UserService extends BaseService
      */
     public function getByType($type, $perPage = false)
     {
+
         if (is_numeric($perPage)) {
             return $this->model::byType($type)->paginate($perPage);
         }
@@ -78,7 +80,7 @@ class UserService extends BaseService
     {
         $user = $this->model::where('provider_id', $info->id)->first();
 
-        if (! $user) {
+        if (!$user) {
             DB::beginTransaction();
 
             try {
@@ -110,6 +112,7 @@ class UserService extends BaseService
      */
     public function store(array $data = []): User
     {
+
         DB::beginTransaction();
 
         try {
@@ -118,13 +121,14 @@ class UserService extends BaseService
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => $data['password'],
-                'email_verified_at' => isset($data['email_verified']) && $data['email_verified'] === '1' ? now() : null,
+                // 'email_verified_at' => isset($data['email_verified']) && $data['email_verified'] === '1' ? now() : null,
+                'email_verified_at' => now(),
                 'active' => isset($data['active']) && $data['active'] === '1',
             ]);
 
             $user->syncRoles($data['roles'] ?? []);
 
-            if (! config('boilerplate.access.user.only_roles')) {
+            if (!config('boilerplate.access.user.only_roles')) {
                 $user->syncPermissions($data['permissions'] ?? []);
             }
         } catch (Exception $e) {
@@ -136,11 +140,11 @@ class UserService extends BaseService
         event(new UserCreated($user));
 
         DB::commit();
-
+        // ******* email verification ********
         // They didn't want to auto verify the email, but do they want to send the confirmation email to do so?
-        if (! isset($data['email_verified']) && isset($data['send_confirmation_email']) && $data['send_confirmation_email'] === '1') {
-            $user->sendEmailVerificationNotification();
-        }
+        // if (! isset($data['email_verified']) && isset($data['send_confirmation_email']) && $data['send_confirmation_email'] === '1') {
+        //     $user->sendEmailVerificationNotification();
+        // }
 
         return $user;
     }
@@ -163,11 +167,11 @@ class UserService extends BaseService
                 'email' => $data['email'],
             ]);
 
-            if (! $user->isMasterAdmin()) {
+            if (!$user->isMasterAdmin()) {
                 // Replace selected roles/permissions
                 $user->syncRoles($data['roles'] ?? []);
 
-                if (! config('boilerplate.access.user.only_roles')) {
+                if (!config('boilerplate.access.user.only_roles')) {
                     $user->syncPermissions($data['permissions'] ?? []);
                 }
             }
@@ -195,7 +199,7 @@ class UserService extends BaseService
 
         if ($user->canChangeEmail() && $user->email !== $data['email']) {
             $user->email = $data['email'];
-            $user->email_verified_at = null;
+            $user->email_verified_at = now();
             $user->sendEmailVerificationNotification();
             session()->flash('resent', true);
         }
@@ -215,7 +219,7 @@ class UserService extends BaseService
     {
         if (isset($data['current_password'])) {
             throw_if(
-                ! Hash::check($data['current_password'], $user->password),
+                !Hash::check($data['current_password'], $user->password),
                 new GeneralException(__('That is not your old password.'))
             );
         }

@@ -543,6 +543,7 @@ h2,h3,h4,h5,h6{
     border: medium none;
     background-color: #066a81;
     height: 50px;
+    width: -webkit-fill-available;
     line-height: 30px;
     padding: 10px;
     font-size: 14px;

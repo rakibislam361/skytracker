@@ -7,7 +7,7 @@ use App\Domains\Auth\Models\Traits\Method\UserMethod;
 use App\Domains\Auth\Models\Traits\Relationship\UserRelationship;
 use App\Domains\Auth\Models\Traits\Scope\UserScope;
 use App\Domains\Auth\Notifications\Frontend\ResetPasswordNotification;
-use App\Domains\Auth\Notifications\Frontend\VerifyEmail;
+//use App\Domains\Auth\Notifications\Frontend\VerifyEmail;
 use DarkGhostHunter\Laraguard\Contracts\TwoFactorAuthenticatable;
 use DarkGhostHunter\Laraguard\TwoFactorAuthentication;
 use Database\Factories\UserFactory;
@@ -24,13 +24,14 @@ use Spatie\Permission\Traits\HasRoles;
 /**
  * Class User.
  */
-class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenticatable
+class User extends Authenticatable implements TwoFactorAuthenticatable
+// MustVerifyEmail ",
 {
   use HasApiTokens,
     HasFactory,
     HasRoles,
     Impersonate,
-    MustVerifyEmailTrait,
+    //MustVerifyEmailTrait,
     Notifiable,
     SoftDeletes,
     TwoFactorAuthentication,
@@ -126,10 +127,11 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
   /**
    * Send the registration verification email.
    */
-  public function sendEmailVerificationNotification(): void
-  {
-    $this->notify(new VerifyEmail);
-  }
+  // *******email verification******
+  // public function sendEmailVerificationNotification(): void
+  // {
+  //   $this->notify(new VerifyEmail);
+  // }
 
   /**
    * Return true or false if the user can impersonate an other user.

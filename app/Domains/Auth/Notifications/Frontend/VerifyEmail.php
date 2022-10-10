@@ -47,13 +47,15 @@ class VerifyEmail extends Notification
      */
     protected function verificationUrl($notifiable)
     {
-        return URL::temporarySignedRoute(
-            'frontend.auth.verification.verify',
-            Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
-            [
-                'id' => $notifiable->getKey(),
-                'hash' => sha1($notifiable->getEmailForVerification()),
-            ]
-        );
+        // ******* email verification******
+        // dd('user');
+        // return URL::temporarySignedRoute(
+        //     'frontend.auth.verification.verify',
+        //     Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
+        //     [
+        //         'id' => $notifiable->getKey(),
+        //         'hash' => sha1($notifiable->getEmailForVerification()),
+        //     ]
+        // );
     }
 }
