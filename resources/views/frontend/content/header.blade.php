@@ -16,7 +16,7 @@
              <ul class="navbar-nav theme-menu">
                <li> <a href="{{ route('frontend.index') }}">Home</a> </li>
                <li id="about"> <a href="{{ route('frontend.pages.about') }}">about</a> </li>
-               <li id="tracking"> <a href="{{ route('frontend.pages.tracking') }}"> tracking </a> </li>
+               <!-- <li id="tracking"> <a href="{{ route('frontend.pages.tracking') }}"> tracking </a> </li> -->
                <li id="contact"> <a href="{{ route('frontend.pages.contact') }}"> contact </a> </li>
 
                <li>

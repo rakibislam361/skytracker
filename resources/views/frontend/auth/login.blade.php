@@ -18,7 +18,8 @@
                                     <span class="invalid-feedback" role="alert" style="text-align:center">
                                         <strong class="alert-danger">{{ $message }}</strong>
                                     </span>
-                                  @enderror
+                                     
+                                 @enderror
                                 {{-- error messeage end --}}
 
                                 <div class="form-group">
@@ -39,12 +40,12 @@
                                 </div>
                                 @endif
                                 {{-- if error login modal popup --}}
-                                 <?php $log = $errors; ?>
+                                  <?php $log = $errors?>
                                  @if ( (Route::current()->getName() != 'login') and count($log) > 0 and !empty('loginForm') )
                                      <script>
                                          $(document).ready(function() {
                                          $('#login-popup').modal('show');                                       
-                                         $('#register-popup').modal('hide');
+                                         $('#register-popup').modal('toggle');
                                          
                                           });
 
@@ -65,8 +66,8 @@
                 </x-frontend.card>
             </div>
             <div class="create-accnt">
-                <a data-toggle="modal" data-dismiss="modal" href="#register-popup" name="register" class="white-clr"> Don’t have an account? </a>
-                <h2 class="title-2">  <a data-toggle="modal" data-dismiss="modal" href="#register-popup" name="register" class="green-clr under-line">Create a free account</a>
+                <a data-toggle="modal" data-dismiss="modal" data-target="#register-popup" href="#register-popup" name="register" class="white-clr"> Don’t have an account? </a>
+                <h2 class="title-2">  <a data-toggle="modal" data-dismiss="modal" data-target="#register-popup" href="#register-popup" name="register" class="green-clr under-line">Create a free account</a>
                 </h2>
             </div>
         </div>

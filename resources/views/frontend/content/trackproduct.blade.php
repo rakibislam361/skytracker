@@ -5,10 +5,10 @@
         <h2 class="title-1"> track your product </h2> <span class="font2-light fs-12">Now you can
           track your product easily</span>
         <div class="row">
-          <form class="">
+          <form class="trackproduct" action="{{ route('frontend.pages.tracking') }}" method="GET" >
             <div class="col-md-7 col-sm-7">
               <div class="form-group">
-                <input type="text" placeholder="Enter your product ID" required="" class="form-control box-shadow">
+                <input id="trackid" type="search" placeholder="Enter your product ID" required="" class="form-control box-shadow" name="trackid">
               </div>
             </div>
             <div class="col-md-5 col-sm-5">
@@ -17,8 +17,10 @@
               </div>
             </div>
           </form>
+            
         </div>
       </div>
     </div>
   </div>
+
 </section>

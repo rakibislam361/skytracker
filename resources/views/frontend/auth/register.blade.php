@@ -30,6 +30,7 @@
                                     <span class="invalid-feedback" role="alert" style="text-align:center">
                                         <strong class="alert-danger">{{ $message }}</strong>
                                     </span>
+                                    
                                   @enderror
 
                                  @error('password')
@@ -49,12 +50,12 @@
                                   @endif
 
                                 {{-- if error login modal popup --}}
-                                <?php $reg = $errors; ?>
+                                <?php $reg = $errors?>
                                     @if ( (Route::current()->getName() != 'register') and (count($reg) > 0 and !empty('registerForm')))
                                         <script>
                                             $(document).ready(function() {
-                                                $('#register-popup').modal('show');
-                                                $('#login-popup').modal('hide');
+                                               // $('#register-popup').modal('show');
+                                                //$('#login-popup').modal('hide');
                                                                                                
                                                });
                                          </script>
@@ -72,8 +73,8 @@
                 </x-frontend.card>
             </div>
             <div class="create-accnt">
-                <a data-toggle="modal" data-dismiss="modal" href="#login-popup" name="login" class="white-clr" >Already Have An Account? </a>
-                <h2 class="title-2">  <a data-toggle="modal" data-dismiss="modal" href="#login-popup" name="login" class="green-clr under-line">Sign In From Existing Account</a>
+                <a data-toggle="modal" data-dismiss="modal" data-target="#login-popup" href="#login-popup" name="login" class="white-clr" >Already Have An Account? </a>
+                <h2 class="title-2">  <a data-toggle="modal" data-dismiss="modal" data-target="#login-popup" href="#login-popup" name="login" class="green-clr under-line">Sign In From Existing Account</a>
                 </h2>
             </div>
         </div>

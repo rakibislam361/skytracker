@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\TermsController;
 use App\Http\Controllers\Frontend\AboutController;
@@ -39,7 +40,15 @@ Route::get('contact', [ContactController::class, 'index'])
             ->push(__('_contact'), route('frontend.pages.contact'));
     });
 
-Route::get('tracking', [TrackingController::class, 'index'])
+// Route::get('tracking', [TrackingController::class, 'index'])
+//     ->name('pages.tracking')
+//     ->breadcrumbs(function (Trail $trail) {
+//         $trail->parent('frontend.index')
+//             ->push(__('_tracking'), route('frontend.pages.tracking'));
+//     });
+
+
+Route::get('tracking', [TrackingController::class, 'Track'])
     ->name('pages.tracking')
     ->breadcrumbs(function (Trail $trail) {
         $trail->parent('frontend.index')
