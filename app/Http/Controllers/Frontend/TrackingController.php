@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use DB;
 
 /**
  * Class TermsController.
  */
-class TrackingController extends Controller
+class TrackingController
 {
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
