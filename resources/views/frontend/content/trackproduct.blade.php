@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-5 col-sm-5">
               <div class="form-group">
-                <button class="btn-1">track your product</button>
+                <button class="btn-1">Track your product</button>
               </div>
             </div>
           </form>
