@@ -16,7 +16,7 @@
         </li>
 
         <li class="nav-item {{ activeClass(Route::is('admin.product.*'), 'menu-open') }}">
-          <x-utils.link-sidebar href="#" :text="__('Products')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
+          <x-utils.link-sidebar href="#" :text="__('Product')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
           <ul class="nav nav-treeview">
 
 

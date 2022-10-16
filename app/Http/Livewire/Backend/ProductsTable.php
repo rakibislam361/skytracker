@@ -40,7 +40,7 @@ class ProductsTable  extends DataTableComponent
 
             Column::make(__('Action'), 'action')
                 ->format(function ($value, $column, $row) {
-                    return view('backend.products.product.includes.actions')->withProduct($row);
+                    return view('backend.products.product.includes.actions')->withproduct($row);
                 }),
         ];
     }
