@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Frontend\User;
 
-use Illuminate\Http\Request;
-use DB;
 
 /**
  * Class DashboardController.

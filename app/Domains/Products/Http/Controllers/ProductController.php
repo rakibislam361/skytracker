@@ -2,6 +2,7 @@
 
 namespace App\Domains\Products\Http\Controllers;
 
+use App\Domains\Products\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class ProductController extends Controller
    */
   public function index()
   {
-    return view('backend.products.inhouse.index');
+    return view('backend.products.product.index');
   }
 
   /**
@@ -24,7 +25,7 @@ class ProductController extends Controller
    */
   public function create()
   {
-    return view('backend.products.inhouse.create');
+    return view('backend.products.product.create');
   }
 
   /**
@@ -35,7 +36,11 @@ class ProductController extends Controller
    */
   public function store(Request $request)
   {
-    //
+    $data = $this->validateproducts();
+    product::create($data);
+    return redirect()
+      ->route('admin.product.product.index')
+      ->withFlashSuccess('product created successfully');
   }
 
   /**
@@ -57,7 +62,8 @@ class ProductController extends Controller
    */
   public function edit($id)
   {
-    //
+    $product = product::findOrFail($id);
+    return view('backend.products.product.edit', compact('product'));
   }
 
   /**
@@ -69,7 +75,14 @@ class ProductController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    $data = $this->validateproducts($id);
+    $product = product::find($id);
+    if ($product) {
+      $product->update($data);
+    }
+    return redirect()
+      ->route('admin.product.product.index')
+      ->withFlashSuccess('product updated successfully');
   }
 
   /**
@@ -80,6 +93,28 @@ class ProductController extends Controller
    */
   public function destroy($id)
   {
-    //
+    $product = product::find($id);
+    if ($product) {
+      $product->delete($product);
+    }
+    return redirect()
+      ->route('admin.product.product.index')
+      ->withFlashSuccess('product deleted successfully');
+  }
+
+  public function validateproducts($id = 0)
+  {
+    $data = request()->validate([
+      'name' => 'nullable|string|max:191',
+      'shipping_type' => 'nullable|string|max:191',
+      'invoice' => 'required|string|max:191',
+      'status' => 'nullable|string|max:191',
+      'warehouse' => 'nullable|string|max:191',
+    ]);
+    if (!$id) {
+      $data['user_id'] = auth()->id();
+    }
+
+    return $data;
   }
 }

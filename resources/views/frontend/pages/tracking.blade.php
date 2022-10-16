@@ -21,8 +21,8 @@
                   <h3 style="margin-left: 33%">Your Searched Product Details</h3>
                 </tr>
                 <tr>
-                  <th>@lang('ID')</th>
-                  <td>{{ $track->id }}</td>
+                  <th>@lang('Invoice')</th>
+                  <td>{{ $track->invoice }}</td>
                 </tr>
                 <tr>
                   <th>@lang('Product Name')</th>
@@ -32,6 +32,14 @@
                   <th>@lang('Shipping Type')</th>
                   <td>{{ $track->shipping_type }}</td>
                 </tr>
+                <tr>
+                  <th>@lang('Status')</th>
+                  <td>{{ $track->status }}</td>
+                </tr>
+                <tr>
+                  <th>@lang('Warehouse')</th>
+                  <td>{{ $track->warehouse }}</td>
+                </tr>
 
               </table>
             </div>
@@ -39,7 +47,7 @@
             <table class="table table-striped table-hover table-bordered mb-0">
               <tr>
                 <td>
-                  <h3 style="margin-left: 25%">Sorry!!! Nothing Found</h3>
+                  <h3 style="margin-left: 30%">Sorry!!! Nothing Found</h3>
                 </td>
               </tr>
             </table>

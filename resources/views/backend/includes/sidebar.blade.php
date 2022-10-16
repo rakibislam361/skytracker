@@ -18,7 +18,9 @@
         <li class="nav-item {{ activeClass(Route::is('admin.product.*'), 'menu-open') }}">
           <x-utils.link-sidebar href="#" :text="__('Products')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
           <ul class="nav nav-treeview">
-            <li class="nav-item">
+
+
+            <!-- <li class="nav-item">
               <x-utils.link :href="route('admin.product.brand.index')" icon="nav-icon icon-arrow-right" :active="activeClass(Route::is('admin.product.brand.*'))" class="nav-link" :text="__('Brand')" />
             </li>
             <li class="nav-item">
@@ -41,9 +43,13 @@
             </li>
             <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Bulk Export')" />
+            </li> -->
+
+            <li class="nav-item">
+              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products')" />
             </li>
             <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Product Reviews')" />
+              <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Product Status')" />
             </li>
           </ul>
         </li>

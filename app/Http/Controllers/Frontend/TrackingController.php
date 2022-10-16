@@ -25,7 +25,7 @@ class TrackingController
     {
         $data = DB::table('products');
         if ($request->input('trackid')) {
-            $data = $data->where('id', 'LIKE', "%" . $request->trackid . "%");
+            $data = $data->where('invoice', 'LIKE', "" . $request->trackid . "");
         }
         $data = $data->paginate(10);
         return view('frontend.pages.tracking', compact('data'));

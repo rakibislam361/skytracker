@@ -23,6 +23,7 @@
                  @auth
                  @if ($logged_in_user->isUser())
                  <button><a href="{{ route('frontend.user.dashboard') }}"> Dashboard </a></button>
+
                  @endif
 
                  <button><a href="{{ route('frontend.user.account') }}"> {{ $logged_in_user->name }}</a></button>

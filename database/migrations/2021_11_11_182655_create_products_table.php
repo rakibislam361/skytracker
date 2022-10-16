@@ -15,56 +15,60 @@ class CreateProductsTable extends Migration
   {
     Schema::create('products', function (Blueprint $table) {
       $table->id();
-      $table->timestamp('active')->nullable();
-      $table->string('sku')->nullable();
+      // $table->timestamp('active')->nullable();
+      //$table->string('sku')->nullable();
       $table->string('name', 255)->nullable();
-      $table->string('slug')->nullable();
-      $table->unsignedInteger('added_by')->nullable();
+      $table->string('status')->nullable();
+      $table->string('warehouse')->nullable();
+      $table->string('invoice')->nullable();
+      // $table->string('slug')->nullable();
+      // $table->unsignedInteger('added_by')->nullable();
       $table->unsignedInteger('user_id')->nullable();
-      $table->unsignedInteger('category_id')->nullable();
-      $table->unsignedInteger('subcategory_id')->nullable();
-      $table->unsignedInteger('subsubcategory_id')->nullable();
-      $table->unsignedInteger('brand_id')->nullable();
-      $table->text('photos')->nullable();
-      $table->string('thumbnail_img')->nullable();
-      $table->string('featured_img')->nullable();
-      $table->string('flash_deal_img')->nullable();
-      $table->string('video_provider')->nullable();
-      $table->string('video_link')->nullable();
-      $table->string('tags')->nullable();
-      $table->text('short_description')->nullable();
-      $table->longText('description')->nullable();
-      $table->boolean('variant_product')->nullable();
-      $table->text('attributes')->nullable();
-      $table->mediumText('choice_options')->nullable();
-      $table->mediumText('colors')->nullable();
-      $table->text('variations')->nullable();
-      $table->integer('todays_deal')->nullable();
-      $table->integer('published')->nullable();
-      $table->integer('featured')->nullable();
-      $table->integer('current_stock')->nullable();
-      $table->unsignedInteger('unit_id')->nullable();
-      $table->double('purchase_price')->nullable();
-      $table->double('unit_price')->nullable();
-      $table->double('discount')->nullable();
-      $table->string('discount_type')->nullable();
-      $table->double('tax')->nullable();
-      $table->string('tax_type')->nullable();
+      // $table->unsignedInteger('category_id')->nullable();
+      // $table->unsignedInteger('subcategory_id')->nullable();
+      // $table->unsignedInteger('subsubcategory_id')->nullable();
+      // $table->unsignedInteger('brand_id')->nullable();
+      // $table->text('photos')->nullable();
+      // $table->string('thumbnail_img')->nullable();
+      // $table->string('featured_img')->nullable();
+      // $table->string('flash_deal_img')->nullable();
+      // $table->string('video_provider')->nullable();
+      // $table->string('video_link')->nullable();
+      // $table->string('tags')->nullable();
+      // $table->text('short_description')->nullable();
+      // $table->longText('description')->nullable();
+      // $table->boolean('variant_product')->nullable();
+      // $table->text('attributes')->nullable();
+      // $table->mediumText('choice_options')->nullable();
+      // $table->mediumText('colors')->nullable();
+      // $table->text('variations')->nullable();
+      // $table->integer('todays_deal')->nullable();
+      // $table->integer('published')->nullable();
+      // $table->integer('featured')->nullable();
+      // $table->integer('current_stock')->nullable();
+      // $table->unsignedInteger('unit_id')->nullable();
+      // $table->double('purchase_price')->nullable();
+      // $table->double('unit_price')->nullable();
+      // $table->double('discount')->nullable();
+      // $table->string('discount_type')->nullable();
+      // $table->double('tax')->nullable();
+      // $table->string('tax_type')->nullable();
 
 
       $table->double('shipping_cost')->nullable();
       $table->string('shipping_type')->nullable();
 
-      $table->integer('num_of_sale')->nullable();
-      $table->string('meta_title')->nullable();
-      $table->text('meta_description')->nullable();
-      $table->string('meta_img')->nullable();
+      // $table->integer('num_of_sale')->nullable();
+      // $table->string('meta_title')->nullable();
+      // $table->text('meta_description')->nullable();
+      // $table->string('meta_img')->nullable();
 
-      $table->string('pdf')->nullable();
-      $table->double('rating')->nullable();
+      // $table->string('pdf')->nullable();
+      // $table->double('rating')->nullable();
       $table->string('barcode')->nullable();
 
       $table->timestamps();
+      $table->softDeletes();
     });
   }
 
