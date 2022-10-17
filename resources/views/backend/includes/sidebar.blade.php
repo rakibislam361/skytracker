@@ -46,10 +46,10 @@
             </li> -->
 
             <li class="nav-item">
-              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products')" />
+              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products Details')" />
             </li>
             <li class="nav-item">
-              <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Product Status')" />
+              <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Update Products Status')" />
             </li>
           </ul>
         </li>

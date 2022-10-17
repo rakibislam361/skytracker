@@ -23,13 +23,12 @@ class ProductsTable  extends DataTableComponent
     public function columns(): array
     {
         return [
-            // Column::make('Id', 'id')
-            //     ->sortable()
-            //     ->searchable(),
-            Column::make('Name', 'name')
-                ->searchable(),
+
             Column::make('Invoice', 'invoice')
                 ->searchable(),
+            Column::make('Name', 'name')
+                ->searchable(),
+
             Column::make('Shipping Type', 'shipping_type')
                 ->searchable(),
 

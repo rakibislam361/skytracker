@@ -23,47 +23,58 @@
       <x-slot name="body">
 
 
-       <div class="form-group">
-          {{html()->label('Name')->for('name')}}
-          {{html()->text('name')
-          ->class('form-control')
-          ->placeholder('Name')
-          ->required()}}
-        </div>
-
-         <div class="form-group">
+        <div class="form-group">
           {{html()->label('Invoice')->for('invoice')}}
           {{html()->text('invoice')
           ->class('form-control')
-          ->placeholder('Invoice')}}      
+          ->placeholder('Invoice')}}
         </div>
 
         <div class="form-group">
+          {{html()->label('Name')->for('name')}}
+          <table class="table table-bordered" id="dynamicAddRemove">
+            <tr>
+              <td><input type="text" name="name" placeholder="Enter product name" class="form-control" /></td>
+              <td><button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button></td>
+            </tr>
+          </table>
+        </div>
+
+
+
+        <div class="form-group">
           {{html()->label('Shipping Type')->for('shipping_type')}}
-          {{html()->text('shipping_type')
-          ->class('form-control')
-          ->placeholder('Shipping Type')
-          ->required()}}
-        </div>       
+          <select class="form group dropdown-item border" name="shipping_type">
+            <option selected value="0"></option>
+            <option value="air">By Air</option>
+            <option value="road">By Road</option>
+            <option value="ship">By Ship</option>
+
+          </select>
+        </div>
 
         <div class="form-group">
           {{html()->label('Status')->for('status')}}
           <select class="form group dropdown-item border" name="status">
-              <option selected>Select Status</option>
-              <option value="Order Placed">Order Placed</option>
-              <option value="Pickup in progress">Pickup in progress</option>
-              <option value="In Warehouse">In Warehouse</option>
-              <option value="In Transit">In Transit</option>
-              <option value="Arrived">Arrived</option>
+            <option selected value="0"></option>
+            <option value="Order Placed">Order Placed</option>
+            <option value="Pickup in progress">Pickup in progress</option>
+            <option value="In Warehouse">In Warehouse</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Arrived">Arrived</option>
           </select>
         </div> <!-- form-group -->
-        
+
 
         <div class="form-group">
           {{html()->label('warehouse')->for('warehouse')}}
-          {{html()->text('warehouse')
-          ->class('form-control')
-          ->placeholder('Warehouse')}}
+          <select class="form group dropdown-item border" name="warehouse">
+            <option selected value="0"></option>
+            <option value="Dhaka">DHAKA</option>
+            <option value="China">CHINA</option>
+            <option value="Chittagong">CHITTAGONG</option>
+
+          </select>
         </div> <!-- form-group -->
 
 

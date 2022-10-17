@@ -2,7 +2,7 @@
 
 namespace App\Domains\Products\Http\Controllers;
 
-use App\Domains\Products\Models\Status;
+use App\Domains\Products\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -38,7 +38,7 @@ class StatusController extends Controller
     public function store(Request $request)
     {
         $data = $this->validatestatuses();
-        status::create($data);
+        product::create($data);
         return redirect()
             ->route('admin.product.status.index')
             ->withFlashSuccess('status created successfully');
@@ -63,7 +63,7 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        $status = status::findOrFail($id);
+        $status = product::findOrFail($id);
         return view('backend.products.status.edit', compact('status'));
     }
 
@@ -77,7 +77,7 @@ class StatusController extends Controller
     public function update(Request $request, $id)
     {
         $data = $this->validatestatuses($id);
-        $status = status::find($id);
+        $status = product::find($id);
         if ($status) {
             $status->update($data);
         }
@@ -94,7 +94,7 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        $status = status::find($id);
+        $status = product::find($id);
         if ($status) {
             $status->delete($status);
         }

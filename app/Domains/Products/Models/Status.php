@@ -11,7 +11,7 @@ class Status extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'statuses';
+    protected $table = 'products';
 
     public $primaryKey = 'id';
 

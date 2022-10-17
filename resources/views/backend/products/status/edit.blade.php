@@ -13,7 +13,7 @@
 
     <x-backend.card>
       <x-slot name="header">
-        @lang('Update Role')
+        @lang('Update Status')
       </x-slot>
 
       <x-slot name="headerActions">
@@ -22,37 +22,53 @@
 
       <x-slot name="body">
 
-        
+        <div class="form-group">
+          {{html()->label('Invoice')->for('invoice')}}
+          {{html()->text('invoice')
+          ->class('form-control')
+           ->readonly('readonly')  
+          ->placeholder('status')}}
+        </div>
+
+
         <div class="form-group">
           {{html()->label('Status')->for('status')}}
-          {{html()->text('status')
-          ->class('form-control')
-          ->placeholder('Status')
-          ->required()}}
+          <select class="form group dropdown-item border" name="status">
+            <option value="{{ $status->status }}">{{ $status->status }}</option>
+            <option value="Order Placed">Order Placed</option>
+            <option value="Pickup in progress">Pickup in progress</option>
+            <option value="In Warehouse">In Warehouse</option>
+            <option value="In Transit">In Transit</option>
+            <option value="Arrived">Arrived</option>
+          </select>
         </div> <!-- form-group -->
 
-       
+
 
         <div class="form-group">
           {{html()->label('Warehouse')->for('warehouse')}}
-          {{html()->text('warehouse')
-          ->class('form-control')
-          ->placeholder('Warehouse')}}
+          <select class="form group dropdown-item border" name="warehouse">
+            <option value="{{ $status->warehouse }}">{{ $status->warehouse }}</option>
+            <option value="Dhaka">DHAKA</option>
+            <option value="China">CHINA</option>
+            <option value="Chittagong">CHITTAGONG</option>
+          </select>
+
         </div> <!-- form-group -->
 
 
-        </div> <!-- form-group -->
+  </div> <!-- form-group -->
 
 
-      </x-slot>
+  </x-slot>
 
-      <x-slot name="footer">
-        <button class="btn btn-sm btn-primary" type="submit">@lang('Update status')</button>
-      </x-slot>
-    </x-backend.card>
+  <x-slot name="footer">
+    <button class="btn btn-sm btn-primary" type="submit">@lang('Update status')</button>
+  </x-slot>
+  </x-backend.card>
 
-    {{ html()->closeModelForm() }}
+  {{ html()->closeModelForm() }}
 
-  </div>
+</div>
 </div>
 @endsection

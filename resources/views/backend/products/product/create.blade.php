@@ -6,6 +6,12 @@
 
 @section('content')
 
+{{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"> --}}
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <div class="row justify-content-center">
   <div class="col-md-6">
 
@@ -22,16 +28,6 @@
 
       <x-slot name="body">
 
-
-
-        <div class="form-group">
-          {{html()->label('Name')->for('name')}}
-          {{html()->text('name')
-          ->class('form-control')
-          ->placeholder('Name')
-          ->required()}}
-        </div>
-
         <div class="form-group">
           {{html()->label('Invoice')->for('invoice')}}
           {{html()->text('invoice')
@@ -39,10 +35,24 @@
           ->placeholder('Invoice')}}          
         </div>
 
+
+
+        <div class="form-group">
+          {{html()->label('Name')->for('name')}}
+        <table class="table table-bordered" id="dynamicAddRemove">  
+          <tr>  
+            <td><input type="text" name="name" placeholder="Enter product name" class="form-control" /></td>  
+            <td><button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button></td>  
+          </tr>  
+        </table> 
+        </div>
+
+        
+
         <div class="form-group">
           {{html()->label('Shipping Type')->for('shipping_type')}}
           <select class="form group dropdown-item border" name="shipping_type">
-              <option selected value="NULL">Select Type</option>
+              <option selected value="0"></option>
               <option value="air">By Air</option>
               <option value="road">By Road</option>
               <option value="ship">By Ship</option>
@@ -53,7 +63,7 @@
         <div class="form-group">
           {{html()->label('Status')->for('status')}}
           <select class="form group dropdown-item border" name="status">
-               <option selected value="NULL">Status</option>
+               <option selected value="0"></option>
               <option value="Order Placed">Order Placed</option>
               <option value="Pickup in progress">Pickup in progress</option>
               <option value="In Warehouse">In Warehouse</option>
@@ -65,9 +75,13 @@
 
         <div class="form-group">
           {{html()->label('warehouse')->for('warehouse')}}
-          {{html()->text('warehouse')
-          ->class('form-control')
-          ->placeholder('Warehouse')}}
+            <select class="form group dropdown-item border" name="warehouse">
+              <option selected value="0"></option>
+              <option value="Dhaka">DHAKA</option>
+              <option value="China">CHINA</option>
+              <option value="Chittagong">CHITTAGONG</option>
+             
+          </select>
         </div> <!-- form-group -->
 
 
@@ -81,7 +95,23 @@
     {{ html()->form()->close() }}
 
   </div>
+
 </div>
+
+
+  <script type="text/javascript">
+var i = 0;
+$("#add-btn").click(function(){
+++i;
+$("#dynamicAddRemove").append('<tr><td><input type="text" name="name" placeholder="Enter product name" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+});
+$(document).on('click', '.remove-tr', function(){  
+$(this).parents('tr').remove();
+});  
+
+
+</script>
+
 
 
 

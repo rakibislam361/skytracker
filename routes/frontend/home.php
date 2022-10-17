@@ -49,9 +49,9 @@ Route::get('contact', [ContactController::class, 'index'])
 //     });
 
 
-Route::get('tracking', [TrackingController::class, 'Track'])
+Route::get('track', [TrackingController::class, 'Track'])
     ->name('pages.tracking')
     ->breadcrumbs(function (Trail $trail) {
         $trail->parent('frontend.index')
-            ->push(__('_tracking'), route('frontend.pages.tracking'));
+            ->push(__('_track'), route('frontend.pages.tracking'));
     });

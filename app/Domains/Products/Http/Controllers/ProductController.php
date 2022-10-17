@@ -37,6 +37,7 @@ class ProductController extends Controller
   public function store(Request $request)
   {
     $data = $this->validateproducts();
+
     product::create($data);
     return redirect()
       ->route('admin.product.product.index')
@@ -104,6 +105,7 @@ class ProductController extends Controller
 
   public function validateproducts($id = 0)
   {
+
     $data = request()->validate([
       'name' => 'nullable|string|max:191',
       'shipping_type' => 'nullable|string|max:191',
@@ -114,7 +116,6 @@ class ProductController extends Controller
     if (!$id) {
       $data['user_id'] = auth()->id();
     }
-
     return $data;
   }
 }

@@ -12,13 +12,13 @@ Breadcrumbs::for(
 );
 
 Breadcrumbs::for(
-  'admin.product.inhouse.index',
+  'admin.product.product.index',
   fn (Trail $trail) =>
-  $trail->parent('admin.dashboard')->push('Products', 'admin.product.inhouse.index')
+  $trail->parent('admin.dashboard')->push('Products', 'admin.product.productindex')
 );
 
 Breadcrumbs::for(
-  'admin.product.inhouse.create',
+  'admin.product.product.create',
   fn (Trail $trail) =>
-  $trail->parent('admin.product.inhouse.index')->push('Create')
+  $trail->parent('admin.product.product.index')->push('Create')
 );

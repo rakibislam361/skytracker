@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Backend;
 
-use App\Domains\Products\Models\Status;
+use App\Domains\Products\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -17,13 +17,13 @@ class StatusesTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        return status::with('user:id,name')->latest();
+        return product::with('user:id,name')->latest();
     }
 
     public function columns(): array
     {
         return [
-            Column::make('Id', 'id')
+            Column::make('Invoice', 'invoice')
                 ->sortable()
                 ->searchable(),
             Column::make('Status', 'status')
@@ -33,7 +33,7 @@ class StatusesTable extends DataTableComponent
 
             Column::make(__('Action'), 'action')
                 ->format(function ($value, $column, $row) {
-                    return view('backend.products.status.includes.actions')->withStatus($row);
+                    return view('backend.products.status.includes.actions')->withstatus($row);
                 }),
         ];
     }
