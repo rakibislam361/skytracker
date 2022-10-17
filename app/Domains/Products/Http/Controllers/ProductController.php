@@ -37,7 +37,7 @@ class ProductController extends Controller
   public function store(Request $request)
   {
     $data = $this->validateproducts();
-
+    // get multiple product name under one invoice id
     product::create($data);
     return redirect()
       ->route('admin.product.product.index')
