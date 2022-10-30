@@ -39,7 +39,7 @@ class ProductController extends Controller
     $data = $this->validateproducts();
 
     $createProduct = new Product();
-    $createProduct->productName = json_encode($request->productName, true);
+    $createProduct->productName = json_encode($request->productName);
     $createProduct->status = $request->status;
     $createProduct->warehouse = $request->warehouse;
     $createProduct->shipping_type = $request->shipping_type;
@@ -93,7 +93,7 @@ class ProductController extends Controller
     $updateProduct = product::findOrFail($id);
     if ($updateProduct) {
 
-      $updateProduct->productName = json_encode($request->productName);
+      $updateProduct->productName = $request->productName;
       $updateProduct->status = $request->status;
       $updateProduct->warehouse = $request->warehouse;
       $updateProduct->shipping_type = $request->shipping_type;

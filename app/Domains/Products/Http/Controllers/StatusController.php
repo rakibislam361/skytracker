@@ -76,7 +76,7 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $data = $this->validatestatuses($id);
+
         $updateStatus = product::findOrFail($id);
         if ($updateStatus) {
             $updateStatus->invoice = $request->invoice;
