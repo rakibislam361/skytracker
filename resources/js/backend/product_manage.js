@@ -19,18 +19,19 @@ $(function() {
             e.preventDefault();
             ++i;
             var input_element = `<tr>
-                              <td>
-                                <input type="text" name="productName[]" placeholder="Enter product name" class="form-control" />
-                              </td>
-                              <td class="text-right" style="width:10%">
-                                 <button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button>
-                                </td> 
-                              <td class="text-right" style="width:10%">
-                                <button type="button" class="btn btn-danger remove-tr">Remove</button>
-                              </td>
-                                 
+                                    <td>
+                                      <input type="text" name="productName[]" placeholder="Enter product name" class="form-control" />
+                                    </td>
 
-                            </tr>`;
+                                    <td class="text-right" style="width:10%">
+                                      <button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button>
+                                    </td> 
+
+                                    <td class="text-right" style="width:10%">
+                                      <button type="button" class="btn btn-danger remove-tr">Remove</button>
+                                    </td>  
+                                                                   
+                                 </tr>`;
 
             $("#dynamicAddRemove").append(input_element);
         })

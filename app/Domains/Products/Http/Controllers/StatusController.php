@@ -37,11 +37,11 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->validatestatuses();
-        product::create($data);
-        return redirect()
-            ->route('admin.product.status.index')
-            ->withFlashSuccess('status created successfully');
+        // $data = $this->validatestatuses();
+        // product::create($data);
+        // return redirect()
+        //     ->route('admin.product.status.index')
+        //     ->withFlashSuccess('status created successfully');
     }
 
     /**
@@ -76,10 +76,13 @@ class StatusController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $this->validatestatuses($id);
-        $status = product::find($id);
-        if ($status) {
-            $status->update($data);
+        // $data = $this->validatestatuses($id);
+        $updateStatus = product::findOrFail($id);
+        if ($updateStatus) {
+            $updateStatus->invoice = $request->invoice;
+            $updateStatus->status = $request->status;
+            $updateStatus->warehouse = $request->warehouse;
+            $updateStatus->save();
         }
         return redirect()
             ->route('admin.product.status.index')
@@ -107,7 +110,7 @@ class StatusController extends Controller
     public function validatestatuses($id = 0)
     {
         $data = request()->validate([
-            'status' => 'nullable|string|max:191',
+            'status' => 'required|string|max:191',
             'warehouse' => 'required|string|max:191',
         ]);
         if (!$id) {

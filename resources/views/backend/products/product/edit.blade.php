@@ -14,9 +14,8 @@
 <div class="row justify-content-center">
   <div class="col-md-10">
 
-    {{ html()->modelForm($product, 'PATCH', route('admin.product.product.update',
-    $product))->attribute('enctype', 'multipart/form-data')->open() }}
-
+    {{ html()->modelForm($product, 'PATCH', route('admin.product.product.update', $product))->attribute('enctype', 'multipart/form-data')->open() }}
+      @csrf
     <x-backend.card>
       <x-slot name="header">
         @lang('Update Products Status')
