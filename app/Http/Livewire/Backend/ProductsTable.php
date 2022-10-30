@@ -13,20 +13,24 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 class ProductsTable  extends DataTableComponent
 {
     /**
+     
      * @return Builder
      */
+
     public function query(): Builder
     {
+
         return product::with('user:id,name')->latest();
     }
 
     public function columns(): array
     {
+
         return [
 
             Column::make('Invoice', 'invoice')
                 ->searchable(),
-            Column::make('Name', 'name')
+            Column::make('Name', 'productName')
                 ->searchable(),
 
             Column::make('Shipping Type', 'shipping_type')

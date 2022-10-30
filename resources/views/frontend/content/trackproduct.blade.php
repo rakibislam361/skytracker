@@ -8,7 +8,7 @@
           <form class="trackproduct" action="{{ route('frontend.pages.tracking') }}" method="GET">
             <div class="col-md-7 col-sm-7">
               <div class="form-group">
-                <input id="trackid" type="search" placeholder="Enter your invoice ID" required="" class="form-control box-shadow" name="trackid">
+                <input id="trackid" type="search" placeholder="Enter your Invoice ID" required="" class="form-control box-shadow" name="trackid">
               </div>
             </div>
             <div class="col-md-5 col-sm-5">

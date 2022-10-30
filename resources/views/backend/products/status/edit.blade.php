@@ -5,8 +5,10 @@
 @section('title', __('Update Status'))
 
 @section('content')
+
+
 <div class="row justify-content-center">
-  <div class="col-md-6">
+  <div class="col-md-10">
 
     {{ html()->modelForm($status, 'PATCH', route('admin.product.status.update',
     $status))->attribute('enctype', 'multipart/form-data')->open() }}
@@ -23,18 +25,15 @@
       <x-slot name="body">
 
         <div class="form-group">
-          {{html()->label('Invoice')->for('invoice')}}
-          {{html()->text('invoice')
-          ->class('form-control')
-           ->readonly('readonly')  
-          ->placeholder('status')}}
+          <label for="invoice">Invoice</label>
+          <input value="{{ $status->invoice }}" readonly="readonly" name="invoice" class="form-control" />
         </div>
 
 
         <div class="form-group">
-          {{html()->label('Status')->for('status')}}
+          <label for="status">Status</label>
           <select class="form group dropdown-item border" name="status">
-            <option value="{{ $status->status }}">{{ $status->status }}</option>
+            <option selected value="{{ $status->status }}">{{ $status->status }}</option>
             <option value="Order Placed">Order Placed</option>
             <option value="Pickup in progress">Pickup in progress</option>
             <option value="In Warehouse">In Warehouse</option>
@@ -46,14 +45,14 @@
 
 
         <div class="form-group">
-          {{html()->label('Warehouse')->for('warehouse')}}
+          <label for="warehouse">Warehouse</label>
           <select class="form group dropdown-item border" name="warehouse">
-            <option value="{{ $status->warehouse }}">{{ $status->warehouse }}</option>
+            <option selected value="{{ $status->warehouse }}">{{ $status->warehouse }}</option>
             <option value="Dhaka">DHAKA</option>
             <option value="China">CHINA</option>
             <option value="Chittagong">CHITTAGONG</option>
-          </select>
 
+          </select>
         </div> <!-- form-group -->
 
 

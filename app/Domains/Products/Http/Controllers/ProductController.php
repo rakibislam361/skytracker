@@ -37,8 +37,18 @@ class ProductController extends Controller
   public function store(Request $request)
   {
     $data = $this->validateproducts();
-    // get multiple product name under one invoice id
-    product::create($data);
+
+    $createProduct = new Product();
+    $createProduct->productName = json_encode($request->productName);
+    $createProduct->status = $request->status;
+    $createProduct->warehouse = $request->warehouse;
+    $createProduct->shipping_type = $request->shipping_type;
+    $createProduct->invoice = $request->invoice;
+    $createProduct->user_id = auth()->id();
+    $createProduct->save();
+
+
+    // product::create($data);
     return redirect()
       ->route('admin.product.product.index')
       ->withFlashSuccess('product created successfully');
@@ -50,9 +60,11 @@ class ProductController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show($id)
+  public function show(Request $request, $id)
   {
-    //
+    $product = Product::findOrFail($id);
+
+    return view('show', compact('product', $product));
   }
 
   /**
@@ -76,10 +88,18 @@ class ProductController extends Controller
    */
   public function update(Request $request, $id)
   {
-    $data = $this->validateproducts($id);
-    $product = product::find($id);
-    if ($product) {
-      $product->update($data);
+    // $data = $this->validateproducts($id);
+
+    $updateProduct = product::findOrFail($id);
+    if ($updateProduct) {
+      // $updateProduct->update($data);
+      $updateProduct->productName = json_encode($request->productName);
+      $updateProduct->status = $request->status;
+      $updateProduct->warehouse = $request->warehouse;
+      $updateProduct->shipping_type = $request->shipping_type;
+      $updateProduct->invoice = $request->invoice;
+      $updateProduct->user_id = auth()->id();
+      $updateProduct->save();
     }
     return redirect()
       ->route('admin.product.product.index')
@@ -107,7 +127,7 @@ class ProductController extends Controller
   {
 
     $data = request()->validate([
-      'name' => 'nullable|string|max:191',
+      'productName' => 'required',
       'shipping_type' => 'nullable|string|max:191',
       'invoice' => 'required|string|max:191',
       'status' => 'nullable|string|max:191',
@@ -116,6 +136,7 @@ class ProductController extends Controller
     if (!$id) {
       $data['user_id'] = auth()->id();
     }
+
     return $data;
   }
 }

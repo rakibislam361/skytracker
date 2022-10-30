@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
       $table->id();
       // $table->timestamp('active')->nullable();
       //$table->string('sku')->nullable();
-      $table->string('name', 255)->nullable();
+      $table->string('productName', 255)->nullable();
       $table->string('status')->nullable();
       $table->string('warehouse')->nullable();
       $table->string('invoice')->nullable();

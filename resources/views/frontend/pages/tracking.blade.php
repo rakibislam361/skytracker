@@ -24,10 +24,14 @@
                   <th>@lang('Invoice')</th>
                   <td>{{ $track->invoice }}</td>
                 </tr>
+                
                 <tr>
                   <th>@lang('Product Name')</th>
-                  <td>{{ $track->name }}</td>
+                  <td>
+                    {{ $track->productName }}
+                  </td>
                 </tr>
+
                 <tr>
                   <th>@lang('Shipping Type')</th>
                   <td>{{ $track->shipping_type }}</td>
