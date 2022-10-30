@@ -88,7 +88,7 @@ class ProductController extends Controller
    */
   public function update(Request $request, $id)
   {
-    // $data = $this->validateproducts($id);
+
 
     $updateProduct = product::findOrFail($id);
     if ($updateProduct) {

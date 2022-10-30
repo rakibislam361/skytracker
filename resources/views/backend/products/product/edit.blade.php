@@ -37,12 +37,12 @@
 
         <div class="form-group">
           <label for="productName">Name</label>
-          <table style="width:100%" id="dynamicAddRemove">
+          <table style="width:100%" id="dynamicAddRemove">            
             <tr>
               <td><input type="text" name="productName[]" value="{{ $product->productName }}" class="form-control" /></td>
               <td class="text-right" style="width:10%"><button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button></td>
               <td class="text-right" style="width:10%"><button type="button" class="btn btn-danger">Remove</button></td>
-            </tr>
+            </tr>          
           </table>
         </div>
 
