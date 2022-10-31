@@ -71,6 +71,9 @@
 ********************************/
 
 /*----------------1.1 Preloader Starts------------------*/
+.user_dashboard{
+    background-color: #3dd8f9;
+}
 .shadow{
     
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);

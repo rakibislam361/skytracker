@@ -11,7 +11,7 @@
     <x-slot name="body">
         @lang('Welcome to the Dashboard')
     </x-slot>
-</x-backend.card>  
+</x-backend.card>
 
- 
+
 @endsection
