@@ -18,7 +18,7 @@
             <div class="table-responsive">
               <table class="table table-striped table-hover table-bordered mb-0">
                 <tr>
-                  <h3 style="margin-left: 33%">Your Searched Product Details</h3>
+                  <h3 style="margin-left: 28%">Your Searched Product Details</h3>
                 </tr>
                 <tr>
                   <th>@lang('Invoice')</th>
@@ -27,9 +27,13 @@
                 
                 <tr>
                   <th>@lang('Product Name')</th>
-                  <td>
-                    {{ $track->productName }}
-                  </td>
+                 
+                  <?php $p_name= json_decode($track->productName,true); ?>
+                    <td>               
+                    @foreach($p_name as $pName)
+                       {{$pName}} ,
+                    @endforeach
+                       </td>                 
                 </tr>
 
                 <tr>
@@ -40,6 +44,7 @@
                   <th>@lang('Status')</th>
                   <td>{{ $track->status }}</td>
                 </tr>
+
                 <tr>
                   <th>@lang('Warehouse')</th>
                   <td>{{ $track->warehouse }}</td>

@@ -25,17 +25,4 @@ class Product extends Model
   {
     return $this->belongsTo(User::class);
   }
-
-  // public function setProductnameAttribute($productName)
-  // {
-  //   $productName = [];
-
-  //   foreach ($productName as $array_name) {
-  //     if (!is_null($array_name['productName'])) {
-  //       $productName[] = $array_name;
-  //     }
-  //   }
-
-  //   $this->attributes['productName'] = json_encode($productName);
-  // }
 }

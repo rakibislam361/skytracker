@@ -16,6 +16,8 @@
 
     {{ html()->modelForm($product, 'PATCH', route('admin.product.product.update', $product))->attribute('enctype', 'multipart/form-data')->open() }}
       @csrf
+      
+
     <x-backend.card>
       <x-slot name="header">
         @lang('Update Products Status')
@@ -39,7 +41,8 @@
           <label for="productName">Name</label>
           <table style="width:100%" id="dynamicAddRemove">            
             <tr>
-              <td><input type="text" name="productName[]" value="{{ $product->productName }}" class="form-control" /></td>
+              <?php $p_name= json_decode($product->productName,true); ?>
+              <td><input type="text" name="productName[]" value={{"$product->productName"}} class="form-control" /></td>
               <td class="text-right" style="width:10%"><button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button></td>
               <td class="text-right" style="width:10%"><button type="button" class="btn btn-danger">Remove</button></td>
             </tr>          

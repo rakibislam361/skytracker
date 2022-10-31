@@ -1176,7 +1176,7 @@ textarea:focus:-ms-input-placeholder {
 }
 .track-prod .title-1 {
     display: inline-block;
-    margin-right: 25px;
+    margin-right: 50px;
     vertical-align: middle;
 }
 .track-prod::before {

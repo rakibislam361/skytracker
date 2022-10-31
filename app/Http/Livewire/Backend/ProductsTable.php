@@ -6,6 +6,7 @@ use App\Domains\Products\Models\Product;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+use DB;
 
 /**
  * Class RolesTable.
@@ -30,6 +31,7 @@ class ProductsTable  extends DataTableComponent
 
             Column::make('Invoice', 'invoice')
                 ->searchable(),
+
             Column::make('Name', 'productName')
                 ->searchable(),
 
