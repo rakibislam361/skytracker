@@ -8,7 +8,7 @@
     @lang('Manage statuses')
   </x-slot>
   <x-slot name="body">
-    <livewire:backend.statuses-table />
+    <livewire:backend.contacts-table />
   </x-slot>
 </x-backend.card>
 @endsection

@@ -16,25 +16,38 @@
              <ul class="navbar-nav theme-menu">
                <li> <a href="{{ route('frontend.index') }}">Home</a> </li>
                <li id="about"> <a href="{{ route('frontend.pages.about') }}">about</a> </li>
-               <!-- <li id="tracking"> <a href="{{ route('frontend.pages.tracking') }}"> tracking </a> </li> -->
                <li id="contact"> <a href="{{ route('frontend.pages.contact') }}"> contact </a> </li>
 
+
+               @auth
+
+               @if ($logged_in_user->isAdmin())
                <li>
-                 @auth
-                 @if ($logged_in_user->isUser())
-                 <button><a href="{{ route('frontend.user.dashboard') }}"> Dashboard </a></button>
-
-                 @endif
-
-                 <button><a href="{{ route('frontend.user.account') }}"> {{ $logged_in_user->name }}</a></button>
-                 @else
-
-                 @if (config('boilerplate.access.user.registration'))
-                 <button><a data-toggle="modal" href="#login-popup" data- target="#login-popup"> Sign In </a></button>
-                 @endif
-
-                 @endauth
+                 <button><a href="{{ route('admin.dashboard') }}"> Administration </a></button>
                </li>
+               <li>
+                 <button><a href="{{ route('frontend.user.account') }}"> {{ $logged_in_user->name }}</a></button>
+               </li>
+               @endif
+
+               @if ($logged_in_user->isUser())
+               <li>
+                 <button><a href="{{ route('frontend.user.dashboard') }}"> Dashboard </a></button>
+               </li>
+               <li>
+                 <button><a href="{{ route('frontend.user.account') }}"> {{ $logged_in_user->name }}</a></button>
+               </li>
+               @endif
+
+               @else
+               @if (config('boilerplate.access.user.registration'))
+               <li>
+                 <button><a data-toggle="modal" href="#login-popup" data- target="#login-popup"> Sign In </a></button>
+               </li>
+               @endif
+
+               @endauth
+
 
 
              </ul>

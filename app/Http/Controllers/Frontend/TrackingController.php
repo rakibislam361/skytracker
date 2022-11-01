@@ -15,7 +15,6 @@ class TrackingController
      */
     public function index()
     {
-
         return view('frontend.pages.tracking');
     }
 

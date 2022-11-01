@@ -34,19 +34,21 @@ Route::get('about', [AboutController::class, 'index'])
             ->push(__('_About'), route('frontend.pages.about'));
     });
 
+// Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
+//     Route::resources([
+//         'contact' => ContactController::class,
+//     ]);
+// });
 Route::get('contact', [ContactController::class, 'index'])
     ->name('pages.contact')
     ->breadcrumbs(function (Trail $trail) {
         $trail->parent('frontend.index')
             ->push(__('_contact'), route('frontend.pages.contact'));
     });
-
-// Route::get('tracking', [TrackingController::class, 'index'])
-//     ->name('pages.tracking')
-//     ->breadcrumbs(function (Trail $trail) {
-//         $trail->parent('frontend.index')
-//             ->push(__('_tracking'), route('frontend.pages.tracking'));
-//     });
+// Route::resource('contact', ContactController::class);
+Route::post('contact', [ContactController::class, 'contact']);
+// Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
+// Route::post('/contact', [ContactController::class, 'storeContact'])->name('contact.store');
 
 
 Route::get('track', [TrackingController::class, 'Track'])

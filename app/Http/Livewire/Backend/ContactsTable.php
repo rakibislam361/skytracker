@@ -2,49 +2,37 @@
 
 namespace App\Http\Livewire\Backend;
 
-use App\Domains\Products\Models\Product;
+use App\Domains\Contacts\Models\Contact;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-
-/**
- * Class RolesTable.
- */
-class ProductsTable  extends DataTableComponent
+class ContactsTable extends DataTableComponent
 {
     /**
-     
      * @return Builder
      */
-
     public function query(): Builder
     {
-        return product::with('user:id,name')->latest();
+        return contact::with('user:id')->latest();
     }
 
     public function columns(): array
     {
-
         return [
-
-            Column::make('Invoice', 'invoice')
+            Column::make('Name', 'name')
+                ->sortable()
                 ->searchable(),
-
-            Column::make('Name', 'productName')
+            Column::make('E-mail', 'email')
                 ->searchable(),
-
-            Column::make('Shipping Type', 'shipping_type')
+            Column::make('Phone', 'phone')
                 ->searchable(),
-
-            Column::make('Status', 'status')
-                ->searchable(),
-            Column::make('Warehouse', 'warehouse')
+            Column::make('Message', 'message')
                 ->searchable(),
 
             Column::make(__('Action'), 'action')
                 ->format(function ($value, $column, $row) {
-                    return view('backend.products.product.includes.actions')->withproduct($row);
+                    return view('backend.messaging.contact.includes.actions')->withcontact($row);
                 }),
         ];
     }

@@ -18,12 +18,20 @@
 
 
                 <x-slot name="body">
-                    <x-forms.post>
+                    <x-forms.post :action="route('frontend.pages.contact') " id="contact" name="contact">
                         <div class="form-group row">
                             <label for="name" class="col-md-4 text-right">@lang('Name')</label>
 
                             <div class="col-md-6">
                                 <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" placeholder="{{ __('Name') }}" maxlength="100" required autofocus autocomplete="name" />
+                            </div>
+                        </div>
+                        <!--form-group-->
+                        <div class="form-group row">
+                            <label for="phone" class="col-md-4 text-right">@lang('Phone')</label>
+
+                            <div class="col-md-6">
+                                <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" placeholder="{{ __('Phone') }}" maxlength="100" required autofocus autocomplete="phone" />
                             </div>
                         </div>
                         <!--form-group-->
@@ -38,16 +46,16 @@
                         <!--form-group-->
 
                         <div class="form-group">
-                            <label for="name" class="col-md-4 col-form-label text-right">@lang('Contact Us')</label>
+                            <label for="name" class="col-md-4 col-form-label text-right">@lang('Message')</label>
 
                             <div class="col-md-6">
-                                <input type="textarea" name="contact" id="contact" class="form-control" placeholder="{{ __('Contact Us') }}" rows="4" cols="50" />
+                                <input type="textarea" name="message" id="message" class="form-control" placeholder="{{ __('Message') }}" rows="4" cols="50" />
                             </div>
                         </div>
                         <!--form-group-->
 
                         <div class="form-group">
-                            <div class="col-md-7">
+                            <div class="col-md-7 width: 100%">
                                 <div class="form-group text-right">
                                     <button class="btn btn-primary" type="submit">@lang('Contact')</button>
                                 </div>

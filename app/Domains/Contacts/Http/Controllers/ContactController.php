@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domains\Contact\Http\Controllers;
+namespace App\Domains\Contacts\Http\Controllers;
 
+use App\Domains\Contacts\Models\Contact;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ContactController extends Controller
    */
   public function index()
   {
-    dd('index');
+    return view('backend.messaging.contact.index');
+    // dd('index');
   }
 
   /**
