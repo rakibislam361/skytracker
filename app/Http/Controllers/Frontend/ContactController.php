@@ -16,7 +16,6 @@ class ContactController extends Controller
     public function index()
     {
         return view('frontend.pages.contact');
-        // dd('index');
     }
 
     /**
@@ -37,7 +36,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('contact');
+
         $createContact = new Contact();
         $createContact->name = $request->name;
         $createContact->phone = $request->phone;
@@ -47,7 +46,6 @@ class ContactController extends Controller
         $createContact->save();
 
 
-        // product::create($data);
         return redirect()
             ->route('frontend.pages.contact')
             ->withFlashSuccess('Message sent successfully');
@@ -97,18 +95,4 @@ class ContactController extends Controller
     {
         //
     }
-
-    // public function validateContacts($id = 0)
-    // {
-
-    //     $data = request()->validate([
-    //         'name' => 'required',
-    //         'phone' => 'nullable|string|max:191',
-    //         'email' => 'required|string|max:191',
-    //         'message' => 'nullable|string|max:191',
-    //     ]);
-
-
-    //     return $data;
-    // }
 }
