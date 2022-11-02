@@ -100,7 +100,7 @@
           <x-utils.link-sidebar href="#" :text="__('Messaging')" icon="nav-icon icon-envelope" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <x-utils.link :href="route('admin.messaging.contact.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Cotacts')" />
+              <x-utils.link :href="route('admin.messaging.contact.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Contacts')" />
             </li>
             <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Newsletters')" />

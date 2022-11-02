@@ -12,7 +12,7 @@
 
     {{ html()->modelForm($status, 'PATCH', route('admin.product.status.update',
     $status))->attribute('enctype', 'multipart/form-data')->open() }}
-
+    @csrf
     <x-backend.card>
       <x-slot name="header">
         @lang('Update Status')

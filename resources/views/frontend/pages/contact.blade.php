@@ -63,6 +63,7 @@
                         </div>
                         <!--form-group-->
                     </x-forms.post>
+
                 </x-slot>
             </x-frontend.card>
         </div>
