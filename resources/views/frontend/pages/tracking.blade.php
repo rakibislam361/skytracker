@@ -16,7 +16,7 @@
           <div class="content-justify-center shadow">
             @forelse($data as $track)
             <div class="table-responsive">
-              <table class="table table-striped table-hover table-bordered mb-0">
+              <table class="table table-hover table-bordered mb-0">
                 <tr>
                   <h3 style="margin-left: 28%">Your Searched Product Details</h3>
                 </tr>
@@ -25,23 +25,23 @@
                   <th>@lang('Invoice')</th>
                   <td>{{ $track->invoice }}</td>
                 </tr>
-                
+
                 <tr>
                   <th>@lang('Product Name')</th>
-                 
-                    <?php $p_name= json_decode($track->productName,true); ?>
-                    <td>               
-                      @foreach($p_name as $pName)
-                       {{$pName}} ,
-                      @endforeach
-                    </td>                 
+
+                  <?php $p_name = json_decode($track->productName, true); ?>
+                  <td>
+                    @foreach($p_name as $pName)
+                    {{$pName}} ,
+                    @endforeach
+                  </td>
                 </tr>
 
                 <tr>
                   <th>@lang('Shipping Type')</th>
                   <td>{{ $track->shipping_type }}</td>
                 </tr>
-                
+
                 <tr>
                   <th>@lang('Status')</th>
                   <td>{{ $track->status }}</td>
@@ -66,7 +66,7 @@
             @endforelse
 
           </div>
-         
+
           {{-- search product details and status end   --}}
           @include('frontend.content.footer')
         </x-slot>

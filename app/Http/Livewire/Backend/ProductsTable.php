@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
-
 /**
  * Class RolesTable.
  */
@@ -20,11 +19,13 @@ class ProductsTable  extends DataTableComponent
 
     public function query(): Builder
     {
+
         return product::with('user:id,name')->latest();
     }
 
     public function columns(): array
     {
+
 
         return [
 
