@@ -39,6 +39,7 @@ class ProductsTable  extends DataTableComponent
 
             Column::make('Status', 'status')
                 ->searchable(),
+
             Column::make('Warehouse', 'warehouse')
                 ->searchable(),
 
