@@ -2340,6 +2340,7 @@ textarea:focus:-ms-input-placeholder {
 }
 @media (min-width:768px) {
     /*---- Dropdown Style  Starts ---*/
+ 
     .text-right{
         text-align: right;
     }
@@ -2524,9 +2525,15 @@ textarea:focus:-ms-input-placeholder {
     /*---- Footer Ends  ---*/
 
 }
-@media (max-width:767px) {
+@media (max-width:768px) {
     /*---------------- Global properties (body, common classes, structure etc) Starts ----------------------*/
-.text-right{
+    .contact-shadow{
+    text-shadow: 1px 1px;
+    border-radius: 10px;
+    width: 60%;
+    margin-left: 33%;
+}
+    .text-right{
         text-align: center;
     }
     .wow{
@@ -2800,6 +2807,8 @@ textarea:focus:-ms-input-placeholder {
 
 }
 @media (max-width:479px) { 
+    
+    
     .text-right{
         text-align: center;
     }

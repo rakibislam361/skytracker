@@ -37,6 +37,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        // dd('contact');
         $createContact = new Contact();
         $createContact->name = $request->name;
         $createContact->phone = $request->phone;
@@ -97,17 +98,17 @@ class ContactController extends Controller
         //
     }
 
-    public function validatecontacts($id = 0)
-    {
+    // public function validateContacts($id = 0)
+    // {
 
-        $data = request()->validate([
-            'name' => 'required',
-            'phone' => 'nullable|string|max:191',
-            'email' => 'required|string|max:191',
-            'message' => 'nullable|string|max:191',
-        ]);
+    //     $data = request()->validate([
+    //         'name' => 'required',
+    //         'phone' => 'nullable|string|max:191',
+    //         'email' => 'required|string|max:191',
+    //         'message' => 'nullable|string|max:191',
+    //     ]);
 
 
-        return $data;
-    }
+    //     return $data;
+    // }
 }

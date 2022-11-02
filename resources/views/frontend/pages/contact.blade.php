@@ -55,7 +55,7 @@
                         <!--form-group-->
 
                         <div class="form-group">
-                            <div class="col-md-7 width: 100%">
+                            <div class="col-md-8 width: 100%">
                                 <div class="form-group text-right">
                                     <button class="btn btn-primary" type="submit">@lang('Contact')</button>
                                 </div>
