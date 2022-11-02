@@ -40,12 +40,15 @@
         <div class="form-group">
           <label for="productName">Name</label>
           <table style="width:100%" id="dynamicAddRemove">
+
+            <?php $p_name = json_decode($product->productName, true); ?>
+            @foreach($p_name as $pName)
             <tr>
-              <?php $p_name = json_decode($product->productName, true); ?>
-              <td><input type="text" name="productName[]" value={{" $product->productName "}} class="form-control" /></td>
+              <td><input type="text" name="productName[]" value={{$pName}} class="form-control" /></td>
               <td class="text-right" style="width:10%"><button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button></td>
-              <td class="text-right" style="width:10%"><button type="button" class="btn btn-danger">Remove</button></td>
+              <td class="text-right" style="width:10%"><button type="button" class="btn btn-danger remove-tr">Remove</button></td>
             </tr>
+            @endforeach
           </table>
         </div>
 

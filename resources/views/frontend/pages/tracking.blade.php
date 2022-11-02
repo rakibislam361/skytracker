@@ -30,11 +30,13 @@
                   <th>@lang('Product Name')</th>
 
                   <?php $p_name = json_decode($track->productName, true); ?>
+
                   <td>
                     @foreach($p_name as $pName)
-                    {{$pName}} ,
+                    {{$pName}},
                     @endforeach
                   </td>
+
                 </tr>
 
                 <tr>
