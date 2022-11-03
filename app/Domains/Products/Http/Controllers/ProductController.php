@@ -93,12 +93,7 @@ class ProductController extends Controller
     $updateProduct = product::findOrFail($id);
     if ($updateProduct) {
 
-      // $products = product::pluck('productName', 'id')->toarray();
-      // $products = product::select('productName')->get()->toArray();
-      // $d = product::get(array('productName'));
-      // $dec = json_decode($d);
-      // dd($dec);
-      // dd($products);
+
 
 
       $updateProduct->productName = $request->productName;
