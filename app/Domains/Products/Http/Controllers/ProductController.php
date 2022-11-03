@@ -15,6 +15,8 @@ class ProductController extends Controller
    */
   public function index()
   {
+    // $product = product::all();
+    // $prName = json_decode($product->productName);
     return view('backend.products.product.index');
   }
 

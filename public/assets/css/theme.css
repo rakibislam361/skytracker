@@ -78,10 +78,10 @@
     
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
     border-radius: 10px;
-    width: 60%;
-    margin-left: 20%;
-    
+    width: 50%;
+    margin-left: 25%;    
 }
+
 .signupimg {
   display: block;
   margin-left: auto;
@@ -96,7 +96,7 @@
     text-shadow: 1px 1px;
     border-radius: 10px;
     width: 60%;
-    margin-left: 40%;
+    margin-left: 43%;
 }
 
 #preloader {  
@@ -2330,6 +2330,7 @@ textarea:focus:-ms-input-placeholder {
     8 - Responsive STARTS 
 ************************************************/
 @media (max-width:1200px) {
+
     .text-right{
         text-align: right;
     }
@@ -2340,7 +2341,6 @@ textarea:focus:-ms-input-placeholder {
 }
 @media (min-width:768px) {
     /*---- Dropdown Style  Starts ---*/
- 
     .text-right{
         text-align: right;
     }
@@ -2527,10 +2527,16 @@ textarea:focus:-ms-input-placeholder {
 }
 @media (max-width:768px) {
     /*---------------- Global properties (body, common classes, structure etc) Starts ----------------------*/
+    .shadow{
+    
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    width: 100%;
+    margin-left: 0%;    
+}
     .contact-shadow{
     text-shadow: 1px 1px;
     border-radius: 10px;
-    width: 60%;
     margin-left: 33%;
 }
     .text-right{

@@ -7,7 +7,7 @@
 
 @section('content')
 <div class="container py-4">
-    <div class="row justify-content-center shadow pad-80 about-wrap clrbg-before">
+    <div class="row justify-content-center shadow about-wrap clrbg-before">
         <div class="contact-shadow">
             <a class="contact-shadow" href="{{ route('frontend.pages.contact') }}">
                 <h2> Contact Us </h2>

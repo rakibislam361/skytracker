@@ -24,7 +24,7 @@ $(function() {
                                     </td>
 
                                     <td class="text-right" style="width:10%">
-                                      <button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button>
+                                      <button type="button" name="add" id="add-btn" class="btn btn-success">Add</button>
                                     </td> 
 
                                     <td class="text-right" style="width:10%">
