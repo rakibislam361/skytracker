@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ appName() }}</title>
+  <link href="#">
   <meta name="description" content="@yield('meta_description', appName())">
   <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
   @yield('meta')
