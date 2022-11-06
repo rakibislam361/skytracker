@@ -20,7 +20,7 @@
           <ul class="nav nav-treeview">
 
 
-            <!-- <li class="nav-item">
+            {{-- <!-- <li class="nav-item">
               <x-utils.link :href="route('admin.product.brand.index')" icon="nav-icon icon-arrow-right" :active="activeClass(Route::is('admin.product.brand.*'))" class="nav-link" :text="__('Brand')" />
             </li>
             <li class="nav-item">
@@ -43,7 +43,7 @@
             </li>
             <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Bulk Export')" />
-            </li> -->
+            </li> --> --}}
 
             <li class="nav-item">
               <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products Details')" />
@@ -51,13 +51,16 @@
             <li class="nav-item">
               <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Status Update')" />
             </li>
-            <!-- <li class="nav-item">
-              <x-utils.link :href="route('admin.product.warehouse.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Warehouse')" />
-            </li> -->
+
+            {{-- <li class="nav-item">
+              <x-utils.link :href="route('admin.product.warehouse.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Status Update')" />
+            </li> --}}
+
+
           </ul>
         </li>
 
-        <!-- <li class="nav-item">
+        {{-- <!-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Orders')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -70,9 +73,9 @@
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Coupons')" />
             </li>
           </ul>
-        </li> -->
+        </li> --> --}}
 
-        <!-- <li class="nav-item">
+        {{-- <!-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Total Sales')" icon="nav-icon fas fa-coins" class="nav-link" />
         </li> -->
         <!-- <li class="nav-item">
@@ -80,7 +83,7 @@
         </li> -->
         <!-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Conversations')" icon="nav-icon fas fa-comments" class="nav-link" />
-        </li> -->
+        </li> --> --}}
 
         <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Reports')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
@@ -95,9 +98,9 @@
         </li>
 
 
-        <!-- <li class="nav-item">
+        {{-- <li class="nav-item">
           <x-utils.link-sidebar :href="route('admin.page.index')" :text="__('Manage Page')" :active="activeClass(Route::is('admin.page.*'))" icon="nav-icon fas fa-file-word" class="nav-link" />
-        </li> -->
+        </li>  --}}
 
         <li class="nav-item {{ activeClass(Route::is('admin.messaging.*'), 'menu-open') }}">
           <x-utils.link-sidebar href="#" :text="__('Messaging')" icon="nav-icon icon-envelope" class="nav-link" rightIcon="fas fa-angle-left right" />
@@ -111,7 +114,7 @@
           </ul>
         </li>
 
-        <!-- <li class="nav-item">
+        {{-- <!-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Business Settings')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -139,7 +142,7 @@
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Languages')" />
             </li>
           </ul>
-        </li> -->
+        </li> --> --}}
 
         <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Frontend Settings')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
@@ -162,14 +165,14 @@
           </ul>
         </li>
 
-        <!-- <li class="nav-item">
+        {{-- <!-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('E-commerce Setup')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Attribute')" />
             </li>
           </ul>
-        </li> -->
+        </li> --> --}}
 
 
         @if (
