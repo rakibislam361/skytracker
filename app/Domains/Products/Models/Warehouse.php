@@ -9,20 +9,20 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Warehouse extends Model
 {
-  use HasFactory, SoftDeletes;
+  // use HasFactory, SoftDeletes;
 
-  protected $table = 'warehouses';
+  // protected $table = 'warehouses';
 
-  public $primaryKey = 'id';
+  // public $primaryKey = 'id';
 
-  public $timestamps = true;
+  // public $timestamps = true;
 
-  protected $guarded = [];
+  // protected $guarded = [];
 
 
 
-  public function user()
-  {
-    return $this->belongsTo(User::class);
-  }
+  // public function user()
+  // {
+  //   return $this->belongsTo(User::class);
+  // }
 }

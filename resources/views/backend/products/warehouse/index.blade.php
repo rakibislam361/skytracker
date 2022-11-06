@@ -14,4 +14,5 @@
     <livewire:backend.warehouses-table />
   </x-slot>
 </x-backend.card>
+
 @endsection
