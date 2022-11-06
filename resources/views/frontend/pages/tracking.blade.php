@@ -4,16 +4,16 @@
 @include('frontend.content.banner')
 @include('frontend.content.trackproduct')
 @extends('frontend.layouts.app')
-
+@section('title', __('_tracking'))
 @section('content')
 
-<div>
-  <div class="row justify-content-center">
+<div class="container py-4">
+  <div class="row justify-content-center shadow">
     <div class="col-md-12">
       <x-frontend.card>
         <x-slot name="body">
           {{-- search product details and status start   --}}
-          <div class="shadow">
+          <div class="">
             @forelse($data as $track)
             <div class="table-responsive">
               <table class="table table-hover table-bordered mb-0">
@@ -70,7 +70,7 @@
           </div>
 
           {{-- search product details and status end   --}}
-          @include('frontend.content.footer')
+
         </x-slot>
       </x-frontend.card>
     </div>
@@ -78,6 +78,6 @@
   </div>
   <!--row-->
 </div>
-
+@include('frontend.content.footer')
 
 @endsection

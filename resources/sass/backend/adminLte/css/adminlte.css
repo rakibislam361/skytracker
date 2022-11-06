@@ -12857,6 +12857,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 .text-sm .main-header .nav-link, .main-header.text-sm .nav-link {
   height: 1.93725rem;
   padding: 0.35rem 1rem;
+  padding-left: 10px;
 }
 
 .text-sm .main-header .nav-link > .fa,

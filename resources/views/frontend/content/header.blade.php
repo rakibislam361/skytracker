@@ -26,7 +26,7 @@
                  <button><a href="{{ route('admin.dashboard') }}"> Administration </a></button>
                </li>
                <li>
-                 <button><a href="{{ route('frontend.user.account') }}"> {{ $logged_in_user->name }}</a></button>
+                 <button class="nav-item dropdown"><a href="{{ route('frontend.user.account') }}"> {{ $logged_in_user->name }}</a></button>
                </li>
                @endif
 

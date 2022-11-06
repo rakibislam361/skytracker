@@ -3,7 +3,7 @@
 use App\Domains\Contacts\Http\Controllers\ContactController;
 use App\Domains\Page\Http\Controllers\PageController;
 use App\Domains\Products\Http\Controllers\BrandController;
-// use App\Domains\Products\Http\Controllers\CategoryController;
+use App\Domains\Products\Http\Controllers\WarehouseController;
 use App\Domains\Products\Http\Controllers\ProductController;
 use App\Domains\Products\Http\Controllers\StatusController;
 use App\Http\Controllers\Backend\DashboardController;
@@ -19,7 +19,7 @@ Route::get('/search/', [DashboardController::class, 'search'])->name('search');
 Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
   Route::resources([
     'brand' => BrandController::class,
-    // 'category' => CategoryController::class,
+    'warehouse' => WarehouseController::class,
     'inhouse' => ProductController::class,
     'status' => StatusController::class,
     'product' => ProductController::class,

@@ -76,10 +76,10 @@
 }
 .shadow{
     
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 0px 0 rgba(0,0,0,0.2);
     border-radius: 10px;
-    width: 50%;
-    margin-left: 25%;    
+    width: 70%;
+    margin-left: 15%;    
 }
 
 .signupimg {
@@ -95,8 +95,8 @@
 .contact-shadow{
     text-shadow: 1px 1px;
     border-radius: 10px;
-    width: 60%;
-    margin-left: 43%;
+    width: 33%;
+    margin-left: 45%;
 }
 
 #preloader {  
@@ -986,7 +986,7 @@ textarea:focus:-ms-input-placeholder {
     padding-top: 10px;
 }
 .theme-menu > li {
-    padding: 8px 25px;
+    padding: 8px 20px;
     position: relative;
 }
 .theme-menu > li:last-child {
@@ -2331,6 +2331,12 @@ textarea:focus:-ms-input-placeholder {
 ************************************************/
 @media (max-width:1200px) {
 
+   .contact-shadow{
+    text-shadow: 1px 1px;
+    border-radius: 10px;
+    width: 33%;
+    margin-left: 45%;
+}
     .text-right{
         text-align: right;
     }
@@ -2341,6 +2347,7 @@ textarea:focus:-ms-input-placeholder {
 }
 @media (min-width:768px) {
     /*---- Dropdown Style  Starts ---*/
+ 
     .text-right{
         text-align: right;
     }
@@ -2404,6 +2411,12 @@ textarea:focus:-ms-input-placeholder {
 }
 @media (min-width:992px) and (max-width:1199px) {
     /*---- Home Starts  ---*/
+    /* .shadow{
+    box-shadow: 0 2px 0px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    width: 60%;
+    margin-left: 20%;    
+} */
     .text-right{
         text-align: right;
     }
@@ -2424,6 +2437,18 @@ textarea:focus:-ms-input-placeholder {
 }
 @media (min-width:768px) and (max-width:991px) {
     /*---- Header Starts ---*/
+    .shadow{ 
+    box-shadow: 0 2px 0px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    width: 90%;
+    margin-left: 5%;    
+}
+.contact-shadow{
+    text-shadow: 1px 1px;
+    border-radius: 10px;
+    width: 33%;
+    margin-left: 37%;
+}
     .text-right{
         text-align: center;
     }
@@ -2537,6 +2562,7 @@ textarea:focus:-ms-input-placeholder {
     .contact-shadow{
     text-shadow: 1px 1px;
     border-radius: 10px;
+    width: 50%;
     margin-left: 33%;
 }
     .text-right{
@@ -2610,8 +2636,11 @@ textarea:focus:-ms-input-placeholder {
         display: block;
         padding-left: 20px;
     }
+    .theme-menu > li:nth-child(4) {
+        padding-left: 17px;
+    }
     .theme-menu > li:last-child {
-        padding-left: 25px;
+        padding-left: 17px;
     }
     .theme-menu .search, .header-style3 .theme-menu .search {
         margin: 20px 0 0 20px;

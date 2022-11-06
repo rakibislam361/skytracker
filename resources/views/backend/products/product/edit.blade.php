@@ -45,7 +45,7 @@
             @foreach($p_name as $pName)
             <tr>
               <td><input type="text" name="productName[]" value={{$pName}} class="form-control" /></td>
-              <td class="text-right" style="width:10%"><button type="button" name="add" id="add-btn" class="btn btn-success">Add More</button></td>
+              <td class="text-right" style="width:10%"><button type="button" name="add" id="add-btn" class="btn btn-success">Add</button></td>
               <td class="text-right" style="width:10%"><button type="button" class="btn btn-danger remove-tr">Remove</button></td>
             </tr>
             @endforeach
