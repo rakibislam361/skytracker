@@ -9,7 +9,7 @@
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i class="fa fa-truck"></i> Daily Pick up, No limitations <i class="fa fa-angle-right" style="float:right;" aria-hidden="true"></i></a>
               </h4>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
+            <div id="collapseOne" class="panel-collapse collapse">
               <div class="panel-body">
                 Skytrack Courier gives you the opportunity of unlimited pickup. You can give
                 any amount of parcels regardless of their size and weight. Also you don’t

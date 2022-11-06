@@ -47,7 +47,7 @@ class ContactController extends Controller
 
 
         return redirect()
-            ->route('frontend.pages.contact')
+            ->route('frontend.index')
             ->withFlashSuccess('Message sent successfully');
     }
 

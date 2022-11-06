@@ -990,7 +990,7 @@ textarea:focus:-ms-input-placeholder {
     position: relative;
 }
 .theme-menu > li:last-child {
-    padding: 8px 0 0 20px;
+    padding: 8px 0 0 0px;
 }
 .theme-menu > li > a {
     display: inline-block;   
@@ -2459,7 +2459,7 @@ textarea:focus:-ms-input-placeholder {
         padding: 5px 15px;
     }
     .theme-menu > li:last-child {
-        padding: 5px 0 0 20px;
+        padding: 5px 0 0 0;
     }
 
     .top-bar2 .navbar-logo {
@@ -2637,10 +2637,10 @@ textarea:focus:-ms-input-placeholder {
         padding-left: 20px;
     }
     .theme-menu > li:nth-child(4) {
-        padding-left: 17px;
+        padding-left: 10px;
     }
     .theme-menu > li:last-child {
-        padding-left: 17px;
+        padding-left: 10px;
     }
     .theme-menu .search, .header-style3 .theme-menu .search {
         margin: 20px 0 0 20px;
