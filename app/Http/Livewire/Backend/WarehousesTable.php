@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Backend;
 
-use App\Domains\Products\Models\Product;
+use App\Domains\Products\Models\Warehouse;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -10,14 +10,16 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
 /**
  * Class RolesTable.
  */
+
 // class WarehousesTable extends DataTableComponent
+
 {
     /**
      * @return Builder
      */
     // public function query(): Builder
     // {
-    //     return product::with('user:id,name')->latest();
+    //     return warehouse::with('user:id')->latest();
     // }
 
     // public function columns(): array

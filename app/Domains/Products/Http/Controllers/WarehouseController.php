@@ -2,7 +2,7 @@
 
 namespace App\Domains\Products\Http\Controllers;
 
-use App\Domains\Products\Models\Product;
+use App\Domains\Products\Models\Warehouse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,6 +16,7 @@ class WarehouseController extends Controller
    */
   public function index()
   {
+
     // return view('backend.products.warehouse.index');
   }
 
@@ -37,11 +38,15 @@ class WarehouseController extends Controller
    */
   public function store(Request $request)
   {
-    // $data = $this->validatestatuses();
-    // product::create($data);
+
+    // $createWarehouse = new Warehouse();
+    // $createWarehouse->warehouse = $request->warehouse;
+    // $createWarehouse->user_id = auth()->id();
+    // $createWarehouse->save();
+
     // return redirect()
-    //     ->route('admin.product.status.index')
-    //     ->withFlashSuccess('status created successfully');
+    //   ->route('admin.product.warehouse.index')
+    //   ->withFlashSuccess('warehouse created successfully');
   }
 
   /**
@@ -63,7 +68,7 @@ class WarehouseController extends Controller
    */
   public function edit($id)
   {
-    // $warehouse = product::findOrFail($id);
+    // $warehouse = warehouse::findOrFail($id);
     // return view('backend.products.warehouse.edit', compact('warehouse'));
   }
 
@@ -77,7 +82,7 @@ class WarehouseController extends Controller
   public function update(Request $request, $id)
   {
 
-    // $updateWarehouse = product::findOrFail($id);
+    // $updateWarehouse = warehouse::findOrFail($id);
     // if ($updateWarehouse) {
     //   $updateWarehouse->warehouse = $request->warehouse;
     //   $updateWarehouse->save();
@@ -95,7 +100,7 @@ class WarehouseController extends Controller
    */
   public function destroy($id)
   {
-    // $warehouse = product::find($id);
+    // $warehouse = warehouse::find($id);
     // if ($warehouse) {
     //   $warehouse->delete($warehouse);
     // }
@@ -106,14 +111,14 @@ class WarehouseController extends Controller
 
 
   public function validatestatuses($id = 0)
-  // {
-  //   $data = request()->validate([
-  //     'warehouse' => 'required|string|max:191',
-  //   ]);
-  //   if (!$id) {
-  //     $data['user_id'] = auth()->id();
-  //   }
+  {
+    // $data = request()->validate([
+    //   'warehouse' => 'required|string|max:191',
+    // ]);
+    // if (!$id) {
+    //   $data['user_id'] = auth()->id();
+    // }
 
-  //   return $data;
-  // }
+    // return $data;
+  }
 }
