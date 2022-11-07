@@ -3,6 +3,7 @@
 namespace App\Domains\Products\Http\Controllers;
 
 use App\Domains\Products\Models\Product;
+use App\Domains\Products\Models\Warehouse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,6 @@ class ProductController extends Controller
    */
   public function index()
   {
-    // $product = product::all();
-    // $prName = json_decode($product->productName);
     return view('backend.products.product.index');
   }
 
@@ -27,7 +26,14 @@ class ProductController extends Controller
    */
   public function create()
   {
-    return view('backend.products.product.create');
+    $warehouses = Warehouse::all();
+    $warehouse = Warehouse::find('id');
+
+    $products = Product::select('products.warehouse_id')->join('warehouses', 'warehouses.id', '=', 'products.warehouse_id')->get();
+    $product = Product::all();
+
+    return view('backend.products.product.create', compact('products', 'warehouse', 'warehouses', 'product'));
+    // return view('backend.products.product.create');
   }
 
   /**
@@ -38,12 +44,14 @@ class ProductController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $this->validateproducts();
+
+    $warehouse = $request->warehouse;
+    $warehouse_id = Warehouse::where('warehouse', $warehouse)->first()->id;
 
     $createProduct = new Product();
     $createProduct->productName = json_encode($request->productName);
     $createProduct->status = $request->status;
-    $createProduct->warehouse = $request->warehouse;
+    $createProduct->warehouse_id = $warehouse_id;
     $createProduct->shipping_type = $request->shipping_type;
     $createProduct->invoice = $request->invoice;
     $createProduct->user_id = auth()->id();
@@ -94,9 +102,6 @@ class ProductController extends Controller
 
     $updateProduct = product::findOrFail($id);
     if ($updateProduct) {
-
-
-
 
       $updateProduct->productName = $request->productName;
       $updateProduct->status = $request->status;

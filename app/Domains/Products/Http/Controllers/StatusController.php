@@ -64,7 +64,7 @@ class StatusController extends Controller
     public function edit($id)
     {
         $status = product::findOrFail($id);
-        return view('backend.products.status.edit', compact('status'));
+        return view('backend.products.status.edit', compact('status', $status));
     }
 
     /**

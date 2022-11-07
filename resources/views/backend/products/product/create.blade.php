@@ -16,7 +16,6 @@
   <div class="col-md-10">
 
 
-
     <form action="{{ route('admin.product.product.store') }}" method="post" enctype="multipart/form-data">
       @csrf
       <x-backend.card>
@@ -72,10 +71,10 @@
           <div class="form-group">
             <label for="warehouse">Warehouse</label>
             <select class="form group dropdown-item border" name="warehouse">
-              <option selected value="0"></option>
-              <option value="Dhaka">DHAKA</option>
-              <option value="China">CHINA</option>
-              <option value="Chittagong">CHITTAGONG</option>
+              <option value=""></option>
+              @foreach ($warehouses as $ware)
+              <option value="{{$ware->warehouse}}">{{$ware->warehouse}}</option>
+              @endforeach
 
             </select>
           </div> <!-- form-group -->

@@ -17,7 +17,7 @@ class WarehouseController extends Controller
   public function index()
   {
 
-    // return view('backend.products.warehouse.index');
+    return view('backend.products.warehouse.index');
   }
 
   /**
@@ -27,7 +27,7 @@ class WarehouseController extends Controller
    */
   public function create()
   {
-    // return view('backend.products.warehouse.create');
+    return view('backend.products.warehouse.create');
   }
 
   /**
@@ -39,14 +39,14 @@ class WarehouseController extends Controller
   public function store(Request $request)
   {
 
-    // $createWarehouse = new Warehouse();
-    // $createWarehouse->warehouse = $request->warehouse;
-    // $createWarehouse->user_id = auth()->id();
-    // $createWarehouse->save();
+    $createWarehouse = new Warehouse();
+    $createWarehouse->warehouse = $request->warehouse;
+    $createWarehouse->user_id = auth()->id();
+    $createWarehouse->save();
 
-    // return redirect()
-    //   ->route('admin.product.warehouse.index')
-    //   ->withFlashSuccess('warehouse created successfully');
+    return redirect()
+      ->route('admin.product.warehouse.index')
+      ->withFlashSuccess('warehouse created successfully');
   }
 
   /**
@@ -68,8 +68,8 @@ class WarehouseController extends Controller
    */
   public function edit($id)
   {
-    // $warehouse = warehouse::findOrFail($id);
-    // return view('backend.products.warehouse.edit', compact('warehouse'));
+    $warehouse = warehouse::findOrFail($id);
+    return view('backend.products.warehouse.edit', compact('warehouse'));
   }
 
   /**
@@ -82,14 +82,14 @@ class WarehouseController extends Controller
   public function update(Request $request, $id)
   {
 
-    // $updateWarehouse = warehouse::findOrFail($id);
-    // if ($updateWarehouse) {
-    //   $updateWarehouse->warehouse = $request->warehouse;
-    //   $updateWarehouse->save();
-    // }
-    // return redirect()
-    //   ->route('admin.product.warehouse.index')
-    //   ->withFlashSuccess('warehouse updated successfully');
+    $updateWarehouse = warehouse::findOrFail($id);
+    if ($updateWarehouse) {
+      $updateWarehouse->warehouse = $request->warehouse;
+      $updateWarehouse->save();
+    }
+    return redirect()
+      ->route('admin.product.warehouse.index')
+      ->withFlashSuccess('warehouse updated successfully');
   }
 
   /**
@@ -100,25 +100,25 @@ class WarehouseController extends Controller
    */
   public function destroy($id)
   {
-    // $warehouse = warehouse::find($id);
-    // if ($warehouse) {
-    //   $warehouse->delete($warehouse);
-    // }
-    // return redirect()
-    //   ->route('admin.product.warehouse.index')
-    //   ->withFlashSuccess('warehouse deleted successfully');
+    $warehouse = warehouse::find($id);
+    if ($warehouse) {
+      $warehouse->delete($warehouse);
+    }
+    return redirect()
+      ->route('admin.product.warehouse.index')
+      ->withFlashSuccess('warehouse deleted successfully');
   }
 
 
   public function validatestatuses($id = 0)
   {
-    // $data = request()->validate([
-    //   'warehouse' => 'required|string|max:191',
-    // ]);
-    // if (!$id) {
-    //   $data['user_id'] = auth()->id();
-    // }
+    $data = request()->validate([
+      'warehouse' => 'required|string|max:191',
+    ]);
+    if (!$id) {
+      $data['user_id'] = auth()->id();
+    }
 
-    // return $data;
+    return $data;
   }
 }

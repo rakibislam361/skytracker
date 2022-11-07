@@ -51,7 +51,7 @@
 
                 <tr>
                   <th>@lang('Warehouse')</th>
-                  <td>{{ $track->warehouse }}</td>
+                  <td>{{ $track->warehouse_id }}</td>
                 </tr>
 
               </table>

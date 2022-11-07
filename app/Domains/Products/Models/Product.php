@@ -15,10 +15,11 @@ class Product extends Model
 
   public $primaryKey = 'id';
 
+  public $foreignId = 'warehouse_id';
+
   public $timestamps = true;
 
   protected $guarded = [];
-
 
 
   public function user()

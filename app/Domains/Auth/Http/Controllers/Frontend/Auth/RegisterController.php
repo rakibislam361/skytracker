@@ -61,7 +61,7 @@ class RegisterController
     {
         abort_unless(config('boilerplate.access.user.registration'), 404);
 
-        return view('frontend.auth.register');
+        return view('frontend.index');
     }
 
     /**

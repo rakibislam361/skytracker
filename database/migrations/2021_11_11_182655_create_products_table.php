@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
       //$table->string('sku')->nullable();
       $table->string('productName', 255)->nullable();
       $table->string('status')->nullable();
-      $table->string('warehouse')->nullable();
+      $table->foreignId('warehouse_id')->nullable();
       $table->string('invoice')->nullable();
       // $table->string('slug')->nullable();
       // $table->unsignedInteger('added_by')->nullable();
