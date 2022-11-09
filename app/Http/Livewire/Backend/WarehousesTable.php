@@ -25,7 +25,11 @@ class WarehousesTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make('Warehouse', 'warehouse')
+            Column::make('ID', 'id')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('Warehouse', 'name')
                 ->searchable(),
 
             Column::make(__('Action'), 'action')

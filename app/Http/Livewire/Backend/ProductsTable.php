@@ -20,14 +20,9 @@ class ProductsTable  extends DataTableComponent
 
     public function query(): Builder
     {
-        // $warehouses = Warehouse::all();
-
-        // $warehouse = Warehouse::find('warehouses.id');
-
-        // $products = Product::select('products.warehouse_id')->join('warehouses', 'warehouses.id', '=', 'products.warehouse_id')->get();
-        // dd($warehouses);
-        return product::with('user:id,name')->latest();
+        return Product::with('warehouse', 'status');
     }
+
 
     public function columns(): array
     {
@@ -43,10 +38,10 @@ class ProductsTable  extends DataTableComponent
             Column::make('Shipping Type', 'shipping_type')
                 ->searchable(),
 
-            Column::make('Status', 'status')
+            Column::make('Status', 'status.name')
                 ->searchable(),
 
-            Column::make('Warehouse', 'warehouse_id')
+            Column::make('Warehouse', 'warehouse.name')
                 ->searchable(),
 
             Column::make(__('Action'), 'action')

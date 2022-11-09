@@ -2,7 +2,7 @@
 
 namespace App\Domains\Products\Http\Controllers;
 
-use App\Domains\Products\Models\Product;
+use App\Domains\Products\Models\Status;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,6 +16,7 @@ class StatusController extends Controller
      */
     public function index()
     {
+
         return view('backend.products.status.index');
     }
 
@@ -37,11 +38,15 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
-        // $data = $this->validatestatuses();
-        // product::create($data);
-        // return redirect()
-        //     ->route('admin.product.status.index')
-        //     ->withFlashSuccess('status created successfully');
+
+        $createStatus = new Status();
+        $createStatus->name = $request->name;
+        $createStatus->user_id = auth()->id();
+        $createStatus->save();
+
+        return redirect()
+            ->route('admin.product.status.index')
+            ->withFlashSuccess('status created successfully');
     }
 
     /**
@@ -63,8 +68,9 @@ class StatusController extends Controller
      */
     public function edit($id)
     {
-        $status = product::findOrFail($id);
-        return view('backend.products.status.edit', compact('status', $status));
+
+        $status = Status::findOrFail($id);
+        return view('backend.products.status.edit', compact('status'));
     }
 
     /**
@@ -77,16 +83,14 @@ class StatusController extends Controller
     public function update(Request $request, $id)
     {
 
-        $updateStatus = product::findOrFail($id);
+        $updateStatus = Status::findOrFail($id);
         if ($updateStatus) {
-            $updateStatus->invoice = $request->invoice;
-            $updateStatus->status = $request->status;
-            $updateStatus->warehouse = $request->warehouse;
+            $updateStatus->name = $request->name;
             $updateStatus->save();
         }
         return redirect()
             ->route('admin.product.status.index')
-            ->withFlashSuccess('status updated successfully');
+            ->withFlashSuccess('Status updated successfully');
     }
 
     /**
@@ -97,7 +101,7 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        $status = product::find($id);
+        $status = status::find($id);
         if ($status) {
             $status->delete($status);
         }
@@ -110,8 +114,7 @@ class StatusController extends Controller
     public function validatestatuses($id = 0)
     {
         $data = request()->validate([
-            'status' => 'required|string|max:191',
-            'warehouse' => 'required|string|max:191',
+            'name' => 'required|string|max:191',
         ]);
         if (!$id) {
             $data['user_id'] = auth()->id();

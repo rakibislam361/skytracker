@@ -24,36 +24,11 @@
 
       <x-slot name="body">
 
-        <div class="form-group">
-          <label for="invoice">Invoice</label>
-          <input value="{{ $status->invoice }}" readonly="readonly" name="invoice" class="form-control" />
-        </div>
-
 
         <div class="form-group">
           <label for="status">Status</label>
-          <select class="form group dropdown-item border" name="status">
-            <option selected value="{{ $status->status }}">{{ $status->status }}</option>
-            <option value="Order Placed">Order Placed</option>
-            <option value="Pickup in progress">Pickup in progress</option>
-            <option value="In Warehouse">In Warehouse</option>
-            <option value="In Transit">In Transit</option>
-            <option value="Arrived">Arrived</option>
-          </select>
-        </div> <!-- form-group -->
-
-
-
-        <div class="form-group">
-          <label for="warehouse">Warehouse</label>
-          <select class="form group dropdown-item border" name="warehouse">
-            <option selected value="{{ $status->warehouse }}">{{ $status->warehouse }}</option>
-            <option value="Dhaka">DHAKA</option>
-            <option value="China">CHINA</option>
-            <option value="Chittagong">CHITTAGONG</option>
-
-          </select>
-        </div> <!-- form-group -->
+          <input value="{{ $status->name }}" name="name" class="form-control" />
+        </div>
 
 
   </div> <!-- form-group -->

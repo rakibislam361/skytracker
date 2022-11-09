@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Domains\Products\Models\Product;
+use App\Domains\Products\Models\Warehouse;
 use Illuminate\Http\Request;
 use DB;
 
@@ -22,7 +24,10 @@ class TrackingController
 
     public function Track(Request $request)
     {
-        $data = DB::table('products');
+        $data = product::with('user:id')
+            ->join('warehouses', 'warehouses.id', '=', 'products.warehouse_id')
+            ->latest('products.created_at');
+
         if ($request->input('trackid')) {
             $data = $data->where('invoice', 'LIKE', "" . $request->trackid . "");
         }

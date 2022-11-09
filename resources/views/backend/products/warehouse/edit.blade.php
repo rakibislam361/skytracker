@@ -25,8 +25,8 @@
       <x-slot name="body">
 
         <div class="form-group">
-          <label for="invoice">Invoice</label>
-          <input value="{{ $warehouse->warehouse }}" name="warehouse" class="form-control" />
+          <label for="warehouse">Warehouse</label>
+          <input value="{{ $warehouse->name }}" name="name" class="form-control" />
         </div>
 
 

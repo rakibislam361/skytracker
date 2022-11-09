@@ -40,7 +40,7 @@ class WarehouseController extends Controller
   {
 
     $createWarehouse = new Warehouse();
-    $createWarehouse->warehouse = $request->warehouse;
+    $createWarehouse->name = $request->warehouse;
     $createWarehouse->user_id = auth()->id();
     $createWarehouse->save();
 
@@ -68,6 +68,7 @@ class WarehouseController extends Controller
    */
   public function edit($id)
   {
+    // dd($id);
     $warehouse = warehouse::findOrFail($id);
     return view('backend.products.warehouse.edit', compact('warehouse'));
   }
@@ -84,7 +85,7 @@ class WarehouseController extends Controller
 
     $updateWarehouse = warehouse::findOrFail($id);
     if ($updateWarehouse) {
-      $updateWarehouse->warehouse = $request->warehouse;
+      $updateWarehouse->name = $request->name;
       $updateWarehouse->save();
     }
     return redirect()
@@ -113,7 +114,7 @@ class WarehouseController extends Controller
   public function validatestatuses($id = 0)
   {
     $data = request()->validate([
-      'warehouse' => 'required|string|max:191',
+      'name' => 'required|string|max:191',
     ]);
     if (!$id) {
       $data['user_id'] = auth()->id();

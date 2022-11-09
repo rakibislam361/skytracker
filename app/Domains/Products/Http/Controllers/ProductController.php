@@ -4,6 +4,7 @@ namespace App\Domains\Products\Http\Controllers;
 
 use App\Domains\Products\Models\Product;
 use App\Domains\Products\Models\Warehouse;
+use App\Domains\Products\Models\Status;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -26,14 +27,11 @@ class ProductController extends Controller
    */
   public function create()
   {
-    $warehouses = Warehouse::all();
-    $warehouse = Warehouse::find('id');
+    $status = Status::all();
+    $warehouse = Warehouse::all();
+    $product = Product::with('warehouse', 'staus');
 
-    $products = Product::select('products.warehouse_id')->join('warehouses', 'warehouses.id', '=', 'products.warehouse_id')->get();
-    $product = Product::all();
-
-    return view('backend.products.product.create', compact('products', 'warehouse', 'warehouses', 'product'));
-    // return view('backend.products.product.create');
+    return view('backend.products.product.create', compact('product', 'warehouse', 'status'));
   }
 
   /**
@@ -45,20 +43,15 @@ class ProductController extends Controller
   public function store(Request $request)
   {
 
-    $warehouse = $request->warehouse;
-    $warehouse_id = Warehouse::where('warehouse', $warehouse)->first()->id;
-
     $createProduct = new Product();
     $createProduct->productName = json_encode($request->productName);
-    $createProduct->status = $request->status;
-    $createProduct->warehouse_id = $warehouse_id;
+    $createProduct->status_id = $request->status;
+    $createProduct->warehouse_id = $request->warehouse; //receive warehouse ID
     $createProduct->shipping_type = $request->shipping_type;
     $createProduct->invoice = $request->invoice;
     $createProduct->user_id = auth()->id();
     $createProduct->save();
 
-
-    // product::create($data);
     return redirect()
       ->route('admin.product.product.index')
       ->withFlashSuccess('product created successfully');
@@ -85,8 +78,11 @@ class ProductController extends Controller
    */
   public function edit($id)
   {
-    $product = product::findOrFail($id);
-    return view('backend.products.product.edit', compact('product', $product));
+    $product = Product::find($id);
+    $warehouse = Warehouse::all();
+    $status = Status::all();
+
+    return view('backend.products.product.edit', compact('product', 'warehouse', 'status'));
   }
 
   /**
@@ -98,18 +94,18 @@ class ProductController extends Controller
    */
   public function update(Request $request, $id)
   {
-
-
     $updateProduct = product::findOrFail($id);
     if ($updateProduct) {
 
       $updateProduct->productName = $request->productName;
-      $updateProduct->status = $request->status;
-      $updateProduct->warehouse = $request->warehouse;
+      $updateProduct->status_id = $request->status;
+      $updateProduct->warehouse_id = $request->warehouse;
       $updateProduct->shipping_type = $request->shipping_type;
       $updateProduct->invoice = $request->invoice;
       $updateProduct->user_id = auth()->id();
       $updateProduct->save();
+
+      // return (compact('products', 'warehouse', 'warehouses'));
     }
     return redirect()
       ->route('admin.product.product.index')
@@ -126,8 +122,10 @@ class ProductController extends Controller
   {
     $product = product::find($id);
     if ($product) {
+
       $product->delete($product);
     }
+
     return redirect()
       ->route('admin.product.product.index')
       ->withFlashSuccess('product deleted successfully');
@@ -141,7 +139,7 @@ class ProductController extends Controller
       'shipping_type' => 'nullable|string|max:191',
       'invoice' => 'required|string|max:191',
       'status' => 'nullable|string|max:191',
-      'warehouse' => 'nullable|string|max:191',
+
     ]);
     if (!$id) {
       $data['user_id'] = auth()->id();

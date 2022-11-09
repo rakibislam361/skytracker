@@ -17,10 +17,10 @@ class CreateProductsTable extends Migration
       $table->id();
       // $table->timestamp('active')->nullable();
       //$table->string('sku')->nullable();
-      $table->string('productName', 255)->nullable();
-      $table->string('status')->nullable();
+      $table->string('productName')->nullable();
+      $table->foreignId('status_id')->nullable();
       $table->foreignId('warehouse_id')->nullable();
-      $table->string('invoice')->nullable();
+      $table->string('invoice')->unique()->nullable();
       // $table->string('slug')->nullable();
       // $table->unsignedInteger('added_by')->nullable();
       $table->unsignedInteger('user_id')->nullable();

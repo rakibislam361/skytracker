@@ -20,7 +20,7 @@
           <ul class="nav nav-treeview">
 
 
-            {{--  <li class="nav-item">
+            {{-- <li class="nav-item">
               <x-utils.link :href="route('admin.product.brand.index')" icon="nav-icon icon-arrow-right" :active="activeClass(Route::is('admin.product.brand.*'))" class="nav-link" :text="__('Brand')" />
             </li>
             <li class="nav-item">
@@ -49,7 +49,7 @@
               <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products Details')" />
             </li>
             <li class="nav-item">
-              <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Status Update')" />
+              <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Status')" />
             </li>
 
             <li class="nav-item">
@@ -60,7 +60,7 @@
           </ul>
         </li>
 
-        {{--  <li class="nav-item">
+        {{-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Orders')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -75,7 +75,7 @@
           </ul>
         </li>  --}}
 
-        {{--  <li class="nav-item">
+        {{-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Total Sales')" icon="nav-icon fas fa-coins" class="nav-link" />
         </li> 
          <li class="nav-item">
@@ -114,7 +114,7 @@
           </ul>
         </li>
 
-        {{--  <li class="nav-item">
+        {{-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Business Settings')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -165,7 +165,7 @@
           </ul>
         </li>
 
-        {{--  <li class="nav-item">
+        {{-- <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('E-commerce Setup')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">

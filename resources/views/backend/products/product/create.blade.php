@@ -59,12 +59,11 @@
           <div class="form-group">
             <label for="status">Status</label>
             <select class="form group dropdown-item border" name="status">
-              <option selected value="0"></option>
-              <option value="Order Placed">Order Placed</option>
-              <option value="Pickup in progress">Pickup in progress</option>
-              <option value="In Warehouse">In Warehouse</option>
-              <option value="In Transit">In Transit</option>
-              <option value="Arrived">Arrived</option>
+              <option value=""></option>
+              @foreach ($status as $stat)
+              <option value="{{$stat->id}}">{{$stat->name}}</option>
+              @endforeach
+
             </select>
           </div> <!-- form-group -->
 
@@ -72,8 +71,8 @@
             <label for="warehouse">Warehouse</label>
             <select class="form group dropdown-item border" name="warehouse">
               <option value=""></option>
-              @foreach ($warehouses as $ware)
-              <option value="{{$ware->warehouse}}">{{$ware->warehouse}}</option>
+              @foreach ($warehouse as $ware)
+              <option value="{{$ware->id}}">{{$ware->name}}</option>
               @endforeach
 
             </select>
