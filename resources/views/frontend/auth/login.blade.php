@@ -1,3 +1,4 @@
+@include('frontend.auth.register')
 <div class="modal fade login-popup" id="login-popup" tabindex="-1" role="dialog" aria-hidden="true" name="login">
     <div class="modal-dialog modal-md">
         <a class="close close-btn" data-dismiss="modal" aria-label="Close"> x </a>
@@ -39,19 +40,7 @@
                                     <input type="hidden" name="captcha_status" value="true" />
                                 </div>
                                 @endif
-                                {{-- if error login modal popup --}}
-                                <?php $log = $errors ?>
-                                @if ( (Route::current()->getName() != 'login') and count($log) > 0 and !empty('loginForm') )
-                                <script>
-                                    $(document).ready(function() {
-                                        $('#login-popup').modal('show');
-                                        $('#register-popup').modal('toggle');
 
-                                    });
-                                </script>
-                                @endif
-
-                                {{-- if error login modal popup end--}}
                                 <div>
                                     <button class="btn-1" type="submit">@lang('Sign In Now')</button>
                                     <x-utils.link :href="route('frontend.auth.password.request')" class="btn btn-link" :text="__('Forgot Your Password?')" />
@@ -65,11 +54,23 @@
                 </x-frontend.card>
             </div>
             <div class="create-accnt">
-                <a data-toggle="modal" data-dismiss="modal" data-target="#register-popup" href="#register-popup" name="register" class="white-clr"> Don’t have an account? </a>
+                <span>Don’t have an account? </span>
                 <h2 class="title-2"> <a data-toggle="modal" data-dismiss="modal" data-target="#register-popup" href="#register-popup" name="register" class="green-clr under-line">Create a free account</a>
                 </h2>
             </div>
         </div>
     </div>
 </div>
-@include('frontend.auth.register')
+
+{{-- if error login modal popup --}}
+<?php $log = $errors ?>
+@if ( (Route::current()->getName() != 'login') and count($log) > 0 and !empty('loginForm') )
+<script>
+    $(document).ready(function() {
+        $('#login-popup').modal('show');
+    });
+</script>
+
+@endif
+
+{{-- if error login modal popup end--}}
