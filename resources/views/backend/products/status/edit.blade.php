@@ -2,7 +2,7 @@
 
 @extends('backend.layouts.app')
 
-@section('title', __('Update Status'))
+@section('title', __('Status'))
 
 @section('content')
 
@@ -15,7 +15,7 @@
     @csrf
     <x-backend.card>
       <x-slot name="header">
-        @lang('Update Status')
+        @lang('Create Status')
       </x-slot>
 
       <x-slot name="headerActions">

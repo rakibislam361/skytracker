@@ -7,6 +7,7 @@ use App\Domains\Products\Http\Controllers\WarehouseController;
 use App\Domains\Products\Http\Controllers\ProductController;
 use App\Domains\Products\Http\Controllers\StatusController;
 use App\Domains\Products\Http\Controllers\ShippingController;
+// use App\Domains\Products\Http\Controllers\UpdateStatusController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,7 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
     'warehouse' => WarehouseController::class,
     'inhouse' => ProductController::class,
     'status' => StatusController::class,
+    // 'updatestatus' => UpdateStatusController::class,
     'shipping' => ShippingController::class,
     'product' => ProductController::class,
   ]);
