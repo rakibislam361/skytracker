@@ -46,12 +46,12 @@
 
                 <tr>
                   <th>@lang('Status')</th>
-                  <td>{{ $track->status }}</td>
+                  <td>{{ $track->status->name }}</td>
                 </tr>
 
                 <tr>
                   <th>@lang('Warehouse')</th>
-                  <td>{{ $track->warehouse }}</td>
+                  <td>{{ $track->warehouse->name }}</td>
                 </tr>
 
               </table>
