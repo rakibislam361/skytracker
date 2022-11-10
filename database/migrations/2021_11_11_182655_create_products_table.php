@@ -56,7 +56,7 @@ class CreateProductsTable extends Migration
 
 
       $table->double('shipping_cost')->nullable();
-      $table->string('shipping_type')->nullable();
+      $table->foreignId('shipping_id')->nullable();
 
       // $table->integer('num_of_sale')->nullable();
       // $table->string('meta_title')->nullable();

@@ -37,7 +37,7 @@
   </x-slot>
 
   <x-slot name="footer">
-    <button class="btn btn-sm btn-primary" type="submit">@lang('Update status')</button>
+    <button class="btn btn-sm btn-primary" type="submit">@lang('Update Status')</button>
   </x-slot>
   </x-backend.card>
 

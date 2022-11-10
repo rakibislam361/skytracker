@@ -17,8 +17,6 @@ class Product extends Model
 
   public $primaryKey = 'id';
 
-  public $foreignId = 'warehouse_id';
-
   public $timestamps = true;
 
   protected $guarded = [];
@@ -36,5 +34,9 @@ class Product extends Model
   public function status()
   {
     return $this->belongsTo(Status::class, 'status_id', 'id');
+  }
+  public function shipping()
+  {
+    return $this->belongsTo(Shipping::class, 'shipping_id', 'id');
   }
 }

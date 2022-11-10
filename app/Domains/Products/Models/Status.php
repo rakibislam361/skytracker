@@ -12,15 +12,6 @@ class Status extends Model
 {
     use HasFactory, SoftDeletes;
 
-    // protected $table = 'products';
-
-    // public $primaryKey = 'id';
-
-    // public $timestamps = true;
-
-    // protected $guarded = [];
-
-
 
     public function user()
     {

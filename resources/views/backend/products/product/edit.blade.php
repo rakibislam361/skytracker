@@ -54,16 +54,15 @@
 
 
 
-        <div class="form-group">
-          <label for="shipping_type">Shipping Type</label>
-          <select class="form group dropdown-item border" name="shipping_type">
-            <option selected value="{{ $product->shipping_type }}">{{ $product->shipping_type }}</option>
-            <option value="By Air">By Air</option>
-            <option value="By Road">By Road</option>
-            <option value="By Ship">By Ship</option>
-
-          </select>
-        </div>
+       <div class="form-group">
+            <label for="status">Shipping Type</label>
+            <select class="form group dropdown-item border" name="shipping"> 
+              @foreach ($shipping as $ship)             
+              <option value="{{$ship->id}}" {{ $product->shipping_id == $ship->id ? 'selected' : '' }} >{{$ship->name}}</option>
+              @endforeach
+            </select>
+          </div> <!-- form-group -->
+          
 
        <div class="form-group">
             <label for="status">Status</label>

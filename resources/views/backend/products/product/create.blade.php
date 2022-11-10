@@ -45,16 +45,16 @@
             </table>
           </div>
 
-          <div class="form-group">
-            <label for="shipping_type">Shipping Type</label>
-            <select class="form group dropdown-item border" name="shipping_type">
-              <option selected value="0"></option>
-              <option value="By Air">By Air</option>
-              <option value="By Road">By Road</option>
-              <option value="By Ship">By Ship</option>
+         <div class="form-group">
+            <label for="shipping">Shipping Type</label>
+            <select class="form group dropdown-item border" name="shipping">
+              <option value=""></option>
+              @foreach ($shipping as $ship)
+              <option value="{{$ship->id}}">{{$ship->name}}</option>
+              @endforeach
 
             </select>
-          </div>
+          </div> <!-- form-group -->
 
           <div class="form-group">
             <label for="status">Status</label>

@@ -55,6 +55,9 @@
             <li class="nav-item">
               <x-utils.link :href="route('admin.product.warehouse.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Warehouse')" />
             </li>
+            <li class="nav-item">
+              <x-utils.link :href="route('admin.product.shipping.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Shipping')" />
+            </li>
 
 
           </ul>

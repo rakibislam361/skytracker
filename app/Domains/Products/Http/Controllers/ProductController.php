@@ -5,6 +5,7 @@ namespace App\Domains\Products\Http\Controllers;
 use App\Domains\Products\Models\Product;
 use App\Domains\Products\Models\Warehouse;
 use App\Domains\Products\Models\Status;
+use App\Domains\Products\Models\Shipping;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -28,10 +29,11 @@ class ProductController extends Controller
   public function create()
   {
     $status = Status::all();
+    $shipping = Shipping::all();
     $warehouse = Warehouse::all();
-    $product = Product::with('warehouse', 'staus');
+    $product = Product::with('warehouse', 'staus', 'shipping');
 
-    return view('backend.products.product.create', compact('product', 'warehouse', 'status'));
+    return view('backend.products.product.create', compact('product', 'warehouse', 'status', 'shipping'));
   }
 
   /**
@@ -47,7 +49,7 @@ class ProductController extends Controller
     $createProduct->productName = json_encode($request->productName);
     $createProduct->status_id = $request->status;
     $createProduct->warehouse_id = $request->warehouse; //receive warehouse ID
-    $createProduct->shipping_type = $request->shipping_type;
+    $createProduct->shipping_id = $request->shipping;
     $createProduct->invoice = $request->invoice;
     $createProduct->user_id = auth()->id();
     $createProduct->save();
@@ -81,8 +83,9 @@ class ProductController extends Controller
     $product = Product::find($id);
     $warehouse = Warehouse::all();
     $status = Status::all();
+    $shipping = Shipping::all();
 
-    return view('backend.products.product.edit', compact('product', 'warehouse', 'status'));
+    return view('backend.products.product.edit', compact('product', 'warehouse', 'status', 'shipping'));
   }
 
   /**
@@ -100,7 +103,7 @@ class ProductController extends Controller
       $updateProduct->productName = $request->productName;
       $updateProduct->status_id = $request->status;
       $updateProduct->warehouse_id = $request->warehouse;
-      $updateProduct->shipping_type = $request->shipping_type;
+      $updateProduct->shipping_id = $request->shipping;
       $updateProduct->invoice = $request->invoice;
       $updateProduct->user_id = auth()->id();
       $updateProduct->save();
@@ -136,9 +139,10 @@ class ProductController extends Controller
 
     $data = request()->validate([
       'productName' => 'required',
-      'shipping_type' => 'nullable|string|max:191',
+      'shipping_id' => 'nullable|max:191',
       'invoice' => 'required|string|max:191',
-      'status' => 'nullable|string|max:191',
+      'status_id' => 'nullable|max:191',
+      'warehouse_id' => 'nullable|max:191',
 
     ]);
     if (!$id) {

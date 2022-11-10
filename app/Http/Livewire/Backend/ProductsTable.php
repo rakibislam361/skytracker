@@ -19,8 +19,7 @@ class ProductsTable  extends DataTableComponent
 
     public function query(): Builder
     {
-
-        return Product::with('warehouse', 'status');
+        return Product::with('warehouse', 'status', 'shipping');
     }
 
     public function columns(): array
@@ -29,18 +28,19 @@ class ProductsTable  extends DataTableComponent
         return [
 
             Column::make('Invoice', 'invoice')
-                ->searchable(),
+                ->searchable()
+                ->sortable(),
 
             Column::make('Name', 'productName')
-                ->searchable(),
-
-            Column::make('Shipping Type', 'shipping_type')
                 ->searchable(),
 
             Column::make('Status', 'status.name')
                 ->searchable(),
 
             Column::make('Warehouse', 'warehouse.name')
+                ->searchable(),
+
+            Column::make('Shipping Type', 'shipping.name')
                 ->searchable(),
 
             Column::make(__('Action'), 'action')

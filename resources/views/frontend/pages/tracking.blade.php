@@ -37,12 +37,7 @@
                     @endforeach
                   </td>
 
-                </tr>
-
-                <tr>
-                  <th>@lang('Shipping Type')</th>
-                  <td>{{ $track->shipping_type }}</td>
-                </tr>
+                </tr>             
 
                 <tr>
                   <th>@lang('Status')</th>
@@ -52,6 +47,11 @@
                 <tr>
                   <th>@lang('Warehouse')</th>
                   <td>{{ $track->warehouse->name }}</td>
+                </tr>
+                
+                  <tr>
+                  <th>@lang('Shipping Type')</th>
+                  <td>{{ $track->shipping->name }}</td>
                 </tr>
 
               </table>

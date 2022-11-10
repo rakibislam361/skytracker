@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Backend;
 
-use App\Domains\Products\Models\Status;
+use App\Domains\Products\Models\Shipping;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -11,7 +11,7 @@ use Rappasoft\LaravelLivewireTables\Views\Column;
  * Class RolesTable.
  */
 
-class StatusesTable extends DataTableComponent
+class ShippingsTable extends DataTableComponent
 
 {
     /**
@@ -19,7 +19,7 @@ class StatusesTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        return Status::with('user:id')->latest();
+        return Shipping::with('user:id')->latest();
     }
 
     public function columns(): array
@@ -29,12 +29,12 @@ class StatusesTable extends DataTableComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('status', 'name')
+            Column::make('shipping', 'name')
                 ->searchable(),
 
             Column::make(__('Action'), 'action')
                 ->format(function ($value, $column, $row) {
-                    return view('backend.products.status.includes.actions')->withstatus($row);
+                    return view('backend.products.shipping.includes.actions')->withshipping($row);
                 }),
         ];
     }
