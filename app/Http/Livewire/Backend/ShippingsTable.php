@@ -19,17 +19,14 @@ class ShippingsTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        return Shipping::with('user:id')->latest();
+        return Shipping::with('user:id,name')->latest();
     }
 
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
 
-            Column::make('shipping', 'name')
+            Column::make('Shipping Type', 'name')
                 ->searchable(),
 
             Column::make(__('Action'), 'action')

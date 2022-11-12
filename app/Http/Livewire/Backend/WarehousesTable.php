@@ -19,15 +19,12 @@ class WarehousesTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        return warehouse::with('user:id')->latest();
+        return warehouse::with('user:id,name')->latest();
     }
 
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
 
             Column::make('Warehouse', 'name')
                 ->searchable(),

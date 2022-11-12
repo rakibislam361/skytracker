@@ -19,17 +19,14 @@ class StatusesTable extends DataTableComponent
      */
     public function query(): Builder
     {
-        return Status::with('user:id')->latest();
+        return Status::with('user:id,name')->latest();
     }
 
     public function columns(): array
     {
         return [
-            Column::make('ID', 'id')
-                ->searchable()
-                ->sortable(),
 
-            Column::make('status', 'name')
+            Column::make('Status', 'name')
                 ->searchable(),
 
             Column::make(__('Action'), 'action')
