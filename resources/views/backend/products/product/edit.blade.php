@@ -54,34 +54,34 @@
 
 
 
-       <div class="form-group">
-            <label for="status">Shipping Type</label>
-            <select class="form group dropdown-item border" name="shipping"> 
-              @foreach ($shipping as $ship)             
-              <option value="{{$ship->id}}" {{ $product->shipping_id == $ship->id ? 'selected' : '' }} >{{$ship->name}}</option>
-              @endforeach
-            </select>
-          </div> <!-- form-group -->
-          
-
-       <div class="form-group">
-            <label for="status">Status</label>
-            <select class="form group dropdown-item border" name="status"> 
-              @foreach ($status as $stat)             
-              <option value="{{$stat->id}}" {{ $product->status_id == $stat->id ? 'selected' : '' }} >{{$stat->name}}</option>
-              @endforeach
-            </select>
-          </div> <!-- form-group -->
+        <div class="form-group">
+          <label for="status">Shipping Type</label>
+          <select class="form group dropdown-item border" name="shipping">
+            @foreach ($shipping as $ship)
+            <option value="{{$ship->id}}" {{ $product->shipping_id == $ship->id ? 'selected' : '' }}>{{$ship->name}}</option>
+            @endforeach
+          </select>
+        </div> <!-- form-group -->
 
 
-       <div class="form-group">
-            <label for="warehouse">Warehouse</label>
-            <select class="form group dropdown-item border" name="warehouse"> 
-              @foreach ($warehouse as $ware)             
-              <option value="{{$ware->id}}" {{ $product->warehouse_id == $ware->id ? 'selected' : '' }} >{{$ware->name}}</option>
-              @endforeach
-            </select>
-          </div> <!-- form-group -->
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select class="form group dropdown-item border" name="status">
+            @foreach ($status as $stat)
+            <option value="{{$stat->id}}" {{ $product->status_id == $stat->id ? 'selected' : '' }}>{{$stat->name}}</option>
+            @endforeach
+          </select>
+        </div> <!-- form-group -->
+
+
+        <div class="form-group">
+          <label for="warehouse">Warehouse</label>
+          <select class="form group dropdown-item border" name="warehouse">
+            @foreach ($warehouse as $ware)
+            <option value="{{$ware->id}}" {{ $product->warehouse_id == $ware->id ? 'selected' : '' }}>{{$ware->name}}</option>
+            @endforeach
+          </select>
+        </div> <!-- form-group -->
 
 
 

@@ -48,18 +48,25 @@
             <li class="nav-item">
               <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products Details')" />
             </li>
-            <li class="nav-item">
-              <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Status')" />
-            </li>
 
-            <li class="nav-item">
-              <x-utils.link :href="route('admin.product.warehouse.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Warehouse')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="route('admin.product.shipping.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Shipping')" />
-            </li>
+            <li class="nav-item menu-open">
+              <x-utils.link-sidebar href="#" :text="__('Product`s Settings')" icon="nav-icon icon-settings" class="nav nav-link" rightIcon="fas fa-angle-left right"/>
+              <ul class="nav nav-treeview">
 
+                <li class="nav-item">
+                  <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Status')" />
+                </li>
 
+                <li class="nav-item">
+                  <x-utils.link :href="route('admin.product.warehouse.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Warehouse')" />
+                </li>
+
+                <li class="nav-item">
+                  <x-utils.link :href="route('admin.product.shipping.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Shipping')" />
+                </li>
+
+              </ul>
+            </li>
           </ul>
         </li>
 
