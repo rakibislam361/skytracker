@@ -30,27 +30,27 @@
         <x-slot name="body">
 
           <div class="form-group">
-            <label for="invoice">Invoice</label>
-            <input type="text" name="invoice" placeholder="Invoice ID" class="form-control" />
+            <label for=" invoice">Invoice</label>
+            <input type="text" name="invoice" required="" placeholder="Invoice ID" class="form-control" />
           </div>
 
           <div class="form-group">
             <label for="productName">Name</label>
             <table style="width:100%" id="dynamicAddRemove">
               <tr>
-                <td><input type="text" name="productName[]" placeholder="Enter product name" class="form-control" /></td>
+                <td><input type="text" required="" name="productName[]" placeholder="Enter product name" class="form-control" /></td>
                 <td class="text-right" style="width:10%"><button type="button" name="add" id="add-btn" class="btn btn-success">Add</button></td>
                 <td class="text-right" style="width:10%"><button type="button" class="btn btn-danger">Remove</button></td>
               </tr>
             </table>
           </div>
 
-         <div class="form-group">
+          <div class="form-group">
             <label for="shipping">Shipping Type</label>
             <select class="form group dropdown-item border" name="shipping">
               <option value=""></option>
               @foreach ($shipping as $ship)
-              <option value="{{$ship->id}}">{{$ship->name}}</option>
+              <option required="" value="{{$ship->id}}">{{$ship->name}}</option>
               @endforeach
 
             </select>
@@ -61,7 +61,7 @@
             <select class="form group dropdown-item border" name="status">
               <option value=""></option>
               @foreach ($status as $stat)
-              <option value="{{$stat->id}}">{{$stat->name}}</option>
+              <option required="" value="{{$stat->id}}">{{$stat->name}}</option>
               @endforeach
 
             </select>
@@ -72,7 +72,7 @@
             <select class="form group dropdown-item border" name="warehouse">
               <option value=""></option>
               @foreach ($warehouse as $ware)
-              <option value="{{$ware->id}}">{{$ware->name}}</option>
+              <option required="" value="{{$ware->id}}">{{$ware->name}}</option>
               @endforeach
 
             </select>

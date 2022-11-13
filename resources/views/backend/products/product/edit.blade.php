@@ -32,7 +32,7 @@
 
         <div class="form-group">
           <label for="invoice">Invoice</label>
-          <input type="text" value="{{ $product->invoice }}" name="invoice" placeholder="Invoice ID" class="form-control" />
+          <input type="text" required="" value="{{ $product->invoice }}" name="invoice" placeholder="Invoice ID" class="form-control" />
         </div>
 
 
@@ -44,7 +44,7 @@
             <?php $p_name = json_decode($product->productName, true); ?>
             @foreach($p_name as $pName)
             <tr>
-              <td><input type="text" name="productName[]" value={{$pName}} class="form-control" /></td>
+              <td><input type="text" required="" name="productName[]" value={{$pName}} class="form-control" /></td>
               <td class="text-right" style="width:10%"><button type="button" name="add" id="add-btn" class="btn btn-success">Add</button></td>
               <td class="text-right" style="width:10%"><button type="button" class="btn btn-danger remove-tr">Remove</button></td>
             </tr>
@@ -58,7 +58,7 @@
           <label for="status">Shipping Type</label>
           <select class="form group dropdown-item border" name="shipping">
             @foreach ($shipping as $ship)
-            <option value="{{$ship->id}}" {{ $product->shipping_id == $ship->id ? 'selected' : '' }}>{{$ship->name}}</option>
+            <option required="" value="{{$ship->id}}" {{ $product->shipping_id == $ship->id ? 'selected' : '' }}>{{$ship->name}}</option>
             @endforeach
           </select>
         </div> <!-- form-group -->
@@ -68,7 +68,7 @@
           <label for="status">Status</label>
           <select class="form group dropdown-item border" name="status">
             @foreach ($status as $stat)
-            <option value="{{$stat->id}}" {{ $product->status_id == $stat->id ? 'selected' : '' }}>{{$stat->name}}</option>
+            <option required="" value="{{$stat->id}}" {{ $product->status_id == $stat->id ? 'selected' : '' }}>{{$stat->name}}</option>
             @endforeach
           </select>
         </div> <!-- form-group -->
@@ -78,7 +78,7 @@
           <label for="warehouse">Warehouse</label>
           <select class="form group dropdown-item border" name="warehouse">
             @foreach ($warehouse as $ware)
-            <option value="{{$ware->id}}" {{ $product->warehouse_id == $ware->id ? 'selected' : '' }}>{{$ware->name}}</option>
+            <option required="" value="{{$ware->id}}" {{ $product->warehouse_id == $ware->id ? 'selected' : '' }}>{{$ware->name}}</option>
             @endforeach
           </select>
         </div> <!-- form-group -->

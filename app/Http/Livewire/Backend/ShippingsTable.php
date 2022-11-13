@@ -22,9 +22,18 @@ class ShippingsTable extends DataTableComponent
         return Shipping::with('user:id,name')->latest();
     }
 
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id');
+        $this->setDefaultSort('id', 'ASC');
+    }
+
     public function columns(): array
     {
         return [
+
+            Column::make('ID', 'id')
+                ->searchable(),
 
             Column::make('Shipping Type', 'name')
                 ->searchable(),

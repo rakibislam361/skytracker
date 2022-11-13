@@ -27,7 +27,7 @@
 
           <div class="form-group">
             <label for="status">Status</label>
-            <input type="text" name="name" placeholder="Status" class="form-control" />
+            <input type="text" name="name" required="" placeholder="Status" class="form-control" />
           </div>
 
           <!-- form-group -->

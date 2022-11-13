@@ -22,9 +22,18 @@ class StatusesTable extends DataTableComponent
         return Status::with('user:id,name')->latest();
     }
 
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id');
+        $this->setDefaultSort('id', 'asc');
+    }
+
     public function columns(): array
     {
         return [
+            Column::make('ID', 'id')
+                ->searchable()
+                ->sortable(),
 
             Column::make('Status', 'name')
                 ->searchable(),

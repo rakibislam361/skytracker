@@ -26,7 +26,7 @@
 
         <div class="form-group">
           <label for="warehouse">Warehouse</label>
-          <input value="{{ $warehouse->name }}" name="name" class="form-control" />
+          <input required="" value="{{ $warehouse->name }}" name="name" class="form-control" />
         </div>
 
 

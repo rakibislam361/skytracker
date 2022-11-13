@@ -27,7 +27,7 @@
 
           <div class="form-group">
             <label for="warehouse">Warehouse</label>
-            <input type="text" name="warehouse" placeholder="Warehouse" class="form-control" />
+            <input type="text" required="" name="warehouse" placeholder="Warehouse" class="form-control" />
           </div>
 
           <!-- form-group -->

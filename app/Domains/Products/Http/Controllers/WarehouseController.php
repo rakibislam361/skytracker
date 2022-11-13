@@ -38,6 +38,10 @@ class WarehouseController extends Controller
    */
   public function store(Request $request)
   {
+    $this->validate($request, [
+      'warehouse' => 'required|unique:warehouses,name',
+    ]);
+
 
     $createWarehouse = new Warehouse();
     $createWarehouse->name = $request->warehouse;

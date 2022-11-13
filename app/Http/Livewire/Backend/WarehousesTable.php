@@ -22,9 +22,19 @@ class WarehousesTable extends DataTableComponent
         return warehouse::with('user:id,name')->latest();
     }
 
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id');
+        $this->setDefaultSort('id', 'asc');
+    }
+
     public function columns(): array
     {
         return [
+
+            Column::make('ID', 'id')
+                ->searchable()
+                ->sortable(),
 
             Column::make('Warehouse', 'name')
                 ->searchable(),

@@ -23,7 +23,7 @@
                             <label for="name" class="col-md-4 text-right">@lang('Name')</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" placeholder="{{ __('Name') }}" maxlength="100" required autofocus autocomplete="name" />
+                                <input type="text" required="" name="name" id="name" class="form-control" value="{{ old('name') }}" placeholder="{{ __('Name') }}" maxlength="100" required autofocus autocomplete="name" />
                             </div>
                         </div>
                         <!--form-group-->
@@ -31,7 +31,7 @@
                             <label for="phone" class="col-md-4 text-right">@lang('Phone')</label>
 
                             <div class="col-md-6">
-                                <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" placeholder="{{ __('Phone') }}" maxlength="100" required autofocus autocomplete="phone" />
+                                <input type="text" required="" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" placeholder="{{ __('Phone') }}" maxlength="100" required autofocus autocomplete="phone" />
                             </div>
                         </div>
                         <!--form-group-->
@@ -40,7 +40,7 @@
                             <label for="name" class="col-md-4 text-right">@lang('E-mail Address')</label>
 
                             <div class="col-md-6">
-                                <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autocomplete="email" />
+                                <input type="email" required="" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autocomplete="email" />
                             </div>
                         </div>
                         <!--form-group-->
@@ -49,7 +49,7 @@
                             <label for="name" class="col-md-4 col-form-label text-right">@lang('Message')</label>
 
                             <div class="col-md-6">
-                                <input type="textarea" name="message" id="message" class="form-control" placeholder="{{ __('Message') }}" rows="4" cols="50" />
+                                <input type="textarea" required="" name="message" id="message" class="form-control" placeholder="{{ __('Message') }}" rows="4" cols="50" />
                             </div>
                         </div>
                         <!--form-group-->

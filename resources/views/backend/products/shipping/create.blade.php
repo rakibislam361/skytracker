@@ -27,7 +27,7 @@
 
           <div class="form-group">
             <label for="shipping">Shipping</label>
-            <input type="text" name="name" placeholder="Shipping" class="form-control" />
+            <input type="text" name="name" required="" placeholder="Shipping" class="form-control" />
           </div>
 
           <!-- form-group -->

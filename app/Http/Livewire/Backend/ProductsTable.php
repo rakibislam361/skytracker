@@ -22,8 +22,16 @@ class ProductsTable  extends DataTableComponent
         return $product = Product::with('warehouse', 'status', 'shipping', 'user');
     }
 
+    public function configure(): void
+    {
+        $this->setPrimaryKey('id');
+        $this->setDefaultSort('id', 'asc');
+    }
+
     public function columns(): array
     {
+
+
 
         return [
 
@@ -31,7 +39,7 @@ class ProductsTable  extends DataTableComponent
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Products Name', 'productName')
+            Column::make('Product Name', 'productName')
                 ->searchable(),
 
             Column::make('Status', 'status.name')
@@ -49,4 +57,20 @@ class ProductsTable  extends DataTableComponent
                 }),
         ];
     }
+
+    // public function name($name)
+    // {
+    //     $product = Product::select('productName')->get();
+    //     // dd($product);
+    //     $p_name = json_decode($product, true);
+    //     dd($p_name);
+    // }
+
+    // public function mount()
+    // {
+    //     $this->setTableProperties();
+    //     $product = Product::select('productName')->get();
+    //     // dd($product);
+    //     $p_name = json_decode($product, true);
+    // }
 }

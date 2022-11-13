@@ -38,6 +38,9 @@ class ShippingController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:shippings,name',
+        ]);
 
         $createShipping = new Shipping();
         $createShipping->name = $request->name;

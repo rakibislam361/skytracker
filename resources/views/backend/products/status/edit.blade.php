@@ -27,7 +27,7 @@
 
         <div class="form-group">
           <label for="status">Status</label>
-          <input value="{{ $status->name }}" name="name" class="form-control" />
+          <input required="" value="{{ $status->name }}" name="name" class="form-control" />
         </div>
 
 

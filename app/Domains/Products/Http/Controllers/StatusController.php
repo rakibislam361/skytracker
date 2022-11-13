@@ -38,6 +38,10 @@ class StatusController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required|unique:statuses,name',
+        ]);
+
 
         $createStatus = new Status();
         $createStatus->name = $request->name;

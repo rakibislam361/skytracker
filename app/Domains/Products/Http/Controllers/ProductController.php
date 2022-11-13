@@ -18,6 +18,7 @@ class ProductController extends Controller
    */
   public function index()
   {
+    // $product = Product::all();
     return view('backend.products.product.index');
   }
 
@@ -44,6 +45,9 @@ class ProductController extends Controller
    */
   public function store(Request $request)
   {
+    $this->validate($request, [
+      'invoice' => 'required|unique:products,invoice',
+    ]);
 
     $createProduct = new Product();
     $createProduct->productName = json_encode($request->productName);
