@@ -38,7 +38,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa fa-clock-o" style="font-size:24px"></i> Real-Time
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i class="fa fa-clock-o"></i> Real-Time
                   Tracking <i class="fa fa-angle-right" style="float:right;" aria-hidden="true"></i></a>
               </h4>
             </div>
@@ -59,7 +59,7 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><i class="fa-solid fa-dollar-sign"></i>Cash on Delivery <i class=" fa fa-angle-right" style="float:right;" aria-hidden="true"></i></a>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><i class="fa fa-money"></i>Cash on Delivery <i class=" fa fa-angle-right" style="float:right;" aria-hidden="true"></i></a>
               </h4>
             </div>
             <div id="collapseFour" class="panel-collapse collapse">
