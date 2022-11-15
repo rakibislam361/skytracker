@@ -31,8 +31,6 @@ class ProductsTable  extends DataTableComponent
     public function columns(): array
     {
 
-
-
         return [
 
             Column::make('Invoice', 'invoice')
@@ -58,19 +56,3 @@ class ProductsTable  extends DataTableComponent
         ];
     }
 
-    // public function name($name)
-    // {
-    //     $product = Product::select('productName')->get();
-    //     // dd($product);
-    //     $p_name = json_decode($product, true);
-    //     dd($p_name);
-    // }
-
-    // public function mount()
-    // {
-    //     $this->setTableProperties();
-    //     $product = Product::select('productName')->get();
-    //     // dd($product);
-    //     $p_name = json_decode($product, true);
-    // }
-}
