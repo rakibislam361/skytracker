@@ -30,6 +30,19 @@ if (!function_exists('carbon')) {
     return new Carbon($time);
   }
 }
+if (!function_exists('get_setting')) {
+  /**
+   * Helper to grab the application name.
+   *
+   * @param $key
+   * @param null $default
+   * @return mixed
+   */
+  function get_setting($key, $default = null)
+  {
+    return config('settings.' . $key, $default);
+  }
+}
 
 if (!function_exists('homeRoute')) {
   /**

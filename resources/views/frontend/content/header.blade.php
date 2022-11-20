@@ -9,6 +9,9 @@
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
            </button>
+            {{-- <a class="navbar-logo" href="{{ route('frontend.index') }}">
+          <img src="{{ asset(get_setting('frontend_logo_menu')) }}">
+        </a> --}}
            <a class="navbar-logo" href="{{ route('frontend.index') }}"> <img src="assets/img/logo/logo-black.png" alt="logo" /> </a>
          </div>
          <div class="col-md-10 col-sm-10 fs-12">

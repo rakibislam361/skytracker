@@ -1,19 +1,19 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('frontend.layouts.app')
+ @include('frontend.style.style')
+@section('title', get_setting('meta_title'))
+@section('meta_title', get_setting('meta_title'))
+@section('meta_description', get_setting('meta_description'))
+@section('meta_image', asset(get_setting('meta_image')))
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ appName() }}</title>
-  <link href="#">
-  <meta name="description" content="@yield('meta_description', appName())">
-  <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
-  @yield('meta')
+@php
+$catLoader = get_setting('category_image_loader');
+$productLoader = get_setting('product_image_loader');
 
-  @include('frontend.style.style')
-</head>
+@endphp
 
-<body>
+@section('content')
+
+
   <div id="app" class="flex-center position-ref full-height">
 
     <main class="wrapper">
@@ -43,6 +43,5 @@
   <!--app-->
 
 
-</body>
 
-</html>
+

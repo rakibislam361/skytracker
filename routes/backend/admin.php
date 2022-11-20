@@ -8,6 +8,8 @@ use App\Domains\Products\Http\Controllers\ProductController;
 use App\Domains\Products\Http\Controllers\StatusController;
 use App\Domains\Products\Http\Controllers\ShippingController;
 // use App\Domains\Products\Http\Controllers\UpdateStatusController;
+// use App\Domains\Settings\Http\Controllers\SettingsController;
+use App\Http\Controllers\Backend\Content\SettingController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +32,24 @@ Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
   ]);
 });
 
+
 Route::resource('page', PageController::class);
 
 Route::group(['prefix' => 'messaging', 'as' => 'messaging.'], function () {
   Route::resources([
     'contact' => ContactController::class,
   ]);
+});
+
+Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+  Route::post('airShippingStore', [SettingController::class, 'airShippingStore'])->name('airShippingStore');
+  Route::post('logo-store', [SettingController::class, 'logoStore'])->name('logoStore');
+  Route::post('social-store', [SettingController::class, 'socialStore'])->name('socialStore');
+  Route::get('general', [SettingController::class, 'general'])->name('general');
+  Route::get('cache-control', [SettingController::class, 'cacheControl'])->name('cache.control');
+  Route::post('cache-control-store', [SettingController::class, 'cacheClear'])->name('cache.control.store');
+  Route::post('short-message', [SettingController::class, 'shortMessageStore'])->name('short.message.store');
+
+  Route::get('top-notice', [SettingController::class, 'topNoticeCreate'])->name('topNotice.create');
+  Route::post('top-notice', [SettingController::class, 'topNoticeStore'])->name('topNotice.store');
 });

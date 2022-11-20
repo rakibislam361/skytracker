@@ -19,38 +19,12 @@
           <x-utils.link-sidebar href="#" :text="__('Product')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
           <ul class="nav nav-treeview">
 
-
-            {{-- <li class="nav-item">
-              <x-utils.link :href="route('admin.product.brand.index')" icon="nav-icon icon-arrow-right" :active="activeClass(Route::is('admin.product.brand.*'))" class="nav-link" :text="__('Brand')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Category')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Subcategory')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Sub Subcategory')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="route('admin.product.inhouse.index')" icon="nav-icon icon-arrow-right" class="nav-link" :active="activeClass(Route::is('admin.product.inhouse.*'))" :text="__('In House Products')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Seller Products')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Bulk Import')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Bulk Export')" />
-            </li> --}}
-
             <li class="nav-item">
               <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products Details')" />
             </li>
 
             <li class="nav-item menu-open">
-              <x-utils.link-sidebar href="#" :text="__('Product`s Settings')" icon="nav-icon icon-settings" class="nav nav-link" rightIcon="fas fa-angle-left right"/>
+              <x-utils.link-sidebar href="#" :text="__('Product`s Settings')" icon="nav-icon icon-settings" class="nav nav-link" rightIcon="fas fa-angle-left right" />
               <ul class="nav nav-treeview">
 
                 <li class="nav-item">
@@ -70,30 +44,6 @@
           </ul>
         </li>
 
-        {{-- <li class="nav-item">
-          <x-utils.link-sidebar href="#" :text="__('Orders')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Inhouse Orders')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Coupon Logs')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Coupons')" />
-            </li>
-          </ul>
-        </li>  --}}
-
-        {{-- <li class="nav-item">
-          <x-utils.link-sidebar href="#" :text="__('Total Sales')" icon="nav-icon fas fa-coins" class="nav-link" />
-        </li> 
-         <li class="nav-item">
-          <x-utils.link-sidebar href="#" :text="__('Customers')" icon="nav-icon icon-users" class="nav-link" />
-        </li> 
-        <li class="nav-item">
-          <x-utils.link-sidebar href="#" :text="__('Conversations')" icon="nav-icon fas fa-comments" class="nav-link" />
-        </li>  --}}
 
         <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Reports')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
@@ -157,18 +107,22 @@
         <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Frontend Settings')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
+
+
             <li class="nav-item">
               <x-utils.link :href="route('frontend.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Home')" />
             </li>
+
+            {{-- <li class="nav-item">
+              <x-utils.link :href="route('admin.front-setting.topNotice.create')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Top Notice')" />
+            </li> --}}
             <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Pages')" />
             </li>
             <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('General Settings')" />
+              <x-utils.link :href="route('admin.setting.general')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('General Settings')" />
             </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Logo Settings')" />
-            </li>
+            
             <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Color Settings')" />
             </li>
