@@ -19,7 +19,7 @@ class ProductsTable  extends DataTableComponent
 
     public function query(): Builder
     {
-        return $product = Product::with('warehouse', 'status', 'shipping', 'user');
+        return Product::with('warehouse', 'status', 'shipping', 'user');
     }
 
     public function configure(): void

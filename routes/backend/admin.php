@@ -7,8 +7,7 @@ use App\Domains\Products\Http\Controllers\WarehouseController;
 use App\Domains\Products\Http\Controllers\ProductController;
 use App\Domains\Products\Http\Controllers\StatusController;
 use App\Domains\Products\Http\Controllers\ShippingController;
-// use App\Domains\Products\Http\Controllers\UpdateStatusController;
-// use App\Domains\Settings\Http\Controllers\SettingsController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\Content\SettingController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -53,3 +52,17 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
   Route::get('top-notice', [SettingController::class, 'topNoticeCreate'])->name('topNotice.create');
   Route::post('top-notice', [SettingController::class, 'topNoticeStore'])->name('topNotice.store');
 });
+
+Route::get('order/restore/{order}', [OrderController::class, 'restore'])->name('order.restore');
+Route::get('makeAsPayment/{order}', [OrderController::class, 'makeAsPayment'])->name('order.makeAsPayment');
+Route::get('order/wallet', [OrderController::class, 'walletOrders'])->name('order.wallet');
+Route::get('order/wallet/{id}', [OrderController::class, 'walletDetails'])->name('order.wallet.details');
+
+Route::post('order/operation/{order}', [OrderController::class, 'bkashOperation'])->name('order.bkash.operation');
+Route::post('order/refund/{order}', [OrderController::class, 'refundPayment'])->name('order.refund');
+
+Route::get('order-item/edit/{id}', [OrderController::class, 'show_details'])->name('order.item.edit');
+Route::post('order/change/status/{id}', [OrderController::class, 'changeStatus'])->name('order.change.status');
+Route::post('order/coupon-update/{id}', [OrderController::class, 'updateCoupon'])->name('order.coupon.update');
+Route::post('order/deposit-update/{id}', [OrderController::class, 'depositCoupon'])->name('order.deposit.update');
+Route::resource('order', OrderController::class);
