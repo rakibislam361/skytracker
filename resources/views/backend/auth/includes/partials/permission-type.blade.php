@@ -7,6 +7,7 @@
                 <span class="d-block">
                         <input type="checkbox" name="permissions[]" {{ in_array($permission->id, $usedPermissions ?? [], true) ? 'checked' : '' }} value="{{ $permission->id }}" id="{{ $permission->id }}" />
                         <label for="{{ $permission->id }}">{{ $permission->description ?? $permission->name }}</label>
+                        
                     </span>
             @endforeach
         </div><!--col-->

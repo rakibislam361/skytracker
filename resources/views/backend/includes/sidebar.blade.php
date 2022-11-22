@@ -25,7 +25,7 @@
           </ul>
         </li> 
 {{-- product --}}
-        <li class="nav-item {{ activeClass(Route::is('admin.product.*'), 'menu-open') }}">
+        {{-- <li class="nav-item {{ activeClass(Route::is('admin.product.*'), 'menu-open') }}">
           <x-utils.link-sidebar href="#" :text="__('Product')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
           <ul class="nav nav-treeview">
 
@@ -52,11 +52,12 @@
               </ul>
             </li>
           </ul>
-        </li>
+        </li> --}}
 
       
 
-
+{{-- Reports --}}
+   @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.setting')))
         <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Reports')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
@@ -68,13 +69,14 @@
             </li>
           </ul>
         </li>
-
+  @endif
 
         {{-- <li class="nav-item">
           <x-utils.link-sidebar :href="route('admin.page.index')" :text="__('Manage Page')" :active="activeClass(Route::is('admin.page.*'))" icon="nav-icon fas fa-file-word" class="nav-link" />
         </li>  --}}
 
-        <li class="nav-item {{ activeClass(Route::is('admin.messaging.*'), 'menu-open') }}">
+{{-- Messeging --}}
+        {{-- <li class="nav-item {{ activeClass(Route::is('admin.messaging.*'), 'menu-open') }}">
           <x-utils.link-sidebar href="#" :text="__('Messaging')" icon="nav-icon icon-envelope" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -84,37 +86,10 @@
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Newsletters')" />
             </li>
           </ul>
-        </li>
-
-        {{-- <li class="nav-item">
-          <x-utils.link-sidebar href="#" :text="__('Business Settings')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Activation')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Payment Methods')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SMTP Settings')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Google Analytics')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Facebook Chat & Pixel')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Social Login')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Currency')" />
-            </li>
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Languages')" />
-            </li>
-          </ul>
         </li> --}}
+
+
+    @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.setting')))
 
         <li class="nav-item">
           <x-utils.link-sidebar href="#" :text="__('Frontend Settings')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
@@ -135,20 +110,13 @@
               <x-utils.link :href="route('admin.setting.general')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('General Settings')" />
             </li>
             
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Color Settings')" />
-            </li>
+            </li> --}}
           </ul>
         </li>
-
-        {{-- <li class="nav-item">
-          <x-utils.link-sidebar href="#" :text="__('E-commerce Setup')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Attribute')" />
-            </li>
-          </ul>
-        </li> --}}
+    @endif
+      
 
 
         @if (

@@ -5,6 +5,8 @@ namespace Database\Seeders\Auth;
 use App\Domains\Auth\Models\Permission;
 use App\Domains\Auth\Models\Role;
 use App\Domains\Auth\Models\User;
+use App\Models\Content\Order;
+use App\Models\Content\Setting;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
 
@@ -86,6 +88,55 @@ class PermissionRoleSeeder extends Seeder
 
     // Assign Permissions to other Roles
     //
+    $orders = Permission::create([
+      'type' => Order::TYPE_ADMIN,
+      'name' => 'admin.order',
+      'description' => 'All Order Permissions',
+    ]);
+    $orders->children()->saveMany([
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.order_rmb.edit',
+        'description' => 'Edit Order Rmb',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.localdelivery.edit',
+        'description' => 'Edit Local Delivery',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.purchase.edit',
+        'description' => 'Actual Cost(Purchase Cost)',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.edit',
+        'description' => 'Edit Status',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.carton.edit',
+        'description' => 'Edit Carton Information',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.rate.edit',
+        'description' => 'Edit Rate',
+
+      ]),
+    ]);
+
+    $settings = Permission::create([
+      'type' => Setting::TYPE_ADMIN,
+      'name' => 'admin.settings',
+      'description' => 'Settings Permissions',
+    ]);
 
     $this->enableForeignKeys();
   }

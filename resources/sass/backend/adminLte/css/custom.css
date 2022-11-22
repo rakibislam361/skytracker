@@ -1,0 +1,4 @@
+.order-table table th, table td {
+      vertical-align: inherit !important;
+      font-size: 14px;
+}

@@ -22,28 +22,28 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
       </a>
       <a href="{{ route('admin.order.index', ['status' => 'Partial Paid']) }}"
         class="@if($status == 'Partial Paid') active @endif">
-        @lang('Partial Paid') ({{$partialCount}})
+        @lang('BD Order') ({{$partialCount}})
       </a>
       <a href="{{ route('admin.order.index', ['status' => 'on-hold']) }}"
         class="@if($status == 'on-hold') active @endif">
-        @lang('On Hold') ({{$onHold}})
+        @lang('China Purchase') ({{$onHold}})
       </a>
       <a href="{{ route('admin.order.index', ['status' => 'Waiting for Payment']) }}"
         class="@if($status == 'Waiting for Payment') active @endif">
-        @lang('Incomplete') ({{$icompleteCount}})
+        @lang('China Warehouse') ({{$icompleteCount}})
       </a>
       <a href="{{ route('admin.order.index', ['status' => 'refunded']) }}"
         class="@if($status == 'refunded') active @endif">
-        @lang('Refunded') ({{$refundedCount}})
+        @lang('BD Warehouse') ({{$refundedCount}})
       </a>
-      <a href="{{ route('admin.order.index', ['status' => 'processing']) }}"
+      {{-- <a href="{{ route('admin.order.index', ['status' => 'processing']) }}"
         class="@if($status == 'processing') active @endif">
         @lang('Processing') ({{$processingCount}})
       </a>
       <a href="{{ route('admin.order.index', ['status' => 'purchased']) }}"
         class="@if($status == 'purchased') active @endif">
         @lang('Purchased') ({{$purchasedCount}})
-      </a>
+      </a> --}}
       @hasrole('administrator')
       <a href="{{ route('admin.order.index', ['status' => 'trashed']) }}"
         class="@if($status == 'trashed') active @endif">
@@ -57,51 +57,51 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
   </div>
   <div class="card-body">
     <div class="table-responsive">
-        <table class="table table-hover table-bordered mb-0">
+        <table class="table table-hover table-bordered mb-0 order-table">
           <thead>
             <tr>
-              <th>Date</th>
-               <th>Customer</th>
-               <th>CustomerPhone </th>
-               <th>Order ID</th>
-               <th>Product Name</th>
-               <th>TransactionNo</th>
-               <th>Item Number</th>              
-               <th>Quantity</th>
-               <th>Shipped By</th>
-               <th>Order(rmb)</th>
-               <th>China Local Delivery</th>
-               <th>Product Cost</th>
-               <th>Product Purchase Cost</th>
-               <th>Tracking Number</th>
-               <th>Rate</th>
-               <th>Weight</th>
-               <th>Amount</th>
-                <th>Status</th>
+              <th class="align-content-center text-center">Date</th>
+               <th class="align-content-center text-center">Customer</th>
+               <th class="align-content-center text-center">CustomerPhone </th>
+               <th class="align-content-center text-center">Order ID</th>
+               <th class="align-content-center text-center">Product Name</th>
+               <th class="align-content-center text-center">TransactionNo</th>
+               <th class="align-content-center text-center">Item Number</th>              
+               <th class="align-content-center text-center">Quantity</th>
+               <th class="align-content-center text-center">Shipped By</th>
+               <th class="align-content-center text-center">Order(rmb)</th>
+               <th class="align-content-center text-center">China Local Delivery</th>
+               <th class="align-content-center text-center">Product Cost</th>
+               <th class="align-content-center text-center">Product Purchase Cost</th>
+               <th class="align-content-center text-center">Tracking Number</th>
+               <th class="align-content-center text-center">Rate</th>
+               <th class="align-content-center text-center">Weight</th>
+               <th class="align-content-center text-center">Amount</th>
+                <th class="align-content-center text-center">Status</th>
                <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr data-toggle="modal" data-dismiss="modal" data-target="#changeStatusButton" href="#changeStatusButton">
-               <td>17-Nov-2022</td>
-               <td>Touker Ahmed</td>
-               <td> 012345678900 </td>
-               <td>00003018</td>
-               <td>Men's Martin Boots</td>
-               <td>0000780</td>
-               <td>00008109</td>              
-               <td>9</td>
-               <td>ship_by_air</td>
-               <td>20</td>
-               <td>60</td>
-               <td>460</td>
-               <td>18</td>              
-               <td>300</td>
-               <td>4kg</td>
-               <td>1200</td>
-               <td>0000</td>
-               <td>delivered</td>
-               <td>
+              <td class="align-content-center text-center">17-Nov-2022</td>
+              <td class="align-content-center text-center">Touker Ahmed</td>              
+               <td class="align-content-center text-center"> 012345678900 </td>
+               <td class="align-content-center text-center">00003018</td>
+               <td class="align-content-center text-center">Men's Martin Boots</td>
+               <td class="align-content-center text-center">0000780</td>
+               <td class="align-content-center text-center">00008109</td>              
+               <td class="align-content-center text-center">9</td>
+               <td class="align-content-center text-center">ship_by_air</td>
+               <td class="align-content-center text-center">20</td>
+               <td class="align-content-center text-center">60</td>
+               <td class="align-content-center text-center">460</td>
+               <td class="align-content-center text-center">18</td>              
+               <td class="align-content-center text-center">300</td>
+               <td class="align-content-center text-center">4kg</td>
+               <td class="align-content-center text-center">1200</td>
+               <td class="align-content-center text-center">0000</td>
+               <td class="align-content-center text-center">delivered</td>
+               <td class="align-content-center text-center">
                 <a data-toggle="modal" data-dismiss="modal" data-target="#changeStatusButton" href="#changeStatusButton">Edit</a>                 
                </td>
               </tr>
@@ -134,23 +134,25 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
                         </button>
                     </div>
                     <div class="modal-body">
+     
 {{-- BD Purchase Officer start--}}
-
                       <div class="form-group">
                         <label for="itemNO">Item Number</label>
                         <input type="text" name="itemNO" value=00008109 required="" placeholder="item number" class="form-control" />
                       </div>
-
+                  @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.order_rmb.edit')))
                       <div class="form-group">
                         <label for="orderRmb">Order(rmb)</label>
                         <input type="text" name="orderRmb" required="" placeholder="Order in Rmb" class="form-control" />
                       </div>
-
+                  @endif
+                  @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.localdelivery.edit')))
                       <div class="form-group">
                         <label for="chinaLocal">China Local Delivery</label>
                         <input type="text" name="chinaLocal" required="" placeholder="China Local Delivery" class="form-control" />
                       </div>
-                          
+                  @endif
+                  @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.order_rmb.edit')))   
                       <div class="form-group">
                         <label for="productCost">Product cost in BDT</label>
                         <input type="text" name="productCost" required="" placeholder="OrderRmb * Conversion Rate" class="form-control" />
@@ -160,14 +162,18 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
                         <label for="bdReceive">BD Received Cost</label> {{-- calculate product cost + china local delivery --}}
                         <input type="text" name="bdReceive" required="" placeholder="BD Received Cost" class="form-control" />
                       </div>
+                    @endif
 {{-- BD Purchase Officer end --}}
 
 
 {{-- China Purchase Officer start--}}
+                    @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.purchase.edit')))
                       <div class="form-group">
                         <label for="purchaseCost">Actual Cost(purchase cost)</label>
                         <input type="text" name="purchaseCost" required="" placeholder="Actual Cost" class="form-control" />
                       </div>
+                     @endif
+                     @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.status.edit'))) 
                         <div class="form-group">
                               <label for="status">Status</label>
                               <select class="form group dropdown-item border" name="status">
@@ -179,9 +185,12 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
                               <option value="received">Received</option>
                             </select>
                           </div>
+                      @endif  
  {{-- China Purchase Officer end--}}     
  
  {{-- China Warehouse start--}}
+                  @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.carton.edit')) || 
+                      ($logged_in_user->can('admin.order.rate.edit')))
                       <div class="form-group">
                         <label for="productName">Product Name</label>
                         <input type="text" name="productName" value="Men's Martin Boots" required="" placeholder="Product Name" class="form-control" />
@@ -224,11 +233,12 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
                               <option value="sea">By Sea</option>
                             </select>
                           </div>
+                        @endif  
  {{-- China Warehouse END--}}
 
   {{-- BD Logistic Officer start--}}
 {{-- product name, quantity, weight, carton Id --}}
-                        
+                    @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.rate.edit')))                        
                       <div class="form-group">
                         <label for="shipRate">Shipping Rate</label>
                         <input type="text" name="shipRate" required="" placeholder="Shipping Rate" class="form-control" />
@@ -238,6 +248,7 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
                         <label for="shipamount">Amount</label>
                         <input type="text" name="shipamount" required="" placeholder="Shipping Rate * Weight" class="form-control" />
                       </div>
+                      @endif
 {{-- BD Logistic Officer END--}}
 
                          <div class="form-group form-check">
