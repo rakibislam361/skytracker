@@ -2,7 +2,7 @@
 
 namespace App\Models\Content;
 
-use App\Models\Auth\User;
+use App\Domains\Auth\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;

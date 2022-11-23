@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\OrderTrait;
 use App\Http\Traits\ScheduleUpdated;
-use App\Models\Auth\User;
+use App\Domains\Auth\Models\User;
 use App\Models\Content\Order;
 use App\Models\Content\OrderItem;
 use App\Models\Content\OrderItemVariation;

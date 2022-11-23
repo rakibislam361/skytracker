@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Content\Setting;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 
