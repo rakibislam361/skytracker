@@ -8,7 +8,10 @@
             @php
             $logo = App\Models\Content\Setting::where('key','frontend_logo_footer')->first();
             @endphp
+            @if ($logo)
             <img class="logo" src="{{ asset($logo->value) }}">
+            @endif
+
           </a>
         </div>
         <div class="col-md-3 col-sm-6 footer-widget">

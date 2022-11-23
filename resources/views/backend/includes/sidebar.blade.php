@@ -10,8 +10,11 @@
     @php
     $logo = App\Models\Content\Setting::where('key','admin_logo')->first();
     @endphp
+    @if ($logo)
     <img src="{{ asset($logo->value) }}" class="brand-image img-circle elevation-3" style="opacity: .8">
     <span class="brand-text font-weight-light">{{appName()}}</span>
+    @endif
+   
   </a>
 
   <div class="sidebar">
