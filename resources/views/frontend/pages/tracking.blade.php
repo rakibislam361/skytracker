@@ -26,7 +26,7 @@
                   <td>{{ $track->invoice }}</td>
                 </tr>
 
-                <tr>
+                {{-- <tr>
                   <th>@lang('Product Name')</th>
 
                   <?php $p_name = json_decode($track->productName, true); ?>
@@ -37,14 +37,14 @@
                     @endforeach
                   </td>
 
-                </tr>             
+                </tr>              --}}
 
                 <tr>
                   <th>@lang('Status')</th>
                   <td>{{ $track->status->name }}</td>
                 </tr>
 
-                <tr>
+                {{-- <tr>
                   <th>@lang('Warehouse')</th>
                   <td>{{ $track->warehouse->name }}</td>
                 </tr>
@@ -52,7 +52,7 @@
                   <tr>
                   <th>@lang('Shipping Type')</th>
                   <td>{{ $track->shipping->name }}</td>
-                </tr>
+                </tr> --}}
 
               </table>
             </div>

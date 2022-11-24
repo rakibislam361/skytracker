@@ -16,9 +16,7 @@
              @endphp
              @if ($logo)
                <img src="{{ asset($logo->value) }}">
-             @endif
-             
-            
+             @endif                       
            </a>
            {{-- <a class="navbar-logo" href="{{ route('frontend.index') }}"> <img src="assets/img/logo/logo-black.png" alt="logo" /> </a> --}}
          </div>
@@ -34,10 +32,7 @@
 
                @if ($logged_in_user->isAdmin())
                <li>
-                 <button><a href="{{ route('admin.dashboard') }}"> Administration </a></button>
-               </li>
-               <li>
-                 <button class="nav-item dropdown"><a href="{{ route('frontend.user.account') }}"> {{ $logged_in_user->name }}</a></button>
+                 <button><a href="{{ route('admin.dashboard') }}"> {{ $logged_in_user->name }} </a></button>
                </li>
                @endif
 

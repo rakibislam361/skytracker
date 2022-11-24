@@ -4,14 +4,15 @@ namespace App\Models\Content;
 
 use App\Domains\Auth\Models\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Traits\HasRoles;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use Laravel\Sanctum\HasApiTokens;
+// use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
-  use SoftDeletes, HasRoles, HasApiTokens, HasFactory;
+  use HasRoles;
+  // , HasApiTokens, HasFactory;
 
   public const TYPE_ADMIN = 'admin';
   public const TYPE_USER = 'user';
