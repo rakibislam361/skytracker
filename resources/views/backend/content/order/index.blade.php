@@ -50,9 +50,7 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
         @lang('Trashed Orders') ({{$trashedOrders}})
       </a>
       @endhasrole
-      {{-- <a href="{{ route('admin.export', 'orders') }}">
-        @lang('Export order Table')
-      </a> --}}
+     
     </div>
   </div>
   <div class="card-body">
@@ -111,7 +109,7 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
 
   
 
-    @livewire('backend.orders-table', ['statuss' => $status])
+    @livewire('backend.orders-table', ['statuss' => $status ?? []])
   </div> <!-- card-body-->
 </div> <!-- card-->
 

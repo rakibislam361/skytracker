@@ -43,28 +43,27 @@ class OrdersTable extends DataTableComponent
 
     public function mount($status)
     {
-
         $this->status = $status;
     }
 
     public function query(): Builder
     {
         $order =  Order::with('user');
-
-        // $status = $this->status;
-        // if ($status) {
-        //     if ($status == 'trashed') {
-        //         $order->onlyTrashed();
-        //     } else {
-        //         $order->where('status', $status);
-        //     }
-        // }
+        $status = $this->status;
+        if ($status) {
+            if ($status == 'trashed') {
+                $order->onlyTrashed();
+            } else {
+                $order->where('status', $status);
+            }
+        }
 
         return $order;
     }
 
     public function columns(): array
     {
+
         return [
             Column::make('Date', 'created_at')
                 ->searchable()
