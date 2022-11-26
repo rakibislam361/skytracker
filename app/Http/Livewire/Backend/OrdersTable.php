@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Backend;
 
 use App\Models\Content\Order;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-// use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
+use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
+
 
 class OrdersTable extends DataTableComponent
 {
-    // use HtmlComponents;
+    use HtmlComponents;
     /**
      * @var string
      */
@@ -38,8 +39,11 @@ class OrdersTable extends DataTableComponent
 
     public $status  = null;
 
+
+
     public function mount($status)
     {
+
         $this->status = $status;
     }
 
@@ -47,14 +51,14 @@ class OrdersTable extends DataTableComponent
     {
         $order =  Order::with('user');
 
-        $status = $this->status;
-        if ($status) {
-            if ($status == 'trashed') {
-                $order->onlyTrashed();
-            } else {
-                $order->where('status', $status);
-            }
-        }
+        // $status = $this->status;
+        // if ($status) {
+        //     if ($status == 'trashed') {
+        //         $order->onlyTrashed();
+        //     } else {
+        //         $order->where('status', $status);
+        //     }
+        // }
 
         return $order;
     }

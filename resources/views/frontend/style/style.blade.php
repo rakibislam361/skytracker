@@ -14,6 +14,10 @@
 
 <!-- Main Css -->
 <link rel="stylesheet" type="text/css" href="{{asset('assets/css/theme.css')}}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{asset(get_setting('favicon'))}}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{asset(get_setting('favicon'))}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{asset(get_setting('favicon'))}}">
+<link rel="manifest" href="{{asset(get_setting('favicon'))}}">
 
 @stack('after-styles')
 

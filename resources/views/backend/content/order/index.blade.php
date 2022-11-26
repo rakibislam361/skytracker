@@ -4,7 +4,7 @@
 
 @section('content')
 @php
-$status = request('status');
+$status = request('status') ?? 0;
 $allOrdersCount = $orders ? $orders : null;
 $partialCount = $orders ? $orders->where('status', 'Partial Paid') : null;
 $onHold = $orders ? $orders->where('status', 'on-hold') : null;
@@ -56,7 +56,7 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
     </div>
   </div>
   <div class="card-body">
-    <div class="table-responsive">
+    {{-- <div class="table-responsive">
         <table class="table table-hover table-bordered mb-0 order-table">
           <thead>
             <tr>
@@ -107,15 +107,17 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
               </tr>
           </tbody>
         </table>                     
-      </div>
+      </div> --}}
 
-    {{-- @livewire('backend.orders-table', ['statuss' => $status]) --}}
+  
+
+    @livewire('backend.orders-table', ['statuss' => $status])
   </div> <!-- card-body-->
 </div> <!-- card-->
 
 
 <!-- Modal -->
-{{-- @include('backend.content.order.includes.status-modal') --}}
+@include('backend.content.order.includes.status-modal')
 
 
 
@@ -272,16 +274,16 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
   </div> <!-- changeStatusButton -->
 
 
-    {{-- @include('backend.content.order.wallet.includes.generate-modal') --}}
+    @include('backend.content.order.wallet.includes.generate-modal')
 
 
 @endsection
 
 
-{{-- @push('before-styles')
+@push('before-styles')
     {{ style('assets/plugins/select2/css/select2.min.css') }} --}}
-    {{-- {{style('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}} --}}
-{{-- @endpush
+    {{style('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}
+@endpush
 
 @push('after-styles')
     @livewireStyles
@@ -292,7 +294,7 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
     @livewireScripts
 
     {!! script('assets/js/manage-wallet.js') !!}
-@endpush --}}
+@endpush
 
 <script>
     $(document).ready(function() {

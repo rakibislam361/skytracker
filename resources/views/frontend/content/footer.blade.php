@@ -3,16 +3,10 @@
     <div class="theme-container container">
       <div class="row">
         <div class="col-md-3 col-sm-6 footer-widget">
-          {{-- <a href="{{ route('frontend.index') }}"> <img class="logo" alt="#" src="{{asset(get_setting('frontend_logo_footer'))}}" /> </a> --}}
-          <a class="navbar-logo" href="{{ route('frontend.index') }}">
-            @php
-            $logo = App\Models\Content\Setting::where('key','frontend_logo_footer')->first();
-            @endphp
-            @if ($logo)
-            <img class="logo" src="{{ asset($logo->value) }}">
-            @endif
-
+          <a class="logo" href="{{ route('frontend.index') }}"> 
+            <img class="logo" src="{{asset(get_setting('frontend_logo_footer'))}}" alt="{{ get_setting('site_name') }}">
           </a>
+          
         </div>
         <div class="col-md-3 col-sm-6 footer-widget">
           <h2 class="title-1 fw-900">Company</h2>
