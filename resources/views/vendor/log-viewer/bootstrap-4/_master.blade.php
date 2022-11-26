@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -66,26 +67,27 @@
             min-height: 70px;
             background: #fff;
             width: 100%;
-            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             border-radius: .25rem;
         }
 
-        .box > .box-icon > i,
+        .box>.box-icon>i,
         .box .box-content .box-text,
         .box .box-content .box-number {
             color: #FFF;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
         }
 
-        .box > .box-icon {
+        .box>.box-icon {
             border-radius: 2px 0 0 2px;
             display: block;
             float: left;
-            height: 70px; width: 70px;
+            height: 70px;
+            width: 70px;
             text-align: center;
             font-size: 40px;
             line-height: 70px;
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .box .box-content {
@@ -107,7 +109,7 @@
         }
 
         .box .box-content .progress {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             margin: 5px -10px 5px -10px;
         }
 
@@ -159,52 +161,112 @@
 
         .badge.badge-level-all,
         .box.level-all {
-            background-color: {{ log_styler()->color('all') }};
+            background-color: {
+                    {
+                    log_styler()->color('all')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-level-emergency,
         .box.level-emergency {
-            background-color: {{ log_styler()->color('emergency') }};
+            background-color: {
+                    {
+                    log_styler()->color('emergency')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-level-alert,
-        .box.level-alert  {
-            background-color: {{ log_styler()->color('alert') }};
+        .box.level-alert {
+            background-color: {
+                    {
+                    log_styler()->color('alert')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-level-critical,
         .box.level-critical {
-            background-color: {{ log_styler()->color('critical') }};
+            background-color: {
+                    {
+                    log_styler()->color('critical')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-level-error,
         .box.level-error {
-            background-color: {{ log_styler()->color('error') }};
+            background-color: {
+                    {
+                    log_styler()->color('error')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-level-warning,
         .box.level-warning {
-            background-color: {{ log_styler()->color('warning') }};
+            background-color: {
+                    {
+                    log_styler()->color('warning')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-level-notice,
         .box.level-notice {
-            background-color: {{ log_styler()->color('notice') }};
+            background-color: {
+                    {
+                    log_styler()->color('notice')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-level-info,
         .box.level-info {
-            background-color: {{ log_styler()->color('info') }};
+            background-color: {
+                    {
+                    log_styler()->color('info')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-level-debug,
         .box.level-debug {
-            background-color: {{ log_styler()->color('debug') }};
+            background-color: {
+                    {
+                    log_styler()->color('debug')
+                }
+            }
+
+            ;
         }
 
         .badge.empty,
         .box.empty {
-            background-color: {{ log_styler()->color('empty') }};
+            background-color: {
+                    {
+                    log_styler()->color('empty')
+                }
+            }
+
+            ;
         }
 
         .badge.badge-env {
@@ -212,60 +274,62 @@
         }
     </style>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark p-0">
-    <a href="{{ route('log-viewer::dashboard') }}" class="navbar-brand mr-0">
-        <i class="fa fa-fw fa-book"></i> LogViewer
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a href="{{ route('admin.dashboard') }}" class="nav-link">
-                    <i class="fa fa-star"></i> {{ appName() }}
-                </a>
-            </li>
-            <li class="nav-item {{ Route::is('log-viewer::dashboard') ? 'active' : '' }}">
-                <a href="{{ route('log-viewer::dashboard') }}" class="nav-link">
-                    <i class="fa fa-dashboard"></i> @lang('Dashboard')
-                </a>
-            </li>
-            <li class="nav-item {{ Route::is('log-viewer::logs.list') ? 'active' : '' }}">
-                <a href="{{ route('log-viewer::logs.list') }}" class="nav-link">
-                    <i class="fa fa-archive"></i> @lang('Logs')
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark p-0">
+        <a href="{{ route('log-viewer::dashboard') }}" class="navbar-brand mr-0">
+            <i class="fa fa-fw fa-book"></i> LogViewer
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-link">
+                        <i class="fa fa-star"></i> {{ app_name() }}
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::is('log-viewer::dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('log-viewer::dashboard') }}" class="nav-link">
+                        <i class="fa fa-dashboard"></i> @lang('Dashboard')
+                    </a>
+                </li>
+                <li class="nav-item {{ Route::is('log-viewer::logs.list') ? 'active' : '' }}">
+                    <a href="{{ route('log-viewer::logs.list') }}" class="nav-link">
+                        <i class="fa fa-archive"></i> @lang('Logs')
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-<div class="container-fluid">
-    <main role="main" class="pt-3">
-        @yield('content')
-    </main>
-</div>
-
-{{-- Footer --}}
-<footer class="main-footer">
     <div class="container-fluid">
-        <p class="text-muted pull-left">
-            LogViewer - <span class="badge badge-info">version {{ log_viewer()->version() }}</span>
-        </p>
-        <p class="text-muted pull-right">
-            Created with <i class="fa fa-heart"></i> by ARCANEDEV <sup>&copy;</sup>
-        </p>
+        <main role="main" class="pt-3">
+            @yield('content')
+        </main>
     </div>
-</footer>
 
-{{-- Scripts --}}
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    {{-- Footer --}}
+    <footer class="main-footer">
+        <div class="container-fluid">
+            <p class="text-muted pull-left">
+                LogViewer - <span class="badge badge-info">version {{ log_viewer()->version() }}</span>
+            </p>
+            <p class="text-muted pull-right">
+                Created with <i class="fa fa-heart"></i> by ARCANEDEV <sup>&copy;</sup>
+            </p>
+        </div>
+    </footer>
 
-@yield('modals')
-@yield('scripts')
+    {{-- Scripts --}}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+
+    @yield('modals')
+    @yield('scripts')
 </body>
+
 </html>

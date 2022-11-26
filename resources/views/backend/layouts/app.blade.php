@@ -3,13 +3,13 @@
 <html lang="{{ htmlLang() }}" @langrtl dir="rtl" @endlangrtl>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ app_name() }} | @yield('title')</title>
-    <meta name="description" content="@yield('meta_description', app_name())">
-    <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
-    @yield('meta')
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <title>{{ app_name() }} | @yield('title')</title>
+  <meta name="description" content="@yield('meta_description', app_name())">
+  <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+  @yield('meta')
 
     <link href="{{ asset('icon_img/assets/icons/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/ionicons.min.css') }}" rel="stylesheet">
