@@ -14,7 +14,6 @@
     <meta property="og:image" content="@yield('meta_image')">
     @yield('meta')
 
-
 </head>
 
 <body>

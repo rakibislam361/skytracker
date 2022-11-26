@@ -6,16 +6,9 @@ use App\Models\Auth\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
-use Spatie\Permission\Traits\HasRoles;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Setting extends Model
 {
-  use HasRoles, HasApiTokens, HasFactory;
-
-  public const TYPE_ADMIN = 'admin';
-  public const TYPE_USER = 'user';
   // protected $table = 'settings';
 
   public $primaryKey = 'id';

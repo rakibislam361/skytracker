@@ -1,7 +1,7 @@
 @stack('before-styles')
 
 <!-- Bootstrap Css -->
-<link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/bootstrap-3.3.6/css/bootstrap.min.css') }}">
 <!-- Bootstrap Select Css -->
 <link rel="stylesheet" type="text/css" href="assets/plugins/bootstrap-select-1.10.0/dist/css/bootstrap-select.min.css">
 <!-- Fonts Css -->
@@ -16,7 +16,6 @@
 
 <!-- Main Css -->
 <link rel="stylesheet" type="text/css" href="assets/css/theme.css">
-
 
 
 

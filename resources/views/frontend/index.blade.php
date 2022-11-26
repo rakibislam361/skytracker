@@ -1,5 +1,5 @@
 @extends('frontend.layouts.app')
- @include('frontend.style.style')
+@include('frontend.style.style')
 @section('title', get_setting('meta_title'))
 @section('meta_title', get_setting('meta_title'))
 @section('meta_description', get_setting('meta_description'))
