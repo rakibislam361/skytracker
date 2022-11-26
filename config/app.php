@@ -13,7 +13,7 @@ return [
     |
     */
 
-  'name' => env('APP_NAME', 'Laravel Boilerplate'),
+  'name' => env('APP_NAME', 'Sky_Track'),
 
   /*
     |--------------------------------------------------------------------------
@@ -181,6 +181,7 @@ return [
     App\Providers\RouteServiceProvider::class,
 
     App\Providers\BreadcrumbsServiceProvider::class,
+    App\Providers\SettingsServiceProvider::class,
 
   ],
 

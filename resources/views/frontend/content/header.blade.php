@@ -15,8 +15,8 @@
              $logo = App\Models\Content\Setting::where('key','frontend_logo_menu')->first();
              @endphp
              @if ($logo)
-               <img src="{{ asset($logo->value) }}">
-             @endif                       
+             <img src="{{ asset($logo->value) }}">
+             @endif
            </a>
            {{-- <a class="navbar-logo" href="{{ route('frontend.index') }}"> <img src="assets/img/logo/logo-black.png" alt="logo" /> </a> --}}
          </div>
