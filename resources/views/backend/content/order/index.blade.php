@@ -20,19 +20,19 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
       <a href="{{ route('admin.order.index') }}" class="@if(!$status) active @endif">
         @lang('All Orders') ({{$allOrdersCount}})
       </a>
-      <a href="{{ route('admin.order.index', ['status' => 'Partial Paid']) }}"
+      <a href="{{ route('admin.order.index', ['status' => 'bd-order']) }}"
         class="@if($status == 'Partial Paid') active @endif">
         @lang('BD Order') ({{$partialCount}})
       </a>
-      <a href="{{ route('admin.order.index', ['status' => 'on-hold']) }}"
+      <a href="{{ route('admin.order.index', ['status' => 'china-purchase']) }}"
         class="@if($status == 'on-hold') active @endif">
         @lang('China Purchase') ({{$onHold}})
       </a>
-      <a href="{{ route('admin.order.index', ['status' => 'Waiting for Payment']) }}"
+      <a href="{{ route('admin.order.index', ['status' => 'china-warehouse']) }}"
         class="@if($status == 'Waiting for Payment') active @endif">
         @lang('China Warehouse') ({{$icompleteCount}})
       </a>
-      <a href="{{ route('admin.order.index', ['status' => 'refunded']) }}"
+      <a href="{{ route('admin.order.index', ['status' => 'bd-warehouse']) }}"
         class="@if($status == 'refunded') active @endif">
         @lang('BD Warehouse') ({{$refundedCount}})
       </a>
@@ -109,7 +109,7 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
         </table>                     
       </div>
 
-    {{-- @livewire('order-table', ['statuss' => $status]) --}}
+    {{-- @livewire('backend.orders-table', ['statuss' => $status]) --}}
   </div> <!-- card-body-->
 </div> <!-- card-->
 
@@ -169,8 +169,12 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
 {{-- China Purchase Officer start--}}
                     @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.purchase.edit')))
                       <div class="form-group">
-                        <label for="purchaseCost">Actual Cost(purchase cost)</label>
-                        <input type="text" name="purchaseCost" required="" placeholder="Actual Cost" class="form-control" />
+                        <label for="purchaseCost">Actual RMB(purchase cost)</label>
+                        <input type="text" name="purchaseCost" required="" placeholder="RMB" class="form-control" />
+                      </div>
+                      <div class="form-group">
+                        <label for="productCost">Product cost in BDT</label>
+                        <input type="text" name="productCost" required="" placeholder="PurchaseCost * Conversion Rate" class="form-control" />
                       </div>
                      @endif
                      @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.order.status.edit'))) 
@@ -183,6 +187,8 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
                               <option value="delivered">Delivered</option>
                               <option value="refund">Refund</option>
                               <option value="received">Received</option>
+                               <option value="received">Received in china warehouse</option>
+                                <option value="received">shipped from china Warehouse</option>
                             </select>
                           </div>
                       @endif  
@@ -226,9 +232,8 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
                       </div>
 
                           <div class="form-group">
-                            <label for="status">Shipping Status</label>
-                            <select class="form group dropdown-item border" name="status">
-                              <option value=""></option>
+                            <label for="shipped_by">Shipping Status</label>
+                            <select class="form group dropdown-item border" name="shipped_by">
                               <option value="air">By Air</option>
                               <option value="sea">By Sea</option>
                             </select>

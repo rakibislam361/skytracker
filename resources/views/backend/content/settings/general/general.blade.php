@@ -30,19 +30,17 @@ $demoImg = 'img/backend/front-logo.png';
               <a class="nav-link" id="vert-tabs-shortMessageSetting-tab" data-toggle="pill"
                 href="#vert-tabs-shortMessageSetting" role="tab" aria-controls="vert-tabs-shortMessageSetting"
                 aria-selected="false">Short Message Setting</a>
-             
-              {{-- <a class="nav-link" id="vert-tabs-smsConfigSetting-tab" data-toggle="pill"
+              <a class="nav-link" id="vert-tabs-PwtSetting-tab" data-toggle="pill" href="#vert-tabs-PwtSetting"
+                role="tab" aria-controls="vert-tabs-PwtSetting" aria-selected="false">Payment Gateway Setting</a>
+              <a class="nav-link" id="vert-tabs-smsConfigSetting-tab" data-toggle="pill"
                 href="#vert-tabs-smsConfigSetting" role="tab" aria-controls="vert-tabs-smsConfigSetting"
                 aria-selected="false">SMS Configuration Setting</a>
-
               <a class="nav-link" id="vert-tabs-invoiceSettings-tab" data-toggle="pill"
                 href="#vert-tabs-invoiceSettings" role="tab" aria-controls="vert-tabs-invoiceSettings"
                 aria-selected="false">Invoices Setting</a>
-
               <a class="nav-link" id="vert-tabs-otcConfigSetting-tab" data-toggle="pill"
                 href="#vert-tabs-otcConfigSetting" role="tab" aria-controls="vert-tabs-otcConfigSetting"
-                aria-selected="false">OTC Configuration Setting</a> --}}
-
+                aria-selected="false">OTC Configuration Setting</a>
             </div>
           </div>
           <div class="col-7 col-sm-8">
@@ -62,16 +60,22 @@ $demoImg = 'img/backend/front-logo.png';
                 aria-labelledby="vert-tabs-shortMessageSetting-tab">
                 @include("backend.content.settings.general.includes.shortMessageSetting")
               </div>
-             
-            
-              {{-- <!-- <div class="tab-pane fade" id="vert-tabs-invoiceSettings" role="tabpanel"
+              <div class="tab-pane fade" id="vert-tabs-PwtSetting" role="tabpanel"
+                aria-labelledby="vert-tabs-PwtSetting-tab">
+                @include("backend.content.settings.general.includes.pamentGatewaySetting")
+              </div>
+              <div class="tab-pane fade" id="vert-tabs-smsConfigSetting" role="tabpanel"
+                aria-labelledby="vert-tabs-smsConfigSetting-tab">
+                @include("backend.content.settings.general.includes.smsConfigSetting")
+              </div>
+              <div class="tab-pane fade" id="vert-tabs-invoiceSettings" role="tabpanel"
                 aria-labelledby="vert-tabs-invoiceSettings-tab">
                 @include("backend.content.settings.general.includes.invoiceSettings")
-              </div> --> --}}
-              {{-- <div class="tab-pane fade" id="vert-tabs-otcConfigSetting" role="tabpanel"
+              </div>
+              <div class="tab-pane fade" id="vert-tabs-otcConfigSetting" role="tabpanel"
                 aria-labelledby="vert-tabs-otcConfigSetting-tab">
                 @include("backend.content.settings.general.includes.otcConfigSetting")
-              </div> --}}
+              </div>
             </div>
           </div>
         </div>

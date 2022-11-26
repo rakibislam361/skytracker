@@ -118,6 +118,7 @@ class PermissionRoleSeeder extends Seeder
         'description' => 'Edit Status',
 
       ]),
+
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.order.carton.edit',

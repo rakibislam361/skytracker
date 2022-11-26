@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Domains\Settings\Models\Setting;
+use App\Models\Content\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +22,7 @@ class SettingsServiceProvider extends ServiceProvider
      * Bootstrap the application services.
      *
      * @param \Illuminate\Support\Facades\Cache $cache
-     * @param \App\Domains\Settings\Models\Setting $settings
+     * @param \App\Models\Content\Setting $settings
      * 
      * @return void
      */

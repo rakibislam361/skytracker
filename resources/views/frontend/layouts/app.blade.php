@@ -17,23 +17,18 @@
 </head>
 
 <body>
-    <div id="app">
-        {{-- <form class="d-none">
-            <input type="hidden" id="asset_url" value="{{ asset('/') }}">
-            <input type="hidden" id="base_url" value="{{ url('/') }}">
-            <span id="settings_all">{{ json_encode(config('settings')) }}</span>
-            <script>
-                var settings = document.getElementById('settings_all').innerText;
-                window.b2b = settings ? JSON.parse(settings) : {};
-            </script>
-        </form> --}}
-
+ <script>
+    var settings = document.getElementById('settings_all').innerText;
+    window.b2b = settings ? JSON.parse(settings) : {};
+ </script>
+ 
+    <div id="app">           
         <main>
             @yield('content')
         </main>
     </div>
     <!--app-->
-
+ 
 </body>
 
 </html>

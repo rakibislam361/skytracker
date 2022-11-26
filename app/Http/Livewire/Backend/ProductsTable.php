@@ -19,34 +19,32 @@ class ProductsTable  extends DataTableComponent
 
     public function query(): Builder
     {
+
         return Product::with('warehouse', 'status', 'shipping', 'user');
     }
 
-    public function configure(): void
-    {
-        $this->setPrimaryKey('id');
-        $this->setDefaultSort('id', 'asc');
-    }
 
     public function columns(): array
     {
 
         return [
+            Column::make('Date', 'created_at')
+                ->searchable(),
 
-            Column::make('Invoice', 'invoice')
+            Column::make('Item Number',)
                 ->searchable()
                 ->sortable(),
 
-            Column::make('Product Name', 'productName')
+            Column::make('BD Receive',)
                 ->searchable(),
 
-            Column::make('Status', 'status.name')
+            Column::make('Purchase Cost(BDT)',)
                 ->searchable(),
 
-            Column::make('Warehouse', 'warehouse.name')
+            Column::make('Status',)
                 ->searchable(),
 
-            Column::make('Shipping Type', 'shipping.name')
+            Column::make('Profit',)
                 ->searchable(),
 
             Column::make(__('Action'), 'action')
