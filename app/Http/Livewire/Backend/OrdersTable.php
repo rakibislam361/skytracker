@@ -62,6 +62,7 @@ class OrdersTable extends DataTableComponent
 
     public function columns(): array
     {
+
         return [
             Column::make('Date', 'created_at')
                 ->searchable()
