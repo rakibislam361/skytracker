@@ -11,14 +11,8 @@
            </button>
 
            <a class="navbar-logo" href="{{ route('frontend.index') }}">
-             @php
-             $logo = App\Models\Content\Setting::where('key','frontend_logo_menu')->first();
-             @endphp
-             @if ($logo)
-             <img src="{{ asset($logo->value) }}">
-             @endif
-           </a>
-           {{-- <a class="navbar-logo" href="{{ route('frontend.index') }}"> <img src="assets/img/logo/logo-black.png" alt="logo" /> </a> --}}
+            <img src="{{ asset(get_setting('frontend_logo_menu')) }}" alt="{{ get_setting('site_name') }}" />
+          </a>
          </div>
          <div class="col-md-10 col-sm-10 fs-12">
            <div id="navbar" class="collapse navbar-collapse no-pad">
