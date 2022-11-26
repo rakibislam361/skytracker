@@ -37,20 +37,18 @@ class OrdersTable extends DataTableComponent
     public $exports = [];
 
 
-    public $status  = null;
+    // public $status  = null;
 
 
+    // public function mount($status)
+    // {
 
-    public function mount($status)
-    {
-
-        $this->status = $status;
-    }
+    //     $this->status = $status;
+    // }
 
     public function query(): Builder
     {
         $order =  Order::with('user');
-
         // $status = $this->status;
         // if ($status) {
         //     if ($status == 'trashed') {
@@ -59,7 +57,6 @@ class OrdersTable extends DataTableComponent
         //         $order->where('status', $status);
         //     }
         // }
-
         return $order;
     }
 
@@ -115,18 +112,18 @@ class OrdersTable extends DataTableComponent
                 ->searchable()
                 ->format(function (Order $model) {
                     $status = '<div>
-                    <span class="order-status">' . $model->status . '</span>
+                    <span class="order-status">' . $model->status ?? 'n/a' . '</span>
                     <a href="' . route('admin.order.change.status', $model) . '" class="ml-2 btn-edit-status"><i class="fa fa-pencil"></i></a>
                   </div>';
                     return $this->html($status);
                 }),
             Column::make('Actions', 'action')
                 ->format(function (Order $model) {
-                    $status = $this->status;
-                    if ($status == 'trashed') {
-                        return view('backend.content.order.includes.actions-trash', ['order' => $model]);
-                    }
-                    return view('backend.content.order.includes.actions', ['order' => $model, 'status' => $status]);
+                    // $status = $this->status;
+                    // if ($status == 'trashed') {
+                    //     return view('backend.content.order.includes.actions-trash', ['order' => $model]);
+                    // }
+                    // return view('backend.content.order.includes.actions', ['order' => $model, 'status' => $status]);
                 })
         ];
     }
