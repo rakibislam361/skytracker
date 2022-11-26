@@ -109,7 +109,7 @@ $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
         </table>                     
       </div>
 
-    {{-- @livewire('order-table', ['statuss' => $status]) --}}
+    {{-- @livewire('backend.orders-table', ['statuss' => $status]) --}}
   </div> <!-- card-body-->
 </div> <!-- card-->
 

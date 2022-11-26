@@ -38,10 +38,7 @@
 
                @if ($logged_in_user->isUser())
                <li>
-                 <button><a href="{{ route('frontend.user.dashboard') }}"> Dashboard </a></button>
-               </li>
-               <li>
-                 <button><a href="{{ route('frontend.user.account') }}"> {{ $logged_in_user->name }}</a></button>
+                 <button><a href="{{ route('frontend.user.dashboard') }}"> {{ $logged_in_user->name }} </a></button>
                </li>
                @endif
 

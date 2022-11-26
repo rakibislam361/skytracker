@@ -65,7 +65,17 @@
           </ul>
         </li> --}}
 
-      
+ {{-- Accounts --}}
+   @if ($logged_in_user->hasAllAccess()) 
+        <li class="nav-item {{ activeClass(Route::is('admin.product.*'), 'menu-open') }}">
+          <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Account')" />
+            </li>
+          </ul>
+        </li> 
+   @endif 
 
 {{-- Reports --}}
    @if ($logged_in_user->hasAllAccess() ||($logged_in_user->can('admin.setting')))
@@ -81,6 +91,9 @@
           </ul>
         </li>
   @endif
+
+ 
+
 
         {{-- <li class="nav-item">
           <x-utils.link-sidebar :href="route('admin.page.index')" :text="__('Manage Page')" :active="activeClass(Route::is('admin.page.*'))" icon="nav-icon fas fa-file-word" class="nav-link" />
