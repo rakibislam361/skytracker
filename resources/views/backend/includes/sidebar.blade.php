@@ -125,9 +125,9 @@
             {{-- <li class="nav-item">
               <x-utils.link :href="route('admin.front-setting.topNotice.create')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Top Notice')" />
             </li> --}}
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Pages')" />
-            </li>
+            </li> --}}
             <li class="nav-item">
               <x-utils.link :href="route('admin.setting.general')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('General Settings')" />
             </li>
