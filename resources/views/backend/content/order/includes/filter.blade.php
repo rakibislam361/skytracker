@@ -6,7 +6,7 @@
   <form>
     <div class="row">
      <div class="col">
-      <label for="itemNO">Filter By Item Number</label>
+      <label for="itemNO">Item</label>
       <input type="text" id="itemNO" name="itemNO" class="form-control" placeholder="item number">
      </div>
      <div class="col">
