@@ -35,7 +35,7 @@
         <td class="align-content-center text-center">{{ $order->order_number }}</td>
         <td class="align-content-center text-center">{{ $order->name }}</td>
         <td class="align-content-center text-center"> {{ $order->phone }} </td>
-        <td class="align-content-center text-center">new style sunglasses European and American fashion</td>
+        <td class="align-content-center text-center">New style sunglasses European and American fashion</td>
         <td class="align-content-center text-center">{{ $order->transaction_id }}</td>        
         <td class="align-content-center text-center">9</td>
         <td class="align-content-center text-center">ship_by_air</td>

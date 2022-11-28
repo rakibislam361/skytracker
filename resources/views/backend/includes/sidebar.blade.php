@@ -70,11 +70,11 @@
           <x-utils.link-sidebar href="#" :text="__('Reports')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Stock Report')" />
+              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Shipping Report')" />
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Sale Report')" />
-            </li>
+            </li> --}}
           </ul>
         </li>
         @endif
