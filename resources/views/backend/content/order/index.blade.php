@@ -13,6 +13,7 @@
         $processingCount = $orders ? $orders->where('status', 'processing') : null;
         $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
     @endphp
+    @include('backend.content.order.includes.filter')
     <div class="card">
         <div class="card-header">
             <h5 class="d-inline-block mr-2">@lang('Recent Orders')</h5>
@@ -44,26 +45,30 @@
                 @endhasrole
             </div>
         </div>
-        <div class="card-body">
-            @livewire('backend.orders-table')
+      <div class="card-body">  
+
+            @include('backend.content.order.includes.order_table')
+
+            {{-- @livewire('backend.orders-table') --}}
         </div> <!-- card-body-->
     </div> <!-- card-->
 
 
     <!-- Modal -->
-    @include('backend.content.order.includes.status-modal')
+    {{-- @include('backend.content.order.includes.status-modal') --}}
 
 
 
     <!-- Modal -->
     <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
+       
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <form method="POST" action="{{ route('admin.order.store') }}" id="statusChargeForm">
                     @csrf
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Change Status <span class="orderId"></span>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Change Status<span class="orderId"></span>
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -74,7 +79,7 @@
                         {{-- BD Purchase Officer start --}}
                         <div class="form-group">
                             <label for="itemNO">Item Number</label>
-                            <input type="text" name="itemNO" value=00008109 required="" placeholder="item number"
+                            <input type="text" name="itemNO" id="ItemNo" value="" required="" placeholder="item number"
                                 class="form-control" />
                         </div>
                         @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit'))
@@ -223,30 +228,46 @@
     </div> <!-- changeStatusButton -->
 
 
-    @include('backend.content.order.wallet.includes.generate-modal')
+    {{-- @include('backend.content.order.wallet.includes.generate-modal') --}}
 
 
 @endsection
 
 
-@push('before-styles')
-    {{ style('assets/plugins/select2/css/select2.min.css') }} --}}
+{{-- @push('before-styles')
+    {{ style('assets/plugins/select2/css/select2.min.css') }}
     {{ style('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}
-@endpush
+@endpush --}}
 
-@push('after-styles')
+{{-- @push('after-styles')
     @livewireStyles
-@endpush
+@endpush --}}
 
-@push('middle-scripts')
+{{-- @push('middle-scripts')
     {{ script('assets/plugins/select2/js/select2.full.min.js') }}
     @livewireScripts
 
     {!! script('assets/js/manage-wallet.js') !!}
-@endpush
+@endpush --}}
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script>
-    $(document).ready(function() {
+    function orderModal(data) {
+        // console.log(data);
+      $("#changeStatusButton").modal('show');
+            $('#ItemNo').val(data.order_number);
+    }
+</script> --}}
+     {{-- <script>
+       $('#changeStatusButton').on('click', '.orderClass', function() {
+        let ab = $('#id').val($(this).attr('data-id'));
+        console.log(ab);
         $('#changeStatusButton').modal('show');
-    });
-</script>
+     });
+    </script> --}}
+
+{{-- <script>
+  $(document).ready(function() {
+    $('#changeStatusButton').modal('show');
+  });
+</script> --}}

@@ -48,13 +48,6 @@ class SettingController extends Controller
       $data['invoice_logo'] = store_picture(\request()->file('invoice_logo'), 'setting/logo');
     }
 
-    if (request('payment_settings')) {
-      $data['bkash_payment_active'] = request('bkash_payment_active', null);
-      $data['nagad_payment_active'] = request('nagad_payment_active', null);
-      $data['sslcommerz_active'] = request('sslcommerz_active', null);
-      $data['smanager_active'] = request('smanager_active', null);
-      $data['cash_payment'] = request('cash_payment', null);
-    }
 
     Setting::save_settings($data);
 

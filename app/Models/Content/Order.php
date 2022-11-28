@@ -34,4 +34,8 @@ class Order extends Model
   {
     return $this->hasMany(OrderItem::class, 'order_id', 'id');
   }
+  public function orderItemsVariations()
+  {
+    return $this->hasMany(OrderItemVariation::class, 'order_item_id', 'id');
+  }
 }

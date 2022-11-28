@@ -57,6 +57,7 @@ class OrdersTable extends DataTableComponent
         //         $order->where('status', $status);
         //     }
         // }
+        // dd($order);
         return $order;
     }
 
@@ -120,11 +121,11 @@ class OrdersTable extends DataTableComponent
                 }),
             Column::make('Actions', 'action')
                 ->format(function (Order $model) {
-                    // $status = $this->status;
-                    // if ($status == 'trashed') {
-                    //     return view('backend.content.order.includes.actions-trash', ['order' => $model]);
-                    // }
-                    // return view('backend.content.order.includes.actions', ['order' => $model, 'status' => $status]);
+                    $status = $this->status;
+                    if ($status == 'trashed') {
+                        return view('backend.content.order.includes.actions-trash', ['order' => $model]);
+                    }
+                    return view('backend.content.order.includes.actions', ['order' => $model, 'status' => $status]);
                 })
         ];
     }

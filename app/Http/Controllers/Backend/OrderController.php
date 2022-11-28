@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Throwable;
+use Log;
 
 class OrderController extends Controller
 {
@@ -34,9 +35,18 @@ class OrderController extends Controller
 
     $orders = [];
     $trashedOrders = [];
-    return view('backend.content.order.index', compact('orders', 'trashedOrders'));
+
+    $data = Order::paginate(20);
+    // Log::info($data);
+
+    return view('backend.content.order.index', compact('orders', 'trashedOrders', 'data'));
   }
 
+  // public function order_details()
+  // {
+  //   $data = Order::with('orderItems');
+  //   return view('backend.content.order.includes.order_table', compact('data'));
+  // }
 
   public function makeAsPayment($id)
   {
@@ -295,6 +305,8 @@ class OrderController extends Controller
    * @param int $id
    * @return Response
    */
+
+
   public function update(Request $request, $item_id)
   {
     $validData = $this->validateOrderItems($item_id);
