@@ -17,7 +17,7 @@ use Tabuna\Breadcrumbs\Trail;
 // All route names are prefixed with 'admin.'.
 Route::redirect('/', '/admin/dashboard', 301);
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('search', [DashboardController::class, 'search'])->name('search');
+Route::get('search', [DashboardController::class, 'search'])->name('order.search');
 
 
 Route::group(['prefix' => 'product', 'as' => 'product.'], function () {
@@ -66,4 +66,20 @@ Route::get('order-item/edit/{id}', [OrderController::class, 'show_details'])->na
 Route::post('order/change/status/{id}', [OrderController::class, 'changeStatus'])->name('order.change.status');
 Route::post('order/coupon-update/{id}', [OrderController::class, 'updateCoupon'])->name('order.coupon.update');
 Route::post('order/deposit-update/{id}', [OrderController::class, 'depositCoupon'])->name('order.deposit.update');
+
+
+// search
+
+// Route::get('/', [OrderController::class, 'Search'])
+//   ->name('includes.search')
+//   ->breadcrumbs(function (Trail $trail) {
+//     $trail->parent('admin.dashboard')
+//       ->push(__('_search'), route('backend.content.order.includes.search'));
+//   });
 Route::resource('order', OrderController::class);
+// Route::get('track', [TrackingController::class, 'Track'])
+//   ->name('pages.tracking')
+//   ->breadcrumbs(function (Trail $trail) {
+//     $trail->parent('frontend.index')
+//       ->push(__('_track'), route('frontend.pages.tracking'));
+//   });

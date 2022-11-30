@@ -13,7 +13,9 @@
         $processingCount = $orders ? $orders->where('status', 'processing') : null;
         $purchasedCount = $orders ? $orders->where('status', 'purchased') : null;
     @endphp
+    @if ($logged_in_user->hasAllAccess())
     @include('backend.content.order.includes.filter')
+    @endif
     <div class="card">
         <div class="card-header">
             <h5 class="d-inline-block mr-2">@lang('Recent Orders')</h5>
@@ -46,9 +48,9 @@
             </div>
         </div>
       <div class="card-body">  
-
+         {{-- @if ($logged_in_user->hasAllAccess() ) --}}
             @include('backend.content.order.includes.order_table')
-
+         {{-- @endif --}}
             {{-- @livewire('backend.orders-table') --}}
         </div> <!-- card-body-->
     </div> <!-- card-->
@@ -79,33 +81,35 @@
                         {{-- BD Purchase Officer start --}}
                         <div class="form-group">
                             <label for="itemNO">Item Number</label>
-                            <input type="text" name="itemNO" id="ItemNo" value="" required="" placeholder="item number"
+                            <input type="text" name="itemNO" id="ItemNo" value="" placeholder="item number"
                                 class="form-control" />
                         </div>
                         @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit'))
                             <div class="form-group">
                                 <label for="orderRmb">Order(rmb)</label>
-                                <input type="text" name="orderRmb" required="" placeholder="Order in Rmb"
+                                <input type="text" name="orderRmb"  placeholder="Order in Rmb"
                                     class="form-control" />
                             </div>
-                        @endif
-                        @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
-                            <div class="form-group">
-                                <label for="chinaLocal">China Local Delivery</label>
-                                <input type="text" name="chinaLocal" required="" placeholder="China Local Delivery"
-                                    class="form-control" />
+                             <div class="form-group">
+                                <label for="status">Status</label>
+                                <select class="form group dropdown-item border" name="status">
+                                    <option value=""></option>
+                                    <option value="processing">Processing</option>                                   
+                                </select>
                             </div>
+
                         @endif
-                        @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit'))
+                       
+                        @if ($logged_in_user->hasAllAccess())
                             <div class="form-group">
                                 <label for="productCost">Product cost in BDT</label>
-                                <input type="text" name="productCost" required=""
-                                    placeholder="OrderRmb * Conversion Rate" class="form-control" />
+                                <input type="text" name="productCost" 
+                                    placeholder="Product price from Skybuy" class="form-control" />
                             </div>
 
                             <div class="form-group">
                                 <label for="bdReceive">BD Received Cost</label> {{-- calculate product cost + china local delivery --}}
-                                <input type="text" name="bdReceive" required="" placeholder="BD Received Cost"
+                                <input type="text" name="bdReceive"  placeholder="(china local delivery*Conversion)+product Cost"
                                     class="form-control" />
                             </div>
                         @endif
@@ -116,57 +120,82 @@
                         @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.purchase.edit'))
                             <div class="form-group">
                                 <label for="purchaseCost">Actual RMB(purchase cost)</label>
-                                <input type="text" name="purchaseCost" required="" placeholder="RMB"
+                                <input type="text" name="purchaseCost" placeholder="RMB"
                                     class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label for="productCost">Product cost in BDT</label>
-                                <input type="text" name="productCost" required=""
-                                    placeholder="PurchaseCost * Conversion Rate" class="form-control" />
-                            </div>
-                        @endif
-                        @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.status.edit'))
-                            <div class="form-group">
+                             <div class="form-group">
                                 <label for="status">Status</label>
                                 <select class="form group dropdown-item border" name="status">
                                     <option value=""></option>
+                                    <option value="hold">Hold</option>
                                     <option value="purchased">Purchased</option>
-                                    <option value="noStock">Out of stock</option>
-                                    <option value="delivered">Delivered</option>
-                                    <option value="refund">Refund</option>
-                                    <option value="received">Received</option>
-                                    <option value="received">Received in china warehouse</option>
-                                    <option value="received">shipped from china Warehouse</option>
+                                    <option value="re_order">RE-Order</option>
+                                    <option value="refund">Refund Please</option>
                                 </select>
                             </div>
+                            @endif
+                            {{-- <div class="form-group">
+                                <label for="productCost">Product cost in BDT</label>
+                                <input type="text" name="productCost" required=""
+                                    placeholder="PurchaseCost * Conversion Rate" class="form-control" />
+                            </div> --}}
+                        
+                         @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
+                            <div class="form-group">
+                                <label for="chinaLocal">China Local Delivery</label>
+                                <input type="text" name="chinaLocal"  placeholder="China Local Delivery"
+                                    class="form-control" />
+                            </div>
                         @endif
+                       
                         {{-- China Purchase Officer end --}}
 
                         {{-- China Warehouse start --}}
                         @if ($logged_in_user->hasAllAccess() ||
-                            $logged_in_user->can('admin.order.carton.edit') ||
-                            $logged_in_user->can('admin.order.rate.edit'))
+                            $logged_in_user->can('admin.order.carton.edit'))
+
+                               <div class="form-group">
+                                <label for="status">Shipping Method</label>
+                                <select class="form group dropdown-item border" name="status">
+                                    <option value="">Select Guangzhou/HongKong</option>
+                                    <option value="guangzhou">Guangzhou</option>
+                                    <option value="hongkong">HongKong</option>
+                                </select>
+                            </div>
+
+                             <div class="form-group">
+                                <label for="shipping_mark">Shipping Mark</label>
+                                <input type="text" name="shipping_mark"  placeholder="shipping mark"
+                                    class="form-control" />
+                            </div>
+
                             <div class="form-group">
                                 <label for="productName">Product Name</label>
-                                <input type="text" name="productName" value="Men's Martin Boots" required=""
+                                <input type="text" name="productName"
                                     placeholder="Product Name" class="form-control" />
                             </div>
 
                             <div class="form-group">
                                 <label for="quantity">Quantity</label>
-                                <input type="text" name="quantity" required="" placeholder="Quantity"
+                                <input type="text" name="quantity" placeholder="Quantity"
                                     class="form-control" />
                             </div>
 
                             <div class="form-group">
                                 <label for="weight">Weight</label>
-                                <input type="text" name="weight" required="" placeholder="Weight"
+                                <input type="text" name="weight" placeholder="Weight"
+                                    class="form-control" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cbm">CBM</label>
+                                <input type="text" name="cbm"  placeholder="CBM"
                                     class="form-control" />
                             </div>
 
                             <div class="form-group">
                                 <label for="cartonId">Carton ID</label>
-                                <input type="text" name="cartonId" required="" placeholder="Carton Id"
+                                <input type="text" name="cartonId"  placeholder="Carton Id"
                                     class="form-control" />
                             </div>
 
@@ -176,17 +205,10 @@
                                     class="form-control" />
                             </div>
 
-                            <div class="form-group">
-                                <label for="status">Shipping Method</label>
-                                <select class="form group dropdown-item border" name="status">
-                                    <option value=""></option>
-                                    <option value="guangzhou">Guangzhou</option>
-                                    <option value="hongkong">Hong Kong</option>
-                                </select>
-                            </div>
+                         
 
                             <div class="form-group">
-                                <label for="shipped_by">Shipping Status</label>
+                                <label for="shipped_by">Shipping By</label>
                                 <select class="form group dropdown-item border" name="shipped_by">
                                     <option value="air">By Air</option>
                                     <option value="sea">By Sea</option>
@@ -198,16 +220,36 @@
                         {{-- BD Logistic Officer start --}}
                         {{-- product name, quantity, weight, carton Id --}}
                         @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.rate.edit'))
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="shipRate">Shipping Rate</label>
                                 <input type="text" name="shipRate" required="" placeholder="Shipping Rate"
                                     class="form-control" />
-                            </div>
+                            </div> --}}
 
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="shipamount">Amount</label>
                                 <input type="text" name="shipamount" required=""
                                     placeholder="Shipping Rate * Weight" class="form-control" />
+                            </div> --}}
+
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select class="form group dropdown-item border" name="status">
+                                    <option value=""></option>
+                                    <option value="received">Received in BD warehouse</option>
+                                   
+                                </select>
+                            </div>
+
+                        @endif
+                         @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.status.edit'))
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select class="form group dropdown-item border" name="status">
+                                    <option value=""></option>
+                                    <option value="received">Received in china warehouse</option>
+                                    <option value="received">Shipped from china warehouse</option>
+                                </select>
                             </div>
                         @endif
                         {{-- BD Logistic Officer END --}}

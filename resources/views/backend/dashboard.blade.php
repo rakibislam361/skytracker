@@ -5,11 +5,12 @@
 
 <x-backend.card>
     <x-slot name="header">
-        @lang('Welcome :Name', ['name' => $logged_in_user->name])
+        @include('backend.content.order.includes.filter')
     </x-slot>
 
     <x-slot name="body">
-        @lang('Welcome to the Dashboard')
+        {{-- @lang('Welcome to the Dashboard') --}}
+
     </x-slot>
 </x-backend.card>
 

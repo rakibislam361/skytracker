@@ -1,4 +1,11 @@
-<div class="table-responsive">
+{{-- @dd('hi') --}}
+@extends('backend.layouts.app')
+@section('title', __('_search'))
+@section('content')
+@include('backend.content.order.includes.filter')        
+@forelse($data ?? '' as $order)
+<div class="card">
+ <div class="table-responsive">
   <table class="table table-hover table-bordered mb-0 order-table">
     <thead>
       <tr>
@@ -50,7 +57,7 @@
     <tbody>
 
 
-@foreach ($data as $order)
+@foreach ($data ?? '' ?? '' as $order)
 
     
       <tr onclick="orderModal({{json_encode($order)}})">
@@ -94,10 +101,29 @@
       @endforeach     
     </tbody>
   </table>
-  {{ $data->links() }}
+  {{ $data ?? '' ?? ''->links() }}
 </div> 
 
+ 
 
+            @empty
+            <table class="table table-striped table-hover table-bordered mb-0">
+              <tr>
+                <td>
+                  <h3 style="margin-left: 30%">Sorry!!! Nothing Found</h3>
+                </td>
+              </tr>
+            </table>
+
+            @endforelse
+
+          </div>
+
+          {{-- search product details and status end   --}}
+
+  <!--row-->
+</div>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
 <script>
@@ -108,5 +134,4 @@
             
     }
 </script>
- 
-
+@endsection

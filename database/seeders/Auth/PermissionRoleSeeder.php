@@ -131,6 +131,12 @@ class PermissionRoleSeeder extends Seeder
         'description' => 'Edit Rate',
 
       ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.cbm.edit',
+        'description' => 'Edit Cbm',
+
+      ]),
     ]);
 
     $settings = Permission::create([
