@@ -87,6 +87,8 @@ trait ApiOrderTrait
   public function order_update()
   {
     $get_token = $this->getToken();
+    $bear_token = 'Authorization: Bearer ' . $get_token;
+
     $url = "http://192.168.0.7:3000/api/v1/order-update";
     $data = [
       'order_item_number' => request('order_item_number', null),
@@ -116,7 +118,7 @@ trait ApiOrderTrait
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS => $data,
-      CURLOPT_HTTPHEADER => array($get_token),
+      CURLOPT_HTTPHEADER => array($bear_token),
     ));
 
     $response = curl_exec($curl);
