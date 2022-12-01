@@ -89,7 +89,7 @@
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.carton.edit'))
                         <div class="form-group">
                             <label for="shipping_from">Shipping From</label>
-                            <select class="form group dropdown-item border" name="shipping_from">
+                            <select class="form-control" name="shipping_from">
                                 <option value="">Select Guangzhou/HongKong</option>
                                 <option value="guangzhou">Guangzhou</option>
                                 <option value="hongkong">HongKong</option>
@@ -137,7 +137,7 @@
 
                         <div class="form-group">
                             <label for="shipped_by">Shipping By</label>
-                            <select class="form group dropdown-item border" name="shipped_by">
+                            <select class="form-control" name="shipped_by">
                                 <option value="air">By Air</option>
                                 <option value="sea">By Sea</option>
                             </select>
@@ -147,7 +147,7 @@
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.rate.edit'))
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <select class="form group dropdown-item border" name="status">
+                            <select class="form-control" name="status">
                                 <option value=""></option>
                                 <option value="received">Received in BD warehouse</option>
                             </select>
@@ -157,7 +157,7 @@
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.status.edit'))
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <select class="form group dropdown-item border" name="status">
+                            <select class="form-control" name="status">
                                 <option value=""></option>
                                 <option value="received">Received in china warehouse</option>
                                 <option value="received">Shipped from china warehouse</option>
@@ -166,11 +166,11 @@
                     @endif
 
                     {{-- BD Logistic Officer END --}}
-                    <div class="form-group form-check">
+                    {{-- <div class="form-group form-check">
                         <input type="checkbox" name="notify" value="1" class="form-check-input"
                             id="notify" checked="true">
                         <label class="form-check-label" for="notify">Notify User</label>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div class="modal-footer justify-content-between">

@@ -39,7 +39,7 @@
                </tr>
            </thead>
            <tbody>
-               @foreach ($orders->data as $order)
+               @foreach ($orders as $order)
                <tr onclick="orderModal({{ json_encode($order) }})">
                    <td class="align-content-center text-center">
                        {{ $order->created_at ? date('d/m/Y', strtotime($order->created_at)) : 'N/A' }}
@@ -79,5 +79,5 @@
                @endforeach
            </tbody>
        </table>
-       {{-- {{ $orders->data->links() }} --}}
+       {{ $orders->links() }}
    </div>

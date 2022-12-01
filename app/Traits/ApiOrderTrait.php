@@ -3,16 +3,19 @@
 namespace App\Traits;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 trait ApiOrderTrait
 {
-
   public function getToken()
   {
-    $url = "http://192.168.0.7:3000/api/v1/login";
+    $url = "https://www.skybuybd.com/api/v1/login";
     $formData = [
       'email' => 'admin@admin.com',
-      'password' => 'secret'
+      'password' => 'OhiShahil@@@###'
     ];
 
     $token = session('token', []);
@@ -32,9 +35,8 @@ trait ApiOrderTrait
     $bear_token = 'Authorization: Bearer ' . $get_token;
     // dd($bear_token);
     $curl = curl_init();
-
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'http://192.168.0.7:3000/api/v1/admin/order-list',
+      CURLOPT_URL => 'https://www.skybuybd.com/api/v1/admin/order-list',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -47,6 +49,7 @@ trait ApiOrderTrait
 
     $response = curl_exec($curl);
     curl_close($curl);
+    Log::info($response);
     return $response;
   }
 
