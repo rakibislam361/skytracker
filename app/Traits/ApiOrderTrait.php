@@ -13,6 +13,7 @@ trait ApiOrderTrait
     $formData = [
       'email' => 'admin@admin.com',
       'password' => 'OhiShahil@@@###'
+
     ];
 
     $token = session('token', []);
@@ -84,4 +85,27 @@ trait ApiOrderTrait
       }
     }
   }
+
+  public function order_update(){
+    $update= [
+      'order_item_number' => ['required', 'string', 'max:100'],
+      'order_item_rmb' => ['nullable', 'string'],
+      'product_bd_received_coast' => ['nullable'],
+      'purchase_rmb' => ['nullable'],
+      'purchase_coast' => ['nullable'],
+      'chinaLocalDelivery' => ['nullable'],
+      'shipping_from' => ['nullable'],
+      'shipping_mark' => ['nullable', 'string'],
+      'chn_warehouse_qty' => ['nullable', 'string'],
+      'chn_warehouse_weight' => ['nullable', 'string'],
+      'cmd' => ['nullable', 'string'],
+      'carton_id' => ['nullable', 'string'],
+      'tracking_number' => ['nullable', 'string'],
+      'shipped_by' => ['nullable', 'string'],
+      'status' => ['nullable', 'string'],
+    ]
+
+  }
+
+
 }

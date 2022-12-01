@@ -12,7 +12,6 @@ use DB;
  */
 class DashboardController
 {
-
     use ApiOrderTrait;
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -27,10 +26,17 @@ class DashboardController
 
     public function search(Request $request)
     {
-        $data = Order::with('orderItems');
+        $all_orders = $this->orderList();
+        $orders = json_decode($all_orders);
+        $all_orders = $orders->data->result;
+
         if ($request->input('itemNO')) {
-            $data = $data->where('order_number', 'LIKE', "%" . $request->itemNO . "%")->paginate(20);
+
+
+            // $all_orders->all();
+
+            // $all_orders = $all_orders->where('order_number', 'LIKE', "%" . $request->itemNO . "%")->paginate(20);
         }
-        return view('backend.content.order.search', compact('data'));
+        return view('backend.dashboard', compact('all_orders'));
     }
 }
