@@ -9,11 +9,10 @@ trait ApiOrderTrait
 
   public function getToken()
   {
-    $url = "https://www.skybuybd.com/api/v1/login";
+    $url = "http://192.168.0.7:3000/api/v1/login";
     $formData = [
       'email' => 'admin@admin.com',
-      'password' => 'OhiShahil@@@###'
-
+      'password' => 'secret'
     ];
 
     $token = session('token', []);
@@ -35,7 +34,7 @@ trait ApiOrderTrait
     $curl = curl_init();
 
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://www.skybuybd.com/api/v1/admin/order-list',
+      CURLOPT_URL => 'http://192.168.0.7:3000/api/v1/admin/order-list',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -48,7 +47,6 @@ trait ApiOrderTrait
 
     $response = curl_exec($curl);
     curl_close($curl);
-
     return $response;
   }
 
@@ -86,26 +84,44 @@ trait ApiOrderTrait
     }
   }
 
-  public function order_update(){
-    $update= [
-      'order_item_number' => ['required', 'string', 'max:100'],
-      'order_item_rmb' => ['nullable', 'string'],
-      'product_bd_received_coast' => ['nullable'],
-      'purchase_rmb' => ['nullable'],
-      'purchase_coast' => ['nullable'],
-      'chinaLocalDelivery' => ['nullable'],
-      'shipping_from' => ['nullable'],
-      'shipping_mark' => ['nullable', 'string'],
-      'chn_warehouse_qty' => ['nullable', 'string'],
-      'chn_warehouse_weight' => ['nullable', 'string'],
-      'cmd' => ['nullable', 'string'],
-      'carton_id' => ['nullable', 'string'],
-      'tracking_number' => ['nullable', 'string'],
-      'shipped_by' => ['nullable', 'string'],
-      'status' => ['nullable', 'string'],
-    ]
+  public function order_update()
+  {
+    $get_token = $this->getToken();
+    $url = "http://192.168.0.7:3000/api/v1/order-update";
+    $data = [
+      'order_item_number' => request('order_item_number', null),
+      'order_item_rmb' => request('order_item_rmb', null),
+      'product_bd_received_coast' => request('product_bd_received_coast', null),
+      'purchase_rmb' => request('purchase_rmb', null),
+      'chinaLocalDelivery' => request('chinaLocalDelivery', null),
+      'shipping_from' => request('shipping_from', null),
+      'shipping_mark' => request('shipping_mark', null),
+      'chn_warehouse_qty' => request('chn_warehouse_qty', null),
+      'chn_warehouse_weight' => request('chn_warehouse_weight', null),
+      'cbm' => request('cmd', null),
+      'carton_id' => request('carton_id', null),
+      'tracking_number' => request('tracking_number', null),
+      'shipped_by' => request('shipped_by', null),
+      'status' => request('status', null),
+    ];
 
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => 'http://192.168.0.7:3000/api/v1/admin/order-update',
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'POST',
+      CURLOPT_POSTFIELDS => $data,
+      CURLOPT_HTTPHEADER => array($get_token),
+    ));
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+    // dd($response);
+    return $response;
   }
-
-
 }

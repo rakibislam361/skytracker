@@ -54,32 +54,5 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
   Route::post('top-notice', [SettingController::class, 'topNoticeStore'])->name('topNotice.store');
 });
 
-Route::get('order/restore/{order}', [OrderController::class, 'restore'])->name('order.restore');
-Route::get('makeAsPayment/{order}', [OrderController::class, 'makeAsPayment'])->name('order.makeAsPayment');
-Route::get('order/wallet', [OrderController::class, 'walletOrders'])->name('order.wallet');
-Route::get('order/wallet/{id}', [OrderController::class, 'walletDetails'])->name('order.wallet.details');
-
-Route::post('order/operation/{order}', [OrderController::class, 'bkashOperation'])->name('order.bkash.operation');
-Route::post('order/refund/{order}', [OrderController::class, 'refundPayment'])->name('order.refund');
-
-Route::get('order-item/edit/{id}', [OrderController::class, 'show_details'])->name('order.item.edit');
-Route::post('order/change/status/{id}', [OrderController::class, 'changeStatus'])->name('order.change.status');
-Route::post('order/coupon-update/{id}', [OrderController::class, 'updateCoupon'])->name('order.coupon.update');
-Route::post('order/deposit-update/{id}', [OrderController::class, 'depositCoupon'])->name('order.deposit.update');
-
-
-// search
-
-// Route::get('/', [OrderController::class, 'Search'])
-//   ->name('includes.search')
-//   ->breadcrumbs(function (Trail $trail) {
-//     $trail->parent('admin.dashboard')
-//       ->push(__('_search'), route('backend.content.order.includes.search'));
-//   });
 Route::resource('order', OrderController::class);
-// Route::get('track', [TrackingController::class, 'Track'])
-//   ->name('pages.tracking')
-//   ->breadcrumbs(function (Trail $trail) {
-//     $trail->parent('frontend.index')
-//       ->push(__('_track'), route('frontend.pages.tracking'));
-//   });
+Route::post('order-update', [OrderController::class, "orderUpdate"])->name('order-update');
