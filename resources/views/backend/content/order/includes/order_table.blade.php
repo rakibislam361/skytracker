@@ -79,5 +79,7 @@
                @endforeach
            </tbody>
        </table>
+       <div style="padding-left: 33%">
        {{ $orders->links() }}
+       </div>
    </div>

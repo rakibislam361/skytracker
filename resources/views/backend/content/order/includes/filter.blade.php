@@ -7,17 +7,18 @@
 
                 <div class="col-2">
                     <label for="status">Status</label>
-                    <select class="form-control" id="status" name="status">
-                        <option value="">Select</option>
-                        <option value="purchased">Purchased</option>
-                        <option value="noStock">Out of stock</option>
-                        <option value="delivered">Delivered</option>
-                        <option value="refund">Refund</option>
-                        <option value="received">Received</option>
-                        <option value="receivechina">Received in china warehouse</option>
-                        <option value="shipchina">Shipped from china Warehouse</option>
-                        <option value="receiveBD">Received in BD warehouse</option>
-                    </select>
+                   <select class="form-control" name="status">
+                                <option value="">Select</option>                             
+                                <option value="processing">Processing</option>                               
+                                <option value="hold">Hold</option>
+                                <option value="purchased">Purchased</option>
+                                <option value="re_order">RE-Order</option>
+                                <option value="refund">Refund Please</option>                             
+                                <option value="china_received">Received in china warehouse</option>
+                                <option value="china_shipped">Shipped from china warehouse</option>                            
+                                <option value="bd_received">Received in BD warehouse</option>
+                               
+                            </select>
                 </div>
 
                 <div class="col-3">

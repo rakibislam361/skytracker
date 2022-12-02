@@ -92,7 +92,7 @@ trait ApiOrderTrait
     $get_token = $this->getToken();
     $bear_token = 'Authorization: Bearer ' . $get_token;
 
-    $url = "http://192.168.0.7:3000/api/v1/order-update";
+    $url = "https://www.skybuybd.com/api/v1//order-update";
     $data = [
       'order_item_number' => request('order_item_number', null),
       'order_item_rmb' => request('order_item_rmb', null),
@@ -112,7 +112,7 @@ trait ApiOrderTrait
 
     $curl = curl_init();
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'http://192.168.0.7:3000/api/v1/admin/order-update',
+      CURLOPT_URL => 'https://www.skybuybd.com/api/v1/admin/order-update',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
