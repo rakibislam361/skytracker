@@ -17,6 +17,7 @@ if (!function_exists('app_name')) {
 }
 
 
+
 if (!function_exists('convertedPrice')) {
   /**
    * Helper to grab the application name.
