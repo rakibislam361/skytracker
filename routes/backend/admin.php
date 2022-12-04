@@ -42,6 +42,7 @@ Route::group(['prefix' => 'messaging', 'as' => 'messaging.'], function () {
 });
 
 Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
+  Route::get('price', [SettingController::class, 'price'])->name('price');
   Route::post('airShippingStore', [SettingController::class, 'airShippingStore'])->name('airShippingStore');
   Route::post('logo-store', [SettingController::class, 'logoStore'])->name('logoStore');
   Route::post('social-store', [SettingController::class, 'socialStore'])->name('socialStore');
@@ -56,3 +57,5 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
 
 Route::resource('order', OrderController::class);
 Route::post('order-update', [OrderController::class, "orderUpdate"])->name('order-update');
+Route::get('order/local', [OrderController::class, 'walletOrders'])->name('order.local');
+Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name('order.local.details');

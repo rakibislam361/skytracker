@@ -38,13 +38,13 @@ class ProductsTable  extends DataTableComponent
             Column::make('BD Receive',)
                 ->searchable(),
 
-            Column::make('Purchase Cost(BDT)',)
+            Column::make('BD Out=actual Rmb*Conversion Rate Fron track',)
                 ->searchable(),
 
             Column::make('Status',)
                 ->searchable(),
 
-            Column::make('Profit',)
+            Column::make('Profit/Loss',)
                 ->searchable(),
 
             Column::make(__('Action'), 'action')

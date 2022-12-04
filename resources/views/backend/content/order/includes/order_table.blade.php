@@ -21,7 +21,8 @@
 
                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
                        {{-- local delivery --}}
-                       <th class="align-content-center text-center">China Local Delivery</th>
+                       <th class="align-content-center text-center">China Local Delivery (RMB)</th>
+                       <th class="align-content-center text-center">China Local Delivery (BDT)</th>
                    @endif
 
                    <th class="align-content-center text-center">Product Name</th>
@@ -62,6 +63,7 @@
 
                        @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
                            <td class="align-content-center text-center">{{ $order->chinaLocalDelivery ?? '' }}</td>
+                            <td class="align-content-center text-center">{{ $order->chinaLocalDelivery ?? '' }}</td>
                        @endif
 
                        <td class="align-content-center text-center">{{ $order->name ?? 'N/A' }}</td>
@@ -81,5 +83,5 @@
        </table>
    </div>
    <div class="mt-4">
-       {{ $orders->links() }}
+       {{-- {{ $orders->links() }} --}}
    </div>

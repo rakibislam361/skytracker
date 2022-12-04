@@ -20,6 +20,9 @@
             <li class="nav-item">
               <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Recent order')" />
             </li>
+            <li class="nav-item">
+              <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
+            </li>
           </ul>
         </li>
         {{-- product --}}
@@ -58,7 +61,16 @@
           <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Account')" />
+              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyBuy Accounts')" />
+            </li>
+            <li class="nav-item">
+              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyOne Accounts')" />
+            </li>
+            <li class="nav-item">
+              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Offline Customer Accounts')" />
+            </li>
+            <li class="nav-item">
+              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Office Accounts')" />
             </li>
           </ul>
         </li>
@@ -130,6 +142,9 @@
             </li> --}}
             <li class="nav-item">
               <x-utils.link :href="route('admin.setting.general')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('General Settings')" />
+            </li>
+            <li class="nav-item">
+              <x-utils.link :href="route('admin.setting.price')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Price Settings')" />
             </li>
 
             {{-- <li class="nav-item">

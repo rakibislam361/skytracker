@@ -4,39 +4,36 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
-
+use Illuminate\Pagination\LengthAwarePaginator;
 
 trait ApiOrderTrait
 {
+
   public function getToken()
   {
-    $url = "https://www.skybuybd.com/api/v1/login";
-    $formData = [
-      'email' => 'admin@admin.com',
-      'password' => 'OhiShahil@@@###'
-    ];
-
+    $url = config('credential.url') . "/login";
     $token = session('token', []);
+
     if (!$token) {
-      $response = $this->curlRequest($url, $formData);
+      $response = $this->curlRequest($url);
       $token_data = json_decode($response);
       $token =  $token_data->data->token;
       session(['token' => $token]);
     }
-
-    return $token;
+    $bear_token = 'Authorization: Bearer ' . $token;
+    return $bear_token;
   }
 
 
   public function orderList()
   {
     $get_token = $this->getToken();
-    $bear_token = 'Authorization: Bearer ' . $get_token;
-    // dd($bear_token);
     $curl = curl_init();
+
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://www.skybuybd.com/api/v1/admin/order-list',
+      CURLOPT_URL => config('credential.url') . '/admin/order-list',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -44,21 +41,20 @@ trait ApiOrderTrait
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'GET',
-      CURLOPT_HTTPHEADER => array($bear_token),
+      CURLOPT_HTTPHEADER => array($get_token),
     ));
 
     $response = curl_exec($curl);
     curl_close($curl);
-    Log::info($response);
     return $response;
   }
 
 
-  public function curlRequest($url, $body)
+  public function curlRequest($url)
   {
     $curl = curl_init();
     curl_setopt_array($curl, array(
-      CURLOPT_URL => $url,
+      CURLOPT_URL => config('credential.url') . '/login',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -66,53 +62,21 @@ trait ApiOrderTrait
       CURLOPT_FOLLOWLOCATION => true,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
-      CURLOPT_POSTFIELDS => $body,
+      CURLOPT_POSTFIELDS => array('email' => 'admin@admin.com', 'password' => 'secret'),
     ));
 
     $response = curl_exec($curl);
+
     curl_close($curl);
     return $response;
   }
 
-  public function get_array_value()
-  {
-    if (!function_exists('get_array_value')) {
-      function get_array_value($array, $key, $default = null)
-      {
-        if (is_array($array)) {
-          return  array_key_exists($key, $array) ? $array[$key] : $default;
-        }
-        return $default;
-      }
-    }
-  }
-
-  public function order_update()
+  public function order_update($data)
   {
     $get_token = $this->getToken();
-    $bear_token = 'Authorization: Bearer ' . $get_token;
-
-    $url = "https://www.skybuybd.com/api/v1//order-update";
-    $data = [
-      'order_item_number' => request('order_item_number', null),
-      'order_item_rmb' => request('order_item_rmb', null),
-      'product_bd_received_coast' => request('product_bd_received_coast', null),
-      'purchase_rmb' => request('purchase_rmb', null),
-      'chinaLocalDelivery' => request('chinaLocalDelivery', null),
-      'shipping_from' => request('shipping_from', null),
-      'shipping_mark' => request('shipping_mark', null),
-      'chn_warehouse_qty' => request('chn_warehouse_qty', null),
-      'chn_warehouse_weight' => request('chn_warehouse_weight', null),
-      'cbm' => request('cmd', null),
-      'carton_id' => request('carton_id', null),
-      'tracking_number' => request('tracking_number', null),
-      'shipped_by' => request('shipped_by', null),
-      'status' => request('status', null),
-    ];
-
     $curl = curl_init();
     curl_setopt_array($curl, array(
-      CURLOPT_URL => 'https://www.skybuybd.com/api/v1/admin/order-update',
+      CURLOPT_URL => config('credential.url') . '/admin/order-update',
       CURLOPT_RETURNTRANSFER => true,
       CURLOPT_ENCODING => '',
       CURLOPT_MAXREDIRS => 10,
@@ -121,12 +85,11 @@ trait ApiOrderTrait
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => 'POST',
       CURLOPT_POSTFIELDS => $data,
-      CURLOPT_HTTPHEADER => array($bear_token),
+      CURLOPT_HTTPHEADER => array($get_token),
     ));
 
     $response = curl_exec($curl);
     curl_close($curl);
-    // dd($response);
     return $response;
   }
 }

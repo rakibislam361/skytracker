@@ -41,26 +41,24 @@
           </div> <!-- form-group-->
 
           <div class="form-group row mb-4">
-            {{html()->label('Currency Rate')->class('col-md-4 col-form-label text-right')->for('currency_rate')}}
+            {{html()->label('China Local Delivery Rate')->class('col-md-4 col-form-label text-right')->for('local_rate')}}
             <div class="col-md-8">
-              {{html()->text('currency_rate')
+              {{html()->text('local_rate')
                       ->class('form-control')
-                      ->value(get_setting('currency_rate'))
-                      ->placeholder(13.02)
-                      ->attribute('aria-describedby', 'currencyRate')}}
-              <small id="currencyRate" class="form-text text-muted">Example: &nbsp; 1 CNY to BDT. 13.02</small>
+                      ->value(get_setting('local_rate'))
+                      ->placeholder('local delivery rate')
+                      ->attribute('aria-describedby', 'local_rate')}}
             </div> <!-- col-->
           </div> <!-- form-group-->
 
           <div class="form-group row mb-4">
-            {{html()->label('Currency Rate After Increase')->class('col-md-4 col-form-label text-right')->for('increase_rate')}}
+            {{html()->label('Actual Rmb Rate')->class('col-md-4 col-form-label text-right')->for('actualrmb_rate')}}
             <div class="col-md-8">
-              {{html()->text('increase_rate')
+              {{html()->text('actualrmb_rate')
                       ->class('form-control')
-                      ->value(get_setting('increase_rate'))
-                      ->placeholder(22.02)
-                      ->attribute('aria-describedby', 'increase_rate')}}
-              <small id="increase_rate" class="form-text text-muted">Example: &nbsp; This rate will multiple the cny price</small>
+                      ->value(get_setting('actualrmb_rate'))
+                      ->placeholder('actual rmb rate')
+                      ->attribute('aria-describedby', 'actualrmb_rate')}}
             </div> <!-- col-->
           </div> <!-- form-group-->
 
