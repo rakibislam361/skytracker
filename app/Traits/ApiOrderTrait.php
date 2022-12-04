@@ -28,20 +28,6 @@ trait ApiOrderTrait
     return $token;
   }
 
-  public function getToken()
-  {
-    $url = $this->url . "/login";
-    $token = session('token', []);
-    if (!$token) {
-      $response = $this->curlRequest($url);
-      $token_data = json_decode($response);
-      $token =  $token_data->data->token;
-      session(['token' => $token]);
-    }
-    $bear_token = 'Authorization: Bearer ' . $token;
-
-    return $bear_token;
-  }
 
   public function orderList()
   {
