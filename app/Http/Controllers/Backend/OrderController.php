@@ -7,12 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Traits\ApiOrderTrait;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
-// use App\Traits\PaginationTrait;
+use App\Traits\PaginationTrait;
 
 class OrderController extends Controller
 {
-  use ApiOrderTrait;
-  // , PaginationTrait;
+  use ApiOrderTrait, PaginationTrait;
 
   // use OrderTrait, ScheduleUpdated, BkashApiResponse;
 
@@ -26,9 +25,9 @@ class OrderController extends Controller
     $receivedData = $this->orderList();
     $all_orders = json_decode($receivedData);
     $ordersData = $all_orders->data->result;
-    // $orders = $this->paginate($ordersData, 100);
-    $orders = $all_orders->data->result;
-    // $orders->withPath('');
+    $orders = $this->paginate($ordersData, 10);
+    $orders->withPath('');
+
     return view('backend.content.order.index', compact('orders'));
   }
 
