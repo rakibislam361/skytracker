@@ -13,7 +13,9 @@
                 <option value="hold">Hold</option>
                 <option value="purchased">Purchased</option>
                 <option value="re_order">RE-Order</option>
+                <option value="partial-paid">partial-paid</option>
                 <option value="refund">Refund Please</option>
+                <option value="waiting_for_payment">Waiting For Payment</option>
                 <option value="china_received">Received in china warehouse</option>
                 <option value="china_shipped">Shipped from china warehouse</option>
                 <option value="bd_received">Received in BD warehouse</option>
