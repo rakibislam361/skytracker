@@ -25,9 +25,8 @@ class OrderController extends Controller
     $receivedData = $this->orderList();
     $all_orders = json_decode($receivedData);
     $ordersData = $all_orders->data->result;
-    $orders = $this->paginate($ordersData, 10);
+    $orders = $this->paginate($ordersData, 20);
     $orders->withPath('');
-
     return view('backend.content.order.index', compact('orders'));
   }
 
@@ -60,5 +59,23 @@ class OrderController extends Controller
   public function show($id)
   {
     dd("hello show");
+  }
+
+  public function filter()
+  {
+    $filter = [
+      'item_number' => request('item_number', null),
+      'status' => request('status', null),
+      'from_date' => request('from_date', null),
+      'to_date' => request('to_date', null),
+    ];
+    // dd($filter);
+    $ord = $this->filter_order($filter);
+    $all = json_decode($ord);
+    $order = $all->data->result;
+    $orders = $this->paginate($order, 20);
+    $orders->withPath('');
+
+    return view('backend.content.order.index', compact('orders'));
   }
 }

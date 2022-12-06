@@ -9,6 +9,7 @@ use App\Domains\Products\Http\Controllers\StatusController;
 use App\Domains\Products\Http\Controllers\ShippingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\Content\SettingController;
+use App\Http\Controllers\Backend\Content\AccountController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
@@ -56,6 +57,9 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
 });
 
 Route::resource('order', OrderController::class);
+Route::get('filter-order', [OrderController::class, 'filter'])->name('filter-order');
 Route::post('order-update', [OrderController::class, "orderUpdate"])->name('order-update');
 Route::get('order/local', [OrderController::class, 'walletOrders'])->name('order.local');
 Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name('order.local.details');
+
+Route::resource('account', AccountController::class);

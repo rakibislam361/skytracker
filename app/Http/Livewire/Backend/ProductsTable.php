@@ -38,7 +38,7 @@ class ProductsTable  extends DataTableComponent
             Column::make('BD Receive',)
                 ->searchable(),
 
-            Column::make('BD Out=actual Rmb*Conversion Rate Fron track',)
+            Column::make('BD Out=actual Rmb*Conversion Rate From track',)
                 ->searchable(),
 
             Column::make('Status',)

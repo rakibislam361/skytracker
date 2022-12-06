@@ -1,4 +1,4 @@
-<form class="search" name="search" action="" method="PUT">
+<form class="search" name="search" action="{{ route('admin.filter-order') }}" method="GET">
     <div class="row">
         <div class="col-3">
             <label for="item_number">Item</label>

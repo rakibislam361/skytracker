@@ -92,4 +92,30 @@ trait ApiOrderTrait
     curl_close($curl);
     return $response;
   }
+
+  public function filter_order($filter)
+  {
+    $data = http_build_query($filter);
+    // dd($data);
+    $url = config('credential.url') . '/admin/order-list?' . $data;
+    $get_token = $this->getToken();
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => $url,
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => '',
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 0,
+      CURLOPT_FOLLOWLOCATION => true,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => 'GET',
+      // CURLOPT_POSTFIELDS => $filter,
+      CURLOPT_HTTPHEADER => array($get_token),
+    ));
+
+    $response = curl_exec($curl);
+    curl_close($curl);
+    // dd($response);
+    return $response;
+  }
 }

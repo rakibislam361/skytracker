@@ -10,15 +10,16 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
         <li class="nav-item">
-          <x-utils.link-sidebar :href="route('admin.dashboard')" :text="__('Dashboard')" icon="nav-icon icon-speedometer" :active="activeClass(Route::is('admin.dashboard'), 'menu-open')" class="nav-link" />
+          <x-utils.link-sidebar :href="route('admin.dashboard')" :text="__('Dashboard')" icon="nav-icon icon-speedometer" :active="activeClass(Route::is('admin.dashboard'))" class="nav-link" />
         </li>
+
         {{-- order --}}
         <li class="nav-item {{ activeClass(Route::is('admin.order.*'), 'menu-open') }}">
           <x-utils.link-sidebar href="#" :text="__('Orders')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.order.*'))" />
           <ul class="nav nav-treeview">
 
             <li class="nav-item">
-              <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Recent order')" />
+              <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Manage order')" />
             </li>
             <li class="nav-item">
               <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
@@ -57,11 +58,11 @@
 
         {{-- Accounts --}}
         @if ($logged_in_user->hasAllAccess())
-        <li class="nav-item {{ activeClass(Route::is('admin.product.*'), 'menu-open') }}">
-          <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
+        <li class="nav-item {{ activeClass(Route::is('admin.account.*'), 'menu-open') }}">
+          <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.account.*'))" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyBuy Accounts')" />
+              <x-utils.link :href="route('admin.account.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyBuy Accounts')" />
             </li>
             <li class="nav-item">
               <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyOne Accounts')" />

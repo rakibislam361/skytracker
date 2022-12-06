@@ -11,6 +11,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     {{-- BD Purchase Officer start --}}
                     <div class="form-group">
@@ -145,7 +146,6 @@
                     </div> --}}
 
                 </div>
-                
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-primary" id="statusSubmitBtn">Save changes</button>
                 </div>
