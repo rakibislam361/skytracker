@@ -16,7 +16,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="d-inline-block mr-2">@lang('Recent Orders')</h5>
+            <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
             @include('backend.content.order.includes.filter')
             <div class="status-control">
                 <a href="{{ route('admin.order.index') }}" class="@if (!$status) active @endif">

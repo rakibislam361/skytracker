@@ -58,8 +58,11 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
 
 Route::resource('order', OrderController::class);
 Route::get('filter-order', [OrderController::class, 'filter'])->name('filter-order');
-Route::post('order-update', [OrderController::class, "orderUpdate"])->name('order-update');
+Route::put('order-update', [OrderController::class, "orderUpdate"])->name('order-update');
 Route::get('order/local', [OrderController::class, 'walletOrders'])->name('order.local');
 Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name('order.local.details');
 
 Route::resource('account', AccountController::class);
+Route::get('skybuyIndex', [AccountController::class, 'skybuyIndex'])->name('skybuyAccounts');
+Route::get('skybuyTable', [AccountController::class, 'skybuyTable'])->name('skybuyAccountsTable');
+Route::get('skyoneIndex', [AccountController::class, 'skyoneIndex'])->name('skyoneAccounts');

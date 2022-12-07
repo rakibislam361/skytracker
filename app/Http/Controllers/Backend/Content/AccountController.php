@@ -7,13 +7,18 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-    public function index()
+    public function skybuyIndex()
     {
         return view('backend.accounts.skybuy.index');
     }
 
-    public function show()
+    public function skybuyTable()
     {
-        return view('backend.accounts.skybuy.table');
+        return view('backend.accounts.skybuy.skybuyAccountsTable');
+    }
+
+    public function skyoneIndex()
+    {
+        return view('backend.accounts.skybuy.index');
     }
 }

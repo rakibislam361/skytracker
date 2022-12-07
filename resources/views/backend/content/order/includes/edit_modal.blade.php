@@ -1,3 +1,5 @@
+ {{ html()->modelForm($orders, 'PATCH', route('admin.order-update', $orders))->attribute('enctype', 'multipart/form-data')->open() }}
+
 <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -21,8 +23,8 @@
 
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit'))
                     <div class="form-group">
-                        <label for="order_item_rmb">Order(rmb)</label>
-                        <input type="text" name="order_item_rmb" placeholder="Order in Rmb" class="form-control" />
+                        <label for="order_item_rmb">Order(rmb)</label>        
+                        <input type="text" id="order_item_rmb" name="order_item_rmb"  placeholder="Order in Rmb" class="form-control" />                        
                     </div>
                     @endif
 
@@ -44,7 +46,8 @@
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="purchase_rmb">Actual RMB(purchase cost)</label>
-                        <input type="text" name="purchase_rmb" placeholder="RMB" class="form-control" />
+                        <input type="text" id="purchase_rmb" name="purchase_rmb" placeholder="RMB" class="form-control" />
+                        {{-- onkeypress="rmbValueCheck(event)" --}}
                     </div>
 
                     @endif
@@ -150,15 +153,18 @@
                     <button type="button" class="btn btn-primary" id="statusSubmitBtn">Save changes</button>
                 </div>
             </form>
+            
         </div>
     </div>
 </div> <!-- changeStatusButton -->
+{{ html()->closeModelForm() }}
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
     function orderModal(data) {
         $("#changeStatusButton").modal('show');
         $('#order_item_number').val(data.order_item_number);
+        //  $('#order_item_rmb').val(data.order_item_rmb);       
     }
 
     $(document).ready(function() {
@@ -166,6 +172,7 @@
             event.preventDefault();
             var formData = $("#statusChargeForm").serialize();
             var itemId = $("#order_item_number").val();
+            // var itemRmb = $("#order_item_rmb").val();
             let url = "{{route('admin.order-update')}}";
 
             $.ajax({
@@ -178,4 +185,25 @@
             });
         });
     });
+
+    // function rmbValueCheck(e) {
+    //     console.log("hi");
+    //     var actualValue = $("#purchase_rmb").val();
+    //     var orderValue = $("#order_item_rmb").val();
+    //     console.log("actualValue", actualValue);
+    //     console.log("order_item_rmb", orderValue);
+    //     if (actualValue.length - 1 > orderValue.length) {
+    //         console.log("red");
+    //         $('#purchase_rmb').css({
+    //             'color': 'red'
+    //         });
+    //     } else if (actualValue.length < orderValue.length - 1) {
+    //         console.log("black");
+    //         $('#purchase_rmb').css({
+    //             'color': 'black'
+    //         });
+    //     }
+
+
+    // }
 </script>

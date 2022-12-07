@@ -96,7 +96,6 @@ trait ApiOrderTrait
   public function filter_order($filter)
   {
     $data = http_build_query($filter);
-    // dd($data);
     $url = config('credential.url') . '/admin/order-list?' . $data;
     $get_token = $this->getToken();
     $curl = curl_init();

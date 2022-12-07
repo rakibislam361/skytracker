@@ -112,7 +112,6 @@ class ProductController extends Controller
       $updateProduct->user_id = auth()->id();
       $updateProduct->save();
 
-      // return (compact('products', 'warehouse', 'warehouses'));
     }
     return redirect()
       ->route('admin.product.product.index')
