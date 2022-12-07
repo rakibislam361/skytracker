@@ -55,6 +55,7 @@ class OrderController extends Controller
       'shipped_by' => request('shipped_by', null),
       'status' => request('status', null),
     ];
+    
     $orderResponse = $this->order_update($data);
     return response(json_encode($orderResponse));
   }
