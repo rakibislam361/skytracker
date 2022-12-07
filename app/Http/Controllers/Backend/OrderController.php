@@ -49,12 +49,13 @@ class OrderController extends Controller
       'shipping_mark' => request('shipping_mark', null),
       'chn_warehouse_qty' => request('chn_warehouse_qty', null),
       'chn_warehouse_weight' => request('chn_warehouse_weight', null),
-      'cbm' => request('cmd', null),
+      'cbm' => request('cbm', null),
       'carton_id' => request('carton_id', null),
       'tracking_number' => request('tracking_number', null),
       'shipped_by' => request('shipped_by', null),
       'status' => request('status', null),
     ];
+
     $orderResponse = $this->order_update($data);
     return response(json_encode($orderResponse));
   }

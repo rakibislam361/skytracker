@@ -51,6 +51,20 @@ $(function() {
                 `/admin/order/${itemValue.id}`
             );
             $("#order_item_number").val(itemValue.order_item_number);
+            $("#order_item_rmb").val(itemValue.order_item_rmb);
+            $("#product_value").val(itemValue.product_value);
+            $("#purchase_rmb").val(itemValue.purchase_rmb);
+            $("#chinaLocalDelivery").val(itemValue.chinaLocalDelivery);
+            $("#shipping_from").val(itemValue.shipping_from);
+            $("#shipping_mark").val(itemValue.shipping_mark);
+            $("#name").val(itemValue.name);
+            $("#chn_warehouse_qty").val(itemValue.chn_warehouse_qty);
+            $("#chn_warehouse_weight").val(itemValue.chn_warehouse_weight);
+            $("#cbm").val(itemValue.cbm);
+            $("#carton_id").val(itemValue.carton_id);
+            $("#tracking_number").val(itemValue.tracking_number);
+            $("#shipped_by").val(itemValue.shipped_by);
+            $("#status").val(itemValue.status);
             $("#changeStatusButton").modal("show");
         })
 
