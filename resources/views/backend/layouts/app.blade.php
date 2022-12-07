@@ -30,6 +30,10 @@
 
 
 <body class="hold-transition sidebar-mini text-sm">
+    <div class="leader-section">
+        <div class="spinner-border text-info" role="status" style=""></div>
+    </div>
+
     <div class="wrapper">
         @include('backend.includes.header')
         @include('backend.includes.sidebar')
@@ -41,7 +45,7 @@
             <section class="content-header">
                 @include('includes.partials.messages')
                 @include('backend.includes.partials.breadcrumbs')
-            </section> <!-- section -->
+            </section>
 
             <section class="content">
                 @yield('content')

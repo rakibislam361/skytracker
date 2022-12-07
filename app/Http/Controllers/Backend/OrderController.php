@@ -22,19 +22,22 @@ class OrderController extends Controller
    */
   public function index()
   {
-    $receivedData = $this->orderList();
-    $all_orders = json_decode($receivedData);
-    $ordersData = $all_orders->data->result;
+
+    $filter = [
+      'item_number' => request('item_number', null),
+      'status' => request('status', null),
+      'from_date' => request('from_date', null),
+      'to_date' => request('to_date', null),
+    ];
+
+    $receivedData = $this->orderList($filter);
+    $ordersData = $receivedData->data->result;
     $orders = $this->paginate($ordersData, 20);
     $orders->withPath('');
     return view('backend.content.order.index', compact('orders'));
   }
 
   public function update($id)
-  {
-  }
-
-  public function orderUpdate()
   {
     $data = [
       'order_item_number' => request('order_item_number', null),
@@ -53,29 +56,11 @@ class OrderController extends Controller
       'status' => request('status', null),
     ];
     $orderResponse = $this->order_update($data);
-    return redirect()->back()->withFlashSuccess($orderResponse);
+    return response(json_encode($orderResponse));
   }
 
   public function show($id)
   {
     dd("hello show");
-  }
-
-  public function filter()
-  {
-    $filter = [
-      'item_number' => request('item_number', null),
-      'status' => request('status', null),
-      'from_date' => request('from_date', null),
-      'to_date' => request('to_date', null),
-    ];
-    // dd($filter);
-    $ord = $this->filter_order($filter);
-    $all = json_decode($ord);
-    $order = $all->data->result;
-    $orders = $this->paginate($order, 20);
-    $orders->withPath('');
-
-    return view('backend.content.order.index', compact('orders'));
   }
 }

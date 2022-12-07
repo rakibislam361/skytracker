@@ -40,7 +40,7 @@
            </thead>
            <tbody>
                @foreach ($orders as $order)
-                   <tr onclick="orderModal({{ json_encode($order) }})">
+                   <tr class="order-modal" data-value="{{ json_encode($order) }}">
                        <td class="align-content-center text-center">
                            {{ $order->created_at ? date('d/m/Y', strtotime($order->created_at)) : 'N/A' }}
                        </td>

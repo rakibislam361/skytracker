@@ -14,6 +14,8 @@
 
 $(function() {
     var i = 0;
+    let itemNumber = 0;
+
     $("body")
         .on("click", "#add-btn", function(e) {
             e.preventDefault();
@@ -40,5 +42,45 @@ $(function() {
             $(this)
                 .parents("tr")
                 .remove();
+        })
+
+        .on("click", ".order-modal", function() {
+            let itemValue = $(this).data("value");
+            $("#statusChargeForm").attr(
+                "action",
+                `/admin/order/${itemValue.id}`
+            );
+            $("#order_item_number").val(itemValue.order_item_number);
+            $("#changeStatusButton").modal("show");
+        })
+
+        .on("click", "#statusSubmitBtn", function(event) {
+            event.preventDefault();
+            var formData = $("#statusChargeForm").serialize();
+            let url = $("#statusChargeForm").attr("action");
+            $.ajax({
+                type: "put",
+                url: url,
+                data: formData,
+                beforeSend: function() {
+                    // $(".spinner-border").addClass("d-block");
+                    $("#statusSubmitBtn").prop("disabled", true);
+                    $("#changeStatusButton").modal("hide");
+                },
+                success: function(res) {
+                    Swal.fire({
+                        icon: "success",
+                        text: "Update successful"
+                    }).then(result => {
+                        window.location.reload();
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: "warning",
+                        text: "Unsuccessful"
+                    });
+                }
+            });
         });
 });

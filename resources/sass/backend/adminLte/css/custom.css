@@ -1,4 +1,14 @@
-.order-table table th, table td {
-      vertical-align: inherit !important;
-      font-size: 14px;
+.order-table table th,
+table td {
+    vertical-align: inherit !important;
+    font-size: 14px;
+}
+
+.leader-section {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    width: 50%;
+    transform: translateY(-50%);
+    z-index: 9000;
 }
