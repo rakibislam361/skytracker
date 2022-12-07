@@ -24,15 +24,12 @@ $(function() {
                                     <td>
                                       <input type="text" name="productName[]" placeholder="Enter product name" class="form-control" />
                                     </td>
-
                                     <td class="text-right" style="width:10%">
                                       <button type="button" name="add" id="add-btn" class="btn btn-success">Add</button>
                                     </td> 
-
                                     <td class="text-right" style="width:10%">
                                       <button type="button" class="btn btn-danger remove-tr">Remove</button>
-                                    </td>  
-                                                                   
+                                    </td>                            
                                  </tr>`;
 
             $("#dynamicAddRemove").append(input_element);
@@ -94,5 +91,11 @@ $(function() {
                     });
                 }
             });
+        })
+
+        .on("keyup", "#purchase_rmb", function() {
+            let prmb = $(this).val();
+            let conRate = $("#actualrmb_rate").val();
+            $("#productCost").val(prmb * conRate);
         });
 });

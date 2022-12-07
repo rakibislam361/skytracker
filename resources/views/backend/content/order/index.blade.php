@@ -3,7 +3,6 @@
 @section('title', 'Recent Orders')
 
 @section('content')
-
     @php
         $status = null;
         $allOrdersCount = $orders->where('status', 'Partial Paid')->count();
@@ -19,7 +18,7 @@
         <div class="card-header">
             <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
             @include('backend.content.order.includes.filter')
-
+            {{-- 
             <div class="status-control mt-5">
                 <a href="{{ route('admin.order.index') }}" class="@if (!$status) active @endif">
                     @lang('All Orders') ({{ $allOrdersCount }})
@@ -46,16 +45,17 @@
                         @lang('Trashed Orders') ({{ $trashedOrders }})
                     </a>
                 @endhasrole
-            </div>
+            </div> --}}
+
         </div>
         <div class="card-body">
             @include('backend.content.order.includes.order_table')
         </div> <!-- card-body-->
-    </div> <!-- card-->
+    </div>
 
     <!-- Modal -->
     @include('backend.content.order.includes.edit_modal')
-
+    <input id="actualrmb_rate" type="hidden" value="{{ get_setting('actualrmb_rate') }}">
 @endsection
 
 <x-slot name="header">

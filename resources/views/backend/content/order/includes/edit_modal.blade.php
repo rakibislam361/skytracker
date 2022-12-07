@@ -47,11 +47,10 @@
                         <input type="text" id="purchase_rmb" name="purchase_rmb" placeholder="RMB" class="form-control" />
                     </div>
                     @endif
-                    {{-- <div class="form-group">
-                                <label for="productCost">Product cost in BDT</label>
-                                <input type="text" name="productCost" required=""
-                                    placeholder="purchase_rmb * Conversion Rate" class="form-control" />
-                            </div> --}}
+                    <div class="form-group">
+                        <label for="productCost">Product cost in BDT</label>
+                        <input type="text" name="productCost" id="productCost" readonly placeholder="purchase_rmb * Conversion Rate" class="form-control" />
+                    </div>
 
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
                     <div class="form-group">
@@ -87,8 +86,7 @@
 
                     <div class="form-group">
                         <label for="chn_warehouse_weight">Chn Warehouse Weight</label>
-                        <input type="text" name="chn_warehouse_weight"
-                        id="chn_warehouse_weight" placeholder="chn_warehouse_weight" class="form-control" />
+                        <input type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" placeholder="chn_warehouse_weight" class="form-control" />
                     </div>
 
                     <div class="form-group">
