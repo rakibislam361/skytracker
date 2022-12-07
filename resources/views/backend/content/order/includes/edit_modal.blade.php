@@ -2,7 +2,7 @@
 
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form method="post" action="{{ route('admin.order-update') }}" id="statusChargeForm">
+            <form method="post" id="statusChargeForm">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Change Status<span class="orderId"></span>
