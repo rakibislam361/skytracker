@@ -67,5 +67,6 @@ Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name(
 Route::resource('account', AccountController::class);
 Route::get('skybuyIndex', [AccountController::class, 'skybuyIndex'])->name('account.skybuyAccounts');
 Route::get('skybuyTable', [AccountController::class, 'skybuyTable'])->name('account.skybuyAccountsTable');
+
 Route::get('skyoneIndex', [AccountController::class, 'skyoneIndex'])->name('account.skyoneAccounts');
 Route::get('skyoneTable', [AccountController::class, 'skyoneTable'])->name('account.skyoneAccountsTable');
