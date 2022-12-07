@@ -62,10 +62,10 @@
           <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.account.*'))" />
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <x-utils.link :href="route('admin.skybuyAccounts')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyBuy Accounts')" />
+              <x-utils.link :href="route('admin.account.skybuyAccounts')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyBuy Accounts')" />
             </li>
             <li class="nav-item">
-              <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyOne Accounts')" />
+              <x-utils.link :href="route('admin.account.skyoneAccounts')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('SkyOne Accounts')" />
             </li>
             <li class="nav-item">
               <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Offline Customer Accounts')" />

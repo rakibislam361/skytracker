@@ -62,7 +62,10 @@ Route::put('order-update', [OrderController::class, "orderUpdate"])->name('order
 Route::get('order/local', [OrderController::class, 'walletOrders'])->name('order.local');
 Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name('order.local.details');
 
+
+
 Route::resource('account', AccountController::class);
-Route::get('skybuyIndex', [AccountController::class, 'skybuyIndex'])->name('skybuyAccounts');
-Route::get('skybuyTable', [AccountController::class, 'skybuyTable'])->name('skybuyAccountsTable');
-Route::get('skyoneIndex', [AccountController::class, 'skyoneIndex'])->name('skyoneAccounts');
+Route::get('skybuyIndex', [AccountController::class, 'skybuyIndex'])->name('account.skybuyAccounts');
+Route::get('skybuyTable', [AccountController::class, 'skybuyTable'])->name('account.skybuyAccountsTable');
+Route::get('skyoneIndex', [AccountController::class, 'skyoneIndex'])->name('account.skyoneAccounts');
+Route::get('skyoneTable', [AccountController::class, 'skyoneTable'])->name('account.skyoneAccountsTable');

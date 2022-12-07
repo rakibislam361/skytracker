@@ -19,6 +19,11 @@ class AccountController extends Controller
 
     public function skyoneIndex()
     {
-        return view('backend.accounts.skybuy.index');
+        return view('backend.accounts.skyone.index');
+    }
+
+    public function skyoneTable()
+    {
+        return view('backend.accounts.skyone.skyoneAccountsTable');
     }
 }
