@@ -63,9 +63,7 @@ $(function() {
                 url: url,
                 data: formData,
                 beforeSend: function() {
-                    // $(".spinner-border").addClass("d-block");
                     $("#statusSubmitBtn").prop("disabled", true);
-                    $("#changeStatusButton").modal("hide");
                 },
                 success: function(res) {
                     Swal.fire({

@@ -30,11 +30,14 @@
 
 
 <body class="hold-transition sidebar-mini text-sm">
-    <div class="leader-section">
-        <div class="spinner-border text-info" role="status" style=""></div>
-    </div>
-
     <div class="wrapper">
+        <div class="preloader">
+            <div class="spinner-container">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only text-info">Loading...</span>
+                </div>
+            </div>
+        </div>
         @include('backend.includes.header')
         @include('backend.includes.sidebar')
 
@@ -53,7 +56,7 @@
         </div> <!-- content -->
 
         @include('backend.includes.footer')
-    </div> <!-- wrapper -->
+    </div>
 
     @stack('before-scripts')
     {{-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> --}}

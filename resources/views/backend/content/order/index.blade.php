@@ -3,9 +3,10 @@
 @section('title', 'Recent Orders')
 
 @section('content')
+
     @php
         $status = null;
-        $allOrdersCount = null;
+        $allOrdersCount = $orders->where('status', 'Partial Paid')->count();
         $partialCount = null;
         $onHold = null;
         $icompleteCount = null;
@@ -18,7 +19,8 @@
         <div class="card-header">
             <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
             @include('backend.content.order.includes.filter')
-            <div class="status-control">
+
+            <div class="status-control mt-5">
                 <a href="{{ route('admin.order.index') }}" class="@if (!$status) active @endif">
                     @lang('All Orders') ({{ $allOrdersCount }})
                 </a>
@@ -55,9 +57,6 @@
     @include('backend.content.order.includes.edit_modal')
 
 @endsection
-
-
-
 
 <x-slot name="header">
     <h4>Order List</h4>
