@@ -8,6 +8,8 @@ use App\Traits\ApiOrderTrait;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use App\Traits\PaginationTrait;
+use Illuminate\Http\Request;
+
 
 class OrderController extends Controller
 {

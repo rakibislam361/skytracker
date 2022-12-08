@@ -101,11 +101,13 @@ $(function() {
             $("#productCost").val(prmb * conRate);
             let ormb = $("#order_item_rmb").val();
             if (parseInt(prmb) > parseInt(ormb)) {
+                $("#statusSubmitBtn").prop("disabled", true);
                 Swal.fire({
                     icon: "warning",
                     text: "Actual Rmb Cannot be Bigger Than Order Rmb"
                 });
-                // alert("Actual Rmb Cannot be Bigger Than Order Rmb");
+            } else {
+                $("#statusSubmitBtn").prop("disabled", false);
             }
         })
 
