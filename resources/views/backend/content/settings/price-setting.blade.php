@@ -41,7 +41,7 @@
         </div> <!-- form-group-->
 
         <div class="form-group row mb-4">
-          {{html()->label('China Local Delivery Rate')->class('col-md-4 col-form-label text-right')->for('local_rate')}}
+          {{html()->label('China Local Currency Rate(BDT)')->class('col-md-4 text-right')->for('local_rate')}}
           <div class="col-md-8">
             {{html()->text('local_rate')
                       ->class('form-control')
@@ -52,7 +52,7 @@
         </div> <!-- form-group-->
 
         <div class="form-group row mb-4">
-          {{html()->label('Actual Rmb Rate')->class('col-md-4 col-form-label text-right')->for('actualrmb_rate')}}
+          {{html()->label('Currency Rate(BDT)')->class('col-md-4 col-form-label text-right')->for('actualrmb_rate')}}
           <div class="col-md-8">
             {{html()->text('actualrmb_rate')
                       ->class('form-control')
@@ -64,7 +64,7 @@
 
 
         <div class="form-group row mb-4">
-          <div class="col-md-8 offset-md-4">
+          <div class="col-md-8 offset-md-5">
             {{html()->button('Update')->class('btn btn-sm btn-success')}}
           </div> <!-- col-->
         </div> <!-- form-group-->

@@ -25,6 +25,7 @@
                    @endif
 
                    <th class="align-content-center text-center">Product Name</th>
+                   <th class="align-content-center text-center">Products Value</th>
                    <th class="align-content-center text-center">Warehouse Qty</th>
                    <th class="align-content-center text-center">Carton Number</th>
                    <th class="align-content-center text-center">CBM</th>
@@ -65,6 +66,7 @@
                        @endif
 
                        <td class="align-content-center text-center">{{ $order->name ?? 'N/A' }}</td>
+                       <td class="align-content-center text-center">{{ $order->product_value ?? 'N/A' }}</td>
                        <td class="align-content-center text-center">{{ $order->chn_warehouse_qty ?? '' }}</td>
                        <td class="align-content-center text-center">{{ $order->carton_id ?? '' }}</td>
                        <td class="align-content-center text-center">{{ $order->cbm ?? '' }}</td>

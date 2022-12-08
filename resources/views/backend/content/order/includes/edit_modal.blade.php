@@ -19,46 +19,42 @@
                         <input type="text" name="order_item_number" id="order_item_number" placeholder="item number" class="form-control" readonly />
                     </div>
 
-                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit'))
+                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit')|| $logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="order_item_rmb">Order(rmb)</label>
                         <input type="text" id="order_item_rmb" name="order_item_rmb" placeholder="Order in Rmb" class="form-control" />
                     </div>
                     @endif
-
-                    @if ($logged_in_user->hasAllAccess())
-                    {{-- <div class="form-group">
-                        <label for="product_value">Product cost in BDT</label>
-                        <input type="text" name="product_value" id="product_value" placeholder="Product price from Skybuy" class="form-control" />
-                    </div> --}}
-
-                    {{-- <div class="form-group">
-                        <label for="product_bd_received_coast">BD Received Cost</label>
-                        <input type="text" name="product_bd_received_coast" id="product_bd_received_coast" placeholder="(china local delivery*Conversion)+product Cost" class="form-control" />
-                    </div> --}}
-                    @endif
-                    {{-- BD Purchase Officer end --}}
-
-
+                    {{-- BD Purchase Officer end --}} 
+                    
                     {{-- China Purchase Officer start --}}
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="purchase_rmb">Actual RMB(purchase cost)</label>
                         <input type="text" id="purchase_rmb" name="purchase_rmb" placeholder="RMB" class="form-control" />
                     </div>
-                    @endif
-                    <div class="form-group">
+                     <div class="form-group">
                         <label for="productCost">Product cost in BDT</label>
                         <input type="text" name="productCost" id="productCost" readonly placeholder="purchase_rmb * Conversion Rate" class="form-control" />
                     </div>
-
+                    @endif
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
                     <div class="form-group">
-                        <label for="chinaLocalDelivery">China Local Delivery</label>
+                        <label for="chinaLocalDelivery">China Local Delivery(RMB)</label>
                         <input type="text" name="chinaLocalDelivery" id="chinaLocalDelivery" placeholder="China Local Delivery" class="form-control" />
                     </div>
-                    @endif
 
+                    <div class="form-group">
+                        <label for="chinaLocalDelivery">China Local Delivery(BDT)</label>
+                        <input type="text" name="chinaLocalInBD" id="chinaLocalInBD" readonly placeholder="China Local Delivery In BDT" class="form-control" />
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="product_bd_received_coast">BD Received Cost</label>
+                        <input type="text" name="product_bd_received_coast" id="product_bd_received_coast" readonly  placeholder="(china local delivery*Conversion)+product Cost" class="form-control" />
+                    </div>
+                    @endif
+                    {{-- China Purchase Officer End --}}
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.carton.edit'))
                     <div class="form-group">
                         <label for="shipping_from">Shipping From</label>
@@ -80,12 +76,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="chn_warehouse_qty">Chn Warehouse Qty</label>
+                        <label for="chn_warehouse_qty">China Warehouse Qty</label>
                         <input type="text" name="chn_warehouse_qty" id="chn_warehouse_qty" placeholder="chn_warehouse_qty" class="form-control" />
                     </div>
 
                     <div class="form-group">
-                        <label for="chn_warehouse_weight">Chn Warehouse Weight</label>
+                        <label for="chn_warehouse_weight">China Warehouse Weight</label>
                         <input type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" placeholder="chn_warehouse_weight" class="form-control" />
                     </div>
 
@@ -121,17 +117,18 @@
                             <option value="processing">Processing</option>
                             @endif
                             @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.purchase.edit'))
-                            <option value="hold">Hold</option>
+                            <option value="on-hold">On Hold</option>
                             <option value="purchased">Purchased</option>
-                            <option value="re_order">RE-Order</option>
-                            <option value="refund">Refund Please</option>
+                            <option value="re-order">RE-Order</option>
+                            <option value="refunded">Refund Please</option>
+                            <option value="shipped-from-suppliers">Shipped From Suppliers</option>
                             @endif
                             @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.status.edit'))
-                            <option value="china_received">Received in china warehouse</option>
-                            <option value="china_shipped">Shipped from china warehouse</option>
+                            <option value="received-in-china-warehouse">Received in china warehouse</option>
+                            <option value="shipped-from-china-warehouse">Shipped from china warehouse</option>
                             @endif
                             @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.rate.edit'))
-                            <option value="bd_received">Received in BD warehouse</option>
+                            <option value="received-in-BD-warehouse">Received in BD warehouse</option>
                             @endif
                         </select>
                     </div>

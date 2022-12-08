@@ -22,8 +22,8 @@
         <tr>
           <td>12/12/22</td>
           <td>000122</td>
-          <td>BD Receive=(chinaLocal*Conversion)+product Cost</td>
-          <td>BD Out=actual Rmb*Conversion Rate From track</td>
+          <td>BD Receive=product_bd_received_coast</td>
+          <td>BD Out=productCost</td>
           <td><span class="badge badge-success">Shipped</span></td>
           <td>BD Receive-BD Out</td>
           <td><a href="#" class="btn btn-secondary btn-sm"><i class="fa fa-file"></i></a></td>

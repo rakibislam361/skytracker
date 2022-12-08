@@ -6,7 +6,7 @@
 
 <div>
   <div class="text-right">
-    <x-utils.link :href="route('admin.account.skyoneAccountsTable')" class="btn btn-sm btn-secondary" :text="__('SkyOne Accounts')" />
+    <x-utils.link :href="route('admin.account.skyonetable')" class="btn btn-sm btn-secondary" :text="__('SkyOne Accounts')" />
   </div>
 
   <div class="row">

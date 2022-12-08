@@ -31,13 +31,13 @@
 
 <body class="hold-transition sidebar-mini text-sm">
     <div class="wrapper">
-        <div class="preloader">
+        {{-- <div class="preloader">
             <div class="spinner-container">
                 <div class="spinner-border" role="status">
                     <span class="sr-only text-info">Loading...</span>
                 </div>
             </div>
-        </div>
+        </div> --}}
         @include('backend.includes.header')
         @include('backend.includes.sidebar')
 

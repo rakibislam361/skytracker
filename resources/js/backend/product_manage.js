@@ -12,6 +12,9 @@
 //     }
 // });
 
+const { message } = require("laravel-mix/src/Log");
+const { parse } = require("postcss");
+
 $(function() {
     var i = 0;
     let itemNumber = 0;
@@ -49,7 +52,6 @@ $(function() {
             );
             $("#order_item_number").val(itemValue.order_item_number);
             $("#order_item_rmb").val(itemValue.order_item_rmb);
-            $("#product_value").val(itemValue.product_value);
             $("#purchase_rmb").val(itemValue.purchase_rmb);
             $("#chinaLocalDelivery").val(itemValue.chinaLocalDelivery);
             $("#shipping_from").val(itemValue.shipping_from);
@@ -97,5 +99,24 @@ $(function() {
             let prmb = $(this).val();
             let conRate = $("#actualrmb_rate").val();
             $("#productCost").val(prmb * conRate);
+            let ormb = $("#order_item_rmb").val();
+            if (parseInt(prmb) > parseInt(ormb)) {
+                Swal.fire({
+                    icon: "warning",
+                    text: "Actual Rmb Cannot be Bigger Than Order Rmb"
+                });
+                // alert("Actual Rmb Cannot be Bigger Than Order Rmb");
+            }
+        })
+
+        .on("keyup", "#chinaLocalDelivery", function() {
+            let local = $(this).val();
+            let localRate = $("#local_rate").val();
+            $("#chinaLocalInBD").val(local * localRate);
+            let conv = $("#chinaLocalInBD").val();
+            let prcost = $("#productCost").val();
+            $("#product_bd_received_coast").val(
+                parseInt(conv) + parseInt(prcost)
+            );
         });
 });
