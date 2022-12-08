@@ -36,7 +36,8 @@
                     </div>
                      <div class="form-group">
                         <label for="productCost">Product cost in BDT</label>
-                        <input type="text" name="productCost" id="productCost" readonly placeholder="purchase_rmb * Conversion Rate" class="form-control" />
+                        <input type="text" name="productCost" id="productCost" readonly placeholder="Product cost in BDT" class="form-control" />
+                        <small class="form-text text-muted">purchase_rmb * Conversion Rate</small>
                     </div>
                     @endif
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
@@ -48,11 +49,13 @@
                     <div class="form-group">
                         <label for="chinaLocalDelivery">China Local Delivery(BDT)</label>
                         <input type="text" name="chinaLocalInBD" id="chinaLocalInBD" readonly placeholder="China Local Delivery In BDT" class="form-control" />
+                         <small class="form-text text-muted">china Local Delivery * Conversion Rate</small>
                     </div>
                     
                      <div class="form-group">
                         <label for="product_bd_received_coast">BD Received Cost</label>
-                        <input type="text" name="product_bd_received_coast" id="product_bd_received_coast" readonly  placeholder="(china local delivery*Conversion)+product Cost" class="form-control" />
+                        <input type="text" name="product_bd_received_coast" id="product_bd_received_coast" readonly  placeholder="BD Received Cost" class="form-control" />
+                         <small class="form-text text-muted">(china local delivery*Conversion)+product Cost</small>
                     </div>
                     @endif
                     {{-- China Purchase Officer End --}}
