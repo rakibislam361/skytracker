@@ -19,12 +19,13 @@
                         <input type="text" name="order_item_number" id="order_item_number" placeholder="item number" class="form-control" readonly />
                     </div>
 
-                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit') || $logged_in_user->can('admin.order.purchase.edit'))
+                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit')|| $logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="order_item_rmb">Order(rmb)</label>
                         <input type="text" id="order_item_rmb" name="order_item_rmb" placeholder="Order in Rmb" class="form-control" />
                     </div>
                     @endif
+                    
                     {{-- BD Purchase Officer end --}} 
                     
                     {{-- China Purchase Officer start --}}
@@ -33,20 +34,16 @@
                         <label for="purchase_rmb">Actual RMB(purchase cost)</label>
                         <input type="text" id="purchase_rmb" name="purchase_rmb" placeholder="RMB" class="form-control" />
                     </div>
-                    @endif
-                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
-                    <div class="form-group">
-                        <label for="chinaLocalDelivery">China Local Delivery(RMB)</label>
-                        <input type="text" name="chinaLocalDelivery" id="chinaLocalDelivery" placeholder="China Local Delivery" class="form-control" />
-                    </div>
-                    @endif
-                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.purchase.edit'))
                      <div class="form-group">
                         <label for="productCost">Product cost in BDT</label>
                         <input type="text" name="productCost" id="productCost" readonly placeholder="purchase_rmb * Conversion Rate" class="form-control" />
                     </div>
                     @endif
                     @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
+                    <div class="form-group">
+                        <label for="chinaLocalDelivery">China Local Delivery(RMB)</label>
+                        <input type="text" name="chinaLocalDelivery" id="chinaLocalDelivery" placeholder="China Local Delivery" class="form-control" />
+                    </div>
 
                     <div class="form-group">
                         <label for="chinaLocalDelivery">China Local Delivery(BDT)</label>
