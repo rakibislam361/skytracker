@@ -61,9 +61,10 @@ Route::get('order/local', [OrderController::class, 'walletOrders'])->name('order
 Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name('order.local.details');
 
 
-Route::resource('account', AccountController::class);
-Route::get('skybuy', [AccountController::class, 'skybuyIndex'])->name('account.skybuy');
-Route::get('skybuytable', [AccountController::class, 'skybuyTable'])->name('account.skybuytable');
+Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
+  Route::get('skybuy', [AccountController::class, 'skybuyIndex'])->name('skybuy');
+  Route::get('skybuytable', [AccountController::class, 'skybuyTable'])->name('skybuytable');
 
-Route::get('skyone', [AccountController::class, 'skyoneIndex'])->name('account.skyone');
-Route::get('skyonetable', [AccountController::class, 'skyoneTable'])->name('account.skyonetable');
+  Route::get('skyone', [AccountController::class, 'skyoneIndex'])->name('skyone');
+  Route::get('skyonetable', [AccountController::class, 'skyoneTable'])->name('skyonetable');
+});
