@@ -120,8 +120,8 @@
                             <option value="on-hold">On Hold</option>
                             <option value="purchased">Purchase Completed</option>
                             <option value="re-order">RE-Order</option>
-                            <option value="refunded">Refund Please</option>
-                            <option value="shipped-from-suppliers">shipped-from-suppliers"</option>
+                            <option value="refund-please">Refund Please</option>
+                            <option value="shipped-from-suppliers">shipped-from-suppliers</option>
                             @endif
                             @if ($logged_in_user->can('admin.order.status.edit'))
                             <option value="received-in-china-warehouse">Received in china warehouse</option>

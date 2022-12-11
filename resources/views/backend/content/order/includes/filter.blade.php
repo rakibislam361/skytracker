@@ -17,7 +17,7 @@
                 <option @if (request('status', null)=='on-hold' ) selected @endif value="on-hold">On Hold</option>
                 <option @if (request('status', null)=='purchased' ) selected @endif value="purchased">Purchase Completed</option>
                 <option @if (request('status', null)=='re-order' ) selected @endif value="re-order">RE Order</option>
-                <option @if (request('status', null)=='refunded' ) selected @endif value="refunded">Refund Please</option>
+                <option @if (request('status', null)=='refund-please' ) selected @endif value="refund-please">Refund Please</option>
                 <option @if (request('status', null)=='shipped-from-suppliers' ) selected @endif value="shipped-from-suppliers">Shipped From Suppliers</option>
                 @endif
                  
@@ -29,8 +29,9 @@
                 <option @if (request('status', null)=='received-in-BD-warehouse' ) selected @endif value="received-in-BD-warehouse">Received in BD warehouse
                 </option>
                 @endif
-                
+
                 @if ($logged_in_user->hasAllAccess())
+                <option @if (request('status', null)=='refunded' ) selected @endif value="refunded">Refunded</option>
                 <option @if (request('status', null)=='on-transit-to-customer' ) selected @endif value="on-transit-to-customer">On Transit To Customer</option>
                 <option @if (request('status', null)=='delivered' ) selected @endif value="delivered">Delivered</option>
                 <option @if (request('status', null)=='out-of-stock' ) selected @endif value="out-of-stock">Out Of Stock</option>
