@@ -19,7 +19,7 @@
                         <input type="text" name="order_item_number" id="order_item_number" placeholder="item number" class="form-control" readonly />
                     </div>
 
-                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit')|| $logged_in_user->can('admin.order.purchase.edit'))
+                    @if ($logged_in_user->can('admin.order.order_rmb.edit')|| $logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="order_item_rmb">Order(rmb)</label>
                         <input type="text" id="order_item_rmb" name="order_item_rmb" placeholder="Order in Rmb" class="form-control" />
@@ -29,18 +29,18 @@
                     {{-- BD Purchase Officer end --}} 
                     
                     {{-- China Purchase Officer start --}}
-                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.purchase.edit'))
+                    @if ($logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="purchase_rmb">Actual RMB(purchase cost)</label>
                         <input type="text" id="purchase_rmb" name="purchase_rmb" placeholder="RMB" class="form-control" />
                     </div>
                      <div class="form-group">
-                        <label for="productCost">Product cost in BDT</label>
-                        <input type="text" name="productCost" id="productCost" readonly placeholder="Product cost in BDT" class="form-control" />
+                        <label for="productCost">Actual Cost In BDT(BD Out)</label>
+                        <input type="text" name="productCost" id="productCost" readonly placeholder="Actual Cost In BDT" class="form-control" />
                         <small class="form-text text-muted">purchase_rmb * Conversion Rate</small>
                     </div>
                     @endif
-                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.localdelivery.edit'))
+                    @if ($logged_in_user->can('admin.order.localdelivery.edit'))
                     <div class="form-group">
                         <label for="chinaLocalDelivery">China Local Delivery(RMB)</label>
                         <input type="text" name="chinaLocalDelivery" id="chinaLocalDelivery" placeholder="China Local Delivery" class="form-control" />
@@ -52,14 +52,10 @@
                          <small class="form-text text-muted">china Local Delivery * Conversion Rate</small>
                     </div>
                     
-                     <div class="form-group">
-                        <label for="product_bd_received_coast">BD Received Cost</label>
-                        <input type="text" name="product_bd_received_coast" id="product_bd_received_coast" readonly  placeholder="BD Received Cost" class="form-control" />
-                         <small class="form-text text-muted">(china local delivery*Conversion)+product Cost</small>
-                    </div>
+                    
                     @endif
                     {{-- China Purchase Officer End --}}
-                    @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.carton.edit'))
+                    @if ($logged_in_user->can('admin.order.carton.edit'))
                     <div class="form-group">
                         <label for="shipping_from">Shipping From</label>
                         <select class="form-control" name="shipping_from" id="shipping_from">
@@ -107,8 +103,8 @@
                     <div class="form-group">
                         <label for="shipped_by">Shipping By</label>
                         <select class="form-control" name="shipped_by" id="shipped_by">
-                            <option value="air">By Air</option>
-                            <option value="sea">By Sea</option>
+                            <option value="ship_by_air">By Air</option>
+                            <option value="ship_by_sea">By Sea</option>
                         </select>
                     </div>
                     @endif
@@ -117,25 +113,33 @@
                         <label for="status">Status</label>
                         <select class="form-control" name="status" id="status">
                             <option value="">Select</option>
-                            @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit'))
+                            @if ($logged_in_user->can('admin.order.order_rmb.edit'))
                             <option value="processing">Processing</option>
                             @endif
-                            @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.purchase.edit'))
+                            @if ($logged_in_user->can('admin.order.purchase.edit'))
                             <option value="on-hold">On Hold</option>
-                            <option value="purchased">Purchased</option>
+                            <option value="purchased">Purchase Completed</option>
                             <option value="re-order">RE-Order</option>
                             <option value="refunded">Refund Please</option>
-                            <option value="shipped-from-suppliers">Shipped From Suppliers</option>
+                            <option value="shipped-from-suppliers">shipped-from-suppliers"</option>
                             @endif
-                            @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.status.edit'))
+                            @if ($logged_in_user->can('admin.order.status.edit'))
                             <option value="received-in-china-warehouse">Received in china warehouse</option>
                             <option value="shipped-from-china-warehouse">Shipped from china warehouse</option>
                             @endif
-                            @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.rate.edit'))
+                            @if ($logged_in_user->can('admin.order.rate.edit'))
                             <option value="received-in-BD-warehouse">Received in BD warehouse</option>
                             @endif
                         </select>
                     </div>
+                    @if ($logged_in_user->hasAllAccess())
+                    <input type="hidden" name="product_value" id="product_value" class="form-control" />
+                     <div class="form-group">
+                        <label for="product_bd_received_coast">BDT Received From Customer(BD Receive)</label>
+                        <input type="text" name="product_bd_received_coast" id="product_bd_received_coast" readonly  placeholder="BD Received Cost" class="form-control" />
+                         <small class="form-text text-muted">(china local delivery*Conversion)+productValue</small>
+                    </div>
+                    @endif
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-primary" id="statusSubmitBtn">Save changes</button>

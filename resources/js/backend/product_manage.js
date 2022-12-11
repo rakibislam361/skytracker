@@ -64,6 +64,7 @@ $(function() {
             $("#tracking_number").val(itemValue.tracking_number);
             $("#shipped_by").val(itemValue.shipped_by);
             $("#status").val(itemValue.status);
+            $("#product_value").val(itemValue.product_value);
             $("#changeStatusButton").modal("show");
         })
 
@@ -116,7 +117,7 @@ $(function() {
             let localRate = $("#local_rate").val();
             $("#chinaLocalInBD").val(local * localRate);
             let conv = $("#chinaLocalInBD").val();
-            let prcost = $("#productCost").val();
+            let prcost = $("#product_value").val();
             $("#product_bd_received_coast").val(
                 parseInt(conv) + parseInt(prcost)
             );

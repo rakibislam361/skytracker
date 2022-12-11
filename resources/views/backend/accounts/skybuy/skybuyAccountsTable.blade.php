@@ -22,7 +22,7 @@
         <tr>
           <td>12/12/22</td>
           <td>000122</td>
-          <td>BD Receive=product_bd_received_coast</td>
+          <td>BD Receive=BDT Received From Customer</td>
           <td>BD Out=productCost</td>
           <td><span class="badge badge-success">Shipped</span></td>
           <td>BD Receive-BD Out</td>

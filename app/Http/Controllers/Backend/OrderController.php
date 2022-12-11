@@ -15,8 +15,6 @@ class OrderController extends Controller
 {
   use ApiOrderTrait, PaginationTrait;
 
-  // use OrderTrait, ScheduleUpdated, BkashApiResponse;
-
   /**
    * Display a listing of the resource.
    *
@@ -28,6 +26,8 @@ class OrderController extends Controller
     $filter = [
       'item_number' => request('item_number', null),
       'status' => request('status', null),
+      'status' => request('status', null),
+      'shipping_from' => request('shipping_from', null),
       'from_date' => request('from_date', null),
       'to_date' => request('to_date', null),
     ];
