@@ -14,24 +14,24 @@
               <table class="table table-hover table-bordered mb-0 table-striped">
                 <thead>
                   <tr>
-                    <th>Date</th>
-                    <th>Item Number</th>
-                    <th>BD Receive</th>
-                    <th>BD Out</th>
-                    <th>Status</th>
-                    <th>Profit/Loss</th>
-                    <th>Actions</th>
+                    <th class="align-content-center text-center">Date</th>
+                    <th class="align-content-center text-center">Item Number</th>
+                    <th class="align-content-center text-center">BD Receive</th>
+                    <th class="align-content-center text-center">BD Out</th>
+                    <th class="align-content-center text-center">Status</th>
+                    <th class="align-content-center text-center">Profit/Loss</th>
+                    <th class="align-content-center text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>12/12/22</td>
-                    <td>000122</td>
-                    <td>BD Receive=BDT Received From Customer</td>
-                    <td>BD Out=productCost</td>
-                    <td><span class="badge badge-success">Shipped</span></td>
-                    <td>BD Receive-BD Out</td>
-                    <td><a href="#" class="btn btn-secondary btn-sm"><i class="fa fa-file"></i></a></td>
+                    <td class="align-content-center text-center">12/12/22</td>
+                    <td class="align-content-center text-center">000122</td>
+                    <td class="align-content-center text-center">BD Receive=BDT Received From Customer</td>
+                    <td class="align-content-center text-center">BD Out=productCost</td>
+                    <td class="align-content-center text-center"><span class="badge badge-success">Shipped</span></td>
+                    <td class="align-content-center text-center">BD Receive-BD Out</td>
+                    <td class="align-content-center text-center"><a href="#" class="btn btn-secondary btn-sm"><i class="fa fa-file"></i></a></td>
                   </tr>
                 </tbody>
               </table>
