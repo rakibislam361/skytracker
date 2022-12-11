@@ -44,7 +44,7 @@ $(function() {
                 .remove();
         })
 
-        .on("click", ".order-modal", function() {
+        .on("dblclick", ".order-modal", function() {
             let itemValue = $(this).data("value");
             $("#statusChargeForm").attr(
                 "action",
