@@ -83,14 +83,14 @@ class OrderController extends Controller
         'status' => request('status', null),
         'product_bd_received_cost' => request('product_bd_received_cost', null),
       ];
-      Log::info($roles, $data);
+      // Log::info($roles, $data);
     } elseif ($roles == "BD Purchase Officer") {
       $data = [
         'order_item_number' => request('order_item_number', null),
         'order_item_rmb' => request('order_item_rmb', null),
         'status' => request('status', null),
       ];
-      Log::info($roles, $data);
+      // Log::info($roles, $data);
     } elseif ($roles == "China Purchase Officer") {
       $data = [
         'order_item_number' => request('order_item_number', null),
@@ -101,7 +101,7 @@ class OrderController extends Controller
         'status' => request('status', null),
         'product_bd_received_cost' => request('product_bd_received_cost', null),
       ];
-      Log::info($roles, $data);
+      // Log::info($roles, $data);
     } elseif ($roles == "China Warehouse Officer") {
       $data = [
         'order_item_number' => request('order_item_number', null),
@@ -115,13 +115,13 @@ class OrderController extends Controller
         'shipped_by' => request('shipped_by', null),
         'status' => request('status', null),
       ];
-      Log::info($roles, $data);
+      // Log::info($roles, $data);
     } elseif ($roles == "BD Logistic Officer") {
       $data = [
         'order_item_number' => request('order_item_number', null),
         'status' => request('status', null),
       ];
-      Log::info($roles, $data);
+      // Log::info($roles, $data);
     }
     $orderResponse = $this->order_update($data);
     return response(json_encode($orderResponse));
