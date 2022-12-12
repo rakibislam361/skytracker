@@ -38,11 +38,12 @@ class OrderController extends Controller
     // dd($ordersData);
     $order = [];
 
-    $roles = Auth()->user()->getRoleNames();
+    $roles = auth()->user()->getAllPermissions();
+
     if ($roles[0] == "BD Purchase Officer") {
       foreach ($ordersData->data as $data) {
         if ($data->status != "Waiting for Payment") {
-          $order = $data;
+          $order[] = $data;
           // dd($order);
         }
       }
