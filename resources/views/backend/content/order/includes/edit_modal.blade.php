@@ -70,10 +70,10 @@
                         <input type="text" name="shipping_mark" id="shipping_mark" placeholder="shipping mark" class="form-control" />
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="name">Product Name</label>
                         <input type="text" name="name" id="name" placeholder="Product Name" class="form-control" />
-                    </div>
+                    </div> --}}
 
                     <div class="form-group">
                         <label for="chn_warehouse_qty">China Warehouse Qty</label>

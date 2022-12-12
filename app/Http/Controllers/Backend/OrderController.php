@@ -44,13 +44,11 @@ class OrderController extends Controller
     $data = [
       'order_item_number' => request('order_item_number', null),
       'order_item_rmb' => request('order_item_rmb', null),
-      'product_bd_received_coast' => request('product_bd_received_coast', null),
       'purchase_rmb' => request('purchase_rmb', null),
       'productCost' => request('productCost', null),
       'chinaLocalDelivery' => request('chinaLocalDelivery', null),
       'chinaLocalInBD' => request('chinaLocalInBD', null),
       'shipping_from' => request('shipping_from', null),
-      'name' => request('name', null),
       'shipping_mark' => request('shipping_mark', null),
       'chn_warehouse_qty' => request('chn_warehouse_qty', null),
       'chn_warehouse_weight' => request('chn_warehouse_weight', null),
@@ -59,6 +57,7 @@ class OrderController extends Controller
       'tracking_number' => request('tracking_number', null),
       'shipped_by' => request('shipped_by', null),
       'status' => request('status', null),
+      'product_bd_received_coast' => request('product_bd_received_coast', null),
     ];
 
     $orderResponse = $this->order_update($data);
