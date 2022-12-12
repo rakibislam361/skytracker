@@ -22,7 +22,7 @@
                     @if ($logged_in_user->can('admin.order.order_rmb.edit')|| $logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="order_item_rmb">Order(rmb)</label>
-                        <input type="text" id="order_item_rmb" name="order_item_rmb" placeholder="Order in Rmb" class="form-control" />
+                        <input type="text" id="order_item_rmb" name="order_item_rmb" placeholder="Order in Rmb" class="form-control" value="{{ request('order_item_rmb', null) }}"/>
                     </div>
                     @endif
                     
@@ -32,23 +32,29 @@
                     @if ($logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="purchase_rmb">Actual RMB(purchase cost)</label>
-                        <input type="text" id="purchase_rmb" name="purchase_rmb" placeholder="RMB" class="form-control" />
+                        <input type="text" id="purchase_rmb" name="purchase_rmb" value="{{ request('purchase_rmb', null) }}" placeholder="RMB" class="form-control" />
                     </div>
                      <div class="form-group">
                         <label for="purchase_cost_bd">Actual Cost In BDT(BD Out)</label>
-                        <input type="text" name="purchase_cost_bd" id="purchase_cost_bd" readonly placeholder="Actual Cost In BDT" class="form-control" />
+                        <input type="text" name="purchase_cost_bd" id="purchase_cost_bd" value="{{ request('purchase_cost_bd', null) }}" readonly placeholder="Actual Cost In BDT" class="form-control" />
                         <small class="form-text text-muted">Purchase Rmb * Conversion Rate</small>
+                    </div>
+                     <input type="hidden" name="product_value" id="product_value" class="form-control" />
+                     <div class="form-group">
+                        <label for="product_bd_received_coast">BDT Received From Customer(BD Receive)</label>
+                        <input type="text" name="product_bd_received_cost" id="product_bd_received_cost" readonly  placeholder="BD Received Cost" class="form-control" />
+                         <small class="form-text text-muted">(China Local Delivery*Conversion)+Product Value</small>
                     </div>
                     @endif
                     @if ($logged_in_user->can('admin.order.localdelivery.edit'))
                     <div class="form-group">
                         <label for="china_local_delivery_rmb">China Local Delivery(RMB)</label>
-                        <input type="text" name="china_local_delivery_rmb" id="china_local_delivery_rmb" placeholder="China Local Delivery" class="form-control" />
+                        <input type="text" name="china_local_delivery_rmb" id="china_local_delivery_rmb" value="{{ request('china_local_delivery_rmb', null) }}"  placeholder="China Local Delivery" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="china_local_delivery_bd">China Local Delivery(BDT)</label>
-                        <input type="text" name="china_local_delivery_bd" id="china_local_delivery_bd" readonly placeholder="China Local Delivery In BDT" class="form-control" />
+                        <input type="text" name="china_local_delivery_bd" id="china_local_delivery_bd" value="{{ request('china_local_delivery_bd', null) }}" readonly placeholder="China Local Delivery In BDT" class="form-control" />
                          <small class="form-text text-muted">China Local Delivery * Conversion Rate</small>
                     </div>
                     
@@ -67,7 +73,7 @@
 
                     <div class="form-group">
                         <label for="shipping_mark">Shipping Mark</label>
-                        <input type="text" name="shipping_mark" id="shipping_mark" placeholder="shipping mark" class="form-control" />
+                        <input type="text" name="shipping_mark" id="shipping_mark" value="{{ request('shipping_mark', null) }}" placeholder="shipping mark" class="form-control" />
                     </div>
 
                     {{-- <div class="form-group">
@@ -77,17 +83,17 @@
 
                     <div class="form-group">
                         <label for="chn_warehouse_qty">China Warehouse Qty</label>
-                        <input type="text" name="chn_warehouse_qty" id="chn_warehouse_qty" placeholder="chn_warehouse_qty" class="form-control" />
+                        <input type="text" name="chn_warehouse_qty" id="chn_warehouse_qty" value="{{ request('chn_warehouse_qty', null) }}" placeholder="chn_warehouse_qty" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="chn_warehouse_weight">China Warehouse Weight</label>
-                        <input type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" placeholder="chn_warehouse_weight" class="form-control" />
+                        <input type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" value="{{ request('chn_warehouse_weight' ?? null) }}" placeholder="chn_warehouse_weight" class="form-control" />
                     </div>
 
                     <div class="form-group">
                         <label for="cbm">CBM</label>
-                        <input type="text" name="cbm" id="cbm" placeholder="CBM" class="form-control" />
+                        <input type="text" name="cbm" id="cbm"  placeholder="CBM" class="form-control" />
                     </div>
 
                     <div class="form-group">
@@ -132,14 +138,14 @@
                             @endif
                         </select>
                     </div>
-                    @if ($logged_in_user->hasAllAccess())
+                    {{-- @if ($logged_in_user->hasAllAccess())
                     <input type="hidden" name="product_value" id="product_value" class="form-control" />
                      <div class="form-group">
                         <label for="product_bd_received_coast">BDT Received From Customer(BD Receive)</label>
                         <input type="text" name="product_bd_received_cost" id="product_bd_received_cost" readonly  placeholder="BD Received Cost" class="form-control" />
                          <small class="form-text text-muted">(China Local Delivery*Conversion)+Product Value</small>
                     </div>
-                    @endif
+                    @endif --}}
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-primary" id="statusSubmitBtn">Save changes</button>
