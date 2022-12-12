@@ -35,20 +35,25 @@ class OrderController extends Controller
 
     $receivedData = $this->orderList($filter);
     $ordersData = $receivedData->data->result;
-    // dd($ordersData);
     $order = [];
 
-    $roles = Auth()->user()->getRoleNames();
-    if ($roles[0] == "BD Purchase Officer") {
+    $userRole = auth()->user()->roles->first();
+    $roles =  $userRole ? $userRole->name : null;
+
+    if ($roles == "Administrator") {
+      foreach ($ordersData->data as $data) {
+        $order[] = $data;
+      }
+    } else {
       foreach ($ordersData->data as $data) {
         if ($data->status != "Waiting for Payment") {
-          $order = $data;
-          // dd($order);
+          $order[] = $data;
         }
       }
     }
+
+
     $orders = $this->paginate($order, 20);
-    // dd($order);
     $orders->withPath('');
 
     return view('backend.content.order.index', compact('orders'));
