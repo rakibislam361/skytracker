@@ -5,7 +5,9 @@
 @section('content')
 <div class="card">
   <div class="card-header">
-    <a href="skyonetable" style="color: black;"><h5 class="d-inline-block mr-2">@lang('SkyOne Account')</h5></a>
+    <a href="skyonetable" style="color: black;">
+      <h5 class="d-inline-block mr-2">@lang('SkyOne Account')</h5>
+    </a>
     @include('backend.accounts.includes.acc_filter')
   </div>
   <div class="card-body">
@@ -27,7 +29,7 @@
             <td>12/12/22</td>
             <td>000122</td>
             <td>BD Receive=BDT Received From Customer</td>
-            <td>BD Out=productCost</td>
+            <td>BD Out=purchase_cost_bd</td>
             <td><span class="badge badge-success">Shipped</span></td>
             <td>BD Receive-BD Out</td>
             <td><a href="#" class="btn btn-secondary btn-sm"><i class="fa fa-file"></i></a></td>

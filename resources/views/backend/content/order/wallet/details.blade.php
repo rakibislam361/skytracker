@@ -13,8 +13,7 @@ $currency = get_setting('currency_icon')
     <div class="card">
       <div class="card-header clearfix">
         <div class="float-left">
-          <h2 class="card-title mb-0"> Wallet Details. Orders Id #{{$order->order_item_number}} / <span
-              class="text-success">{{$order->status}}</span></h2>
+          <h2 class="card-title mb-0"> Wallet Details. Orders Id #{{$order->order_item_number}} / <span class="text-success">{{$order->status}}</span></h2>
         </div>
         <div class="btn-toolbar float-right" role="toolbar" aria-label="@lang('labels.general.toolbar_btn_groups')">
           <a href="{{ route('admin.order.wallet') }}" onClick="window.close();" class="btn btn-primary" data-toggle="tooltip" title="Back Orders">
@@ -65,7 +64,8 @@ $currency = get_setting('currency_icon')
                 <td class="align-middle text-capitalize text-center">{!! $PropertyName !!}</td>
                 <td class="align-middle text-center text-break" style="max-width: 120px">{{$Value}}</td>
                 <td class="align-middle text-center text-break" rowspan="{{$attrLength}}" style="max-width: 120px">
-                  {{$currency}} {{floating($price)}}</td>
+                  {{$currency}} {{floating($price)}}
+                </td>
                 <td class="align-middle text-center" rowspan="{{$attrLength}}"> {{$sinQuantity}}</td>
                 <td class="align-middle text-right" rowspan="{{$attrLength}}">
                   <span class="SingleTotal">{{$currency}} {{floating($subTotal)}}</span>
@@ -121,7 +121,8 @@ $currency = get_setting('currency_icon')
                   {{$order->actual_weight ? $order->actual_weight : '0.00'}} Kg
                 </td>
                 <td class="text-right text-danger">
-                  {{$order->shipping_charge ? $order->shipping_charge : '0.00' }} </td>
+                  {{$order->shipping_charge ? $order->shipping_charge : '0.00' }}
+                </td>
               </tr>
               @if ($order->out_of_stock)
               <tr>

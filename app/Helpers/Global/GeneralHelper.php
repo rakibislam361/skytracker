@@ -378,7 +378,7 @@ if (!function_exists('calculateItemDue')) {
    */
   function calculateItemDue($orderItem)
   {
-    $totalDue = ($orderItem->product_value + $orderItem->chinaLocalDelivery + $orderItem->shipping_charge +
+    $totalDue = ($orderItem->product_value + $orderItem->china_local_delivery_rmb + $orderItem->shipping_charge +
       $orderItem->courier_bill - $orderItem->first_payment - $orderItem->coupon_contribution - $orderItem->out_of_stock -
       $orderItem->missing - $orderItem->refunded - $orderItem->last_payment);
 

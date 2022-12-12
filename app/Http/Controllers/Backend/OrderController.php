@@ -9,7 +9,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use App\Http\Controllers\Backend\Auth;
 
 class OrderController extends Controller
 {
@@ -26,7 +28,6 @@ class OrderController extends Controller
     $filter = [
       'item_number' => request('item_number', null),
       'status' => request('status', null),
-      'status' => request('status', null),
       'shipping_from' => request('shipping_from', null),
       'from_date' => request('from_date', null),
       'to_date' => request('to_date', null),
@@ -34,8 +35,22 @@ class OrderController extends Controller
 
     $receivedData = $this->orderList($filter);
     $ordersData = $receivedData->data->result;
-    $orders = $this->paginate($ordersData, 20);
+    // dd($ordersData);
+    $order = [];
+
+    $roles = Auth()->user()->getRoleNames();
+    if ($roles[0] == "BD Purchase Officer") {
+      foreach ($ordersData->data as $data) {
+        if ($data->status != "Waiting for Payment") {
+          $order = $data;
+          // dd($order);
+        }
+      }
+    }
+    $orders = $this->paginate($order, 20);
+    // dd($order);
     $orders->withPath('');
+
     return view('backend.content.order.index', compact('orders'));
   }
 
@@ -45,9 +60,9 @@ class OrderController extends Controller
       'order_item_number' => request('order_item_number', null),
       'order_item_rmb' => request('order_item_rmb', null),
       'purchase_rmb' => request('purchase_rmb', null),
-      'productCost' => request('productCost', null),
-      'chinaLocalDelivery' => request('chinaLocalDelivery', null),
-      'chinaLocalInBD' => request('chinaLocalInBD', null),
+      'purchase_cost_bd' => request('purchase_cost_bd', null),
+      'china_local_delivery_rmb' => request('china_local_delivery_rmb', null),
+      'china_local_delivery_bd' => request('china_local_delivery_bd', null),
       'shipping_from' => request('shipping_from', null),
       'shipping_mark' => request('shipping_mark', null),
       'chn_warehouse_qty' => request('chn_warehouse_qty', null),
@@ -57,9 +72,8 @@ class OrderController extends Controller
       'tracking_number' => request('tracking_number', null),
       'shipped_by' => request('shipped_by', null),
       'status' => request('status', null),
-      'product_bd_received_coast' => request('product_bd_received_coast', null),
+      'product_bd_received_cost' => request('product_bd_received_cost', null),
     ];
-
     $orderResponse = $this->order_update($data);
     return response(json_encode($orderResponse));
   }

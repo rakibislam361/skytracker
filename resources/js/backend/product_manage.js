@@ -53,7 +53,9 @@ $(function() {
             $("#order_item_number").val(itemValue.order_item_number);
             $("#order_item_rmb").val(itemValue.order_item_rmb);
             $("#purchase_rmb").val(itemValue.purchase_rmb);
-            $("#chinaLocalDelivery").val(itemValue.chinaLocalDelivery);
+            $("#china_local_delivery_rmb").val(
+                itemValue.china_local_delivery_rmb
+            );
             $("#shipping_from").val(itemValue.shipping_from);
             $("#shipping_mark").val(itemValue.shipping_mark);
             $("#name").val(itemValue.name);
@@ -99,7 +101,7 @@ $(function() {
         .on("keyup", "#purchase_rmb", function() {
             let prmb = $(this).val();
             let conRate = $("#actualrmb_rate").val();
-            $("#productCost").val(prmb * conRate);
+            $("#purchase_cost_bd").val(prmb * conRate);
             let ormb = $("#order_item_rmb").val();
             if (parseInt(prmb) > parseInt(ormb)) {
                 $("#statusSubmitBtn").prop("disabled", true);
@@ -112,13 +114,13 @@ $(function() {
             }
         })
 
-        .on("keyup", "#chinaLocalDelivery", function() {
+        .on("keyup", "#china_local_delivery_rmb", function() {
             let local = $(this).val();
             let localRate = $("#local_rate").val();
-            $("#chinaLocalInBD").val(local * localRate);
-            let conv = $("#chinaLocalInBD").val();
+            $("#china_local_delivery_bd").val(local * localRate);
+            let conv = $("#china_local_delivery_bd").val();
             let prcost = $("#product_value").val();
-            $("#product_bd_received_coast").val(
+            $("#product_bd_received_cost").val(
                 parseInt(conv) + parseInt(prcost)
             );
         });

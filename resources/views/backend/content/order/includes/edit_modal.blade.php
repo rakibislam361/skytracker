@@ -35,21 +35,21 @@
                         <input type="text" id="purchase_rmb" name="purchase_rmb" placeholder="RMB" class="form-control" />
                     </div>
                      <div class="form-group">
-                        <label for="productCost">Actual Cost In BDT(BD Out)</label>
-                        <input type="text" name="productCost" id="productCost" readonly placeholder="Actual Cost In BDT" class="form-control" />
-                        <small class="form-text text-muted">purchase_rmb * Conversion Rate</small>
+                        <label for="purchase_cost_bd">Actual Cost In BDT(BD Out)</label>
+                        <input type="text" name="purchase_cost_bd" id="purchase_cost_bd" readonly placeholder="Actual Cost In BDT" class="form-control" />
+                        <small class="form-text text-muted">Purchase Rmb * Conversion Rate</small>
                     </div>
                     @endif
                     @if ($logged_in_user->can('admin.order.localdelivery.edit'))
                     <div class="form-group">
-                        <label for="chinaLocalDelivery">China Local Delivery(RMB)</label>
-                        <input type="text" name="chinaLocalDelivery" id="chinaLocalDelivery" placeholder="China Local Delivery" class="form-control" />
+                        <label for="china_local_delivery_rmb">China Local Delivery(RMB)</label>
+                        <input type="text" name="china_local_delivery_rmb" id="china_local_delivery_rmb" placeholder="China Local Delivery" class="form-control" />
                     </div>
 
                     <div class="form-group">
-                        <label for="chinaLocalDelivery">China Local Delivery(BDT)</label>
-                        <input type="text" name="chinaLocalInBD" id="chinaLocalInBD" readonly placeholder="China Local Delivery In BDT" class="form-control" />
-                         <small class="form-text text-muted">china Local Delivery * Conversion Rate</small>
+                        <label for="china_local_delivery_bd">China Local Delivery(BDT)</label>
+                        <input type="text" name="china_local_delivery_bd" id="china_local_delivery_bd" readonly placeholder="China Local Delivery In BDT" class="form-control" />
+                         <small class="form-text text-muted">China Local Delivery * Conversion Rate</small>
                     </div>
                     
                     
@@ -103,8 +103,8 @@
                     <div class="form-group">
                         <label for="shipped_by">Shipping By</label>
                         <select class="form-control" name="shipped_by" id="shipped_by">
-                            <option value="ship_by_air">By Air</option>
-                            <option value="ship_by_sea">By Sea</option>
+                            <option value="ship_by_air">ship_by_air</option>
+                            <option value="ship_by_sea">ship_by_sea</option>
                         </select>
                     </div>
                     @endif
@@ -121,7 +121,7 @@
                             <option value="purchased">Purchase Completed</option>
                             <option value="re-order">RE-Order</option>
                             <option value="refund-please">Refund Please</option>
-                            <option value="shipped-from-suppliers">shipped-from-suppliers</option>
+                            <option value="shipped-from-suppliers">Shipped from suppliers</option>
                             @endif
                             @if ($logged_in_user->can('admin.order.status.edit'))
                             <option value="received-in-china-warehouse">Received in china warehouse</option>
@@ -136,8 +136,8 @@
                     <input type="hidden" name="product_value" id="product_value" class="form-control" />
                      <div class="form-group">
                         <label for="product_bd_received_coast">BDT Received From Customer(BD Receive)</label>
-                        <input type="text" name="product_bd_received_coast" id="product_bd_received_coast" readonly  placeholder="BD Received Cost" class="form-control" />
-                         <small class="form-text text-muted">(china local delivery*Conversion)+productValue</small>
+                        <input type="text" name="product_bd_received_cost" id="product_bd_received_cost" readonly  placeholder="BD Received Cost" class="form-control" />
+                         <small class="form-text text-muted">(China Local Delivery*Conversion)+Product Value</small>
                     </div>
                     @endif
                 </div>
