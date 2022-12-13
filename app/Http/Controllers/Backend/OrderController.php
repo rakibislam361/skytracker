@@ -56,20 +56,32 @@ class OrderController extends Controller
       }
     } elseif ($roles == "China Purchase Officer") {
       foreach ($ordersData->data as $data) {
-        if ($data->status == "processing" || $data->status == "on-hold" || $data->status == "purchased" || $data->status == "re-order" || $data->status == "refund-please" || $data->status == "shipped-from-suppliers") {
+        if (
+          $data->status == "processing"
+          || $data->status == "on-hold"
+          || $data->status == "purchased"
+          || $data->status == "re-order"
+          || $data->status == "refund-please"
+          || $data->status == "shipped-from-suppliers"
+        ) {
           $order[] = $data;
         }
       }
     } elseif ($roles == "China Warehouse Officer") {
       foreach ($ordersData->data as $data) {
-        if ($data->status == "shipped-from-suppliers" || $data->status == "received-in-china-warehouse" || $data->status == "shipped-from-china-warehouse") {
+        if (
+          $data->status == "shipped-from-suppliers"
+          || $data->status == "received-in-china-warehouse"
+          || $data->status == "shipped-from-china-warehouse"
+        ) {
           $order[] = $data;
         }
       }
     } elseif ($roles == "BD Logistic Officer") {
       foreach ($ordersData->data as $data) {
         if (
-          $data->status == "shipped-from-china-warehouse" || $data->status == "received-in-BD-warehouse"
+          $data->status == "shipped-from-china-warehouse"
+          || $data->status == "received-in-BD-warehouse"
         ) {
           $order[] = $data;
         }
