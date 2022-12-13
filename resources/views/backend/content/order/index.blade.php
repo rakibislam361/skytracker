@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title', 'Recent Orders')
+@section('title', 'Manage Orders')
 
 @section('content')
     @php

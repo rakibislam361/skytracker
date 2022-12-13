@@ -19,11 +19,14 @@
           <ul class="nav nav-treeview">
 
             <li class="nav-item">
-              <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Manage order')" />
+              <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Manage Order')" />
             </li>
             <li class="nav-item">
-              <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
+              <x-utils.link :href="route('admin.order.recent')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Recent Orders')" />
             </li>
+            {{-- <li class="nav-item">
+              <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
+            </li> --}}
           </ul>
         </li>
         {{-- product --}}

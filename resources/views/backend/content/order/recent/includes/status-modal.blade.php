@@ -1,5 +1,4 @@
-<div class="modal fade" id="statusChangeFormModal" tabindex="-1" aria-labelledby="statusChangeFormModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

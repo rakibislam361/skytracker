@@ -45,9 +45,32 @@ class OrderController extends Controller
       foreach ($ordersData->data as $data) {
         $order[] = $data;
       }
-    } else {
+    } elseif ($roles == "BD Purchase Officer") {
       foreach ($ordersData->data as $data) {
-        if ($data->status != "Waiting for Payment") {
+        if (
+          $data->status == "partial-paid"
+          || $data->status == "processing"
+        ) {
+          $order[] = $data;
+        }
+      }
+    } elseif ($roles == "China Purchase Officer") {
+      foreach ($ordersData->data as $data) {
+        if ($data->status == "processing" || $data->status == "on-hold" || $data->status == "purchased" || $data->status == "re-order" || $data->status == "refund-please" || $data->status == "shipped-from-suppliers") {
+          $order[] = $data;
+        }
+      }
+    } elseif ($roles == "China Warehouse Officer") {
+      foreach ($ordersData->data as $data) {
+        if ($data->status == "shipped-from-suppliers" || $data->status == "received-in-china-warehouse" || $data->status == "shipped-from-china-warehouse") {
+          $order[] = $data;
+        }
+      }
+    } elseif ($roles == "BD Logistic Officer") {
+      foreach ($ordersData->data as $data) {
+        if (
+          $data->status == "shipped-from-china-warehouse" || $data->status == "received-in-BD-warehouse"
+        ) {
           $order[] = $data;
         }
       }
@@ -71,7 +94,7 @@ class OrderController extends Controller
         'purchase_rmb' => request('purchase_rmb', null),
         'purchase_cost_bd' => request('purchase_cost_bd', null),
         'china_local_delivery_rmb' => request('china_local_delivery_rmb', null),
-        'china_local_delivery_bd' => request('china_local_delivery_bd', null),
+        'chinaLocalDelivery' => request('chinaLocalDelivery', null),
         'shipping_from' => request('shipping_from', null),
         'shipping_mark' => request('shipping_mark', null),
         'chn_warehouse_qty' => request('chn_warehouse_qty', null),
@@ -97,7 +120,7 @@ class OrderController extends Controller
         'purchase_rmb' => request('purchase_rmb', null),
         'purchase_cost_bd' => request('purchase_cost_bd', null),
         'china_local_delivery_rmb' => request('china_local_delivery_rmb', null),
-        'china_local_delivery_bd' => request('china_local_delivery_bd', null),
+        'chinaLocalDelivery' => request('chinaLocalDelivery', null),
         'status' => request('status', null),
         'product_bd_received_cost' => request('product_bd_received_cost', null),
       ];
@@ -127,8 +150,34 @@ class OrderController extends Controller
     return response(json_encode($orderResponse));
   }
 
+  /**
+   * Display the specified resource.
+   *
+   * @param int $id
+   * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
+   */
+
+  public function recentOrders()
+  {
+    $filter = [
+      'item_number' => request('item_number', null),
+      'status' => request('status', null),
+      'shipping_from' => request('shipping_from', null),
+      'from_date' => request('from_date', null),
+      'to_date' => request('to_date', null),
+    ];
+
+    $receivedData = $this->recentorderList($filter);
+    $order  = $receivedData->orders;
+    $orders = $this->paginate($order, 20);
+    $orders->withPath('');
+    return view('backend.content.order.recent.index', compact('orders'));
+  }
+
   public function show($id)
   {
-    dd("hello show");
+    $receivedData = $this->recentorderList($id);
+    $order  = $receivedData->orders;
+    return view('backend.content.order.showNew', compact('order'));
   }
 }

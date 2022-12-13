@@ -46,4 +46,12 @@ trait ApiOrderTrait
     $response = Http::withToken($get_token)->post($url, $data);
     return $response->object();
   }
+
+  public function recentorderList($filter)
+  {
+    $url = config('api.url') . '/admin/recent-order';
+    $get_token = $this->getToken();
+    $response = Http::withToken($get_token)->get($url);
+    return $response->object();
+  }
 }

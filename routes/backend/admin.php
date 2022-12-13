@@ -56,9 +56,14 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
   Route::post('top-notice', [SettingController::class, 'topNoticeStore'])->name('topNotice.store');
 });
 
-Route::resource('order', OrderController::class);
+
+
+
 Route::get('order/local', [OrderController::class, 'walletOrders'])->name('order.local');
 Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name('order.local.details');
+Route::get('order/recent', [OrderController::class, 'recentOrders'])->name('order.recent');
+// Route::post('order/change/status/{id}', [OrderController::class, 'changeStatus'])->name('order.change.status');
+Route::resource('order', OrderController::class);
 
 
 Route::group(['prefix' => 'account', 'as' => 'account.'], function () {

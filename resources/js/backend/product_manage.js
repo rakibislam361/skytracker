@@ -20,6 +20,24 @@ $(function() {
     let itemNumber = 0;
 
     $("body")
+        .on("change", "#checkAllorder", function() {
+            var tbodyCheckbox = $("tbody").find("input.checkoneItem");
+            if ($(this).is(":checked")) {
+                tbodyCheckbox.prop("checked", true);
+            } else {
+                tbodyCheckbox.prop("checked", false);
+            }
+        })
+        .on("change", "input.checkoneItem", function() {
+            var checked_item = $("input.checkoneItem:checked").length;
+            var uncheck_item = $('input.checkoneItem:not(":checked")').length;
+
+            if (uncheck_item == 0) {
+                $("#checkAllorder").prop("checked", true);
+            } else {
+                $("#checkAllorder").prop("checked", false);
+            }
+        })
         .on("click", "#add-btn", function(e) {
             e.preventDefault();
             ++i;
@@ -42,6 +60,9 @@ $(function() {
             $(this)
                 .parents("tr")
                 .remove();
+        })
+        .on("click", ".status-modal", function() {
+            $("#statusModal").modal("show");
         })
 
         .on("dblclick", ".order-modal", function() {
@@ -67,6 +88,11 @@ $(function() {
             $("#shipped_by").val(itemValue.shipped_by);
             $("#status").val(itemValue.status);
             $("#product_value").val(itemValue.product_value);
+            $("#product_bd_received_cost").val(
+                itemValue.product_bd_received_cost
+            );
+            $("#chinaLocalDelivery").val(itemValue.chinaLocalDelivery);
+            $("#purchase_cost_bd").val(itemValue.purchase_cost_bd);
             $("#changeStatusButton").modal("show");
         })
 
@@ -117,8 +143,8 @@ $(function() {
         .on("keyup", "#china_local_delivery_rmb", function() {
             let local = $(this).val();
             let localRate = $("#local_rate").val();
-            $("#china_local_delivery_bd").val(local * localRate);
-            let conv = $("#china_local_delivery_bd").val();
+            $("#chinaLocalDelivery").val(local * localRate);
+            let conv = $("#chinaLocalDelivery").val();
             let prcost = $("#product_value").val();
             $("#product_bd_received_cost").val(
                 parseInt(conv) + parseInt(prcost)
