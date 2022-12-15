@@ -61,7 +61,7 @@
 
                    <td class="align-content-center text-center">{{ $order->dueForProducts ?? 'N/A' }}</td>
                    <td class="align-content-center text-center">{{ $order->pay_method ?? 'N/A' }}</td>
-                   <td class="status-modal align-content-center text-right"><i class="fa-pencil"></i>{{ $order->status ?? 'N/A' }}</td>
+                   <td class="status-modal align-content-center text-right" data-value="{{ $order->id}}"><i class="fa-pencil"></i>{{ $order->status ?? 'N/A' }}</td>
                    <td class="align-content-center text-center select"><a href="{{ route('admin.order.show', $order->order_number) }}">Details </a></td>
                </tr>
                @endforeach

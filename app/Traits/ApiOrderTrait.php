@@ -24,7 +24,7 @@ trait ApiOrderTrait
 
   public function orderList($filter)
   {
-    $url = config('api.url') . '/admin/order-list';
+    $url = config('api.url') . '/admin/order-item-list';
     $get_token = $this->getToken();
     $response = Http::withToken($get_token)->get($url, $filter);
     return $response->object();
@@ -42,7 +42,7 @@ trait ApiOrderTrait
   public function order_update($data)
   {
     $get_token = $this->getToken();
-    $url = config('api.url') . '/admin/order-update';
+    $url = config('api.url') . '/admin/order-item-update';
     $response = Http::withToken($get_token)->post($url, $data);
     return $response->object();
   }
@@ -51,7 +51,40 @@ trait ApiOrderTrait
   {
     $url = config('api.url') . '/admin/recent-order';
     $get_token = $this->getToken();
-    $response = Http::withToken($get_token)->get($url);
+    $response = Http::withToken($get_token)->get($url, $filter);
+    return $response->object();
+  }
+
+  public function singleOrder($id)
+  {
+    $url = config('api.url') . '/admin/order-show/' . $id;
+    $get_token = $this->getToken();
+    $response = Http::withToken($get_token)->get($url, $id);
+    return $response->object();
+  }
+
+
+  public function orderStatusUpdate($data)
+  {
+    $get_token = $this->getToken();
+    $url = config('api.url') . '/admin/order-status-update';
+    $response = Http::withToken($get_token)->post($url, $data);
+    return $response->object();
+  }
+
+  public function OrderItem($id)
+  {
+    $url = config('api.url') . '/admin/order-item-details/' . $id;
+    $get_token = $this->getToken();
+    $response = Http::withToken($get_token)->get($url, $id);
+    return $response->object();
+  }
+
+  public function orderItemUpdateTrait($id, $data)
+  {
+    $get_token = $this->getToken();
+    $url = config('api.url') . '/admin/order-update/' . $id;
+    $response = Http::withToken($get_token)->post($url, $data);
     return $response->object();
   }
 }

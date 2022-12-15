@@ -1,11 +1,11 @@
-<form class="search" name="search" action="{{ route('admin.order.index') }}" method="GET">
+<form class="search" name="search" action="{{ route('admin.order.recent') }}" method="GET">
     <div class="row">
         <div class="col-3">
-            <label for="item_number">Item</label>
-            <input type="text" id="item_number" name="item_number" class="form-control" value="{{ request('item_number', null) }}" placeholder="item number">
+            <label for="order_number">Order</label>
+            <input type="text" id="order_number" name="order_number" class="form-control" value="{{ request('order_number', null) }}" placeholder="order number">
         </div>
 
-        <div class="co-3">
+        <div class="co-4">
             <label for="status">Status</label>
             <select class="form-control" name="status">
                 <option value="">Select</option>

@@ -11,7 +11,7 @@
 //         enableSubmitButtons($(this));
 //     }
 // });
-
+import axios from "axios";
 const { message } = require("laravel-mix/src/Log");
 const { parse } = require("postcss");
 
@@ -61,10 +61,6 @@ $(function() {
                 .parents("tr")
                 .remove();
         })
-        .on("click", ".status-modal", function() {
-            $("#statusModal").modal("show");
-        })
-
         .on("dblclick", ".order-modal", function() {
             let itemValue = $(this).data("value");
             $("#statusChargeForm").attr(
@@ -79,7 +75,6 @@ $(function() {
             );
             $("#shipping_from").val(itemValue.shipping_from);
             $("#shipping_mark").val(itemValue.shipping_mark);
-            $("#name").val(itemValue.name);
             $("#chn_warehouse_qty").val(itemValue.chn_warehouse_qty);
             $("#chn_warehouse_weight").val(itemValue.chn_warehouse_weight);
             $("#cbm").val(itemValue.cbm);
@@ -123,6 +118,67 @@ $(function() {
                 }
             });
         })
+
+        .on("click", ".status-modal", function() {
+            let orderValue = $(this).data("value");
+            $("#order_id").val(orderValue);
+            $("#statusModal").modal("show");
+        })
+        .on("click", ".toggleForm", function(event) {
+            event.preventDefault();
+            $(this)
+                .closest("td")
+                .find(".editField")
+                .toggle();
+        })
+        .on("click", ".edit-item", function(event) {
+            event.preventDefault();
+            let href = $(this).attr("href");
+            console.log(href);
+            let editItemForm = $("#editItemForm");
+            axios
+                .get(href)
+                .then(response => {
+                    let resData = response.data;
+                    if (resData.status) {
+                        editItemForm.find(".modal-title").text(resData.title);
+                        editItemForm.find(".modal-body").html(resData.editForm);
+                        editItemForm.modal("show");
+                    }
+                })
+                .catch(error => {
+                    console.log("error", error);
+                });
+        })
+
+        // .on("click", "#statusBtn", function(event) {
+        //     event.preventDefault();
+        //     var formData = $("#editOrderStatus").serialize();
+        //     let url = $("#editOrderStatus").attr("action");
+        //     $.ajax({
+        //         type: "put",
+        //         url: url,
+        //         data: formData,
+        //         beforeSend: function() {
+        //             $("#statusBtn").prop("disabled", true);
+        //             console.log(formData);
+        //         },
+        //         success: function(res) {
+        //             Swal.fire({
+        //                 icon: "success",
+        //                 text: "Update successful"
+        //             }).then(result => {
+        //                 window.location.reload();
+        //             });
+        //         },
+        //         error: function() {
+        //             Swal.fire({
+        //                 icon: "warning",
+        //                 text: "Unsuccessful"
+        //             });
+        //         }
+        //     });
+        // })
 
         .on("keyup", "#purchase_rmb", function() {
             let prmb = $(this).val();

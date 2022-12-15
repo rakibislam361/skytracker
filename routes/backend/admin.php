@@ -62,7 +62,12 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
 Route::get('order/local', [OrderController::class, 'walletOrders'])->name('order.local');
 Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name('order.local.details');
 Route::get('order/recent', [OrderController::class, 'recentOrders'])->name('order.recent');
-// Route::post('order/change/status/{id}', [OrderController::class, 'changeStatus'])->name('order.change.status');
+Route::post('order/recent/status', [OrderController::class, 'recentorderStatusUpdate'])->name('order.status.update');
+Route::post('order/recent/update/{id}', [OrderController::class, 'orderitemUpdate'])->name('order.recent.singleorder');
+
+Route::post('order/coupon-update/{id}', [OrderController::class, 'updateCoupon'])->name('order.coupon.update');
+Route::post('order/deposit-update/{id}', [OrderController::class, 'depositCoupon'])->name('order.deposit.update');
+
 Route::resource('order', OrderController::class);
 
 

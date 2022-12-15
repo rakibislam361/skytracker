@@ -1,15 +1,16 @@
-<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="statusChangeFormModalLabel">Edit order status</h5>
+        <h5 class="modal-title" id="statusChangeFormModalLabel">Edit order status</h5><span class="orderId"></span>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="post" id="editOrderStatus">
+        <form action="{{ route('admin.order.status.update') }}"  method="post" id="editOrderStatus">
           @csrf
+           <input type="hidden" name="order_id" id="order_id" value="" class="form-control" />
           <div class="form-group">
             <select name="status" class="form-control" id="status">
               <option value="">- Select Status -</option>
@@ -28,7 +29,7 @@
             </select>
           </div>
           <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Update</button>
+            <button type="submit" id="statusBtn" class="btn btn-primary btn-block">Update</button>
           </div>
 
         </form>

@@ -1,5 +1,7 @@
-{{ html()->modelForm($orderItem, 'PATCH', route('admin.order.update', $orderItem))->open() }}
 
+{{ html()->modelForm($orderItem, 'post', route('admin.order.recent.singleorder', $orderItem->id))->open() }}
+
+<input type="hidden" name="item_id" id="item_id" value={{$orderItem->id}} class="form-control" />
 <div class="row">
   <div class="form-group col-md-4">
     {{html()->label('China Local Shipping')->for('chinaLocalDelivery')}}
@@ -118,7 +120,8 @@
     <th>Price</th>
     <th>Total</th>
   </tr>
-  @foreach ($orderItem->itemVariations as $variation)
+  @foreach ($orderItem->item_variations as $variation)
+
   <tr>
     <td class="text-center p-0">
       <img src="{{asset($variation->image)}}" width="80" alt="">
@@ -169,5 +172,6 @@
 <div class="form-group">
   {{ form_submit(__('buttons.general.crud.update'), 'btn btn-primary btn-block') }}
 </div>
+
 
 {{ html()->closeModelForm() }}
