@@ -21,9 +21,11 @@
             <li class="nav-item">
               <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Manage Order Item')" />
             </li>
+            @if ($logged_in_user->hasAllAccess()||$logged_in_user->can('admin.order.order_rmb.edit'))
             <li class="nav-item">
               <x-utils.link :href="route('admin.order.recent')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Recent Orders')" />
             </li>
+            @endif
             {{-- <li class="nav-item">
               <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
             </li> --}}

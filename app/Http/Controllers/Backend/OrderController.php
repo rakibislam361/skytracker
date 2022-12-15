@@ -181,7 +181,6 @@ class OrderController extends Controller
     ];
 
     $receivedData = $this->recentorderList($filter);
-    // $order  = $receivedData->orders;
     $ordersData = $receivedData;
     $order = [];
 
@@ -198,11 +197,45 @@ class OrderController extends Controller
           $data->status == "partial-paid"
           || $data->status == "processing"
           || $data->status == "Partial Paid"
+          || $data->status == "on-hold"
         ) {
           $order[] = $data;
         }
       }
     }
+    //  elseif ($roles == "China Purchase Officer") {
+    //   foreach ($ordersData->orders as $data) {
+    //     if (
+    //       $data->status == "processing"
+    //       || $data->status == "on-hold"
+    //       || $data->status == "purchased"
+    //       || $data->status == "re-order"
+    //       || $data->status == "refund-please"
+    //       || $data->status == "shipped-from-suppliers"
+    //     ) {
+    //       $order[] = $data;
+    //     }
+    //   }
+    // } elseif ($roles == "China Warehouse Officer") {
+    //   foreach ($ordersData->orders as $data) {
+    //     if (
+    //       $data->status == "shipped-from-suppliers"
+    //       || $data->status == "received-in-china-warehouse"
+    //       || $data->status == "shipped-from-china-warehouse"
+    //     ) {
+    //       $order[] = $data;
+    //     }
+    //   }
+    // } elseif ($roles == "BD Logistic Officer") {
+    //   foreach ($ordersData->orders as $data) {
+    //     if (
+    //       $data->status == "shipped-from-china-warehouse"
+    //       || $data->status == "received-in-BD-warehouse"
+    //     ) {
+    //       $order[] = $data;
+    //     }
+    //   }
+    // }
     $orders = $this->paginate($order, 20);
     $orders->withPath('');
     return view('backend.content.order.recent.index', compact('orders'));
