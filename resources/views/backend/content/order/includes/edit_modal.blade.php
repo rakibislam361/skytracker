@@ -15,14 +15,14 @@
                 <div class="modal-body">
                     {{-- BD Purchase Officer start --}}
                     <div class="form-group">
-                        <label for="order_item_number">Item Number</label>
-                        <input type="text" name="order_item_number" id="order_item_number" placeholder="item number" class="form-control" readonly />
+                        <label for="order_item_id">Item Number</label>
+                        <input type="text" name="order_item_id" id="order_item_id" placeholder="item number" class="form-control" readonly />
                     </div>
 
                     @if ($logged_in_user->can('admin.order.order_rmb.edit')|| $logged_in_user->can('admin.order.purchase.edit'))
                     <div class="form-group">
                         <label for="order_item_rmb">Order(rmb)</label>
-                        <input type="text" id="order_item_rmb" name="order_item_rmb" placeholder="Order in Rmb" class="form-control"/>
+                        <input type="text" id="order_item_rmb" name="order_item_rmb" placeholder="Order in Rmb" class="form-control" />
                     </div>
                     @endif
 

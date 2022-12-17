@@ -252,6 +252,7 @@ $currency = get_setting('currency_icon')
                     <form action="{{route('admin.order.coupon.update', $order->id)}}" method="post" class="d-inline-block"
                       style="max-width:100px;">
                       @csrf
+                      <input type="hidden" name="order_item_id" id="order_item_id" value={{$order->id}} class="form-control" />
                       <div class="input-group input-group-sm editField" style="display: none">
                         {{html()->text('total_coupon',$coupon_victory)
                         ->class('form-control text-right')}}
@@ -321,6 +322,7 @@ $currency = get_setting('currency_icon')
                     <form action="{{route('admin.order.deposit.update', $order->id)}}" method="post" class="d-inline-block"
                       style="max-width:100px;">
                       @csrf
+                      <input type="hidden" name="order_item_id" id="order_item_id" value={{$order->id}} class="form-control" />
                       {{html()->hidden('total', $invoiceTotal)}}
                       {{html()->hidden('due', $due)}}
                       <div class="input-group input-group-sm editField" style="display: none">

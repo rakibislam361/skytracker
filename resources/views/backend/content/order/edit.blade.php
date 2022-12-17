@@ -1,7 +1,8 @@
 
-{{ html()->modelForm($orderItem, 'post', route('admin.order.recent.singleorder', $orderItem->id))->open() }}
 
-<input type="hidden" name="item_id" id="item_id" value={{$orderItem->id}} class="form-control" />
+{{ html()->modelForm($orderItem, 'post', route('admin.order.update', $orderItem->id))->open() }}
+@method('PATCH')
+<input type="hidden" name="order_item_id" id="order_item_id" value={{$orderItem->id}} class="form-control" />
 <div class="row">
   <div class="form-group col-md-4">
     {{html()->label('China Local Shipping')->for('chinaLocalDelivery')}}
