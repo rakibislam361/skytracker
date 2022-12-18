@@ -2,11 +2,11 @@
        <table class="table table-hover table-bordered mb-0 order-table table-striped">
            <thead>
                <tr>
-                 {{-- <th class="align-content-center text-center">Select<input type="checkbox" name="checkAllorder" id="checkAllorder"></th>  --}}
+                   {{-- <th class="align-content-center text-center">Select<input type="checkbox" name="checkAllorder" id="checkAllorder"></th>  --}}
                    <th class="align-content-center text-center">Date</th>
                    <th class="align-content-center text-center">Item Number</th>
                    <th class="align-content-center text-center">Order ID</th>
-                     @if ($logged_in_user->hasAllAccess())
+                   @if ($logged_in_user->hasAllAccess())
                    <th class="align-content-center text-center">Customer</th>
                    <th class="align-content-center text-center">Phone </th>
                    @endif
@@ -42,16 +42,16 @@
            </thead>
            <tbody>
                @foreach ($orders as $order)
-              
+
                <tr class="order-modal" data-value="{{ json_encode($order) }}">
-                {{-- <th class="align-content-center text-center"><input type="checkbox" class="checkoneItem" name="checkOrder" id="checkOrder"></th>  --}}
+                   {{-- <th class="align-content-center text-center"><input type="checkbox" class="checkoneItem" name="checkOrder" id="checkOrder"></th>  --}}
                    <td class="align-content-center text-center">
                        {{ $order->created_at ? date('d/m/Y', strtotime($order->created_at)) : 'N/A' }}
                    </td>
                    <td class="align-content-center text-center">{{ $order->order_item_number ?? 'N/A' }}</td>
                    <td class="align-content-center text-center">{{ $order->order_id ?? 'N/A' }}</td>
 
-                    @if ($logged_in_user->hasAllAccess())
+                   @if ($logged_in_user->hasAllAccess())
                    <td class="align-content-center text-center">{{ $order->user->name ?? 'N/A' }}</td>
                    <td class="align-content-center text-center"> {{ $order->user->phone ?? 'N/A' }} </td>
                    @endif

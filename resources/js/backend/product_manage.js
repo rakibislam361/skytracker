@@ -89,6 +89,12 @@ $(function () {
             $("#changeStatusButton").modal("show");
         })
 
+        .on("click", ".order-item-modal", function () {
+            let itemValue = $(this).data("value");
+            $(".order_item_id").val(itemValue);
+            $("#changeStatusButton").modal("show");
+        })
+
         .on("click", "#statusSubmitBtn", function (event) {
             event.preventDefault();
             var formData = $("#statusChargeForm").serialize();
