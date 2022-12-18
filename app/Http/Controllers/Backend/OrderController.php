@@ -101,11 +101,7 @@ class OrderController extends Controller
     $data = $this->validateOrderItems();
     $orderResponse = $this->order_update($data);
 
-    if ($orderResponse->status == "Success") {
-      return redirect()->back()->withFlashSuccess('Order Updated Successfully');
-    } else {
-      return redirect()->back()->withFlashError('Error');
-    }
+    return $orderResponse;
   }
 
   /**
