@@ -128,6 +128,7 @@
 
 <div class="form-group">
     {{ form_submit(__('Update'), 'btn btn-primary btn-block') }}
+    {{-- <button type="button" class="btn btn-primary" id="editBtn">Save changes</button> --}}
 </div>
 
 

@@ -96,6 +96,7 @@ $(function () {
             event.preventDefault();
             var formData = $("#updateItem").serialize();
             let url = $("#updateItem").attr("action");
+            console.log(url);
             $.ajax({
                 type: "put",
                 url: url,
@@ -148,32 +149,33 @@ $(function () {
                 });
         })
 
-        // .on("click", "#statusBtn", function(event) {
+        // .on("click", "#editBtn", function (event) {
         //     event.preventDefault();
-        //     var formData = $("#editOrderStatus").serialize();
-        //     let url = $("#editOrderStatus").attr("action");
+        //     var formData = $("#editItemForm").serialize();
+        //     let url = $("#editItemForm").attr("action");
+        //     console.log(url);
         //     $.ajax({
         //         type: "put",
         //         url: url,
         //         data: formData,
-        //         beforeSend: function() {
-        //             $("#statusBtn").prop("disabled", true);
+        //         beforeSend: function () {
+        //             $("#editBtn").prop("disabled", true);
         //             console.log(formData);
         //         },
-        //         success: function(res) {
+        //         success: function (res) {
         //             Swal.fire({
         //                 icon: "success",
-        //                 text: "Update successful"
-        //             }).then(result => {
+        //                 text: "Update successful",
+        //             }).then((result) => {
         //                 window.location.reload();
         //             });
         //         },
-        //         error: function() {
+        //         error: function () {
         //             Swal.fire({
         //                 icon: "warning",
-        //                 text: "Unsuccessful"
+        //                 text: "Unsuccessful",
         //             });
-        //         }
+        //         },
         //     });
         // })
 
