@@ -17,264 +17,253 @@ use Log;
 
 class OrderController extends Controller
 {
-  use ApiOrderTrait, PaginationTrait;
+    use ApiOrderTrait, PaginationTrait;
 
-  /**
-   * Display a listing of the resource.
-   *
-   * @return Factory|View
-   */
-  public function index()
-  {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Factory|View
+     */
+    public function index()
+    {
+        $filter = [
+            'item_number' => request('item_number', null),
+            'status' => request('status', null),
+            'shipping_from' => request('shipping_from', null),
+            'from_date' => request('from_date', null),
+            'to_date' => request('to_date', null),
+        ];
 
-    $filter = [
-      'item_number' => request('item_number', null),
-      'status' => request('status', null),
-      'shipping_from' => request('shipping_from', null),
-      'from_date' => request('from_date', null),
-      'to_date' => request('to_date', null),
-    ];
+        $receivedData = $this->orderList($filter);
+        $ordersData = $receivedData->data->result;
+        $order = [];
 
-    $receivedData = $this->orderList($filter);
-    $ordersData = $receivedData->data->result;
-    $order = [];
-
-    $userRole = auth()->user()->roles->first();
-    $roles =  $userRole ? $userRole->name : null;
-    if ($roles == "Administrator") {
-      foreach ($ordersData->data as $data) {
-        $order[] = $data;
-      }
-    } else {
-      foreach ($ordersData->data as $data) {
-        if ($data->status != "Waiting for Payment") {
-          $order[] = $data;
+        $userRole = auth()
+            ->user()
+            ->roles->first();
+        $roles = $userRole ? $userRole->name : null;
+        if ($roles == 'Administrator') {
+            foreach ($ordersData->data as $data) {
+                $order[] = $data;
+            }
+        } else {
+            foreach ($ordersData->data as $data) {
+                if ($data->status != 'Waiting for Payment') {
+                    $order[] = $data;
+                }
+            }
         }
-      }
+
+        $orders = $this->paginate($order, 20);
+        $orders->withPath('');
+
+        return view('backend.content.order.index', compact('orders'));
     }
 
+    public function update($id)
+    {
+        $data = $this->validateOrderItems();
+        $orderResponse = $this->order_update($data);
 
-    $orders = $this->paginate($order, 20);
-    $orders->withPath('');
-
-    return view('backend.content.order.index', compact('orders'));
-  }
-
-  public function update($id)
-  {
-    $data = $this->validateOrderItems();
-    $orderResponse = $this->order_update($data);
-
-    return $orderResponse;
-  }
-
-  /**
-   * Display the specified resource.
-   *
-   * @param int $id
-   * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
-   */
-
-  public function recentOrders()
-  {
-    $filter = [
-      'order_number' => request('order_number', null),
-      'status' => request('status', null),
-      'from_date' => request('from_date', null),
-      'to_date' => request('to_date', null),
-    ];
-
-    $receivedData = $this->recentorderList($filter);
-    $ordersData = $receivedData;
-    $order = [];
-
-    $userRole = auth()->user()->roles->first();
-    $roles =  $userRole ? $userRole->name : null;
-    // dd($roles);
-    if ($roles == "Administrator") {
-      foreach ($ordersData->orders as $data) {
-        $order[] = $data;
-      }
-    } elseif ($roles == "BD Purchase Officer") {
-      foreach ($ordersData->orders as $data) {
-        if (
-          $data->status == "partial-paid"
-          || $data->status == "processing"
-          || $data->status == "Partial Paid"
-          || $data->status == "on-hold"
-        ) {
-          $order[] = $data;
-        }
-      }
-    } elseif ($roles == "China Purchase Officer") {
-      foreach ($ordersData->orders as $data) {
-        if (
-          $data->status == "processing"
-          || $data->status == "on-hold"
-          || $data->status == "purchased"
-          || $data->status == "re-order"
-          || $data->status == "refund-please"
-          || $data->status == "shipped-from-suppliers"
-        ) {
-          $order[] = $data;
-        }
-      }
-    } elseif ($roles == "China Warehouse Officer") {
-      foreach ($ordersData->orders as $data) {
-        if (
-          $data->status == "shipped-from-suppliers"
-          || $data->status == "received-in-china-warehouse"
-          || $data->status == "shipped-from-china-warehouse"
-        ) {
-          $order[] = $data;
-        }
-      }
-    } elseif ($roles == "BD Logistic Officer") {
-      foreach ($ordersData->orders as $data) {
-        if (
-          $data->status == "shipped-from-china-warehouse"
-          || $data->status == "received-in-BD-warehouse"
-        ) {
-          $order[] = $data;
-        }
-      }
-    }
-    $orders = $this->paginate($order, 20);
-    $orders->withPath('');
-    return view('backend.content.order.recent.index', compact('orders'));
-  }
-
-  public function show($id)
-  {
-    $receivedData = $this->singleOrder($id);
-    $order  = $receivedData->orders;
-    return view('backend.content.order.showNew', compact('order'));
-  }
-
-  public function recentorderStatusUpdate()
-  {
-    $data = [
-      'order_id' => request('order_id', null),
-      'status' => request('status', null),
-    ];
-    $orderResponse = $this->orderStatusUpdate($data);
-    return redirect()->back()->withFlashSuccess('Status Updated Successfully');
-  }
-
-  /**
-   * Show the form for editing the specified resource.
-   *
-   * @param int $id
-   * @return Response
-   */
-  public function edit($id)
-  {
-    $orderItem = $this->OrderItem($id);
-    if ($orderItem) {
-      $title = Str::words($orderItem->name, 6, '...');
-      $orderStatus = $this->orderStatus();
-      return \response([
-        'status' => true,
-        'title' => '#' . $orderItem->order_item_number . " | " . $title,
-        'editForm' => view('backend.content.order.edit', compact('orderItem', 'orderStatus'))->render(),
-      ]);
+        return $orderResponse;
     }
 
-    return \response([
-      'status' => false,
-      'title' => 'not found',
-      'editForm' => 'Order item not found',
-    ]);
-  }
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
 
+    public function recentOrders()
+    {
+        $filter = [
+            'order_number' => request('order_number', null),
+            'status' => request('status', null),
+            'from_date' => request('from_date', null),
+            'to_date' => request('to_date', null),
+        ];
 
-  public function updateCoupon($id)
-  {
-    $data = [
-      'order_id' => request('order_item_id', null),
-      'total_coupon' => request('total_coupon', null),
-    ];
-    $orderResponse = $this->updateCouponTrait($data);
-    if ($orderResponse->status == "Success") {
-      return redirect()->back()->withFlashSuccess('Coupon Updated Successfully');
-    } else {
-      return redirect()->back()->withFlashError('Error');
+        $receivedData = $this->recentorderList($filter);
+        $ordersData = $receivedData;
+        $order = [];
+
+        $userRole = auth()
+            ->user()
+            ->roles->first();
+        $roles = $userRole ? $userRole->name : null;
+        // dd($roles);
+        if ($roles == 'Administrator') {
+            foreach ($ordersData->orders as $data) {
+                $order[] = $data;
+            }
+        } elseif ($roles == 'BD Purchase Officer') {
+            foreach ($ordersData->orders as $data) {
+                if ($data->status == 'partial-paid' || $data->status == 'processing' || $data->status == 'Partial Paid' || $data->status == 'on-hold') {
+                    $order[] = $data;
+                }
+            }
+        } elseif ($roles == 'China Purchase Officer') {
+            foreach ($ordersData->orders as $data) {
+                if ($data->status == 'processing' || $data->status == 'on-hold' || $data->status == 'purchased' || $data->status == 're-order' || $data->status == 'refund-please' || $data->status == 'shipped-from-suppliers') {
+                    $order[] = $data;
+                }
+            }
+        } elseif ($roles == 'China Warehouse Officer') {
+            foreach ($ordersData->orders as $data) {
+                if ($data->status == 'shipped-from-suppliers' || $data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse') {
+                    $order[] = $data;
+                }
+            }
+        } elseif ($roles == 'BD Logistic Officer') {
+            foreach ($ordersData->orders as $data) {
+                if ($data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
+                    $order[] = $data;
+                }
+            }
+        }
+        $orders = $this->paginate($order, 20);
+        $orders->withPath('');
+        return view('backend.content.order.recent.index', compact('orders'));
     }
-  }
 
-
-  public function depositCoupon($id)
-  {
-    $data = [
-      'order_id' => request('order_item_id', null),
-      'deposit' => request('deposit', null),
-    ];
-    $orderResponse = $this->depositCouponTrait($data);
-    if ($orderResponse->status == "Success") {
-      return redirect()->back()->withFlashSuccess('Coupon Deposited Successfully');
-    } else {
-      return redirect()->back()->withFlashError('Error');
+    public function show($id)
+    {
+        $receivedData = $this->singleOrder($id);
+        $order = $receivedData->orders;
+        return view('backend.content.order.showNew', compact('order'));
     }
-  }
 
+    public function recentorderStatusUpdate()
+    {
+        $data = [
+            'order_id' => request('order_id', null),
+            'status' => request('status', null),
+        ];
+        $orderResponse = $this->orderStatusUpdate($data);
+        return redirect()
+            ->back()
+            ->withFlashSuccess('Status Updated Successfully');
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $orderItem = $this->OrderItem($id);
+        if ($orderItem) {
+            $title = Str::words($orderItem->name, 6, '...');
+            $orderStatus = $this->orderStatus();
+            return \response([
+                'status' => true,
+                'title' => '#' . $orderItem->order_item_number . ' | ' . $title,
+                'editForm' => view('backend.content.order.edit', compact('orderItem', 'orderStatus'))->render(),
+            ]);
+        }
 
+        return \response([
+            'status' => false,
+            'title' => 'not found',
+            'editForm' => 'Order item not found',
+        ]);
+    }
 
-  public function orderStatus()
-  {
-    return [
-      'on-hold' => 'On Hold ',
-      'processing' => 'Processing',
-      'purchased' => 'Purchased Complete',
-      'shipped-from-suppliers' => 'shipped-from-suppliers',
-      'received-in-china-warehouse' => 'received-in-china-warehouse',
-      'shipped-from-china-warehouse' => 'shipped-from-china-warehouse',
-      'received-in-BD-warehouse' => 'received-in-BD-warehouse',
-      'on-transit-to-customer' => 'on-transit-to-customer',
-      'delivered' => 'delivered',
-      'out-of-stock' => 'out-of-stock',
-      'adjustment' => 'adjustment',
-      'refunded' => 'refunded',
-      'Waiting for Payment' => 'Waiting for Payment',
-      'Partial Paid' => 'Partial Paid',
-    ];
-  }
+    public function updateCoupon($id)
+    {
+        $data = [
+            'order_id' => request('order_item_id', null),
+            'total_coupon' => request('total_coupon', null),
+        ];
+        $orderResponse = $this->updateCouponTrait($data);
+        if ($orderResponse->status == 'Success') {
+            return redirect()
+                ->back()
+                ->withFlashSuccess('Coupon Updated Successfully');
+        } else {
+            return redirect()
+                ->back()
+                ->withFlashError('Error');
+        }
+    }
 
-  public function validateOrderItems($update_id = null)
-  {
-    return request()->validate([
-      'order_item_id' => 'required',
-      'chinaLocalDelivery' => 'nullable|numeric|min:0|max:99999999',
-      'order_number' => 'nullable|string|min:0|max:191',
-      'shipping_rate' => 'nullable|numeric|min:0|max:99999999',
-      'actual_weight' => 'nullable|numeric|min:0|max:99999999',
-      'shipping_charge' => 'nullable|numeric|min:0|max:99999999',
-      'quantity' => 'nullable|numeric|min:0|max:99999999',
-      'product_value' => 'nullable|numeric|min:0|max:99999999',
-      'first_payment' => 'nullable|numeric|min:0|max:99999999',
-      'coupon_contribution' => 'nullable|numeric|min:0|max:99999999',
-      'courier_bill' => 'nullable|numeric|min:0|max:99999999',
-      'out_of_stock' => 'nullable|numeric|min:0|max:99999999',
-      'missing' => 'nullable|numeric|min:0|max:99999999',
-      'adjustment' => 'nullable|numeric|max:99999999',
-      'refunded' => 'nullable|numeric|min:0|max:99999999',
-      'due_payment' => 'nullable|numeric|min:0|max:99999999',
-      'last_payment' => 'nullable|numeric|min:0|max:99999999',
+    public function depositCoupon($id)
+    {
+        $data = [
+            'order_id' => request('order_item_id', null),
+            'deposit' => request('deposit', null),
+        ];
+        $orderResponse = $this->depositCouponTrait($data);
+        if ($orderResponse->status == 'Success') {
+            return redirect()
+                ->back()
+                ->withFlashSuccess('Coupon Deposited Successfully');
+        } else {
+            return redirect()
+                ->back()
+                ->withFlashError('Error');
+        }
+    }
 
-      'order_item_rmb' => 'nullable',
-      'purchase_rmb' => 'nullable|string',
-      'purchase_cost_bd' => 'nullable|string',
-      'china_local_delivery_rmb' => 'nullable|string',
-      'shipping_from' => 'nullable|string',
-      'shipping_mark' => 'nullable|string',
-      'chn_warehouse_qty' => 'nullable|string',
-      'chn_warehouse_weight' => 'nullable|string',
-      'cbm' => 'nullable|string',
-      'carton_id' => 'nullable|string',
-      'tracking_number' => 'nullable|string',
-      'shipped_by' => 'nullable|string',
-      'status' => 'nullable|string',
-      'product_bd_received_cost' => 'nullable|string',
-    ]);
-  }
+    public function orderStatus()
+    {
+        return [
+            'on-hold' => 'On Hold ',
+            'processing' => 'Processing',
+            'purchased' => 'Purchased Complete',
+            'shipped-from-suppliers' => 'shipped-from-suppliers',
+            'received-in-china-warehouse' => 'received-in-china-warehouse',
+            'shipped-from-china-warehouse' => 'shipped-from-china-warehouse',
+            'received-in-BD-warehouse' => 'received-in-BD-warehouse',
+            'on-transit-to-customer' => 'on-transit-to-customer',
+            'delivered' => 'delivered',
+            'out-of-stock' => 'out-of-stock',
+            'adjustment' => 'adjustment',
+            'refunded' => 'refunded',
+            'Waiting for Payment' => 'Waiting for Payment',
+            'Partial Paid' => 'Partial Paid',
+        ];
+    }
+
+    public function validateOrderItems($update_id = null)
+    {
+        return request()->validate([
+            'order_item_id' => 'required',
+            'chinaLocalDelivery' => 'nullable|numeric|min:0|max:99999999',
+            'order_number' => 'nullable|string|min:0|max:191',
+            'shipping_rate' => 'nullable|numeric|min:0|max:99999999',
+            'actual_weight' => 'nullable|numeric|min:0|max:99999999',
+            'shipping_charge' => 'nullable|numeric|min:0|max:99999999',
+            'quantity' => 'nullable|numeric|min:0|max:99999999',
+            'product_value' => 'nullable|numeric|min:0|max:99999999',
+            'first_payment' => 'nullable|numeric|min:0|max:99999999',
+            'coupon_contribution' => 'nullable|numeric|min:0|max:99999999',
+            'courier_bill' => 'nullable|numeric|min:0|max:99999999',
+            'out_of_stock' => 'nullable|numeric|min:0|max:99999999',
+            'missing' => 'nullable|numeric|min:0|max:99999999',
+            'adjustment' => 'nullable|numeric|max:99999999',
+            'refunded' => 'nullable|numeric|min:0|max:99999999',
+            'due_payment' => 'nullable|numeric|min:0|max:99999999',
+            'last_payment' => 'nullable|numeric|min:0|max:99999999',
+
+            'order_item_rmb' => 'nullable',
+            'purchase_rmb' => 'nullable|string',
+            'purchase_cost_bd' => 'nullable|string',
+            'china_local_delivery_rmb' => 'nullable|string',
+            'shipping_from' => 'nullable|string',
+            'shipping_mark' => 'nullable|string',
+            'chn_warehouse_qty' => 'nullable|string',
+            'chn_warehouse_weight' => 'nullable|string',
+            'cbm' => 'nullable|string',
+            'carton_id' => 'nullable|string',
+            'product_type' => 'nullable|string',
+            'tracking_number' => 'nullable|string',
+            'shipped_by' => 'nullable|string',
+            'status' => 'nullable|string',
+            'product_bd_received_cost' => 'nullable|string',
+        ]);
+    }
 }

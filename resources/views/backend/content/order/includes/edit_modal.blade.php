@@ -46,7 +46,7 @@
                         </div>
                         <input type="hidden" name="product_value" id="product_value" class="form-control" />
                         <div class="form-group">
-                            <label for="product_bd_received_coast">BDT Received From Customer(BD Receive)</label>
+                            <label for="product_bd_received_cost">BDT Received From Customer(BD Receive)</label>
                             <input type="text" name="product_bd_received_cost" id="product_bd_received_cost" readonly
                                 placeholder="BD Received Cost" class="form-control" />
                             <small class="form-text text-muted">(China Local Delivery*Conversion)+Product Value</small>
@@ -83,11 +83,6 @@
                                 class="form-control" />
                         </div>
 
-                        {{-- <div class="form-group">
-                        <label for="name">Product Name</label>
-                        <input type="text" name="name" id="name" placeholder="Product Name" class="form-control" />
-                    </div> --}}
-
                         <div class="form-group">
                             <label for="chn_warehouse_qty">China Warehouse Qty</label>
                             <input type="text" name="chn_warehouse_qty" id="chn_warehouse_qty"
@@ -110,6 +105,11 @@
                             <label for="carton_id">Carton ID</label>
                             <input type="text" name="carton_id" id="carton_id" placeholder="Carton Id"
                                 class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product_type">Product Type</label>
+                            <textarea type="text" class="form-control" name="product_type" id="product_type"></textarea>
                         </div>
 
                         <div class="form-group">
