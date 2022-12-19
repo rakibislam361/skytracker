@@ -17,6 +17,14 @@
     <div class="card">
         <div class="card-header">
             <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
+
+
+            {{-- <button type="button" class="btn btn-primary float-right" id="changeGroupStatusButton" data-toggle="tooltip"
+                title="@lang('Change Status')" disabled="true">
+                @lang('Status')
+            </button> --}}
+            <!-- btn-group-->
+
             @include('backend.content.order.includes.filter')
             {{-- 
             <div class="status-control mt-5">

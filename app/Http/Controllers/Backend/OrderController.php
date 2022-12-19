@@ -92,7 +92,6 @@ class OrderController extends Controller
             ->user()
             ->roles->first();
         $roles = $userRole ? $userRole->name : null;
-        // dd($roles);
         if ($roles == 'Administrator') {
             foreach ($ordersData->orders as $data) {
                 $order[] = $data;

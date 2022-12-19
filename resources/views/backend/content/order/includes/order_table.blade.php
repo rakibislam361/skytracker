@@ -2,7 +2,8 @@
        <table class="table table-hover table-bordered mb-0 order-table table-striped">
            <thead>
                <tr>
-                   {{-- <th class="align-content-center text-center">Select<input type="checkbox" name="checkAllorder" id="checkAllorder"></th>  --}}
+                   {{-- <th class="align-content-center text-center">Select<input type="checkbox" name="checkAllorder"
+                           id="checkAllorder"></th> --}}
                    <th class="align-content-center text-center">Date</th>
                    <th class="align-content-center text-center">Item Number</th>
                    <th class="align-content-center text-center">Order ID</th>
@@ -44,7 +45,8 @@
            <tbody>
                @foreach ($orders as $order)
                    <tr class="order-modal" data-value="{{ json_encode($order) }}">
-                       {{-- <th class="align-content-center text-center"><input type="checkbox" class="checkoneItem" name="checkOrder" id="checkOrder"></th>  --}}
+                       {{-- <td class="align-content-center text-center"><input type="checkbox" class="checkoneItem"
+                               name="checkOrder" id="checkOrder"></td> --}}
                        <td class="align-content-center text-center">
                            {{ $order->created_at ? date('d/m/Y', strtotime($order->created_at)) : 'N/A' }}
                        </td>
