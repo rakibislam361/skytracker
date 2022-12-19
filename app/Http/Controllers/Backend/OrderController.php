@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Backend\Auth;
-use Log;
+// use Log;
 
 class OrderController extends Controller
 {
@@ -64,7 +64,6 @@ class OrderController extends Controller
     {
         $data = $this->validateOrderItems();
         $orderResponse = $this->order_update($data);
-
         return $orderResponse;
     }
 

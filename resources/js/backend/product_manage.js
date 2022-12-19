@@ -61,10 +61,7 @@ $(function () {
         })
         .on("dblclick", ".order-modal", function () {
             let itemValue = $(this).data("value");
-            $("#statusChargeForm").attr(
-                "action",
-                `/admin/order/${itemValue.id}`
-            );
+            $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
             $("#order_item_id").val(itemValue.id);
             $("#order_item_rmb").val(itemValue.order_item_rmb);
             $("#purchase_rmb").val(itemValue.purchase_rmb);
@@ -86,19 +83,19 @@ $(function () {
             );
             $("#chinaLocalDelivery").val(itemValue.chinaLocalDelivery);
             $("#purchase_cost_bd").val(itemValue.purchase_cost_bd);
-            $("#changeStatusButton").modal("show");
+            $("#updateButton").modal("show");
         })
 
         .on("click", ".order-item-modal", function () {
             let itemValue = $(this).data("value");
             $(".order_item_id").val(itemValue);
-            $("#changeStatusButton").modal("show");
+            $("#updateButton").modal("show");
         })
 
         .on("click", "#statusSubmitBtn", function (event) {
             event.preventDefault();
-            var formData = $("#statusChargeForm").serialize();
-            let url = $("#statusChargeForm").attr("action");
+            var formData = $("#updateItem").serialize();
+            let url = $("#updateItem").attr("action");
             $.ajax({
                 type: "put",
                 url: url,
