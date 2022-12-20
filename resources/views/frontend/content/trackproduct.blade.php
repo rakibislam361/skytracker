@@ -1,4 +1,4 @@
-<section>
+{{-- <section>
     <div class="theme-container container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2 track-prod clrbg-before wow slideInUp" data-wow-offset="50"
@@ -25,4 +25,4 @@
         </div>
     </div>
 
-</section>
+</section> --}}

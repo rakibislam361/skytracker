@@ -12,7 +12,16 @@
         $refundedCount = null;
         $processingCount = null;
         $purchasedCount = null;
+        
+        // dd($allOrdersCount);
+        // $count = null;
+        // foreach ($orders as $key => $status) {
+        //     $count += count($status->status);
+        // }
+        // dd($totalcount);
+        
     @endphp
+
 
     <div class="card">
         <div class="card-header">

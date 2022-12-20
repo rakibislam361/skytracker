@@ -53,18 +53,34 @@ class OrderController extends Controller
                 }
             }
         }
-
+        $totalcount = count($order);
+        // $partial = $order['status'];
+        // dd($partial);
+        // $status = count($partial);
         $orders = $this->paginate($order, 20);
         $orders->withPath('');
 
-        return view('backend.content.order.index', compact('orders'));
+
+
+        return view('backend.content.order.index', compact('orders', 'totalcount'));
     }
 
     public function update($id)
     {
         $data = $this->validateOrderItems();
         $orderResponse = $this->order_update($data);
+
         return $orderResponse;
+
+        // if ($orderResponse->status == 'Success') {
+        //     return redirect()
+        //         ->back()
+        //         ->withFlashSuccess('Coupon Updated Successfully');
+        // } else {
+        //     return redirect()
+        //         ->back()
+        //         ->withFlashError('Error');
+        // }
     }
 
     /**
