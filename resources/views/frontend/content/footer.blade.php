@@ -21,7 +21,7 @@
                     <h2 class="title-1 fw-900">important links</h2>
                     <ul>
                         <li> <a href="https://www.skybuybd.com/">Skybuy</a> </li>
-                        <li> <a href="https://www.chinabaz.com/">Chinabaz</a> </li>
+                        <li> <a href="https://www.skyonebd.com/">SkyOne</a> </li>
                     </ul>
                 </div>
                 <div class="col-md-3 col-sm-6 footer-widget">

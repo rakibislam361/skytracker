@@ -21,38 +21,38 @@
                                             <h3 style="margin-left: 20%">Your Searched Product Details</h3>
                                         </tr>
 
-                                        <tr>
+                                        {{-- <tr>
                                             <th>@lang('Invoice')</th>
                                             <td>{{ $track->invoice }}</td>
-                                        </tr>
+                                        </tr> --}}
 
                                         {{-- <tr>
-                  <th>@lang('Product Name')</th>
+                                            <th>@lang('Product Name')</th>
 
-                  <?php $p_name = json_decode($track->productName, true); ?>
+                                            <?php $p_name = json_decode($track->productName, true); ?>
 
-                  <td>
-                    @foreach ($p_name as $pName)
-                    {{$pName}},
-                    @endforeach
-                  </td>
+                                            <td>
+                                                @foreach ($p_name as $pName)
+                                                    {{ $pName }},
+                                                @endforeach
+                                            </td>
 
-                </tr>              --}}
+                                        </tr> --}}
 
-                                        <tr>
+                                        {{-- <tr>
                                             <th>@lang('Status')</th>
                                             <td>{{ $track->status->name }}</td>
-                                        </tr>
+                                        </tr> --}}
 
                                         {{-- <tr>
-                  <th>@lang('Warehouse')</th>
-                  <td>{{ $track->warehouse->name }}</td>
-                </tr>
-                
-                  <tr>
-                  <th>@lang('Shipping Type')</th>
-                  <td>{{ $track->shipping->name }}</td>
-                </tr> --}}
+                                            <th>@lang('Warehouse')</th>
+                                            <td>{{ $track->warehouse->name }}</td>
+                                        </tr> --}}
+
+                                        <tr>
+                                            <th>@lang('Shipping Type')</th>
+                                            <td>{{ $track->shipping->name }}</td>
+                                        </tr>
 
                                     </table>
                                 </div>
