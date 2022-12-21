@@ -12,10 +12,7 @@
             <div class="col-md-12">
                 @include('frontend.content.aboutus')
             </div>
-            <!--col-md-10-->
         </div>
-        <!--row-->
     </div>
-    <!--container-->
     @include('frontend.content.footer')
 @endsection
