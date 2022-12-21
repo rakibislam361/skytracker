@@ -11,21 +11,26 @@
                         <div class="login-form clrbg-before">
                             <x-forms.post :action="route('frontend.auth.login')" id="loginForm">
                                 @csrf
-                                <div class="form-group"> <input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" /></div>
-                                <div class="form-group"> <input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password') }}" maxlength="100" required autocomplete="current-password" /></div>
+                                <div class="form-group"> <input type="email" name="email" id="email"
+                                        class="form-control" placeholder="{{ __('E-mail Address') }}"
+                                        value="{{ old('email') }}" maxlength="255" required autofocus
+                                        autocomplete="email" /></div>
+                                <div class="form-group"> <input type="password" name="password" id="password"
+                                        class="form-control" placeholder="{{ __('Password') }}" maxlength="100" required
+                                        autocomplete="current-password" /></div>
 
                                 {{-- error messeage --}}
                                 @error('email')
-                                <span class="invalid-feedback" role="alert" style="text-align:center">
-                                    <strong class="alert-danger">{{ $message }}</strong>
-                                </span>
-
+                                    <span class="invalid-feedback" role="alert" style="text-align:center">
+                                        <strong class="alert-danger">{{ $message }}</strong>
+                                    </span>
                                 @enderror
                                 {{-- error messeage end --}}
 
                                 <div class="form-group">
                                     <div class="form-check">
-                                        <input name="remember" id="remember" class="form-check-input" type="checkbox" {{ old('remember') ? 'checked' : '' }} />
+                                        <input name="remember" id="remember" class="form-check-input" type="checkbox"
+                                            {{ old('remember') ? 'checked' : '' }} />
 
                                         <label class="form-check-label" for="remember">
                                             @lang('Remember Me')
@@ -34,11 +39,11 @@
                                 </div>
 
 
-                                @if(config('boilerplate.access.captcha.login'))
-                                <div class="col">
-                                    @captcha
-                                    <input type="hidden" name="captcha_status" value="true" />
-                                </div>
+                                @if (config('boilerplate.access.captcha.login'))
+                                    <div class="col">
+                                        @captcha
+                                        <input type="hidden" name="captcha_status" value="true" />
+                                    </div>
                                 @endif
 
                                 <div>
@@ -55,7 +60,8 @@
             </div>
             <div class="create-accnt">
                 <span>Don’t have an account? </span>
-                <h2 class="title-2"> <a data-toggle="modal" data-dismiss="modal" data-target="#register-popup" href="#register-popup" name="register" class="green-clr under-line">Create a free account</a>
+                <h2 class="title-2"> <a data-toggle="modal" data-dismiss="modal" data-target="#register-popup"
+                        href="#register-popup" name="register" class="green-clr under-line">Create a free account</a>
                 </h2>
             </div>
         </div>
@@ -63,14 +69,13 @@
 </div>
 
 {{-- if error login modal popup --}}
-<?php $log = $errors ?>
-@if ( (Route::current()->getName() != 'login') and count($log) > 0 and !empty('loginForm') )
-<script>
-    $(document).ready(function() {
-        $('#login-popup').modal('show');
-    });
-</script>
-
+<?php $log = $errors; ?>
+@if (Route::current()->getName() != 'login' and count($log) > 0 and !empty('loginForm'))
+    <script>
+        $(document).ready(function() {
+            $('#login-popup').modal('show');
+        });
+    </script>
 @endif
 
-{{-- if error login modal popup end--}}
+{{-- if error login modal popup end --}}

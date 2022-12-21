@@ -69,7 +69,7 @@ class OrderController extends Controller
     {
         $data = $this->validateOrderItems();
         $orderResponse = $this->order_update($data);
-
+        // Log::info($orderResponse);
         return $orderResponse;
 
         // if ($orderResponse->status == 'Success') {
