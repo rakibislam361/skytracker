@@ -9,10 +9,10 @@
 
     </div>
     <div class="pad-120 visible-lg"></div>
-    <div class="col-md-8 col-md-offset-2 track-prod" data-wow-offset="50" data-wow-delay=".20s">
 
+    <div class="col-md-8 col-md-offset-2 track-prod">
         @include('frontend.content.d2d')
-
     </div>
+
     </div>
 </section>

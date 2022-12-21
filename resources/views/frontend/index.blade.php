@@ -33,6 +33,7 @@
             @include('frontend.content.footer')
 
             @include('frontend.auth.login')
+            @include('frontend.pages.d2dpopup')
 
         </main>
         <div class="to-top theme-clr-bg transition"> <i class="fa fa-angle-up"></i> </div>

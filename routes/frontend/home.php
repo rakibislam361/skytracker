@@ -6,6 +6,7 @@ use App\Http\Controllers\Frontend\TermsController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\TrackingController;
+use App\Http\Controllers\Frontend\d2dController;
 use Tabuna\Breadcrumbs\Trail;
 
 /*
@@ -50,4 +51,11 @@ Route::get('track', [TrackingController::class, 'Track'])
     ->breadcrumbs(function (Trail $trail) {
         $trail->parent('frontend.index')
             ->push(__('_track'), route('frontend.pages.tracking'));
+    });
+
+Route::get('d2d', [d2dController::class, 'd2d'])
+    ->name('pages.d2d')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('frontend.index')
+            ->push(__('_d2d'), route('frontend.pages.d2d'));
     });

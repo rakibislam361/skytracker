@@ -1,4 +1,4 @@
-<form name="d2d" action="{{ route('admin.order.index') }}" method="GET">
+<form name="d2d" action="{{ route('frontend.pages.d2d') }}" method="GET">
     <div class="row">
 
         <div class="col-sm-2" style="border-right: 2px solid gray;">
@@ -135,8 +135,10 @@
             </select>
         </div>
         <div class="col-sm-1">
-            <button type="submit" class="btn btn-outline-primary btn-lg" id="search" name="search"><i
+            <button type="submit" class="btn btn-outline-primary btn-lg" id="d2d" name="d2d"><i
                     class="fa fa-search"></i></button>
+            {{-- <a data-toggle="modal" href="#d2d-popup" data- target="#d2d-popup"><i
+                    class="fa fa-search btn btn-outline-primary btn-lg"></i></a> --}}
         </div>
     </div>
 </form>
