@@ -25,7 +25,7 @@ mix.setPublicPath("public")
         "popper.js",
         "axios",
         "sweetalert2",
-        "lodash"
+        "lodash",
     ])
     .sourceMaps();
 
@@ -51,6 +51,6 @@ if (mix.inProduction()) {
 } else {
     // Uses inline source-maps on development
     mix.webpackConfig({
-        devtool: "inline-source-map"
+        devtool: "inline-source-map",
     });
 }
