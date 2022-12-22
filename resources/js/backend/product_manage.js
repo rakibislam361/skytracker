@@ -51,7 +51,6 @@ $(function () {
             var hiddenField = changeStatusModal.find(".hiddenField");
             var hiddenInput = "";
             $("input.checkboxItem:checked").each(function (index) {
-                
                 hiddenInput += `<input type="hidden" name="order_item_id[]" value="${$(
                     this
                 ).val()}">`;

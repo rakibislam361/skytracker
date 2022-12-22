@@ -52,7 +52,7 @@
 
         </div>
         <div class="card-body">
-            <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
+            {{-- <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -69,10 +69,10 @@
                                 @csrf
 
                                 <div class="modal-body">
-                                 
+
 
                                     <div class="hiddenField">
-                                        {{-- hidden input field append here --}}
+
                                     </div>
 
                                     <div class="form-group">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
 
