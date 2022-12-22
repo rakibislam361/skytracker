@@ -49,7 +49,7 @@ class RegisterController
      */
     public function redirectPath()
     {
-        return route(homeRoute());
+        return route(home_route());
     }
 
     /**
@@ -61,7 +61,7 @@ class RegisterController
     {
         abort_unless(config('boilerplate.access.user.registration'), 404);
 
-        return view('frontend.index');
+        return view('frontend.auth.register');
     }
 
     /**

@@ -44,7 +44,7 @@ class LoginController
      */
     public function showLoginForm()
     {
-        return view('frontend.index');
+        return view('frontend.auth.login');
     }
 
     /**
