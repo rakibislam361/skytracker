@@ -60,7 +60,7 @@
 
 
 
-<script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
 <script src="{{ asset('assets/js/334-js-popper.min.js') }}"></script>
 <script src="{{ asset('assets/js/3741-js-bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/js/5085-js-isotope.pkgd.min.js') }}"></script>
@@ -78,7 +78,7 @@
 <script src="{{ asset('assets/js/788-js-jquery.magnific-popup.min.js') }}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
 <script src="{{ asset('assets/js/9626-js-plugins.js') }}"></script>
-<script src="{{ asset('assets/js/2325-js-main.js') }}"></script>
+<script src="{{ asset('assets/js/2325-js-main.js') }}"></script> --}}
 
 
 

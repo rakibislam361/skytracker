@@ -57,7 +57,7 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
-    @extends('frontend.layouts.app')
+    {{-- @extends('frontend.layouts.app') --}}
     {{-- @include('frontend.style.style') --}}
     <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-animate.min.css') }}">
@@ -148,8 +148,32 @@
                                     <nav id="mobile-menu" style="display: none;">
                                         <ul>
                                             <li class="active"><a href="{{ route('frontend.index') }}">Home</a></li>
-                                            <li><a href="{{ route('frontend.auth.login') }}">Login</a></li>
-                                            <li><a href="{{ route('frontend.auth.register') }}">Register</a></li>
+                                            {{-- <li><a href="{{ route('frontend.auth.login') }}">Login</a></li> --}}
+                                            {{-- <li><a href="{{ route('frontend.auth.register') }}">Register</a></li> --}}
+                                            <li> @auth
+                                                    @if ($logged_in_user->isAdmin())
+                                                <li>
+                                                    <a href="{{ route('admin.dashboard') }}">
+                                                        {{ $logged_in_user->name }} </a>
+                                                </li>
+                                                @endif
+
+                                                @if ($logged_in_user->isUser())
+                                                    <li>
+                                                        <a href="{{ route('frontend.user.dashboard') }}">
+                                                            {{ $logged_in_user->name }} </a>
+                                                    </li>
+                                                @endif
+                                            @else
+                                                @if (config('boilerplate.access.user.registration'))
+                                                    <li>
+                                                        <a href="{{ route('frontend.auth.login') }}">Login</a>
+                                                    </li>
+                                                    <li><a href="{{ route('frontend.auth.register') }}">Register</a></li>
+                                                @endif
+
+                                            @endauth
+                                            </li>
                                             <li><a href="{{ route('frontend.pages.tracking') }}">Tracking</a></li>
                                             <li><a href="#">Support</a></li>
 
@@ -159,8 +183,29 @@
 
                                 <div class="header-btn">
                                     <!-- <a href="#" class="btn" data-toggle="modal" data-target="#exampleModalLong"><img src="img/icon/calculator-symbols.png" alt="icon">Get Fare Rate</a> -->
-                                    <a href="{{ route('frontend.auth.login') }}" class="btn"
-                                        data-target="#exampleModalLong">Login/Register</a>
+                                    @auth
+                                        @if ($logged_in_user->isAdmin())
+                                            <li>
+                                                <a href="{{ route('admin.dashboard') }}" class="btn">
+                                                    {{ $logged_in_user->name }} </a>
+                                            </li>
+                                        @endif
+
+                                        @if ($logged_in_user->isUser())
+                                            <li>
+                                                <a href="{{ route('frontend.user.dashboard') }}" class="btn">
+                                                    {{ $logged_in_user->name }} </a>
+                                            </li>
+                                        @endif
+                                    @else
+                                        @if (config('boilerplate.access.user.registration'))
+                                            <li>
+                                                <a href="{{ route('frontend.auth.login') }}"
+                                                    class="btn">Login/Register</a>
+                                            </li>
+                                        @endif
+
+                                    @endauth
                                     <a href="{{ route('frontend.pages.tracking') }}" class="btn"
                                         data-target="#exampleModalLong">Track Your
                                         Order</a>

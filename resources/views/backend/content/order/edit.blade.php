@@ -1,6 +1,10 @@
 {{ html()->modelForm($orderItem, 'post', route('admin.order.update', $orderItem->id))->open() }}
 @method('PATCH')
+
+<input type="hidden" name="order_update" id="order_update" value="withoutajax" class="form-control" />
+
 <input type="hidden" name="order_item_id" id="order_item_id" value={{ $orderItem->id }} class="form-control" />
+
 <div class="row">
     <div class="form-group col-md-4">
         {{ html()->label('China Local Shipping')->for('chinaLocalDelivery') }}
@@ -83,41 +87,41 @@
         <th>Total</th>
     </tr>
     @foreach ($orderItem->item_variations as $variation)
-        <tr>
-            <td class="text-center p-0">
-                <img src="{{ asset($variation->image) }}" width="80" alt="">
-            </td>
-            <td class="text-center">
-                @php
-                    $attributes = json_decode($variation->attributes);
-                @endphp
-                @forelse ($attributes as $attribute)
-                    @php
-                        $PropertyName = $attribute->PropertyName;
-                        $Value = $attribute->Value;
-                    @endphp
-                    @if ($loop->first)
-                        <p class="m-0">
-                            {!! $PropertyName !!}: <span class="ml-2">
-                                {!! $Value !!}</span>
-                        </p>
-                    @else
-                        <p class="m-0">{!! $PropertyName !!}: {!! $Value !!}</p>
-                    @endif
-                @empty
-                    <p class="m-0">No Attributes</p>
-                @endforelse
-            </td>
-            <td>
-                {{ html()->text("variation[{$variation->id}][quantity]")->class('form-control')->value($variation->quantity) }}
-            </td>
-            <td>
-                {{ html()->text("variation[{$variation->id}][price]")->class('form-control')->value($variation->price) }}
-            </td>
-            <td>
-                {{ $variation->subTotal }}
-            </td>
-        </tr>
+    <tr>
+        <td class="text-center p-0">
+            <img src="{{ asset($variation->image) }}" width="80" alt="">
+        </td>
+        <td class="text-center">
+            @php
+            $attributes = json_decode($variation->attributes);
+            @endphp
+            @forelse ($attributes as $attribute)
+            @php
+            $PropertyName = $attribute->PropertyName;
+            $Value = $attribute->Value;
+            @endphp
+            @if ($loop->first)
+            <p class="m-0">
+                {!! $PropertyName !!}: <span class="ml-2">
+                    {!! $Value !!}</span>
+            </p>
+            @else
+            <p class="m-0">{!! $PropertyName !!}: {!! $Value !!}</p>
+            @endif
+            @empty
+            <p class="m-0">No Attributes</p>
+            @endforelse
+        </td>
+        <td>
+            {{ html()->text("variation[{$variation->id}][quantity]")->class('form-control')->value($variation->quantity) }}
+        </td>
+        <td>
+            {{ html()->text("variation[{$variation->id}][price]")->class('form-control')->value($variation->price) }}
+        </td>
+        <td>
+            {{ $variation->subTotal }}
+        </td>
+    </tr>
     @endforeach
 
 </table>

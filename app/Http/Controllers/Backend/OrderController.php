@@ -68,19 +68,22 @@ class OrderController extends Controller
     public function update($id)
     {
         $data = $this->validateOrderItems();
-        $orderResponse = $this->order_update($data);
-        // Log::info($orderResponse);
-        return $orderResponse;
-
-        // if ($orderResponse->status == 'Success') {
-        //     return redirect()
-        //         ->back()
-        //         ->withFlashSuccess('Coupon Updated Successfully');
-        // } else {
-        //     return redirect()
-        //         ->back()
-        //         ->withFlashError('Error');
-        // }
+        if ($data['order_update'] == "withoutajax") {
+            $orderResponse = $this->order_update($data);
+            if ($orderResponse->status == 'Success') {
+                return redirect()
+                    ->back()
+                    ->withFlashSuccess('Order Updated Successfully');
+            } else {
+                return redirect()
+                    ->back()
+                    ->withFlashError('Error');
+            }
+        }
+        if ($data['order_update'] == "") {
+            $orderResponse = $this->order_update($data);
+            return $orderResponse;
+        }
     }
 
     /**
@@ -222,6 +225,12 @@ class OrderController extends Controller
         }
     }
 
+
+    // public function ajaxOrderUpdate()
+    // {
+    //     dd("hello");
+    // }
+
     public function orderStatus()
     {
         return [
@@ -245,6 +254,7 @@ class OrderController extends Controller
     public function validateOrderItems($update_id = null)
     {
         return request()->validate([
+            'order_update' => 'nullable',
             'order_item_id' => 'required',
             'chinaLocalDelivery' => 'nullable|numeric|min:0|max:99999999',
             'order_number' => 'nullable|string|min:0|max:191',

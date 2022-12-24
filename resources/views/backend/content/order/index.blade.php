@@ -28,23 +28,23 @@
             <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
 
 
-            <div class="btn-group float-right" role="group" aria-label="header_button_group">
-                {{-- <button type="submit" class="btn btn-info findResultButton" data-toggle="tooltip" title="@lang('Search')">
+            {{-- <div class="btn-group float-right" role="group" aria-label="header_button_group">
+                <button type="submit" class="btn btn-info findResultButton" data-toggle="tooltip" title="@lang('Search')">
                     <i class="fa fa-search"></i>
-                </button> --}}
+                </button>
                 <button type="button" class="btn btn-primary" id="changeGroupStatusButton" data-toggle="tooltip"
                     title="@lang('Change Status')">
                     @lang('Status')
                 </button>
-                {{-- <button type="button" class="btn btn-danger" id="generateInvoiceButton" data-toggle="tooltip"
+                <button type="button" class="btn btn-danger" id="generateInvoiceButton" data-toggle="tooltip"
                     title="Generate Invoice" disabled="true">
                     @lang('Generate')
-                </button> --}}
-                {{-- <a href="{{ route('admin.export', 'order_item') }}" class="btn btn-warning" data-toggle="tooltip"
+                </button>
+                <a href="{{ route('admin.export', 'order_item') }}" class="btn btn-warning" data-toggle="tooltip"
                     title="Full Export">
                     <i class="fa fa-download"></i>
-                </a> --}}
-            </div>
+                </a>
+            </div> --}}
             <!-- btn-group-->
 
             @include('backend.content.order.includes.filter')
@@ -52,7 +52,7 @@
 
         </div>
         <div class="card-body">
-            <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
+            {{-- <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
 
 

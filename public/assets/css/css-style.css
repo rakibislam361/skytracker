@@ -215,6 +215,7 @@ label {
 	letter-spacing: .5px;
 	line-height: 1;
 	margin-bottom: 0;
+	margin-left: 5px;
 	padding: 18px 30px;
 	text-align: center;
 	text-transform: uppercase;
@@ -452,6 +453,7 @@ label {
 }
 .header-btn {
 	margin-left: 30px;
+	display: flex;
 }
 .header-btn .btn {
 	font-size: 15px;

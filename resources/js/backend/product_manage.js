@@ -46,20 +46,20 @@ $(function () {
             }
         })
 
-        .on("click", "#changeGroupStatusButton", function () {
-            var changeStatusModal = $("#changeStatusButton");
-            var hiddenField = changeStatusModal.find(".hiddenField");
-            var hiddenInput = "";
-            $("input.checkboxItem:checked").each(function (index) {
-                hiddenInput += `<input type="hidden" name="order_item_id[]" value="${$(
-                    this
-                ).val()}">`;
-            });
-            console.log(hiddenInput);
-            hiddenField.html(hiddenInput);
-            changeStatusModal.modal("show");
-            $("#statusChargeForm").trigger("reset");
-        })
+        // .on("click", "#changeGroupStatusButton", function () {
+        //     var changeStatusModal = $("#changeStatusButton");
+        //     var hiddenField = changeStatusModal.find(".hiddenField");
+        //     var hiddenInput = "";
+        //     $("input.checkboxItem:checked").each(function (index) {
+        //         hiddenInput += `<input type="hidden" name="order_item_id[]" value="${$(
+        //             this
+        //         ).val()}">`;
+        //     });
+        //     console.log(hiddenInput);
+        //     hiddenField.html(hiddenInput);
+        //     changeStatusModal.modal("show");
+        //     $("#statusChargeForm").trigger("reset");
+        // })
         // .on("click", "#add-btn", function (e) {
         //     e.preventDefault();
         //     ++i;
@@ -81,7 +81,7 @@ $(function () {
         //     e.preventDefault();
         //     $(this).parents("tr").remove();
         // })
-        .on("dblclick", ".order-modal", function () {
+        .on("click", ".order-modal", function () {
             let itemValue = $(this).data("value");
             $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
             $("#order_item_id").val(itemValue.id);
@@ -118,7 +118,7 @@ $(function () {
             event.preventDefault();
             var formData = $("#updateItem").serialize();
             let url = $("#updateItem").attr("action");
-            console.log(url);
+            // console.log(url);
             $.ajax({
                 type: "put",
                 url: url,

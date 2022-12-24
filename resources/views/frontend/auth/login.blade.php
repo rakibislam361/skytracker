@@ -96,7 +96,7 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
-    @extends('frontend.layouts.app')
+    {{-- @extends('frontend.layouts.app') --}}
     {{-- @include('frontend.style.style') --}}
     <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-animate.min.css') }}">
