@@ -1,6 +1,6 @@
 <?php
 return array(
-  'url' => "https://www.skyone.trustoverseas.com.bd/api/v1",
+  'url' => "https://www.skybuybd.com/api/v1",
   'email' => "admin@admin.com",
-  'password' => "secret"
+  'password' => "OhiShahil@@@###"
 );

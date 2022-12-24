@@ -54,9 +54,6 @@ class OrderController extends Controller
             }
         }
         $totalcount = count($order);
-        // $partial = $order['status'];
-        // dd($partial);
-        // $status = count($partial);
         $orders = $this->paginate($order, 20);
         $orders->withPath('');
 
