@@ -24,32 +24,32 @@
                                         <tr>
                                             <th>@lang('Shipping Type')</th>
                                             <td>{{ $track->shipping->name }}</td>
-                                        </tr>
+</tr>
 
-                                    </table>
-                                </div>
-                            @empty
-                                <table class="table table-striped table-hover table-bordered mb-0">
-                                    <tr>
-                                        <td>
-                                            <h3 style="margin-left: 30%">Sorry!!! Nothing Found</h3>
-                                        </td>
-                                    </tr>
-                                </table>
-                            @endforelse
+</table>
+</div>
+@empty
+<table class="table table-striped table-hover table-bordered mb-0">
+    <tr>
+        <td>
+            <h3 style="margin-left: 30%">Sorry!!! Nothing Found</h3>
+        </td>
+    </tr>
+</table>
+@endforelse
 
-                        </div>
+</div>
 
 
 
-                    </x-slot>
-                </x-frontend.card>
-            </div>
-            <!--col-md-10-->
-        </div>
-        <!--row-->
-    </div>
-    @include('frontend.content.footer')
+</x-slot>
+</x-frontend.card>
+</div>
+<!--col-md-10-->
+</div>
+<!--row-->
+</div>
+@include('frontend.content.footer')
 
 @endsection --}}
 
