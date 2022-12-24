@@ -865,7 +865,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-6">
                             <div class="single-delivery-services mb-70 pr-75">
                                 <div class="ds-icon order-0 order-md-2">
-                                    <img src="images/icon-ds_icon01.png" alt="icon">
+                                    <img src="{{ asset('assets/images/icon-ds_icon01.png') }}" alt="icon">
                                 </div>
                                 <div class="ds-content text-center text-sm-left text-md-right">
                                     <h5>Create Booking</h5>
@@ -877,7 +877,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-6">
                             <div class="single-delivery-services mb-70 pr-75">
                                 <div class="ds-icon order-0 order-md-2">
-                                    <img src="images/icon-ds_icon01.png" alt="icon">
+                                    <img src="{{ asset('assets/images/icon-ds_icon01.png') }}" alt="icon">
                                 </div>
                                 <div class="ds-content text-center text-sm-left text-md-right">
                                     <h5>Track Your Booking</h5>
@@ -889,7 +889,7 @@
                         <div class="col-xl-4 col-lg-6 col-md-6">
                             <div class="single-delivery-services mb-70 pr-75">
                                 <div class="ds-icon order-0 order-md-2">
-                                    <img src="images/icon-ds_icon01.png" alt="icon">
+                                    <img src="{{ asset('assets/images/icon-ds_icon01.png') }}" alt="icon">
                                 </div>
                                 <div class="ds-content text-center text-sm-left text-md-right">
                                     <h5>Get Your Shipment Delivered</h5>

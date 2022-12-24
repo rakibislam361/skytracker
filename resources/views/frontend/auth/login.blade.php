@@ -505,10 +505,15 @@
                                                     autocomplete="current-password" /></div>
 
 
-                                            @error('email')
+                                            {{-- @error('email')
                                                 <span class="invalid-feedback" role="alert" style="text-align:center">
                                                     <strong class="alert-danger">{{ $message }}</strong>
                                                 </span>
+                                            @enderror --}}
+                                            @error('email')
+                                                <script type="text/javascript">
+                                                    alert('{{ $message }}');
+                                                </script>
                                             @enderror
 
 
