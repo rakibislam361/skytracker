@@ -12,72 +12,62 @@
                                 @csrf
                                 <div class="form-group"> <input type="text" name="name" id="name"
                                         class="form-control" value="{{ old('name') }}"
-                                        placeholder="{{ __('Name') }}" maxlength="100" required autofocus
-                                        autocomplete="name" /></div>
-                                <div class="form-group"><input type="email" name="email" id="email"
-                                        class="form-control" placeholder="{{ __('E-mail Address') }}"
-                                        value="{{ old('email') }}" maxlength="255" required autocomplete="email" />
-                                </div>
-                                <div class="form-group"><input type="password" name="password" id="password"
-                                        class="form-control" placeholder="{{ __('Password') }}" maxlength="100" required
-                                        autocomplete="new-password" /></div>
-                                <div class="form-group"><input type="password" name="password_confirmation"
-                                        id="password_confirmation" class="form-control"
-                                        placeholder="{{ __('Password Confirmation') }}" maxlength="100" required
-                                        autocomplete="new-password" /></div>
+placeholder="{{ __('Name') }}" maxlength="100" required autofocus
+autocomplete="name" /></div>
+<div class="form-group"><input type="email" name="email" id="email" class="form-control" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autocomplete="email" />
+</div>
+<div class="form-group"><input type="password" name="password" id="password" class="form-control" placeholder="{{ __('Password') }}" maxlength="100" required autocomplete="new-password" /></div>
+<div class="form-group"><input type="password" name="password_confirmation" id="password_confirmation" class="form-control" placeholder="{{ __('Password Confirmation') }}" maxlength="100" required autocomplete="new-password" /></div>
 
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input type="checkbox" name="terms" value="1" id="terms"
-                                            class="form-check-input" required>
-                                        <label class="form-check-label" for="terms">
-                                            @lang('I agree to the') <a href="{{ route('frontend.pages.terms') }}"
-                                                target="_blank">@lang('Terms & Conditions')</a>
-                                        </label>
-                                    </div>
-                                </div>
-
-
-                              
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert" style="text-align:center">
-                                        <strong class="alert-danger">{{ $message }}</strong>
-                                    </span>
-                                @enderror
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert" style="text-align:center">
-                                        <strong class="alert-danger">{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                              
-
-                                @if (config('boilerplate.access.captcha.registration'))
-                                    <div class="form-group">
-                                        <div class="col-md-4">
-                                            @captcha
-                                            <input type="hidden" name="captcha_status" value="true" />
-                                        </div>
-                                    </div>
-                                @endif
-                                <div>
-                                    <button class="btn-1" type="submit">@lang('Sign Up')</button>
-                                </div>
-                            </x-forms.post>
-                        </div>
-                    </x-slot>
-                </x-frontend.card>
-            </div>
-            <div class="create-accnt">
-                <span>Already have an account?</span>
-                <h2 class="title-2"> <a data-toggle="modal" data-dismiss="modal" data-target="#login-popup"
-                        href="#login-popup" name="login" class="green-clr under-line">Sign In From Existing
-                        Account</a>
-                </h2>
-            </div>
-        </div>
-
+<div class="form-group">
+    <div class="form-check">
+        <input type="checkbox" name="terms" value="1" id="terms" class="form-check-input" required>
+        <label class="form-check-label" for="terms">
+            @lang('I agree to the') <a href="{{ route('frontend.pages.terms') }}" target="_blank">@lang('Terms & Conditions')</a>
+        </label>
     </div>
+</div>
+
+
+
+@error('email')
+<span class="invalid-feedback" role="alert" style="text-align:center">
+    <strong class="alert-danger">{{ $message }}</strong>
+</span>
+@enderror
+
+@error('password')
+<span class="invalid-feedback" role="alert" style="text-align:center">
+    <strong class="alert-danger">{{ $message }}</strong>
+</span>
+@enderror
+
+
+@if (config('boilerplate.access.captcha.registration'))
+<div class="form-group">
+    <div class="col-md-4">
+        @captcha
+        <input type="hidden" name="captcha_status" value="true" />
+    </div>
+</div>
+@endif
+<div>
+    <button class="btn-1" type="submit">@lang('Sign Up')</button>
+</div>
+</x-forms.post>
+</div>
+</x-slot>
+</x-frontend.card>
+</div>
+<div class="create-accnt">
+    <span>Already have an account?</span>
+    <h2 class="title-2"> <a data-toggle="modal" data-dismiss="modal" data-target="#login-popup" href="#login-popup" name="login" class="green-clr under-line">Sign In From Existing
+            Account</a>
+    </h2>
+</div>
+</div>
+
+</div>
 </div> --}}
 
 
@@ -103,12 +93,24 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" href="favicons/2157-img-favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/favicons/2157-img-favicon.png') }}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
     @extends('frontend.layouts.app')
-    @include('frontend.style.style')
+    {{-- @include('frontend.style.style') --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-meanmenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-default.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}">
 
 <body>
 
@@ -122,8 +124,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-6">
                         <div class="logo">
-                            <a href="{{ route('frontend.index') }}"><img src="{{ asset('assets/img/logo/logo.png') }}"
-                                    class="mobile-logo" alt="Logo"></a>
+                            <a href="{{ route('frontend.index') }}"><img src="{{ asset('assets/img/logo/logo.png') }}" class="mobile-logo" alt="Logo"></a>
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-6 d-none d-md-block">
@@ -135,7 +136,7 @@
                                         <li class="active"><a href="{{ route('frontend.index') }}">Home</a></li>
                                         <li><a href="{{ route('frontend.auth.login') }}">Login</a></li>
                                         <li><a href="{{ route('frontend.auth.register') }}">Register</a></li>
-                                        <li><a href="tracking.html">Tracking</a></li>
+                                        <li><a href="{{ route('frontend.pages.tracking') }}">Tracking</a></li>
                                         <li><a href="#">Support</a></li>
 
                                     </ul>
@@ -144,9 +145,8 @@
 
                             <div class="header-btn">
                                 <!-- <a href="#" class="btn" data-toggle="modal" data-target="#exampleModalLong"><img src="img/icon/calculator-symbols.png" alt="icon">Get Fare Rate</a> -->
-                                <a href="{{ route('frontend.auth.login') }}" class="btn"
-                                    data-target="#exampleModalLong">Login/Register</a>
-                                <a href="tracking.html" class="btn" data-target="#exampleModalLong">Track Your
+                                <a href="{{ route('frontend.auth.login') }}" class="btn" data-target="#exampleModalLong">Login/Register</a>
+                                <a href="{{ route('frontend.pages.tracking') }}" class="btn" data-target="#exampleModalLong">Track Your
                                     Order</a>
                             </div>
                         </div>
@@ -161,8 +161,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <form>
-                                    <input type="text" placeholder="Search here..." spellcheck="false"
-                                        data-ms-editor="true">
+                                    <input type="text" placeholder="Search here..." spellcheck="false" data-ms-editor="true">
                                     <button><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
@@ -196,18 +195,12 @@
                                                         <div class="shipping-address-form">
                                                             <div class="shipping-country-box form-group">
                                                                 <label for="from-country">from country</label>
-                                                                <input type="text" required="required"
-                                                                    id="from-country"
-                                                                    placeholder="Select Your Destination"
-                                                                    spellcheck="false" data-ms-editor="true">
+                                                                <input type="text" required="required" id="from-country" placeholder="Select Your Destination" spellcheck="false" data-ms-editor="true">
                                                             </div>
                                                             <div class="shipping-address-box form-group">
                                                                 <label for="from-country-location">add your
                                                                     location</label>
-                                                                <input type="text" required="required"
-                                                                    id="from-country-location"
-                                                                    placeholder="Select Your Destination"
-                                                                    spellcheck="false" data-ms-editor="true">
+                                                                <input type="text" required="required" id="from-country-location" placeholder="Select Your Destination" spellcheck="false" data-ms-editor="true">
                                                             </div>
                                                         </div>
                                                     </li>
@@ -218,18 +211,12 @@
                                                         <div class="shipping-address-form">
                                                             <div class="shipping-country-box form-group">
                                                                 <label for="to-country">TO country</label>
-                                                                <input type="text" required="required"
-                                                                    id="to-country"
-                                                                    placeholder="Select Your Destination"
-                                                                    spellcheck="false" data-ms-editor="true">
+                                                                <input type="text" required="required" id="to-country" placeholder="Select Your Destination" spellcheck="false" data-ms-editor="true">
                                                             </div>
                                                             <div class="shipping-address-box form-group">
                                                                 <label for="to-country-location">add your
                                                                     location</label>
-                                                                <input type="text" required="required"
-                                                                    id="to-country-location"
-                                                                    placeholder="Select Your Destination"
-                                                                    spellcheck="false" data-ms-editor="true">
+                                                                <input type="text" required="required" id="to-country-location" placeholder="Select Your Destination" spellcheck="false" data-ms-editor="true">
                                                             </div>
                                                         </div>
                                                     </li>
@@ -270,8 +257,7 @@
                                                     </div>
                                                     <div class="single-shipping-details-box shipping-qty">
                                                         <label for="QTY-number">QTY</label>
-                                                        <input type="number" value="1" id="QTY-number"
-                                                            required="required">
+                                                        <input type="number" value="1" id="QTY-number" required="required">
                                                     </div>
                                                     <div class="single-shipping-details-box shipping-weight">
                                                         <label for="packaging-weight">TOTAL WEIGHT</label>
@@ -308,19 +294,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" required="required"
-                                                        class="custom-control-input" id="customControlInline">
-                                                    <label class="custom-control-label"
-                                                        for="customControlInline">Logistics is generally the detailed
+                                                    <input type="checkbox" required="required" class="custom-control-input" id="customControlInline">
+                                                    <label class="custom-control-label" for="customControlInline">Logistics is generally the detailed
                                                         organization and implementation of a complex operation. In a
                                                         general business sense, logistics is the management of the flow
                                                         of things between the point of origin and the point</label>
                                                 </div>
                                             </div>
-                                            <button class="btn f-left prevBtn-2 btn-success"
-                                                type="button">Previous</button>
-                                            <button class="btn f-right nextBtn-2 btn-success"
-                                                type="button"><span>$19.00</span> Booking</button>
+                                            <button class="btn f-left prevBtn-2 btn-success" type="button">Previous</button>
+                                            <button class="btn f-right nextBtn-2 btn-success" type="button"><span>$19.00</span> Booking</button>
                                         </div>
                                     </div>
                                     <div class="single-setup" id="step-3" style="display: none;">
@@ -333,9 +315,7 @@
                                                     <div class="shipping-details-info shipping-tracking-info">
                                                         <div class="modal-tracking-info">
                                                             <label for="invoice-id">invoice Id</label>
-                                                            <input type="text" id="invoice-id"
-                                                                placeholder="Enter Your Id" spellcheck="false"
-                                                                data-ms-editor="true">
+                                                            <input type="text" id="invoice-id" placeholder="Enter Your Id" spellcheck="false" data-ms-editor="true">
                                                         </div>
                                                         <div class="modal-tracking-info">
                                                             <label>Search invoice</label>
@@ -353,102 +333,61 @@
                                                     </div>
                                                 </div>
                                                 <div class="tracking-modal-map">
-                                                    <div id="contact-map"
-                                                        style="position: relative; overflow: hidden;">
-                                                        <div
-                                                            style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+                                                    <div id="contact-map" style="position: relative; overflow: hidden;">
+                                                        <div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
                                                             <div style="overflow: hidden;"></div>
-                                                            <div class="gm-style"
-                                                                style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
-                                                                <div tabindex="0" aria-label="Map"
-                                                                    aria-roledescription="map" role="region"
-                                                                    style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;">
-                                                                    <div
-                                                                        style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
-                                                                        <div
-                                                                            style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 0;">
-                                                                                <div
-                                                                                    style="position: absolute; z-index: 989; transform: matrix(1, 0, 0, 1, -93, -84);">
-                                                                                    <div
-                                                                                        style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;">
-                                                                                        <div
-                                                                                            style="width: 256px; height: 256px;">
+                                                            <div class="gm-style" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
+                                                                <div tabindex="0" aria-label="Map" aria-roledescription="map" role="region" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;">
+                                                                    <div style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
+                                                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
+                                                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                                                <div style="position: absolute; z-index: 989; transform: matrix(1, 0, 0, 1, -93, -84);">
+                                                                                    <div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;">
+                                                                                        <div style="width: 256px; height: 256px;">
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                        <div
-                                                                            style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;">
+                                                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;">
                                                                         </div>
-                                                                        <div
-                                                                            style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;">
+                                                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;">
                                                                         </div>
-                                                                        <div
-                                                                            style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;">
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: -1;">
-                                                                                <div
-                                                                                    style="position: absolute; z-index: 989; transform: matrix(1, 0, 0, 1, -93, -84);">
-                                                                                    <div
-                                                                                        style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;">
+                                                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;">
+                                                                            <div style="position: absolute; left: 0px; top: 0px; z-index: -1;">
+                                                                                <div style="position: absolute; z-index: 989; transform: matrix(1, 0, 0, 1, -93, -84);">
+                                                                                    <div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div
-                                                                                style="width: 33px; height: 44px; overflow: hidden; position: absolute; left: -17px; top: -44px; z-index: 0;">
-                                                                                <img alt=""
-                                                                                    src="img/icon/map_icon.png"
-                                                                                    draggable="false"
-                                                                                    style="position: absolute; left: 0px; top: 0px; user-select: none; width: 33px; height: 44px; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                                            <div style="width: 33px; height: 44px; overflow: hidden; position: absolute; left: -17px; top: -44px; z-index: 0;">
+                                                                                <img alt="" src="img/icon/map_icon.png" draggable="false" style="position: absolute; left: 0px; top: 0px; user-select: none; width: 33px; height: 44px; border: 0px; padding: 0px; margin: 0px; max-width: none;">
                                                                             </div>
                                                                         </div>
-                                                                        <div
-                                                                            style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                                                                        <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
                                                                         </div>
                                                                     </div>
-                                                                    <div
-                                                                        style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;">
-                                                                        <div
-                                                                            style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;">
+                                                                    <div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;">
+                                                                        <div style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
+                                                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;">
                                                                             </div>
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;">
+                                                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;">
                                                                             </div>
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;">
-                                                                                <span
-                                                                                    id="A9AB3AD4-6DF7-416E-9903-90BF9D64736D"
-                                                                                    style="display: none;">To navigate,
+                                                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;">
+                                                                                <span id="A9AB3AD4-6DF7-416E-9903-90BF9D64736D" style="display: none;">To navigate,
                                                                                     press the arrow keys.</span>
-                                                                                <div title="Makplus"
-                                                                                    aria-label="Makplus"
-                                                                                    role="img"
-                                                                                    style="width: 49px; height: 60px; overflow: hidden; position: absolute; cursor: pointer; touch-action: none; left: -25px; top: -52px; z-index: 0;"
-                                                                                    tabindex="-1"><img alt=""
-                                                                                        src="https://maps.gstatic.com/mapfiles/transparent.png"
-                                                                                        draggable="false"
-                                                                                        style="width: 49px; height: 60px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                                                                                <div title="Makplus" aria-label="Makplus" role="img" style="width: 49px; height: 60px; overflow: hidden; position: absolute; cursor: pointer; touch-action: none; left: -25px; top: -52px; z-index: 0;" tabindex="-1"><img alt="" src="https://maps.gstatic.com/mapfiles/transparent.png" draggable="false" style="width: 49px; height: 60px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
                                                                                 </div>
                                                                             </div>
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;">
+                                                                            <div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;">
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="gm-style-moc"
-                                                                        style="z-index: 4; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;">
+                                                                    <div class="gm-style-moc" style="z-index: 4; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;">
                                                                         <p class="gm-style-mot"></p>
                                                                     </div>
-                                                                </div><iframe aria-hidden="true" frameborder="0"
-                                                                    tabindex="-1"
-                                                                    style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe>
-                                                                <div
-                                                                    style="pointer-events: none; width: 100%; height: 100%; box-sizing: border-box; position: absolute; z-index: 1000002; opacity: 0; border: 2px solid rgb(26, 115, 232);">
+                                                                </div><iframe aria-hidden="true" frameborder="0" tabindex="-1" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe>
+                                                                <div style="pointer-events: none; width: 100%; height: 100%; box-sizing: border-box; position: absolute; z-index: 1000002; opacity: 0; border: 2px solid rgb(26, 115, 232);">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -504,33 +443,17 @@
 
                                         <x-forms.post :action="route('frontend.auth.register')" id="registerForm">
                                             @csrf
-                                            <div class="cta-form-col d-flex justify-content-between"> <input
-                                                    type="text" name="name" id="name" class="cta-email"
-                                                    value="{{ old('name') }}" placeholder="{{ __('Name') }}"
-                                                    maxlength="100" required autofocus autocomplete="name" /></div>
-                                            <div class="cta-form-col d-flex justify-content-between"><input
-                                                    type="email" name="email" id="email" class="cta-email"
-                                                    placeholder="{{ __('E-mail Address') }}"
-                                                    value="{{ old('email') }}" maxlength="255" required
-                                                    autocomplete="email" />
+                                            <div class="cta-form-col d-flex justify-content-between"> <input type="text" name="name" id="name" class="cta-email" value="{{ old('name') }}" placeholder="{{ __('Name') }}" maxlength="100" required autofocus autocomplete="name" /></div>
+                                            <div class="cta-form-col d-flex justify-content-between"><input type="email" name="email" id="email" class="cta-email" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autocomplete="email" />
                                             </div>
-                                            <div class="cta-form-col d-flex justify-content-between"><input
-                                                    type="password" name="password" id="password" class="cta-email"
-                                                    placeholder="{{ __('Password') }}" maxlength="100" required
-                                                    autocomplete="new-password" /></div>
-                                            <div class="cta-form-col d-flex justify-content-between"><input
-                                                    type="password" name="password_confirmation"
-                                                    id="password_confirmation" class="cta-email"
-                                                    placeholder="{{ __('Password Confirmation') }}" maxlength="100"
-                                                    required autocomplete="new-password" /></div>
+                                            <div class="cta-form-col d-flex justify-content-between"><input type="password" name="password" id="password" class="cta-email" placeholder="{{ __('Password') }}" maxlength="100" required autocomplete="new-password" /></div>
+                                            <div class="cta-form-col d-flex justify-content-between"><input type="password" name="password_confirmation" id="password_confirmation" class="cta-email" placeholder="{{ __('Password Confirmation') }}" maxlength="100" required autocomplete="new-password" /></div>
 
 
                                             <div class="form-check" style="padding-bottom: 10px;">
-                                                <input type="checkbox" name="terms" value="1" id="terms"
-                                                    class="form-check-input" required>
+                                                <input type="checkbox" name="terms" value="1" id="terms" class="form-check-input" required>
                                                 <label class="form-check-label" for="terms">
-                                                    @lang('I agree to the') <a href="{{ route('frontend.pages.terms') }}"
-                                                        target="_blank">@lang('Terms & Conditions')</a>
+                                                    @lang('I agree to the') <a href="{{ route('frontend.pages.terms') }}" target="_blank">@lang('Terms & Conditions')</a>
                                                 </label>
                                             </div>
 
@@ -538,25 +461,25 @@
 
 
                                             @error('email')
-                                                <span class="invalid-feedback" role="alert" style="text-align:center">
-                                                    <strong class="alert-danger">{{ $message }}</strong>
-                                                </span>
+                                            <span class="invalid-feedback" role="alert" style="text-align:center">
+                                                <strong class="alert-danger">{{ $message }}</strong>
+                                            </span>
                                             @enderror
 
                                             @error('password')
-                                                <span class="invalid-feedback" role="alert" style="text-align:center">
-                                                    <strong class="alert-danger">{{ $message }}</strong>
-                                                </span>
+                                            <span class="invalid-feedback" role="alert" style="text-align:center">
+                                                <strong class="alert-danger">{{ $message }}</strong>
+                                            </span>
                                             @enderror
 
 
                                             @if (config('boilerplate.access.captcha.registration'))
-                                                <div class="cta-form-col d-flex justify-content-between">
-                                                    <div class="col-md-4">
-                                                        @captcha
-                                                        <input type="hidden" name="captcha_status" value="true" />
-                                                    </div>
+                                            <div class="cta-form-col d-flex justify-content-between">
+                                                <div class="col-md-4">
+                                                    @captcha
+                                                    <input type="hidden" name="captcha_status" value="true" />
                                                 </div>
+                                            </div>
                                             @endif
                                             <div>
                                                 <button class="btn" type="submit">@lang('Sign Up')</button>
@@ -589,8 +512,7 @@
                     <div class="col-xl-3 col-lg-4 col-md-6">
                         <div class="footer-widget mb-50">
                             <div class="footer-logo mb-35">
-                                <a href="{{ route('frontend.index') }}"><img
-                                        src="{{ asset('assets/images/logo-w_logo.png') }}" alt="img"></a>
+                                <a href="{{ route('frontend.index') }}"><img src="{{ asset('assets/images/logo-w_logo.png') }}" alt="img"></a>
                             </div>
                             <div class="footer-text">
                                 <p><strong>Head Office</strong></p>
@@ -645,12 +567,8 @@
                                 <h5>MOBILE APPS</h5>
                             </div>
                             <div class="f-support-content mb-30">
-                                <a href="#" class="f-download-btn"><img
-                                        src="{{ asset('assets/images/images-f_download_btn01.png') }}"
-                                        alt="img"></a>
-                                <a href="#" class="f-download-btn"><img
-                                        src="{{ asset('assets/images/images-f_download_btn02.png') }}"
-                                        alt="img"></a>
+                                <a href="#" class="f-download-btn"><img src="{{ asset('assets/images/images-f_download_btn01.png') }}" alt="img"></a>
+                                <a href="#" class="f-download-btn"><img src="{{ asset('assets/images/images-f_download_btn02.png') }}" alt="img"></a>
                             </div>
                             <div class="fw-title mb-30">
                                 <h5>SOCIAL LINKS</h5>
@@ -689,7 +607,25 @@
 
 
     <!-- JS here -->
-
+    <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/334-js-popper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/3741-js-bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/5085-js-isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/js/3435-js-slick.min.js') }}"></script>
+    <script src="{{ asset('assets/js/312-js-jquery.meanmenu.min.js') }}"></script>
+    <script src="{{ asset('assets/js/9446-js-ajax-form.js') }}"></script>
+    <script src="{{ asset('assets/js/2815-js-wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/7036-js-aos.js') }}"></script>
+    <script src="{{ asset('assets/js/8726-js-paroller.js') }}"></script>
+    <script src="{{ asset('assets/js/2092-js-jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/2012-js-jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/2735-js-jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/js/7521-js-jquery.scrollUp.min.js') }}"></script>
+    <script src="{{ asset('assets/js/8228-js-imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/js/788-js-jquery.magnific-popup.min.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
+    <script src="{{ asset('assets/js/9626-js-plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/2325-js-main.js') }}"></script>
 </body>
 
 </html>
