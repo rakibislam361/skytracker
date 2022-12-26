@@ -44,7 +44,7 @@
         <div class="content-wrapper">
             @include('includes.partials.read-only')
             @include('includes.partials.logged-in-as')
-            @include('includes.partials.announcements')
+            {{-- @include('includes.partials.announcements') --}}
             <section class="content-header">
                 @include('includes.partials.messages')
                 @include('backend.includes.partials.breadcrumbs')
@@ -55,11 +55,12 @@
             </section> <!-- section -->
         </div> <!-- content -->
 
-        @include('backend.includes.footer')
+        {{-- @include('backend.includes.footer') --}}
     </div>
 
     @stack('before-scripts')
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/backend.js') }}"></script>
