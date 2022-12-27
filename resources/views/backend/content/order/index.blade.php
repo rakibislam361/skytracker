@@ -121,7 +121,7 @@
 
     <!-- Modal -->
     @include('backend.content.order.includes.edit_modal')
-    <input id="actualrmb_rate" type="hidden" value="{{ get_setting('actualrmb_rate') }}">
+    <input id="actualrmb_rate" class="actualrmb_rate" type="hidden" value="{{ get_setting('actualrmb_rate') }}">
     <input id="local_rate" type="hidden" value="{{ get_setting('local_rate') }}">
 @endsection
 

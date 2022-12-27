@@ -126,6 +126,7 @@ $(function () {
                 beforeSend: function () {
                     $("#statusSubmitBtn").prop("disabled", true);
                 },
+
                 success: function (res) {
                     Swal.fire({
                         icon: "success",
@@ -206,6 +207,7 @@ $(function () {
             let conRate = $("#actualrmb_rate").val();
             $("#purchase_cost_bd").val(prmb * conRate);
             let ormb = $("#order_item_rmb").val();
+
             if (parseInt(prmb) > parseInt(ormb)) {
                 $("#statusSubmitBtn").prop("disabled", true);
                 Swal.fire({
@@ -223,6 +225,7 @@ $(function () {
             $("#chinaLocalDelivery").val(local * localRate);
             let conv = $("#chinaLocalDelivery").val();
             let prcost = $("#product_value").val();
+
             $("#product_bd_received_cost").val(
                 parseInt(conv) + parseInt(prcost)
             );
