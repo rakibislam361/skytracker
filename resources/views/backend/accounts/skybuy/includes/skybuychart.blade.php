@@ -27,7 +27,7 @@
       <div class="row">
         <div class="col-sm-2 col-6">
           <div class="description-block border-right">
-            <h5 class="description-header">108</h5>
+            <h5 class="description-header">{{$totalcount}}</h5>
             <span class="description-text">Total Order</span>
           </div>
           <!-- /.description-block -->
@@ -35,31 +35,31 @@
         <!-- /.col -->
         <div class="col-sm-2 col-6">
           <div class="description-block border-right">
-            <h5 class="description-header">106</h5>
+            <h5 class="description-header">{{$delivered}}</h5>
             <span class="description-text">Delivered</span>
           </div>
         </div>
         <div class="col-sm-2 col-6">
           <div class="description-block border-right">
-            <h5 class="description-header">2</h5>
-            <span class="description-text">Pending</span>
+            <h5 class="description-header">{{$pending}}</h5>
+            <span class="description-text">On Hold</span>
           </div>
         </div>
         <div class="col-sm-2 col-6">
           <div class="description-block border-right">
-            <h5 class="description-header">2</h5>
-            <span class="description-text">Received</span>
+            <h5 class="description-header">{{$purchased}}</h5>
+            <span class="description-text">Purchased</span>
           </div>
         </div>
         <div class="col-sm-2 col-6">
           <div class="description-block border-right">
-            <h5 class="description-header">0</h5>
+            <h5 class="description-header">{{$processing}}</h5>
             <span class="description-text">Processing</span>
           </div>
         </div>
         <div class="col-sm-2 col-6">
           <div class="description-block">
-            <h5 class="description-header">0</h5>
+            <h5 class="description-header">{{$waiting}}</h5>
             <span class="description-text">Waiting For Payment</span>
           </div>
         </div>
