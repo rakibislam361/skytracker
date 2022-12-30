@@ -109,7 +109,8 @@
 
                     </div>
                     <div class="modal-footer justify-content-between">
-                        <button type="submit" class="btn btn-primary" id="statusSubmitBtn">Save changes</button>
+                        <button onclick="showSelectedRow($rows);" type="submit" class="btn btn-primary"
+                            id="statusSubmitBtn">Save changes</button>
                     </div>
 
                 </form>

@@ -13,3 +13,37 @@ table td {
     transform: translateY(-50%);
     z-index: 9000;
 }
+
+
+@media (max-width: 575px) {
+
+
+    .row .col-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    display: contents;
+}
+ .row .col-3 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    display: contents;
+}
+ .row .col-1 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    display: contents;
+}
+ .row .col-3 .col-7 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    display: contents;
+    padding-left: 10px;
+   
+}
+ /* .row .col-3 .col-5 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+    display: contents;
+} */
+
+}

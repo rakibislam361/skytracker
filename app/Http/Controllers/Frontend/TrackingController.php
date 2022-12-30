@@ -20,14 +20,12 @@ class TrackingController
         return view('frontend.pages.tracking');
     }
 
-
-
     public function Track(Request $request)
     {
         $data = Product::with('warehouse', 'status');
 
         if ($request->input('trackid')) {
-            $data = $data->where('invoice', 'LIKE', "" . $request->trackid . "")->paginate(10);
+            $data = $data->where('invoice', 'LIKE', '' . $request->trackid . '')->paginate(10);
         }
         return view('frontend.pages.tracking', compact('data'));
     }
