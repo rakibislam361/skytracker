@@ -31,60 +31,10 @@ class AccountController extends Controller
         $receivedData = $this->skybuyTableTrait($filter);
         $accountsData = $receivedData->data->result;
         $account = $accountsData->data;
-        $acc = [];
-        $totalcount = 0;
-        $waiting = 0;
-        $processing = 0;
-        $delivered = 0;
-        $purchased = 0;
-        $pending = 0;
-        foreach ($account as $data) {
-            $acc[] = $data;
-            $count = count($acc);
-            $totalcount += $count;
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'Waiting for Payment') {
-                $acc[] = $data;
-                $count = count($acc);
-                $waiting += $count;
-            }
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'processing') {
-                $acc[] = $data;
-                $count = count($acc);
-                $processing += $count;
-            }
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'delivered') {
-                $acc[] = $data;
-                $count = count($acc);
-                $delivered += $count;
-            }
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'purchased') {
-                $acc[] = $data;
-                $count = count($acc);
-                $purchased += $count;
-            }
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'on-hold') {
-                $acc[] = $data;
-                $count = count($acc);
-                $pending += $count;
-            }
-        }
-
 
         $accounts = $this->paginate($account, 20);
         $accounts->withPath('');
-        return view('backend.accounts.skybuy.index', compact('accounts', 'totalcount', 'waiting', 'processing', 'delivered', 'purchased', 'pending'));
-
-        // return view('backend.accounts.skybuy.index');
+        return view('backend.accounts.skybuy.index', compact('accounts'));
     }
 
     public function skybuyTable()
