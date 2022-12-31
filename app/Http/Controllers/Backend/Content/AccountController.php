@@ -28,13 +28,14 @@ class AccountController extends Controller
             'to_date' => request('to_date', null),
         ];
 
-        $receivedData = $this->skybuyTableTrait($filter);
-        $accountsData = $receivedData->data->result;
-        $account = $accountsData->data;
+        $receivedData = $this->recentorderListTrait($filter);
+        $accountsData = $receivedData->orders;
+        $account = $accountsData;
+        $total = count($account);
 
-        $accounts = $this->paginate($account, 20);
+        $accounts = $this->paginate($account, 30);
         $accounts->withPath('');
-        return view('backend.accounts.skybuy.index', compact('accounts'));
+        return view('backend.accounts.skybuy.index', compact('accounts', 'total'));
     }
 
     public function skybuyTable()
@@ -49,8 +50,15 @@ class AccountController extends Controller
 
         $receivedData = $this->skybuyTableTrait($filter);
         $accountsData = $receivedData->data->result;
-        $account = $accountsData->data;
+        // $account = $accountsData->data;
         $total = 0;
+        $account = [];
+        foreach ($accountsData->data as $data) {
+            if ($data->status != 'Waiting for Payment') {
+                $account[] = $data;
+            }
+        }
+
         foreach ($account as $accounts) {
 
             $bdReceive = $accounts->product_bd_received_cost;
@@ -61,7 +69,7 @@ class AccountController extends Controller
 
         $accounts = $this->paginate($account, 20);
         $accounts->withPath('');
-        return view('backend.accounts.skybuy.skybuyAccountsTable', compact('accounts', 'total'));
+        return view('backend.accounts.skybuy.skybuyAccountsTable', compact('accounts', 'total', 'pl'));
     }
 
     public function skyoneIndex()

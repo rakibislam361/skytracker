@@ -42,10 +42,8 @@
                         <option @if (request('status', null) == 're-order') selected @endif value="re-order">RE Order</option>
                         <option @if (request('status', null) == 'Partial-Paid') selected @endif value="Partial-Paid">Partial Paid
                         </option>
-                        {{-- <option @if (request('status', null) == 'refunded') selected @endif value="refunded">Refunded</option> --}}
-                        <option @if (request('status', null) == 'Waiting-for-Payment') selected @endif value="Waiting-for-Payment">Waiting
-                            For
-                            Payment</option>
+                        <option @if (request('status', null) == 'refunded') selected @endif value="refunded">Refunded</option>
+
                         <option @if (request('status', null) == 'received-in-china-warehouse') selected @endif value="received-in-china-warehouse">
                             Received in china
                             warehouse</option>

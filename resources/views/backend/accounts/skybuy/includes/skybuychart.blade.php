@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-sm-2 col-6">
                     <div class="description-block border-right">
-                        <h5 class="description-header">{{ $totalcount }}</h5>
+                        <h5 class="description-header">{{ $total }}</h5>
                         <span class="description-text">Total Order</span>
                     </div>
                     <!-- /.description-block -->

@@ -3,7 +3,6 @@
 @section('title', __('Manage Accounts'))
 
 @section('content')
-
     @php
         $acc = [];
         $totalcount = 0;
@@ -52,6 +51,7 @@
                 $pending += $count;
             }
         }
+        // dd($totalcount);
     @endphp
 
     <div>

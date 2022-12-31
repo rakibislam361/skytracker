@@ -48,7 +48,7 @@
                                 $bdReceive = $account->product_bd_received_cost;
                                 $bdOut = $account->purchase_cost_bd;
                                 $pl = $bdReceive - $bdOut;
-                                // $total += $pl;
+                                $total += $pl;
                             @endphp
                             <tr>
                                 <td class="align-content-center text-center">
