@@ -233,303 +233,182 @@
                         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
                             aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                                <div class="modal-content fare-rate-modal">
-                                    <ul class="nav nav-tabs setup-panel">
-                                        <li class="nav-item single-steps">
-                                            <a class="nav-link btn-blue-grey btn-amber" href="#step-1">Select Your
-                                                Destination</a>
-                                        </li>
-                                        <li class="nav-item single-steps">
-                                            <a class="nav-link btn-blue-grey" href="#step-2">ITEMS TO BE SHIPPED</a>
-                                        </li>
-                                        <li class="nav-item single-steps">
-                                            <a class="nav-link btn-blue-grey" href="#step-3">tracking information</a>
-                                        </li>
-                                    </ul>
-                                    <form action="#" method="post">
-                                        <div class="single-setup" id="step-1" style="display: block;">
-                                            <div class="fare-rate-tab-content">
-                                                <div class="modal-shipping-info">
-                                                    <ul>
-                                                        <li>
-                                                            <div class="shipping-step-count">
-                                                                <h5>A</h5>
-                                                            </div>
-                                                            <div class="shipping-address-form">
-                                                                <div class="shipping-country-box form-group">
-                                                                    <label for="from-country">from country</label>
-                                                                    <input type="text" required="required"
-                                                                        id="from-country"
-                                                                        placeholder="Select Your Destination"
-                                                                        spellcheck="false" data-ms-editor="true">
-                                                                </div>
-                                                                <div class="shipping-address-box form-group">
-                                                                    <label for="from-country-location">add your
-                                                                        location</label>
-                                                                    <input type="text" required="required"
-                                                                        id="from-country-location"
-                                                                        placeholder="Select Your Destination"
-                                                                        spellcheck="false" data-ms-editor="true">
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="shipping-step-count">
-                                                                <h5>B</h5>
-                                                            </div>
-                                                            <div class="shipping-address-form">
-                                                                <div class="shipping-country-box form-group">
-                                                                    <label for="to-country">TO country</label>
-                                                                    <input type="text" required="required"
-                                                                        id="to-country"
-                                                                        placeholder="Select Your Destination"
-                                                                        spellcheck="false" data-ms-editor="true">
-                                                                </div>
-                                                                <div class="shipping-address-box form-group">
-                                                                    <label for="to-country-location">add your
-                                                                        location</label>
-                                                                    <input type="text" required="required"
-                                                                        id="to-country-location"
-                                                                        placeholder="Select Your Destination"
-                                                                        spellcheck="false" data-ms-editor="true">
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                <div class="container">
+                                    <div class="row ownmodal">
+                                        <div class="col-md-6" style="background-color: #4e148c;">
+
+                                            <div class="card" style="background-color: #4e148c; border:0px;">
+                                                <div class="card-header" style="border:0px;">
+                                                    <div
+                                                        style="display: flex; justify-content: center; font-size: 150%; color: white; font-weight: bold;">
+                                                        Approximate shipping cost</div>
                                                 </div>
-                                                <div class="modal-shipping-more-list">
-                                                    <ul>
-                                                        <li><a href="#"><i class="flaticon-credit-card"></i>
-                                                                Don't
-                                                                have an account? No problem Pay by credit card or
-                                                                cash.</a>
-                                                        </li>
-                                                        <li><a href="#"><i class="flaticon-sings"></i> Get a
-                                                                quick
-                                                                quote and start shipping</a></li>
-                                                        <li><a href="#"><i class="flaticon-track"></i> Consult
-                                                                your
-                                                                packaging and delivery options</a></li>
-                                                    </ul>
-                                                </div>
-                                                <button class="btn f-right nextBtn-2 btn-success" type="button">one
-                                                    more
-                                                    step</button>
-                                            </div>
-                                        </div>
-                                        <div class="single-setup" id="step-2" style="display: none;">
-                                            <div class="fare-rate-tab-content">
-                                                <div class="modal-shipping-details">
-                                                    <div class="modal-shipping-title">
-                                                        <h2>items <span>details</span></h2>
-                                                        <h2 class="f-right">total cost : <span>$ 19.00</span></h2>
-                                                    </div>
-                                                    <div class="shipping-details-info">
-                                                        <div class="single-shipping-details-box">
-                                                            <label for="packaging-size">packaging size</label>
-                                                            <select class="custom-select" id="packaging-size">
-                                                                <option selected="">Standart Size ( 42” x 36” )
-                                                                </option>
-                                                                <option>Standart Size ( 82” x 86” )</option>
-                                                                <option>Standart Size ( 102” x 165” )</option>
-                                                                <option>Standart Size ( 110” x 205” )</option>
-                                                                <option>Standart Size ( 120” x 250” )</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="single-shipping-details-box shipping-qty">
-                                                            <label for="QTY-number">QTY</label>
-                                                            <input type="number" value="1" id="QTY-number"
-                                                                required="required">
-                                                        </div>
-                                                        <div class="single-shipping-details-box shipping-weight">
-                                                            <label for="packaging-weight">TOTAL WEIGHT</label>
-                                                            <select class="custom-select" id="packaging-weight">
-                                                                <option selected="">KG</option>
-                                                                <option>20KG</option>
-                                                                <option>30KG</option>
-                                                                <option>50KG</option>
-                                                                <option>80KG</option>
-                                                                <option>100KG</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="single-shipping-details-box shipping-transport">
-                                                            <label for="cargo-transport">cargo transport</label>
-                                                            <select class="custom-select" id="cargo-transport">
-                                                                <option selected="">IN</option>
-                                                                <option>1500in</option>
-                                                                <option>2000in</option>
-                                                                <option>2500in</option>
-                                                                <option>3000in</option>
-                                                                <option>3500in</option>
-                                                                <option>4000in</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="single-shipping-details-box shipping-product">
-                                                            <label for="product-category">product category</label>
-                                                            <select class="custom-select" id="product-category">
-                                                                <option selected="">Glass Product</option>
-                                                                <option>Glass Product</option>
-                                                                <option>Glass Product</option>
-                                                                <option>Glass Product</option>
-                                                                <option>Glass Product</option>
-                                                            </select>
+                                                <div class="card-body">
+                                                    <div
+                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
+                                                        <div style="font-size: 120%; color: white;">Ship By</div>
+                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
+                                                            air
                                                         </div>
                                                     </div>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" required="required"
-                                                            class="custom-control-input" id="customControlInline">
-                                                        <label class="custom-control-label"
-                                                            for="customControlInline">Logistics is generally the
-                                                            detailed
-                                                            organization and implementation of a complex operation. In a
-                                                            general business sense, logistics is the management of the
-                                                            flow
-                                                            of things between the point of origin and the point</label>
-                                                    </div>
-                                                </div>
-                                                <button class="btn f-left prevBtn-2 btn-success"
-                                                    type="button">Previous</button>
-                                                <button class="btn f-right nextBtn-2 btn-success"
-                                                    type="button"><span>$19.00</span> Booking</button>
-                                            </div>
-                                        </div>
-                                        <div class="single-setup" id="step-3" style="display: none;">
-                                            <div class="fare-rate-tab-content">
-                                                <div class="modal-shipping-details">
-                                                    <div class="modal-shipping-title">
-                                                        <h2>tracking <span>information</span></h2>
-                                                    </div>
-                                                    <div class="f-left pr-20">
-                                                        <div class="shipping-details-info shipping-tracking-info">
-                                                            <div class="modal-tracking-info">
-                                                                <label for="invoice-id">invoice Id</label>
-                                                                <input type="text" id="invoice-id"
-                                                                    placeholder="Enter Your Id" spellcheck="false"
-                                                                    data-ms-editor="true">
-                                                            </div>
-                                                            <div class="modal-tracking-info">
-                                                                <label>Search invoice</label>
-                                                                <button class="btn nextBtn-2 btn-success">find your
-                                                                    product</button>
-                                                            </div>
+                                                    <div
+                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
+                                                        <div style="font-size: 120%; color: white;">Ship From</div>
+                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
+                                                            china
                                                         </div>
-                                                        <div class="tracking-quots-board">
-                                                            <label>your happiness quotes</label>
-                                                            <div class="tracking-quots-board-info">
-                                                                <img src="img/bg/board_bg.jpg" alt="img">
-                                                                <h5>On Board Your Products. Now Product is
-                                                                    Malaysia Ocean</h5>
+                                                    </div>
+                                                    <div
+                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
+                                                        <div style="font-size: 120%; color: white;">Product Type
+                                                        </div>
+                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
+                                                            chemical</div>
+                                                    </div>
+                                                    <div
+                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
+                                                        <div style="font-size: 120%; color: white;">Per kg</div>
+                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
+                                                            2000tk/kg</div>
+                                                    </div>
+                                                    <div
+                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
+                                                        <div
+                                                            style="display: flex; flex-direction: column; font-size: 120%; color: white;">
+                                                            Total weight </div>
+                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
+                                                            5 kg
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row"
+                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
+                                                        <div style="font-size: 150%; color: white; font-weight: bold;">
+                                                            Total
+                                                        </div>
+                                                        <div style="font-size: 150%; color: white; font-weight: bold;">
+                                                            10000Tk
+                                                        </div>
+                                                    </div>
+                                                    <div
+                                                        style="color: white; font-size: 100%; display: flex; justify-content: center;">
+                                                        (IF 1 CBM= 167kg)</div>
+
+                                                    <div class="row"
+                                                        style="color: orange; font-family: sans-serif; display: flex; justify-content: center; padding: 30px 15px 0px 20px;">
+                                                        **৫ কেজির নিচের সকল পার্সেল এর দাম সাধারণ দামের চেয়ে
+                                                        তুলনামূলক ভাবে
+                                                        বেশি
+                                                        থাকবে ।</div>
+
+                                                    <div class="row mt-3">
+                                                        <div class="col">
+                                                            <div class="center-head" style="margin-bottom: 0px;">
+                                                                <span style="text-transform: none; color: red;">read
+                                                                    carefully</span>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="tracking-modal-map">
-                                                        <div id="contact-map"
-                                                            style="position: relative; overflow: hidden;">
-                                                            <div
-                                                                style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
-                                                                <div style="overflow: hidden;"></div>
-                                                                <div class="gm-style"
-                                                                    style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;">
-                                                                    <div tabindex="0" aria-label="Map"
-                                                                        aria-roledescription="map" role="region"
-                                                                        style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default; touch-action: pan-x pan-y;">
-                                                                        <div
-                                                                            style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
-                                                                                <div
-                                                                                    style="position: absolute; left: 0px; top: 0px; z-index: 0;">
-                                                                                    <div
-                                                                                        style="position: absolute; z-index: 989; transform: matrix(1, 0, 0, 1, -93, -84);">
-                                                                                        <div
-                                                                                            style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;">
-                                                                                            <div
-                                                                                                style="width: 256px; height: 256px;">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;">
-                                                                            </div>
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;">
-                                                                            </div>
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;">
-                                                                                <div
-                                                                                    style="position: absolute; left: 0px; top: 0px; z-index: -1;">
-                                                                                    <div
-                                                                                        style="position: absolute; z-index: 989; transform: matrix(1, 0, 0, 1, -93, -84);">
-                                                                                        <div
-                                                                                            style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 0px; top: 0px;">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                    style="width: 33px; height: 44px; overflow: hidden; position: absolute; left: -17px; top: -44px; z-index: 0;">
-                                                                                    <img alt=""
-                                                                                        src="img/icon/map_icon.png"
-                                                                                        draggable="false"
-                                                                                        style="position: absolute; left: 0px; top: 0px; user-select: none; width: 33px; height: 44px; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                style="position: absolute; left: 0px; top: 0px; z-index: 0;">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div
-                                                                            style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; touch-action: pan-x pan-y;">
-                                                                            <div
-                                                                                style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);">
-                                                                                <div
-                                                                                    style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;">
-                                                                                </div>
-                                                                                <div
-                                                                                    style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;">
-                                                                                </div>
-                                                                                <div
-                                                                                    style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;">
-                                                                                    <span
-                                                                                        id="A9AB3AD4-6DF7-416E-9903-90BF9D64736D"
-                                                                                        style="display: none;">To
-                                                                                        navigate,
-                                                                                        press the arrow keys.</span>
-                                                                                    <div title="Makplus"
-                                                                                        aria-label="Makplus"
-                                                                                        role="img"
-                                                                                        style="width: 49px; height: 60px; overflow: hidden; position: absolute; cursor: pointer; touch-action: none; left: -25px; top: -52px; z-index: 0;"
-                                                                                        tabindex="-1"><img
-                                                                                            alt=""
-                                                                                            src="https://maps.gstatic.com/mapfiles/transparent.png"
-                                                                                            draggable="false"
-                                                                                            style="width: 49px; height: 60px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div
-                                                                                    style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;">
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="gm-style-moc"
-                                                                            style="z-index: 4; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;">
-                                                                            <p class="gm-style-mot"></p>
-                                                                        </div>
-                                                                    </div><iframe aria-hidden="true" frameborder="0"
-                                                                        tabindex="-1"
-                                                                        style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe>
-                                                                    <div
-                                                                        style="pointer-events: none; width: 100%; height: 100%; box-sizing: border-box; position: absolute; z-index: 1000002; opacity: 0; border: 2px solid rgb(26, 115, 232);">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <div
+                                                        style="color: white; padding-top: 15px; padding-bottom: 10px;">
+                                                        উপরের
+                                                        রেটটি সম্ভাব্য রেট। কনফার্ম রেট পেতে নিচের তথ্য প্রদান
+                                                        পূর্বক বুকিং
+                                                        করুন
+                                                        । বুকিং এর ২৪ ঘণ্টার মধ্যে আপনার শিপমেন্টের সকল প্রকার খরচ
+                                                        আপনাকে
+                                                        জানিয়ে
+                                                        দেয়া হবে।</div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+
+
+                                        </div> {{-- leftSideEndHere --}}
+                                        <div class="col-md-6">
+                                            <div class="card" style="border:0px;">
+                                                <div class="card-header" style="border:0px;">
+                                                    <div
+                                                        style="display: flex; justify-content: center; font-size: 150%; font-weight: bold;">
+                                                        Book your shipping order</div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="modal-content fare-rate-modal">
+                                                        <form action="#" method="post">
+
+                                                            <div class="form-row mb-1">Select Date:</div>
+                                                            <div class="form-row mb-2">
+                                                                <div class="col"><input type="date"
+                                                                        name="date" class="form-control"
+                                                                        placeholder="approx date" required=""
+                                                                        value=""
+                                                                        style="border-radius: 10rem; width: 60%;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row mb-1">Carton quantity:</div>
+                                                            <div class="form-row mb-2">
+                                                                <div class="col"><input type="number"
+                                                                        name="ctnQuantity" class="form-control"
+                                                                        placeholder="quantity" required=""
+                                                                        value=""
+                                                                        style="border-radius: 10rem; width: 60%;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row mb-1">Total CBM:</div>
+                                                            <div class="form-row mb-2">
+                                                                <div class="col"><input type="number"
+                                                                        name="totalCbm" class="form-control"
+                                                                        placeholder="total CBM" required=""
+                                                                        value=""
+                                                                        style="border-radius: 10rem; width: 60%;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row mb-1">Product Quantity:</div>
+                                                            <div class="form-row mb-2">
+                                                                <div class="col"><input type="number"
+                                                                        name="productQuantity" class="form-control"
+                                                                        placeholder="product quantity" required=""
+                                                                        value=""
+                                                                        style="border-radius: 10rem; width: 60%;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row mb-1">Products Total Cost:</div>
+                                                            <div class="form-row mb-2">
+                                                                <div class="col"><input type="number"
+                                                                        name="productsTotalCost" class="form-control"
+                                                                        placeholder="total Cost(BDT)" required=""
+                                                                        value=""
+                                                                        style="border-radius: 10rem; width: 60%;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row mb-1">Product Name (specific):
+                                                            </div>
+                                                            <div class="form-row mb-2">
+                                                                <div class="col"><input type="text"
+                                                                        name="othersProductName" class="form-control"
+                                                                        placeholder="product name" required=""
+                                                                        value=""
+                                                                        style="border-radius: 10rem; width: 60%;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row mb-1">Products Image:</div>
+                                                            <div class="form-row mb-4">
+                                                                <div class="box-input-file"
+                                                                    style="display: flex; justify-content: center;">
+                                                                    <input id="upload-image-input" class="upload"
+                                                                        type="file">
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <button class="btn f-right nextBtn-2 btn-success"
+                                                            type="button">Book Now</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>{{-- RightSideEndHere --}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -585,7 +464,8 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-md-1"><button class="btn" tabindex="-1"><i
+                                        <div class="col-md-1"><button data-toggle="modal"
+                                                data-target="#exampleModalLong" class="btn" tabindex="-1"><i
                                                     class="flaticon-magnifying-glass"></i></button></div>
                                         <!-- <button class="btn" tabindex="-1">Tracking</button> -->
                                     </form>
@@ -684,9 +564,6 @@
                                                     </ul>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
                                     </div>
                                 </div>
