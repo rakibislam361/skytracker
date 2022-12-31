@@ -3,18 +3,25 @@
 @section('title', __('Account Table'))
 
 @section('content')
-
+    @php
+        // $total = 0;
+        // $bdReceive = $accounts->product_bd_received_cost;
+        // $bdOut = $accounts->purchase_cost_bd;
+        // $pl = $bdReceive - $bdOut;
+        // $total += $pl;
+    @endphp
     <div class="card">
         <div class="card-header">
-            <a href="skybuytable" style="color: black;">
+            <a href="skybuytable" style="color: gray;">
                 <h5 class="d-inline-block mr-2">@lang('SkyBuy Account')</h5>
             </a>
 
             <a href="{{ route('admin.account.skybuy') }}" class="btn btn-sm btn-secondary float-right" data-toggle="tooltip"
                 title="SkyBuy Dashboard">
-                <i class="fa fa-arrow-left"></i>
+                <i class="fa fa-arrow-left">Back</i>
             </a>
             @include('backend.accounts.includes.acc_filter')
+
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -41,7 +48,7 @@
                                 $bdReceive = $account->product_bd_received_cost;
                                 $bdOut = $account->purchase_cost_bd;
                                 $pl = $bdReceive - $bdOut;
-                                
+                                // $total += $pl;
                             @endphp
                             <tr>
                                 <td class="align-content-center text-center">
@@ -59,12 +66,13 @@
                             </tr>
                         @endforeach
                     </tbody>
+                    <span class="badge badge-success" style="font-size: 100%; margin-bottom: 10px;">Profit =
+                        {{ $total }}</span>
                 </table>
             </div>
             <div class="mt-4">
                 {{ $accounts->links() }}
             </div>
-
         </div> <!-- card-body-->
     </div>
 

@@ -50,10 +50,18 @@ class AccountController extends Controller
         $receivedData = $this->skybuyTableTrait($filter);
         $accountsData = $receivedData->data->result;
         $account = $accountsData->data;
+        $total = 0;
+        foreach ($account as $accounts) {
+
+            $bdReceive = $accounts->product_bd_received_cost;
+            $bdOut = $accounts->purchase_cost_bd;
+            $pl = $bdReceive - $bdOut;
+            $total += $pl;
+        }
 
         $accounts = $this->paginate($account, 20);
         $accounts->withPath('');
-        return view('backend.accounts.skybuy.skybuyAccountsTable', compact('accounts'));
+        return view('backend.accounts.skybuy.skybuyAccountsTable', compact('accounts', 'total'));
     }
 
     public function skyoneIndex()
