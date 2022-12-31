@@ -3,13 +3,6 @@
 @section('title', __('Account Table'))
 
 @section('content')
-    @php
-        // $total = 0;
-        // $bdReceive = $accounts->product_bd_received_cost;
-        // $bdOut = $accounts->purchase_cost_bd;
-        // $pl = $bdReceive - $bdOut;
-        // $total += $pl;
-    @endphp
     <div class="card">
         <div class="card-header">
             <a href="skybuytable" style="color: gray;">
@@ -39,17 +32,15 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
-
+                        <span class="badge badge-success float-right" style="font-size: 100%; margin-bottom: 10px;">Profit =
+                            {{ $total }}</span>
                         @foreach ($accounts as $account)
                             @php
-                                
                                 $bdReceive = $account->product_bd_received_cost;
                                 $bdOut = $account->purchase_cost_bd;
                                 $pl = $bdReceive - $bdOut;
-                                $total += $pl;
                             @endphp
+
                             <tr>
                                 <td class="align-content-center text-center">
                                     {{ $account->created_at ? date('d/m/Y', strtotime($account->created_at)) : 'N/A' }}</td>
@@ -57,22 +48,22 @@
                                 <td class="align-content-center text-center">{{ $account->user->name ?? 'N/A' }}</td>
 
                                 <td class="align-content-center text-center">
-                                    {{ $bdReceive }}</td>
-                                <td class="align-content-center text-center">{{ $account->purchase_cost_bd ?? 'N/A' }}</td>
+                                    {{ $bdReceive ?? 'N/A' }}</td>
+                                <td class="align-content-center text-center">{{ $bdOut ?? 'N/A' }}</td>
                                 <td class="align-content-center text-center">{{ $account->status ?? 'N/A' }}</td>
-                                <td class="align-content-center text-center">{{ $pl }}</td>
+                                <td class="align-content-center text-center">{{ $pl ?? 'N/A' }}</td>
                                 <td class="align-content-center text-center"><a href="#"
                                         class="btn btn-secondary btn-sm"><i class="fa fa-file"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>
-                    <span class="badge badge-success" style="font-size: 100%; margin-bottom: 10px;">Profit =
-                        {{ $total }}</span>
+
                 </table>
             </div>
             <div class="mt-4">
                 {{ $accounts->links() }}
             </div>
+
         </div> <!-- card-body-->
     </div>
 

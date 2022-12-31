@@ -69,7 +69,7 @@ class AccountController extends Controller
 
         $accounts = $this->paginate($account, 20);
         $accounts->withPath('');
-        return view('backend.accounts.skybuy.skybuyAccountsTable', compact('accounts', 'total', 'pl'));
+        return view('backend.accounts.skybuy.skybuyAccountsTable', compact('accounts', 'total'));
     }
 
     public function skyoneIndex()
