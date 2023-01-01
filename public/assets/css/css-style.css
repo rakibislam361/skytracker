@@ -1353,7 +1353,7 @@ label {
 	margin-left: 5px;
 }
 .s-slider-bg {
-	background-image: url(../images/slider-slider_img03.jpg);
+	/* background-image: url(../images/slider-slider_img03.jpg); */
 	min-height: 954px;
 	background-position: center;
 	background-size: cover;
@@ -2743,11 +2743,11 @@ label {
 	border-color: #fff transparent transparent transparent;
 }
 .video-title {
-	padding: 190px 0;
+	padding: 170px 0;
 	padding-left: 70px;
 }
 .video-title h2 {
-	font-size: 70px;
+	font-size: 40px;
 	text-transform: uppercase;
 	color: #fff;
 	line-height: 1;
@@ -4987,6 +4987,9 @@ blockquote.classic-blockquote-post::after {
     width: 100%;
 		background: #f1f1f1;
     border-color: #e9e7e7;
+}
+.ownmodal{
+	background-color: white;
 }
 
 /* Mohsin Style */

@@ -169,6 +169,14 @@
                                 <x-utils.link :href="route('admin.setting.price')" icon="nav-icon icon-arrow-right" class="nav-link"
                                     :text="__('Price Settings')" />
                             </li>
+                            <li class="nav-item">
+                                <x-utils.link :href="route('admin.setting.notice')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                    :text="__('Notice Settings')" />
+                            </li>
+                            <li class="nav-item">
+                                <x-utils.link :href="route('admin.setting.info')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                    :text="__('Information Settings')" />
+                            </li>
 
                             {{-- <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Color Settings')" />
