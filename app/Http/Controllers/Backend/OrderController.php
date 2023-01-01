@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\Backend\Auth;
-// use Log;
+use Log;
 
 class OrderController extends Controller
 {
@@ -26,40 +26,47 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $filter = [
-            'item_number' => request('item_number', null),
-            'status' => request('status', null),
-            'shipping_from' => request('shipping_from', null),
-            'from_date' => request('from_date', null),
-            'to_date' => request('to_date', null),
-        ];
+        try {
 
-        $receivedData = $this->orderList($filter);
-        $ordersData = $receivedData->data->result;
-        $order = [];
+            $filter = [
+                'item_number' => request('item_number', null),
+                'status' => request('status', null),
+                'shipping_from' => request('shipping_from', null),
+                'from_date' => request('from_date', null),
+                'to_date' => request('to_date', null),
+            ];
 
-        $userRole = auth()
-            ->user()
-            ->roles->first();
-        $roles = $userRole ? $userRole->name : null;
-        if ($roles == 'Administrator') {
-            foreach ($ordersData->data as $data) {
-                $order[] = $data;
-            }
-        } else {
-            foreach ($ordersData->data as $data) {
-                if ($data->status != 'Waiting for Payment') {
+            $receivedData = $this->orderList($filter);
+            $ordersData = $receivedData->data->result;
+            $order = [];
+
+            $userRole = auth()
+                ->user()
+                ->roles->first();
+            $roles = $userRole ? $userRole->name : null;
+            if ($roles == 'Administrator') {
+                foreach ($ordersData->data as $data) {
                     $order[] = $data;
                 }
+            } else {
+                foreach ($ordersData->data as $data) {
+                    if ($data->status != 'Waiting for Payment') {
+                        $order[] = $data;
+                    }
+                }
             }
+            $totalcount = count($order);
+            $orders = $this->paginate($order, 20);
+            $orders->withPath('');
+
+
+
+            return view('backend.content.order.index', compact('orders', 'totalcount'));
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withFlashError('server error');
         }
-        $totalcount = count($order);
-        $orders = $this->paginate($order, 20);
-        $orders->withPath('');
-
-
-
-        return view('backend.content.order.index', compact('orders', 'totalcount'));
     }
 
     public function update($id)
@@ -77,6 +84,7 @@ class OrderController extends Controller
                     ->withFlashError('Error');
             }
         }
+
         if ($data['order_update'] == "") {
             $orderResponse = $this->order_update($data);
             return $orderResponse;

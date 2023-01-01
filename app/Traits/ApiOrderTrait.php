@@ -66,6 +66,7 @@ trait ApiOrderTrait
         $get_token = $this->getToken();
         $url = config('api.url') . '/admin/order-status-update';
         $response = Http::withToken($get_token)->post($url, $data);
+        dd($response->object());
         return $response->object();
     }
 
