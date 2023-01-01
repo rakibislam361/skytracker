@@ -36,15 +36,15 @@
                         <input type="text" id="purchase_rmb" name="purchase_rmb" placeholder="RMB" class="form-control" />
                     </div>
                     <div class="form-group">
-                        <label for="purchase_cost_bd">Actual Cost In BDT(BD Out)</label>
+                        <label for="purchase_cost_bd">BD Out<small class="form-text text-muted float-right">(Purchase Rmb * Conversion Rate)</small></label>
                         <input type="text" name="purchase_cost_bd" id="purchase_cost_bd" readonly placeholder="Actual Cost In BDT" class="form-control" />
-                        <small class="form-text text-muted">Purchase Rmb * Conversion Rate</small>
+
                     </div>
                     <input type="hidden" name="product_value" id="product_value" class="form-control" />
                     <div class="form-group">
-                        <label for="product_bd_received_cost">BDT Received From Customer(BD Receive)</label>
+                        <label for="product_bd_received_cost">BD Receive<small class="form-text text-muted float-right">((China Local Delivery*Conversion)+Product Value)</small></label>
                         <input type="text" name="product_bd_received_cost" id="product_bd_received_cost" readonly placeholder="BD Received Cost" class="form-control" />
-                        <small class="form-text text-muted">(China Local Delivery*Conversion)+Product Value</small>
+
                     </div>
                     @endif
                     @if ($logged_in_user->can('admin.order.localdelivery.edit'))
@@ -54,9 +54,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="chinaLocalDelivery">China Local Delivery(BDT)</label>
+                        <label for="chinaLocalDelivery">China Local Delivery(BDT)<small class="form-text text-muted float-right">(China Local Delivery * Conversion Rate)</small></label>
                         <input type="text" name="chinaLocalDelivery" id="chinaLocalDelivery" readonly placeholder="China Local Delivery In BDT" class="form-control" />
-                        <small class="form-text text-muted">China Local Delivery * Conversion Rate</small>
+
                     </div>
                     @endif
                     {{-- China Purchase Officer End --}}
@@ -82,7 +82,7 @@
 
                     <div class="form-group">
                         <label for="chn_warehouse_weight">China Warehouse Weight</label>
-                        <input type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" placeholder="chn_warehouse_weight" class="form-control" />
+                        <textarea type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" placeholder="chn_warehouse_weight" class="form-control"> </textarea>
                     </div>
 
                     <div class="form-group">
@@ -92,12 +92,12 @@
 
                     <div class="form-group">
                         <label for="carton_id">Carton ID</label>
-                        <input type="text" name="carton_id" id="carton_id" placeholder="Carton Id" class="form-control" />
+                        <textarea type="text" name="carton_id" id="carton_id" placeholder="Carton Id" class="form-control"></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="product_type">Product Name</label>
-                        <textarea type="text" class="form-control" name="product_type" id="product_type"></textarea>
+                        <label for="product_type">Product Type</label>
+                        <textarea type="text" class="form-control" name="product_type" id="product_type" placeholder="Product Type"></textarea>
                     </div>
 
                     <div class="form-group">
