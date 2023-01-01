@@ -28,6 +28,10 @@ $demoImg = 'img/backend/front-logo.png';
               <a class="nav-link" id="vert-tabs-smsConfigSetting-tab" data-toggle="pill" href="#vert-tabs-smsConfigSetting" role="tab" aria-controls="vert-tabs-smsConfigSetting" aria-selected="false">SMS Configuration Setting</a>
               <a class="nav-link" id="vert-tabs-invoiceSettings-tab" data-toggle="pill" href="#vert-tabs-invoiceSettings" role="tab" aria-controls="vert-tabs-invoiceSettings" aria-selected="false">Invoices Setting</a>
               <a class="nav-link" id="vert-tabs-otcConfigSetting-tab" data-toggle="pill" href="#vert-tabs-otcConfigSetting" role="tab" aria-controls="vert-tabs-otcConfigSetting" aria-selected="false">OTC Configuration Setting</a>
+              <a class="nav-link" id="vert-tabs-bannerSetting-tab" data-toggle="pill" href="#vert-tabs-bannerSetting" role="tab" aria-controls="vert-tabs-bannerSetting" aria-selected="false">Banner Setting</a>
+              <a class="nav-link" id="vert-tabs-aboutSetting-tab" data-toggle="pill" href="#vert-tabs-aboutSetting" role="tab" aria-controls="vert-tabs-aboutSetting" aria-selected="false">About Setting</a>
+              <a class="nav-link" id="vert-tabs-workSetting-tab" data-toggle="pill" href="#vert-tabs-workSetting" role="tab" aria-controls="vert-tabs-workSetting" aria-selected="false">How Works Setting</a>
+              <a class="nav-link" id="vert-tabs-bottombannerSetting-tab" data-toggle="pill" href="#vert-tabs-bottombannerSetting" role="tab" aria-controls="vert-tabs-bottombannerSetting" aria-selected="false">Bottom Banner Setting</a>
             </div>
           </div>
           <div class="col-7 col-sm-8">
@@ -52,6 +56,18 @@ $demoImg = 'img/backend/front-logo.png';
               </div>
               <div class="tab-pane fade" id="vert-tabs-otcConfigSetting" role="tabpanel" aria-labelledby="vert-tabs-otcConfigSetting-tab">
                 @include("backend.content.settings.general.includes.otcConfigSetting")
+              </div>
+              <div class="tab-pane fade" id="vert-tabs-bannerSetting" role="tabpanel" aria-labelledby="vert-tabs-bannerSetting-tab">
+                @include("backend.content.settings.general.includes.bannerSetting")
+              </div>
+              <div class="tab-pane fade" id="vert-tabs-aboutSetting" role="tabpanel" aria-labelledby="vert-tabs-aboutSetting-tab">
+                @include("backend.content.settings.general.includes.aboutSetting")
+              </div>
+              <div class="tab-pane fade" id="vert-tabs-workSetting" role="tabpanel" aria-labelledby="vert-tabs-workSetting-tab">
+                @include("backend.content.settings.general.includes.workSetting")
+              </div>
+              <div class="tab-pane fade" id="vert-tabs-bottombannerSetting" role="tabpanel" aria-labelledby="vert-tabs-bottombannerSetting-tab">
+                @include("backend.content.settings.general.includes.bottombannerSetting")
               </div>
             </div>
           </div>

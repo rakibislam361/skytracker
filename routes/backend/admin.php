@@ -41,6 +41,16 @@ Route::group(['prefix' => 'messaging', 'as' => 'messaging.'], function () {
 
 Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::get('price', [SettingController::class, 'price'])->name('price');
+    Route::get('notice', [SettingController::class, 'notice'])->name('notice');
+    Route::post('notice/store', [SettingController::class, 'noticestore'])->name('notice.store');
+    Route::post('notice/update', [SettingController::class, 'noticeupdate'])->name('notice.update');
+    Route::get('notice/edit/{id}', [SettingController::class, 'noticeedit']);
+
+    Route::get('info', [SettingController::class, 'info'])->name('info');
+    Route::post('info/store', [SettingController::class, 'infostore'])->name('info.store');
+    Route::post('info/update', [SettingController::class, 'infoupdate'])->name('info.update');
+    Route::get('info/edit/{id}', [SettingController::class, 'infoedit']);
+
     Route::post('airShippingStore', [SettingController::class, 'airShippingStore'])->name('airShippingStore');
     Route::post('logo-store', [SettingController::class, 'logoStore'])->name('logoStore');
     Route::post('social-store', [SettingController::class, 'socialStore'])->name('socialStore');
@@ -48,6 +58,10 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::get('cache-control', [SettingController::class, 'cacheControl'])->name('cache.control');
     Route::post('cache-control-store', [SettingController::class, 'cacheClear'])->name('cache.control.store');
     Route::post('short-message', [SettingController::class, 'shortMessageStore'])->name('short.message.store');
+    Route::post('banner-message', [SettingController::class, 'bannerstore'])->name('banner.store');
+    Route::post('bottombanner-message', [SettingController::class, 'bottombanner'])->name('bottombanner.store');
+    Route::post('about-message', [SettingController::class, 'aboutstore'])->name('about.store');
+    Route::post('work-message', [SettingController::class, 'workstore'])->name('work.store');
 
     Route::get('top-notice', [SettingController::class, 'topNoticeCreate'])->name('topNotice.create');
     Route::post('top-notice', [SettingController::class, 'topNoticeStore'])->name('topNotice.store');

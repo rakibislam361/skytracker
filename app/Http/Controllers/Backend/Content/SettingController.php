@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Backend\Content;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content\Setting;
+use App\Models\Info;
+use App\Models\Notice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class SettingController extends Controller
 {
@@ -34,6 +37,102 @@ class SettingController extends Controller
 
     return redirect()->back()->withFlashSuccess('Logo Updated Successfully');
   }
+  public function bannerstore(Request $request)
+  {
+  
+    if (\request()->hasFile('banner_image')) {
+ 
+      $data['banner_image'] = store_picture(\request()->file('banner_image'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    if (\request()->hasFile('banner_image_back')) {
+ 
+      $data['banner_image_back'] = store_picture(\request()->file('banner_image_back'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+
+    
+    $data = \request()->only(['banner_text_header', 'banner_text_bottom']);
+    Setting::save_settings($data);
+    return redirect()->back()->withFlashSuccess('Banner section Updated Successfully');
+  }
+  public function bottombanner(Request $request)
+  {
+  
+    if (\request()->hasFile('bottombanner_image')) {
+ 
+      $data['bottombanner_image'] = store_picture(\request()->file('bottombanner_image'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+
+    $data = \request()->only(['bottombanner_text_header', 'bottombanner_text_bottom','bottom_bg_color','bottom_video_link']);
+    Setting::save_settings($data);
+    return redirect()->back()->withFlashSuccess('Bottom Banner section Updated Successfully');
+  }
+  public function aboutstore(Request $request)
+  {
+  
+    if (\request()->hasFile('about_image_1')) {
+ 
+      $data['about_image_1'] = store_picture(\request()->file('about_image_1'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    if (\request()->hasFile('about_image_2')) {
+ 
+      $data['about_image_2'] = store_picture(\request()->file('about_image_2'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    if (\request()->hasFile('about_image_3')) {
+ 
+      $data['about_image_3'] = store_picture(\request()->file('about_image_3'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    if (\request()->hasFile('about_image_4')) {
+ 
+      $data['about_image_4'] = store_picture(\request()->file('about_image_4'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    if (\request()->hasFile('about_image_5')) {
+ 
+      $data['about_image_5'] = store_picture(\request()->file('about_image_5'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    if (\request()->hasFile('about_image_6')) {
+ 
+      $data['about_image_6'] = store_picture(\request()->file('about_image_6'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+   
+
+    
+    $data = \request()->only(['about_text_header', 'about_text_bottom','about_text_details','about_image_title_1','about_image_title_2','about_image_title_3','about_image_title_4','about_image_title_5','about_image_title_6']);
+    Setting::save_settings($data);
+    return redirect()->back()->withFlashSuccess('About section Updated Successfully');
+  }
+  public function workstore(Request $request)
+  {
+  
+    if (\request()->hasFile('work_image_1')) {
+ 
+      $data['work_image_1'] = store_picture(\request()->file('work_image_1'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    if (\request()->hasFile('work_image_2')) {
+ 
+      $data['work_image_2'] = store_picture(\request()->file('work_image_2'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    if (\request()->hasFile('work_image_3')) {
+ 
+      $data['work_image_3'] = store_picture(\request()->file('work_image_3'), 'setting/logo');
+      Setting::save_settings($data);
+    }
+    
+    
+    $data = \request()->only(['work_text_header', 'work_image_title_1','work_image_title_2','work_image_title_3','work_image_bottom_1','work_image_bottom_2','work_image_bottom_3']);
+    Setting::save_settings($data);
+    return redirect()->back()->withFlashSuccess('About section Updated Successfully');
+  }
 
   public function socialStore(Request $request)
   {
@@ -59,7 +158,91 @@ class SettingController extends Controller
   {
     return view('backend.content.settings.price-setting');
   }
+  public function notice()
+  {
+    return view('backend.content.settings.notice.index');
+  }
+  public function noticestore(Request $request)
+  {
+    foreach($request->title  as $key =>$title){
+      $newImageName=time().'.'.$request->multiimage[$key]->extension();
+      $image=$request->multiimage[$key]->move(public_path('setting/banner'),$newImageName);
+     $notice=new Notice;
+     $notice->image = $newImageName;
+     $notice->title = $request->title[$key];
+     $notice->description= $request->description[$key];
+      $notice->save();
+      
+      }
 
+    return redirect()->back()->withFlashSuccess('Notice Store Successfully');
+  }
+  public function noticeedit($id)
+  {
+    $notice=DB::table('notices')->find($id);
+    return view('backend.content.settings.notice.edit',compact('notice'));
+  }
+
+  public function noticeupdate(Request $request)
+  {
+   $id=$request->notice_id;
+   if($request->image){
+   $newImageName=time().'.'.$request->image->extension();
+   $image=$request->image->move(public_path('setting/banner'),$newImageName);
+  }else{
+    $newImageName=$request->oldimage;
+  }
+   $notice=Notice::find($id);
+   $notice->image = $newImageName;
+   $notice->title = $request->title;
+   $notice->description= $request->description;
+   $notice->is_active= $request->is_active;
+    $notice->save();
+return redirect('/admin/setting/notice')->withFlashSuccess('Notice Updated Successfully');;
+  }
+  public function info()
+  {
+    return view('backend.content.settings.info.index');
+  }
+  public function infostore(Request $request)
+  {
+    foreach($request->title  as $key =>$title){
+      $newImageName=time().'.'.$request->multiimage[$key]->extension();
+      $image=$request->multiimage[$key]->move(public_path('setting/banner'),$newImageName);
+      $info=new Info;
+     $info->image = $newImageName;
+     $info->title = $request->title[$key];
+     $info->description= $request->description[$key];
+      $info->save();
+      
+      }
+
+    return redirect()->back()->withFlashSuccess('Notice Store Successfully');
+  }
+  public function infoedit($id)
+  {
+    $notice=DB::table('infos')->find($id);
+    return view('backend.content.settings.info.edit',compact('notice'));
+  }
+
+  public function infoupdate(Request $request)
+  {
+   $id=$request->notice_id;
+   if($request->image){
+   $newImageName=time().'.'.$request->image->extension();
+   $image=$request->image->move(public_path('setting/banner'),$newImageName);
+  }else{
+    $newImageName=$request->oldimage;
+  }
+   $info=Info::find($id);
+   $info->image = $newImageName;
+   $info->title = $request->title;
+   $info->description= $request->description;
+   $info->is_active= $request->is_active;
+   $info->save();
+
+return redirect('/admin/setting/info')->withFlashSuccess('Notice Updated Successfully');;
+  }
   public function limit()
   {
     return view('backend.content.settings.order-limit-setting');

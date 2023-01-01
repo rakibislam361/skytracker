@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 22, 2022 at 12:10 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.4.29
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jan 01, 2023 at 11:29 AM
+-- Server version: 8.0.27
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,18 +27,23 @@ SET time_zone = "+00:00";
 -- Table structure for table `activity_log`
 --
 
-CREATE TABLE `activity_log` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `log_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `subject_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `causer_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `causer_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`properties`)),
+DROP TABLE IF EXISTS `activity_log`;
+CREATE TABLE IF NOT EXISTS `activity_log` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `log_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject_id` bigint UNSIGNED DEFAULT NULL,
+  `subject_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `causer_id` bigint UNSIGNED DEFAULT NULL,
+  `causer_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `activity_log_log_name_index` (`log_name`),
+  KEY `subject` (`subject_id`,`subject_type`),
+  KEY `causer` (`causer_id`,`causer_type`)
+) ;
 
 --
 -- Dumping data for table `activity_log`
@@ -57,17 +62,19 @@ INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_id`, `subj
 -- Table structure for table `announcements`
 --
 
-CREATE TABLE `announcements` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `area` enum('frontend','backend') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `type` enum('info','danger','warning','success') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'info',
-  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT 1,
+DROP TABLE IF EXISTS `announcements`;
+CREATE TABLE IF NOT EXISTS `announcements` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `area` enum('frontend','backend') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` enum('info','danger','warning','success') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'info',
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
   `starts_at` timestamp NULL DEFAULT NULL,
   `ends_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `announcements`
@@ -82,19 +89,22 @@ INSERT INTO `announcements` (`id`, `area`, `type`, `message`, `enabled`, `starts
 -- Table structure for table `brands`
 --
 
-CREATE TABLE `brands` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `brands`;
+CREATE TABLE IF NOT EXISTS `brands` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `active` timestamp NULL DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `logo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `top` tinyint(1) DEFAULT NULL,
-  `meta_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `meta_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `meta_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `user_id` int UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `brands_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -103,10 +113,12 @@ CREATE TABLE `brands` (
 -- Table structure for table `cache`
 --
 
-CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `expiration` int(11) NOT NULL
+DROP TABLE IF EXISTS `cache`;
+CREATE TABLE IF NOT EXISTS `cache` (
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL,
+  UNIQUE KEY `cache_key_unique` (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -115,17 +127,19 @@ CREATE TABLE `cache` (
 -- Table structure for table `contact`
 --
 
-CREATE TABLE `contact` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `message` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'contact',
-  `user_id` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `contact`;
+CREATE TABLE IF NOT EXISTS `contact` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'contact',
+  `user_id` int DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -134,15 +148,45 @@ CREATE TABLE `contact` (
 -- Table structure for table `failed_jobs`
 --
 
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+DROP TABLE IF EXISTS `failed_jobs`;
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `infos`
+--
+
+DROP TABLE IF EXISTS `infos`;
+CREATE TABLE IF NOT EXISTS `infos` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_active` int NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `infos`
+--
+
+INSERT INTO `infos` (`id`, `title`, `link`, `image`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'dds', NULL, '1672563199.jpg', 'dsdds', 1, NULL, '2023-01-01 03:14:12'),
+(2, 'dcd', NULL, '1672564464.png', 'dfdf', 1, '2023-01-01 03:14:24', '2023-01-01 03:14:24');
 
 -- --------------------------------------------------------
 
@@ -150,11 +194,13 @@ CREATE TABLE `failed_jobs` (
 -- Table structure for table `migrations`
 --
 
-CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+DROP TABLE IF EXISTS `migrations`;
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `migrations`
@@ -182,7 +228,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2021_11_21_163538_create_cache_table', 1),
 (20, '2022_11_21_115335_create_orders_table', 1),
 (21, '2022_11_21_115408_create_order_item_variations_table', 1),
-(22, '2022_11_21_115442_create_order_item_table', 1);
+(22, '2022_11_21_115442_create_order_item_table', 1),
+(23, '2022_11_30_054320_apicall', 2),
+(24, '2023_01_01_054551_create_notices_table', 2),
+(25, '2023_01_01_061129_create_infos_table', 2);
 
 -- --------------------------------------------------------
 
@@ -190,10 +239,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Table structure for table `model_has_permissions`
 --
 
-CREATE TABLE `model_has_permissions` (
-  `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+DROP TABLE IF EXISTS `model_has_permissions`;
+CREATE TABLE IF NOT EXISTS `model_has_permissions` (
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL,
+  PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
@@ -205,8 +257,8 @@ INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) 
 (10, 'App\\Domains\\Auth\\Models\\User', 3),
 (11, 'App\\Domains\\Auth\\Models\\User', 4),
 (12, 'App\\Domains\\Auth\\Models\\User', 5),
-(12, 'App\\Domains\\Auth\\Models\\User', 6),
 (13, 'App\\Domains\\Auth\\Models\\User', 5),
+(12, 'App\\Domains\\Auth\\Models\\User', 6),
 (13, 'App\\Domains\\Auth\\Models\\User', 6),
 (14, 'App\\Domains\\Auth\\Models\\User', 6);
 
@@ -216,10 +268,13 @@ INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) 
 -- Table structure for table `model_has_roles`
 --
 
-CREATE TABLE `model_has_roles` (
-  `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL
+DROP TABLE IF EXISTS `model_has_roles`;
+CREATE TABLE IF NOT EXISTS `model_has_roles` (
+  `role_id` bigint UNSIGNED NOT NULL,
+  `model_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL,
+  PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
@@ -232,25 +287,54 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notices`
+--
+
+DROP TABLE IF EXISTS `notices`;
+CREATE TABLE IF NOT EXISTS `notices` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `is_active` int NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `notices`
+--
+
+INSERT INTO `notices` (`id`, `title`, `link`, `image`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(5, 'demoup', NULL, '1672564302.jpg', 'demo', 1, '2023-01-01 03:08:39', '2023-01-01 03:11:42'),
+(6, 'try', NULL, '1672564119.png', 'try', 1, '2023-01-01 03:08:39', '2023-01-01 03:08:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
-CREATE TABLE `orders` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` double DEFAULT NULL,
   `needToPay` double DEFAULT NULL,
   `dueForProducts` double DEFAULT NULL,
-  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `transaction_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `currency` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `transaction_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `currency` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -259,23 +343,24 @@ CREATE TABLE `orders` (
 -- Table structure for table `order_item`
 --
 
-CREATE TABLE `order_item` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_item_number` varchar(25) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `order_id` bigint(20) UNSIGNED NOT NULL,
-  `product_id` bigint(20) UNSIGNED NOT NULL,
-  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `quantityRanges` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipped_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipping_rate` int(11) DEFAULT NULL,
-  `approxWeight` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+DROP TABLE IF EXISTS `order_item`;
+CREATE TABLE IF NOT EXISTS `order_item` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_item_number` varchar(25) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `name` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `quantityRanges` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `shipped_by` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_rate` int DEFAULT NULL,
+  `approxWeight` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `chinaLocalDelivery` double DEFAULT NULL,
-  `order_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tracking_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `actual_weight` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
+  `order_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tracking_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `actual_weight` int DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
   `product_value` double DEFAULT NULL,
   `first_payment` double DEFAULT NULL,
   `shipping_charge` double DEFAULT NULL,
@@ -286,11 +371,12 @@ CREATE TABLE `order_item` (
   `refunded` double DEFAULT NULL,
   `last_payment` double DEFAULT NULL,
   `due_payment` double DEFAULT NULL,
-  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `status` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -299,20 +385,22 @@ CREATE TABLE `order_item` (
 -- Table structure for table `order_item_variations`
 --
 
-CREATE TABLE `order_item_variations` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_item_id` int(10) UNSIGNED NOT NULL,
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `itemCode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `attributes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+DROP TABLE IF EXISTS `order_item_variations`;
+CREATE TABLE IF NOT EXISTS `order_item_variations` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_item_id` int UNSIGNED NOT NULL,
+  `product_id` int UNSIGNED NOT NULL,
+  `itemCode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `attributes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` double DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
+  `quantity` int DEFAULT NULL,
   `subTotal` double DEFAULT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -321,22 +409,25 @@ CREATE TABLE `order_item_variations` (
 -- Table structure for table `pages`
 --
 
-CREATE TABLE `pages` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `excerpt` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `pages`;
+CREATE TABLE IF NOT EXISTS `pages` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `excerpt` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `status` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `schedule_time` timestamp NULL DEFAULT NULL,
-  `post_format` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'standard',
-  `thumb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `thumb_status` tinyint(1) NOT NULL DEFAULT 1,
-  `update_by` int(11) DEFAULT NULL,
-  `user_id` bigint(20) NOT NULL,
+  `post_format` varchar(55) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'standard',
+  `thumb` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `thumb_status` tinyint(1) NOT NULL DEFAULT '1',
+  `update_by` int DEFAULT NULL,
+  `user_id` bigint NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pages_status_index` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -345,14 +436,16 @@ CREATE TABLE `pages` (
 -- Table structure for table `password_histories`
 --
 
-CREATE TABLE `password_histories` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint(20) UNSIGNED NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `password_histories`;
+CREATE TABLE IF NOT EXISTS `password_histories` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `model_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint UNSIGNED NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `password_histories`
@@ -372,10 +465,12 @@ INSERT INTO `password_histories` (`id`, `model_type`, `model_id`, `password`, `c
 -- Table structure for table `password_resets`
 --
 
-CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE IF NOT EXISTS `password_resets` (
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -384,17 +479,20 @@ CREATE TABLE `password_resets` (
 -- Table structure for table `permissions`
 --
 
-CREATE TABLE `permissions` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `type` enum('admin','user') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `parent_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `sort` tinyint(4) NOT NULL DEFAULT 1,
+DROP TABLE IF EXISTS `permissions`;
+CREATE TABLE IF NOT EXISTS `permissions` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type` enum('admin','user') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` bigint UNSIGNED DEFAULT NULL,
+  `sort` tinyint NOT NULL DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `permissions_parent_id_foreign` (`parent_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `permissions`
@@ -423,16 +521,20 @@ INSERT INTO `permissions` (`id`, `type`, `guard_name`, `name`, `description`, `p
 -- Table structure for table `personal_access_tokens`
 --
 
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+DROP TABLE IF EXISTS `personal_access_tokens`;
+CREATE TABLE IF NOT EXISTS `personal_access_tokens` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `tokenable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -441,20 +543,23 @@ CREATE TABLE `personal_access_tokens` (
 -- Table structure for table `products`
 --
 
-CREATE TABLE `products` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `active` timestamp NULL DEFAULT NULL,
-  `productName` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `warehouse_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `invoice` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` int(10) UNSIGNED DEFAULT NULL,
+  `productName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status_id` bigint UNSIGNED DEFAULT NULL,
+  `warehouse_id` bigint UNSIGNED DEFAULT NULL,
+  `invoice` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` int UNSIGNED DEFAULT NULL,
   `shipping_cost` double DEFAULT NULL,
-  `shipping_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `barcode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_id` bigint UNSIGNED DEFAULT NULL,
+  `barcode` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `products_invoice_unique` (`invoice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -463,10 +568,12 @@ CREATE TABLE `products` (
 -- Table structure for table `review`
 --
 
-CREATE TABLE `review` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `review`;
+CREATE TABLE IF NOT EXISTS `review` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -475,14 +582,16 @@ CREATE TABLE `review` (
 -- Table structure for table `roles`
 --
 
-CREATE TABLE `roles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `type` enum('admin','user') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type` enum('admin','user') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `roles`
@@ -498,9 +607,12 @@ INSERT INTO `roles` (`id`, `type`, `name`, `guard_name`, `created_at`, `updated_
 -- Table structure for table `role_has_permissions`
 --
 
-CREATE TABLE `role_has_permissions` (
-  `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `role_id` bigint(20) UNSIGNED NOT NULL
+DROP TABLE IF EXISTS `role_has_permissions`;
+CREATE TABLE IF NOT EXISTS `role_has_permissions` (
+  `permission_id` bigint UNSIGNED NOT NULL,
+  `role_id` bigint UNSIGNED NOT NULL,
+  PRIMARY KEY (`permission_id`,`role_id`),
+  KEY `role_has_permissions_role_id_foreign` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -509,15 +621,76 @@ CREATE TABLE `role_has_permissions` (
 -- Table structure for table `settings`
 --
 
-CREATE TABLE `settings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `settings`;
+CREATE TABLE IF NOT EXISTS `settings` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `active` timestamp NOT NULL DEFAULT '2022-11-22 04:13:10',
-  `key` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `key` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `settings_key_value_unique` (`key`,`value`)
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `active`, `key`, `value`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, '2022-11-22 04:13:10', 'frontend_logo_menu', 'storage/setting/logo/logo.png', 1, '2022-12-31 22:51:02', '2022-12-31 23:20:00'),
+(2, '2022-11-22 04:13:10', 'banner_text_header', 'FIND THE best door to door RATE', 1, '2022-12-31 23:05:19', '2022-12-31 23:05:19'),
+(3, '2022-11-22 04:13:10', 'banner_text_bottom', 'SHIPPING TO AND FROM ANYWHERE IN THE WORLD', 1, '2022-12-31 23:05:19', '2022-12-31 23:05:19'),
+(4, '2022-11-22 04:13:10', 'banner_image', 'storage/setting/logo/slider-golve.png', 1, '2022-12-31 23:12:32', '2022-12-31 23:23:11'),
+(5, '2022-11-22 04:13:10', 'admin_logo', 'storage/setting/logo/slider-golve.png', 1, '2022-12-31 23:15:48', '2022-12-31 23:15:48'),
+(6, '2022-11-22 04:13:10', 'banner_image_back', 'storage/setting/logo/slider-slider_img03.jpg', 1, '2022-12-31 23:34:18', '2022-12-31 23:34:18'),
+(7, '2022-11-22 04:13:10', 'about_image_1', 'storage/setting/logo/bulk.05d5deb6.jpg', 1, '2023-01-01 03:51:49', '2023-01-01 03:51:49'),
+(8, '2022-11-22 04:13:10', 'about_text_header', 'About Skytrack', 1, '2023-01-01 03:51:49', '2023-01-01 03:53:15'),
+(9, '2022-11-22 04:13:10', 'about_text_bottom', 'Express delivery is an innovative service', 1, '2023-01-01 03:51:49', '2023-01-01 03:53:15'),
+(10, '2022-11-22 04:13:10', 'about_text_details', 'Express delivery is an innovative service is effective logistics solution for the delivery of small cargo. This service is useful for companies of various effective logistics scale.', 1, '2023-01-01 03:51:49', '2023-01-01 03:53:15'),
+(11, '2022-11-22 04:13:10', 'about_image_title_1', 'Bulk Shipment', 1, '2023-01-01 03:51:49', '2023-01-01 03:51:49'),
+(12, '2022-11-22 04:13:10', 'about_image_title_2', 'Fast Delivery', 1, '2023-01-01 03:51:49', '2023-01-01 04:01:13'),
+(13, '2022-11-22 04:13:10', 'about_image_title_4', 'Our Warehouses', 1, '2023-01-01 03:51:49', '2023-01-01 03:53:15'),
+(14, '2022-11-22 04:13:10', 'about_image_title_5', 'Load/Unload', 1, '2023-01-01 03:51:49', '2023-01-01 03:53:15'),
+(15, '2022-11-22 04:13:10', 'about_image_title_6', 'Care Solution', 1, '2023-01-01 03:51:49', '2023-01-01 03:53:15'),
+(16, '2022-11-22 04:13:10', 'about_image_2', 'storage/setting/logo/bulk.05d5deb6.jpg', 1, '2023-01-01 03:53:14', '2023-01-01 03:53:14'),
+(17, '2022-11-22 04:13:10', 'about_image_3', 'storage/setting/logo/bulk.05d5deb6.jpg', 1, '2023-01-01 03:53:14', '2023-01-01 03:53:14'),
+(18, '2022-11-22 04:13:10', 'about_image_4', 'storage/setting/logo/bulk.05d5deb6.jpg', 1, '2023-01-01 03:53:14', '2023-01-01 03:53:14'),
+(19, '2022-11-22 04:13:10', 'about_image_5', 'storage/setting/logo/bulk.05d5deb6.jpg', 1, '2023-01-01 03:53:15', '2023-01-01 03:53:15'),
+(20, '2022-11-22 04:13:10', 'about_image_6', 'storage/setting/logo/bulk.05d5deb6.jpg', 1, '2023-01-01 03:53:15', '2023-01-01 03:53:15'),
+(21, '2022-11-22 04:13:10', 'about_image_title_3', 'Cash on delivery', 1, '2023-01-01 04:01:13', '2023-01-01 04:01:13'),
+(22, '2022-11-22 04:13:10', 'site_name', NULL, 1, '2023-01-01 04:03:18', '2023-01-01 04:03:18'),
+(23, '2022-11-22 04:13:10', 'site_url', NULL, 1, '2023-01-01 04:03:18', '2023-01-01 04:03:18'),
+(24, '2022-11-22 04:13:10', 'meta_title', NULL, 1, '2023-01-01 04:03:18', '2023-01-01 04:03:18'),
+(25, '2022-11-22 04:13:10', 'meta_description', NULL, 1, '2023-01-01 04:03:18', '2023-01-01 04:03:18'),
+(26, '2022-11-22 04:13:10', 'office_phone', '09613828606', 1, '2023-01-01 04:03:18', '2023-01-01 04:11:04'),
+(27, '2022-11-22 04:13:10', 'office_email', 'info@skytrackbd.com', 1, '2023-01-01 04:03:18', '2023-01-01 04:11:04'),
+(28, '2022-11-22 04:13:10', 'office_address', 'House#42, Road-3/A, Dhanmondi,\r\nDhaka-1209, Bangladesh', 1, '2023-01-01 04:03:18', '2023-01-01 04:12:30'),
+(29, '2022-11-22 04:13:10', 'footer_description', NULL, 1, '2023-01-01 04:03:18', '2023-01-01 04:03:18'),
+(30, '2022-11-22 04:13:10', 'copyright_text', 'Copyright© Sky Track | All Rights Reserved', 1, '2023-01-01 04:03:18', '2023-01-01 04:03:18'),
+(31, '2022-11-22 04:13:10', 'g_map_iframe_url', NULL, 1, '2023-01-01 04:03:18', '2023-01-01 04:03:18'),
+(32, '2022-11-22 04:13:10', 'facebook', 'https://www.facebook.com/skybuybd', 1, '2023-01-01 04:07:02', '2023-01-01 04:07:02'),
+(33, '2022-11-22 04:13:10', 'twitter', 'https://www.facebook.com/skybuybd', 1, '2023-01-01 04:07:02', '2023-01-01 04:07:02'),
+(34, '2022-11-22 04:13:10', 'linkedin', 'https://www.facebook.com/skybuybd', 1, '2023-01-01 04:07:02', '2023-01-01 04:07:02'),
+(35, '2022-11-22 04:13:10', 'youtube', 'https://www.youtube.com/channel/UCpAD9qfHckZQaL55xrTdyoA', 1, '2023-01-01 04:07:02', '2023-01-01 04:07:02'),
+(36, '2022-11-22 04:13:10', 'instagram', 'bdskybuy', 1, '2023-01-01 04:07:02', '2023-01-01 04:07:02'),
+(37, '2022-11-22 04:13:10', 'frontend_logo_footer', 'storage/setting/logo/logo-w_logo.png', 1, '2023-01-01 04:12:58', '2023-01-01 04:12:58'),
+(38, '2022-11-22 04:13:10', 'work_image_1', 'storage/setting/logo/icon-ds_icon01.png', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(39, '2022-11-22 04:13:10', 'work_image_2', 'storage/setting/logo/icon-ds_icon01.png', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(40, '2022-11-22 04:13:10', 'work_image_3', 'storage/setting/logo/icon-ds_icon01.png', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(41, '2022-11-22 04:13:10', 'work_text_header', 'How Sky Track Works', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(42, '2022-11-22 04:13:10', 'work_image_title_1', 'Create Booking', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(43, '2022-11-22 04:13:10', 'work_image_title_2', 'Track Your Booking', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(44, '2022-11-22 04:13:10', 'work_image_title_3', 'Get Your Shipment Delivered', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(45, '2022-11-22 04:13:10', 'work_image_bottom_1', 'Express delivery innovative service logistic delivery', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(46, '2022-11-22 04:13:10', 'work_image_bottom_2', 'Express delivery innovative service logistic delivery', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(47, '2022-11-22 04:13:10', 'work_image_bottom_3', 'Express delivery innovative service logistic delivery', 1, '2023-01-01 04:34:49', '2023-01-01 04:34:49'),
+(48, '2022-11-22 04:13:10', 'bottombanner_image', 'storage/setting/logo/bg-video_bg.jpg', 1, '2023-01-01 05:24:26', '2023-01-01 05:24:26'),
+(49, '2022-11-22 04:13:10', 'bottombanner_text_header', 'Our Chalanges', 1, '2023-01-01 05:24:26', '2023-01-01 05:24:26'),
+(50, '2022-11-22 04:13:10', 'bottombanner_text_bottom', 'never break our promise', 1, '2023-01-01 05:24:26', '2023-01-01 05:24:26'),
+(51, '2022-11-22 04:13:10', 'bottom_bg_color', '#4e148c', 1, '2023-01-01 05:24:26', '2023-01-01 05:24:26'),
+(52, '2022-11-22 04:13:10', 'bottom_video_link', 'https://www.youtube.com/watch?v=iWKu6WNFf9M', 1, '2023-01-01 05:24:26', '2023-01-01 05:24:26');
 
 -- --------------------------------------------------------
 
@@ -525,13 +698,15 @@ CREATE TABLE `settings` (
 -- Table structure for table `shippings`
 --
 
-CREATE TABLE `shippings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `shippings`;
+CREATE TABLE IF NOT EXISTS `shippings` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -540,13 +715,15 @@ CREATE TABLE `shippings` (
 -- Table structure for table `statuses`
 --
 
-CREATE TABLE `statuses` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `statuses`;
+CREATE TABLE IF NOT EXISTS `statuses` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -555,23 +732,26 @@ CREATE TABLE `statuses` (
 -- Table structure for table `two_factor_authentications`
 --
 
-CREATE TABLE `two_factor_authentications` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `authenticatable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `authenticatable_id` bigint(20) UNSIGNED NOT NULL,
-  `shared_secret` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `two_factor_authentications`;
+CREATE TABLE IF NOT EXISTS `two_factor_authentications` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `authenticatable_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `authenticatable_id` bigint UNSIGNED NOT NULL,
+  `shared_secret` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `enabled_at` timestamp NULL DEFAULT NULL,
-  `label` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `digits` tinyint(3) UNSIGNED NOT NULL DEFAULT 6,
-  `seconds` tinyint(3) UNSIGNED NOT NULL DEFAULT 30,
-  `window` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
-  `algorithm` varchar(16) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'sha1',
-  `recovery_codes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`recovery_codes`)),
+  `label` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `digits` tinyint UNSIGNED NOT NULL DEFAULT '6',
+  `seconds` tinyint UNSIGNED NOT NULL DEFAULT '30',
+  `window` tinyint UNSIGNED NOT NULL DEFAULT '0',
+  `algorithm` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'sha1',
+  `recovery_codes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `recovery_codes_generated_at` timestamp NULL DEFAULT NULL,
-  `safe_devices` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`safe_devices`)),
+  `safe_devices` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `2fa_auth_type_auth_id_index` (`authenticatable_type`,`authenticatable_id`)
+) ;
 
 -- --------------------------------------------------------
 
@@ -579,36 +759,40 @@ CREATE TABLE `two_factor_authentications` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `type` enum('admin','user') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `shipping_id` int(11) DEFAULT NULL,
-  `billing_id` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+  `type` enum('admin','user') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shipping_id` int DEFAULT NULL,
+  `billing_id` int DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password_changed_at` timestamp NULL DEFAULT NULL,
-  `active` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
-  `timezone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `active` tinyint UNSIGNED NOT NULL DEFAULT '1',
+  `timezone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_login_at` timestamp NULL DEFAULT NULL,
-  `last_login_ip` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `to_be_logged_out` tinyint(1) NOT NULL DEFAULT 0,
-  `provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `provider_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_login_ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `to_be_logged_out` tinyint(1) NOT NULL DEFAULT '0',
+  `provider` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `provider_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_phone_unique` (`phone`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `type`, `name`, `phone`, `email`, `shipping_id`, `billing_id`, `email_verified_at`, `password`, `password_changed_at`, `active`, `timezone`, `last_login_at`, `last_login_ip`, `to_be_logged_out`, `provider`, `provider_id`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'admin', 'Super Admin', '01515234363', 'admin@admin.com', NULL, NULL, '2022-11-22 04:13:10', '$2y$10$t715EaQmLZkXYJu4r5RaDuFBMnN3cdshL6Ttsrfk5dYPZs.1Dr9HW', NULL, 1, 'America/New_York', '2022-11-22 04:17:01', '127.0.0.1', 0, NULL, NULL, NULL, '2022-11-22 04:13:10', '2022-11-22 04:17:01', NULL),
+(1, 'admin', 'Super Admin', '01515234363', 'admin@admin.com', NULL, NULL, '2022-11-22 04:13:10', '$2y$10$fO77NORwdtIrv8pLt.NUh.n72B.J7tzoSlkvWK3LWz0nwmkhREJCy', NULL, 1, 'America/New_York', '2022-12-31 19:58:23', '127.0.0.1', 0, NULL, NULL, NULL, '2022-11-22 04:13:10', '2022-12-31 19:58:23', NULL),
 (2, 'user', 'Test User', NULL, 'user@user.com', NULL, NULL, '2022-11-22 04:13:10', '$2y$10$vy1/eQBZEF3BmhudR4cpwOR2MiU7FQiNcDzagXBPqoyHoq79vCDHK', NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2022-11-22 04:13:10', '2022-11-22 04:13:10', NULL),
 (3, 'admin', 'BD Purchase Officer', NULL, 'bdofficer@gmail.com', NULL, NULL, '2022-11-22 05:01:58', '$2y$10$x35f7D4o5DZ8H20srWRAD.v2NWGmL7TBXNfh2JHyQD5shg7xSLrX.', NULL, 1, NULL, NULL, NULL, 0, NULL, NULL, NULL, '2022-11-22 05:01:58', '2022-11-22 05:01:58', NULL),
 (4, 'admin', 'China Purchase Officer', NULL, 'chinapurchase@gmail.com', NULL, NULL, '2022-11-22 05:04:33', '$2y$10$84i8zpZxaoVldzDsUfF66.H7VnIUZCPj3s68snCN1sjRbaN.hfqVe', NULL, 1, 'America/New_York', '2022-11-22 05:08:32', '127.0.0.1', 0, NULL, NULL, NULL, '2022-11-22 05:04:33', '2022-11-22 05:08:32', NULL),
@@ -621,333 +805,16 @@ INSERT INTO `users` (`id`, `type`, `name`, `phone`, `email`, `shipping_id`, `bil
 -- Table structure for table `warehouses`
 --
 
-CREATE TABLE `warehouses` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `warehouses`;
+CREATE TABLE IF NOT EXISTS `warehouses` (
+  `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` int UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `activity_log`
---
-ALTER TABLE `activity_log`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `activity_log_log_name_index` (`log_name`),
-  ADD KEY `subject` (`subject_id`,`subject_type`),
-  ADD KEY `causer` (`causer_id`,`causer_type`);
-
---
--- Indexes for table `announcements`
---
-ALTER TABLE `announcements`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `brands`
---
-ALTER TABLE `brands`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `brands_slug_unique` (`slug`);
-
---
--- Indexes for table `cache`
---
-ALTER TABLE `cache`
-  ADD UNIQUE KEY `cache_key_unique` (`key`);
-
---
--- Indexes for table `contact`
---
-ALTER TABLE `contact`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
--- Indexes for table `migrations`
---
-ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `model_has_permissions`
---
-ALTER TABLE `model_has_permissions`
-  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
-  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
-
---
--- Indexes for table `model_has_roles`
---
-ALTER TABLE `model_has_roles`
-  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
-  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
-
---
--- Indexes for table `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `order_item`
---
-ALTER TABLE `order_item`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `order_item_variations`
---
-ALTER TABLE `order_item_variations`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pages`
---
-ALTER TABLE `pages`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `pages_status_index` (`status`);
-
---
--- Indexes for table `password_histories`
---
-ALTER TABLE `password_histories`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
--- Indexes for table `permissions`
---
-ALTER TABLE `permissions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `permissions_parent_id_foreign` (`parent_id`);
-
---
--- Indexes for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
-
---
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `products_invoice_unique` (`invoice`);
-
---
--- Indexes for table `review`
---
-ALTER TABLE `review`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `roles`
---
-ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `role_has_permissions`
---
-ALTER TABLE `role_has_permissions`
-  ADD PRIMARY KEY (`permission_id`,`role_id`),
-  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
-
---
--- Indexes for table `settings`
---
-ALTER TABLE `settings`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `settings_key_value_unique` (`key`,`value`);
-
---
--- Indexes for table `shippings`
---
-ALTER TABLE `shippings`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `statuses`
---
-ALTER TABLE `statuses`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `two_factor_authentications`
---
-ALTER TABLE `two_factor_authentications`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `2fa_auth_type_auth_id_index` (`authenticatable_type`,`authenticatable_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_phone_unique` (`phone`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
--- Indexes for table `warehouses`
---
-ALTER TABLE `warehouses`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `activity_log`
---
-ALTER TABLE `activity_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `announcements`
---
-ALTER TABLE `announcements`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `brands`
---
-ALTER TABLE `brands`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `contact`
---
-ALTER TABLE `contact`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `migrations`
---
-ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_item`
---
-ALTER TABLE `order_item`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `order_item_variations`
---
-ALTER TABLE `order_item_variations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pages`
---
-ALTER TABLE `pages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `password_histories`
---
-ALTER TABLE `password_histories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `permissions`
---
-ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `personal_access_tokens`
---
-ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `review`
---
-ALTER TABLE `review`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `settings`
---
-ALTER TABLE `settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `shippings`
---
-ALTER TABLE `shippings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `statuses`
---
-ALTER TABLE `statuses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `two_factor_authentications`
---
-ALTER TABLE `two_factor_authentications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `warehouses`
---
-ALTER TABLE `warehouses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
