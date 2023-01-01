@@ -65,7 +65,7 @@ $(function () {
         //     ++i;
         //     var input_element = `<tr>
         //                             <td>
-        //                               <input type="text" name="productName[]" placeholder="Enter product name" class="form-control" />
+        //                               <input type="text" name="product_type[]" id="name="product_type" placeholder="product type" class="form-control" />
         //                             </td>
         //                             <td class="text-right" style="width:10%">
         //                               <button type="button" name="add" id="add-btn" class="btn btn-success">Add</button>
@@ -77,10 +77,10 @@ $(function () {
 
         //     $("#dynamicAddRemove").append(input_element);
         // })
-        // .on("click", ".remove-tr", function (e) {
-        //     e.preventDefault();
-        //     $(this).parents("tr").remove();
-        // })
+        .on("click", ".remove-tr", function (e) {
+            e.preventDefault();
+            $(this).parents("tr").remove();
+        })
         .on("click", ".order-modal", function () {
             let itemValue = $(this).data("value");
             $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
@@ -171,6 +171,16 @@ $(function () {
                     console.log("error", error);
                 });
         })
+        .on(
+            "change blur keyup paste",
+            "#shipping_rate, #actual_weight",
+            function () {
+                const rate = $("#shipping_rate").val();
+                const weight = $("#actual_weight").val();
+                const total = Number(rate) * Number(weight);
+                $("#shipping_charge").val(Math.round(total));
+            }
+        )
 
         // .on("click", "#editBtn", function (event) {
         //     event.preventDefault();

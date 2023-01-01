@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2023-01-01 01:58:24] local.ERROR: The Mix manifest does not exist. (View: C:\wamp64\www\skytracker\resources\views\backend\layouts\app.blade.php) {"view":{"view":"C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Mix.php","data":[]},"userId":1,"exception":"[object] (Facade\\Ignition\\Exceptions\\ViewException(code: 0): The Mix manifest does not exist. (View: C:\\wamp64\\www\\skytracker\\resources\\views\\backend\\layouts\\app.blade.php) at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Mix.php:52)
 [stacktrace]
 #0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\helpers.php(537): Illuminate\\Foundation\\Mix->__invoke('/css/backend.cs...')
@@ -5935,3 +5936,26 @@
 #67 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
 #68 {main}
 "} 
+=======
+[2023-01-01 07:24:41] local.INFO: array (
+  'order_update' => 'withoutajax',
+  'order_item_id' => '9917',
+  'chinaLocalDelivery' => '209',
+  'order_number' => NULL,
+  'shipping_rate' => '650',
+  'actual_weight' => '5',
+  'shipping_charge' => '2600',
+  'quantity' => '10',
+  'product_value' => '11850',
+  'first_payment' => '5925',
+  'courier_bill' => NULL,
+  'out_of_stock' => NULL,
+  'missing' => NULL,
+  'adjustment' => NULL,
+  'refunded' => NULL,
+  'due_payment' => '8734',
+  'last_payment' => NULL,
+  'tracking_number' => '32',
+  'status' => 'on-hold',
+)  
+>>>>>>> eddce3fe8a5db1580e69b1e186bfddff9e76e6ee
