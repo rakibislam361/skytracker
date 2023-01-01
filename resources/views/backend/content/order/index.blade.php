@@ -3,32 +3,32 @@
 @section('title', 'Manage Orders')
 
 @section('content')
-    @php
-        $status = null;
-        $allOrdersCount = $orders->where('status', 'Partial Paid')->count();
-        $partialCount = null;
-        $onHold = null;
-        $icompleteCount = null;
-        $refundedCount = null;
-        $processingCount = null;
-        $purchasedCount = null;
-        
-        // dd($allOrdersCount);
-        // $count = null;
-        // foreach ($orders as $key => $status) {
-        //     $count += count($status->status);
-        // }
-        // dd($totalcount);
-        
-    @endphp
+@php
+$status = null;
+$allOrdersCount = $orders->where('status', 'Partial Paid')->count();
+$partialCount = null;
+$onHold = null;
+$icompleteCount = null;
+$refundedCount = null;
+$processingCount = null;
+$purchasedCount = null;
+
+// dd($allOrdersCount);
+// $count = null;
+// foreach ($orders as $key => $status) {
+// $count += count($status->status);
+// }
+// dd($totalcount);
+
+@endphp
 
 
-    <div class="card">
-        <div class="card-header">
-            <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
+<div class="card">
+    <div class="card-header">
+        <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
 
 
-            {{-- <div class="btn-group float-right" role="group" aria-label="header_button_group">
+        {{-- <div class="btn-group float-right" role="group" aria-label="header_button_group">
                 <button type="submit" class="btn btn-info findResultButton" data-toggle="tooltip" title="@lang('Search')">
                     <i class="fa fa-search"></i>
                 </button>
@@ -41,18 +41,18 @@
                     @lang('Generate')
                 </button>
                 <a href="{{ route('admin.export', 'order_item') }}" class="btn btn-warning" data-toggle="tooltip"
-                    title="Full Export">
-                    <i class="fa fa-download"></i>
-                </a>
-            </div> --}}
-            <!-- btn-group-->
+        title="Full Export">
+        <i class="fa fa-download"></i>
+        </a>
+    </div> --}}
+    <!-- btn-group-->
 
-            @include('backend.content.order.includes.filter')
+    @include('backend.content.order.includes.filter')
 
 
-        </div>
-        <div class="card-body">
-            {{-- <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
+</div>
+<div class="card-body">
+    {{-- <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -111,18 +111,14 @@
                     </div>
                 </div>
             </div> --}}
+    @include('backend.content.order.includes.order_table')
+</div> <!-- card-body-->
+</div>
 
-
-
-
-            @include('backend.content.order.includes.order_table')
-        </div> <!-- card-body-->
-    </div>
-
-    <!-- Modal -->
-    @include('backend.content.order.includes.edit_modal')
-    <input id="actualrmb_rate" type="hidden" value="{{ get_setting('actualrmb_rate') }}">
-    <input id="local_rate" type="hidden" value="{{ get_setting('local_rate') }}">
+<!-- Modal -->
+@include('backend.content.order.includes.edit_modal')
+<input id="actualrmb_rate" class="actualrmb_rate" type="hidden" value="{{ get_setting('actualrmb_rate') }}">
+<input id="local_rate" type="hidden" value="{{ get_setting('local_rate') }}">
 @endsection
 
 <x-slot name="header">
