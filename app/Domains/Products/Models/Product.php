@@ -26,17 +26,4 @@ class Product extends Model
   {
     return $this->belongsTo(User::class);
   }
-
-  public function warehouse()
-  {
-    return $this->belongsTo(Warehouse::class, 'warehouse_id', 'id');
-  }
-  public function status()
-  {
-    return $this->belongsTo(Status::class, 'status_id', 'id');
-  }
-  public function shipping()
-  {
-    return $this->belongsTo(Shipping::class, 'shipping_id', 'id');
-  }
 }
