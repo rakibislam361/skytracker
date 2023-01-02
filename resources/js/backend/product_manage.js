@@ -88,11 +88,11 @@ $(function () {
                                         </div>
                                         </div>
                                         </td>
-                                    <td class="text-right" style="width:1%">
-                                      <button type="button" name="add" id="add-btn" class="btn btn-success">Add</button>
+                                    <td class="text-right" style="width:1%;padding-bottom: 18px;">
+                                      <button type="button" name="add" id="add-btn" class="btn btn-outline-success">+</button>
                                     </td>
-                                    <td class="text-right" style="width:1%">
-                                      <button type="button" class="btn btn-danger remove-tr">Remove</button>
+                                    <td class="text-right" style="width:1%;padding-bottom: 18px;">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                  </tr>`;
 

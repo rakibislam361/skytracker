@@ -67,14 +67,16 @@
                                         </div>
                                     </div>
                                 </td>
+                                <div class="form-group col">
+                                    <td class="text-right" style="width:1%;padding-top: 12px;">
 
-                                <td class="text-right" style="width:1%">
-                                    <button type="button" name="add" id="add-btn"
-                                        class="btn btn-success add-btn">Add</button>
-                                </td>
-                                <td class="text-right" style="width:1%">
-                                    <button type="button" class="btn btn-danger remove-tr">Remove</button>
-                                </td>
+                                        <button type="button" name="add" id="add-btn"
+                                            class="btn btn-outline-success add-btn">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%;padding-top: 12px;">
+                                        <button type="button" class="btn btn-outline-danger">-</button>
+                                    </td>
+                                </div>
                             </tr>
                         </table>
                     </x-slot>
