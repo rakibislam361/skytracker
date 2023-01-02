@@ -60,23 +60,43 @@ $(function () {
         //     changeStatusModal.modal("show");
         //     $("#statusChargeForm").trigger("reset");
         // })
-        // .on("click", "#add-btn", function (e) {
-        //     e.preventDefault();
-        //     ++i;
-        //     var input_element = `<tr>
-        //                             <td>
-        //                               <input type="text" name="product_type[]" id="name="product_type" placeholder="product type" class="form-control" />
-        //                             </td>
-        //                             <td class="text-right" style="width:10%">
-        //                               <button type="button" name="add" id="add-btn" class="btn btn-success">Add</button>
-        //                             </td>
-        //                             <td class="text-right" style="width:10%">
-        //                               <button type="button" class="btn btn-danger remove-tr">Remove</button>
-        //                             </td>
-        //                          </tr>`;
+        .on("click", "#add-btn", function (e) {
+            e.preventDefault();
+            ++i;
+            var input_element = `<tr>
+                                    <td>
+                                    <div class="row">
+                                    <div class="form-group col">
+                                        <select class="form-control" name="data[service_type]">
+                                            <option value="d2d">D2D</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col">
+                                            <input type="text" name="data[category]" id="category"
+                                                placeholder="category" class="form-control" />
+                                        </div>
+                                    <div class="form-group col">
+                                        <select class="form-control" name="data[shipped_from]">
+                                        <option value=""></option>
+                                        <option value="china">China</option>
+                                        <option value="hongkong">HongKong</option>
+                                        </select>
+                                        </div>
+                                        <div class="form-group col">
+                                        <input type="text" name="data[rate]" id="rate" placeholder="rate" class="form-control" />
+                                        </div>
+                                        </div>
+                                        </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="add-btn" class="btn btn-success">Add</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-danger remove-tr">Remove</button>
+                                    </td>
+                                 </tr>`;
 
-        //     $("#dynamicAddRemove").append(input_element);
-        // })
+            $("#dynamicAddRemove").append(input_element);
+        })
         .on("click", ".remove-tr", function (e) {
             e.preventDefault();
             $(this).parents("tr").remove();
@@ -216,6 +236,7 @@ $(function () {
             let prmb = $(this).val();
             let conRate = $("#actualrmb_rate").val();
             $("#purchase_cost_bd").val(prmb * conRate);
+
             let ormb = $("#order_item_rmb").val();
 
             if (parseInt(prmb) > parseInt(ormb)) {
