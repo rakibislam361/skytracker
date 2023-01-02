@@ -126,7 +126,7 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea class="form-control" col="10" row="3" name="description">{{$notice->description}}</textarea>
+                    <textarea id="default" class="form-control" col="10" row="3" name="description">{{$notice->description}}</textarea>
 
                   
                 </div>
@@ -151,6 +151,12 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
     
 
 
+	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+	  tinymce.init({
+  selector: 'textarea#default'
+});
+</script>
 
 
 @endsection

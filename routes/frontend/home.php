@@ -22,6 +22,8 @@ Route::get('/', [HomeController::class, 'index'])
     });
     Route::get('notice/details/{id}', [HomeController::class, 'noticedetails']);
     Route::get('info/details/{id}', [HomeController::class, 'infodetails']);
+    Route::get('notice/all', [HomeController::class, 'noticeall']);
+    Route::get('info/all', [HomeController::class, 'infoall']);
 Route::get('terms', [TermsController::class, 'index'])
     ->name('pages.terms')
     ->breadcrumbs(function (Trail $trail) {

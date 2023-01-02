@@ -110,17 +110,32 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
                 <div class="card-body">
                    <form class="form-horizontal" action="{{ route('admin.setting.notice.store') }}" enctype="multipart/form-data" method="POST">  
                    @csrf
-               
+                   <div class="form-group">
+                    <label>Image</label>
+                    <input type="file" name="multiimage[]" class="form-control">
+                   
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" name="title[]"  class="form-control">
+                   
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="default" class="form-control" col="10" row="3" name="description[]"></textarea>
+
+                  
+                </div>
 
             <div class="table-responsive">  
-                <table class="table table-bordered" id="dynamic_field">  
+                <!-- <table class="table table-bordered" id="dynamic_field">  
                     <tr>  
                         <td><input type="file" name="multiimage[]" placeholder="multiimage" class="form-control name_list" /></td>  
                         <td><input type="text" name="title[]" placeholder="title" class="form-control name_list" /></td>
-                        <td><textarea class="form-control" col="10" row="3" name="description[]"></textarea></td>
+                        <td><textarea  class="form-control" col="10" row="3" name="description[]"></textarea></td>
                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>  
                     </tr>  
-                </table>  
+                </table>   -->
                 <button  type="submit"  class="btn btn-info">Submit</button>
                 <!--<input value="Submit" />  -->
             </div>
@@ -177,7 +192,7 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
     </div>
     </div>
         </div>
-       
+        <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script type="text/javascript">
     $(document).ready(function(){      
       var postURL = "<?php echo url('addmore'); ?>";
@@ -186,7 +201,7 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
 
       $('#add').click(function(){  
            i++;  
-           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="file" name="multiimage[]" placeholder="multiimage" class="form-control name_list" /></td><td><input type="text" name="title[]" placeholder="Title" class="form-control name_list" /></td><td><textarea class="form-control" col="10" row="3" name="description[]"></textarea></td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
+           $('#dynamic_field').append('<tr id="row'+i+'" class="dynamic-added"><td><input type="file" name="multiimage[]" placeholder="multiimage" class="form-control name_list" /></td><td><input type="text" name="title[]" placeholder="Title" class="form-control name_list" /></td><td><textarea class="form-control" col="10" row="3" name="description[]"></textarea></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');  
       });  
 
 
@@ -198,7 +213,9 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
 
     }); 
     
-    
+    tinymce.init({
+  selector: 'textarea#default'
+});
 </script>
 
 

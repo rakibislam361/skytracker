@@ -24,7 +24,18 @@ class HomeController
     public function infodetails($id)
     {
         $info=Info::find($id);
+
         return view('frontend.content.infodetails',compact('info'));
+    }
+    public function noticeall()
+    {
+        $notices=Notice::orderBy('id', 'DESC')->get();
+        return view('frontend.content.noticeall',compact('notices'));
+    }
+    public function infoall()
+    {
+        $infos=Info::orderBy('id', 'DESC')->get();
+        return view('frontend.content.infoall',compact('infos'));
     }
 
 }

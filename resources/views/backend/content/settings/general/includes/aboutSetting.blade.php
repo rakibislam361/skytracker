@@ -7,6 +7,24 @@
     {{ html()->form('POST', route('admin.setting.about.store'))->attribute('enctype', 'multipart/form-data')->open() }}
 
     <div class="form-group">
+      {{html()->label('Header Color')->for('about_color_1')}}
+      {{html()->text('about_color_1', get_setting('about_color_1'))
+      ->placeholder('about_color_1')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+    <div class="form-group">
+      {{html()->label('Title Color')->for('about_color_2')}}
+      {{html()->text('about_color_2', get_setting('about_color_2'))
+      ->placeholder('about_color_2')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+    <div class="form-group">
+      {{html()->label('Text Color ')->for('about_color_3')}}
+      {{html()->text('about_color_3', get_setting('about_color_3'))
+      ->placeholder('about_color_3')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+    <div class="form-group">
       {{html()->label('About Header')->for('about_text_header')}}
       {{html()->text('about_text_header', get_setting('about_text_header'))
       ->placeholder('about_text_header')

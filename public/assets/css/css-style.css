@@ -1110,7 +1110,7 @@ label {
 	right: 0;
 	margin-bottom: 3px;
 	font-size: 30px;
-	color: #e32222;
+	color: #4e148c;
 	background: 0 0;
 	border: none;
 	cursor: pointer;
@@ -1162,7 +1162,7 @@ label {
 	padding: 13px 43px;
 	margin-bottom: 12px;
 	list-style: none;
-	background-color: #e32222;
+	background-color: #4e148c;
 	border-radius: 0;
 	position: relative;
 }
@@ -1180,7 +1180,7 @@ label {
 	display: inline-block;
 	padding-right: 12px;
 	padding-left: 12px;
-	color: #fd5252;
+	color: #4e148c;
 	content: "|";
 }
 .breadcrumb .dots,
@@ -1207,7 +1207,7 @@ label {
 	height: 0;
 	border-style: solid;
 	border-width: 0 0 50px 25px;
-	border-color: transparent transparent #e32222 transparent;
+	border-color: transparent transparent #4e148c transparent;
 }
 .breadcrumb::after {
 	content: "";
@@ -1218,7 +1218,7 @@ label {
 	height: 0;
 	border-style: solid;
 	border-width: 50px 25px 0 0;
-	border-color: #e32222 transparent transparent transparent;
+	border-color: #4e148c transparent transparent transparent;
 }
 .breadcrumb-content h2 {
 	font-size: 70px;

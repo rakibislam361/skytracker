@@ -430,9 +430,9 @@
                         <div class="col-12">
                             <div class="slider-content text-center mt-145">
                                 <h2 data-animation="fadeInUpS" data-delay=".3s" class=""
-                                    style="animation-delay: 0.3s;">{{ get_setting('banner_text_header') }}</h2>
+                                style="animation-delay: 0.3s;color:{{ get_setting('banner_color_1') }}">{{ get_setting('banner_text_header') }}</h2>
                                 <p data-animation="fadeInUpS" data-delay=".6s" class=""
-                                    style="animation-delay: 0.6s;">{{ get_setting('banner_text_bottom') }}</p>
+                                    style="animation-delay: 0.6s; color:{{ get_setting('banner_color_2') }}">{{ get_setting('banner_text_bottom') }}</p>
                                 <div class="slider-form" data-animation="fadeInUpS" data-delay=".9s"
                                     style="animation-delay: 0.9s;">
                                     <form action="#">
@@ -464,7 +464,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-md-1"><button data-toggle="modal"
+                                        <div class="col-md-1"><button data-toggle="modal" style="background-color: {{ get_setting('banner_color_3') }};"
                                                 data-target="#exampleModalLong" class="btn" tabindex="-1"><i
                                                     class="flaticon-magnifying-glass"></i></button></div>
                                         <!-- <button class="btn" tabindex="-1">Tracking</button> -->
@@ -492,24 +492,24 @@
                         <div class="nav flex-column nav-pills faq-tab-pills" id="v-pills-tab" role="tablist"
                             aria-orientation="vertical">
                             <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill"
-                                href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                            style="background-color: {{ get_setting('notice_color_1') }}"  href="#v-pills-home" role="tab" aria-controls="v-pills-home"
                                 aria-selected="false">
                                 <div class="faq-tab-icon">
-                                    <i class="far fa-bell"></i>
+                                    <i style="color: {{ get_setting('notice_color_3') }}" class="far fa-bell"></i>
                                 </div>
                                 <div class="faq-tab-content d-none d-lg-block">
-                                    <h5 class="mt-xl-3">Notice Board</h5>
+                                    <h5 class="mt-xl-3" style="color: {{ get_setting('notice_color_2') }}">Notice Board</h5>
 
                                 </div>
                             </a>
                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile"
-                                role="tab" aria-controls="v-pills-profile" aria-selected="true">
+                            style="background-color: {{ get_setting('notice_color_1') }}"  role="tab" aria-controls="v-pills-profile" aria-selected="true">
                                 <div class="faq-tab-icon">
-                                    <i class="fas fa-info"></i>
+                                    <i style="color: {{ get_setting('notice_color_3') }}" class="fas fa-info"></i>
 
                                 </div>
                                 <div class="faq-tab-content d-none d-lg-block">
-                                    <h5 class="mt-xl-3">More Imformation</h5>
+                                    <h5 class="mt-xl-3" style="color: {{ get_setting('notice_color_2') }}">More Imformation</h5>
 
                                 </div>
                             </a>
@@ -522,7 +522,7 @@
                                 aria-labelledby="v-pills-home-tab">
                                 <div class="faq-accordion iconColor">
                                     <div class="faq-tab-icon">
-                                        <i class="far fa-bell"></i>
+                                        <i style="color: {{ get_setting('notice_color_1') }}" class="far fa-bell"></i>
                                     </div>
                                     <div class="faq-accordion-content fix">
 
@@ -533,7 +533,7 @@
                                                         @php
                                                             $notices = DB::table('notices')
                                                                 ->where('is_active', 1)
-                                                                ->take(5)
+                                                                ->take(5)->orderBy('id', 'DESC')
                                                                 ->get();
                                                         @endphp
                                                         @foreach ($notices as $notice)
@@ -550,6 +550,9 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                            <div class="" style="text-align: end;">
+                                           <a href="/notice/all">View More</a>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
@@ -558,7 +561,7 @@
                                 aria-labelledby="v-pills-profile-tab">
                                 <div class="faq-accordion iconColor1">
                                     <div class="faq-tab-icon">
-                                        <i class="fas fa-info"></i>
+                                        <i style="color: {{ get_setting('notice_color_1') }}" class="fas fa-info"></i>
                                     </div>
                                     <div class="faq-accordion-content fix">
 
@@ -569,21 +572,23 @@
                                                         @php
                                                             $infos = DB::table('infos')
                                                                 ->where('is_active', 1)
-                                                                ->take(5)
+                                                                ->take(5)->orderBy('id', 'DESC')
                                                                 ->get();
                                                         @endphp
                                                         @foreach ($infos as $info)
                                                             <li>
                                                                 <div class="f-rc-content">
-                                                                    <h5><a href="/info/details/{{ $notice->id}}">{{ $info->title }}</a></h5>
+                                                                    <h5><a href="/info/details/{{ $info->id}}">{{ $info->title }}</a></h5>
                                                                     <span>{{ $info->updated_at }}</span>
                                                                 </div>
                                                             </li>
                                                         @endforeach
-
                                                     </ul>
                                                 </div>
                                             </div>
+                                           <div class="" style="text-align: end;">
+                                           <a href="/info/all">View More</a>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
@@ -604,11 +609,11 @@
                     <div class="row align-items-center">
                         <div class="col-lg-4">
                             <div class="s-section-title mb-30">
-                                <h2>{{ get_setting('about_text_header') }}</h2>
-                                <h6>{{ get_setting('about_text_bottom') }}</h6>
+                                <h2 style="color: {{ get_setting('about_color_1') }}">{{ get_setting('about_text_header') }}</h2>
+                                <h6 style="color: {{ get_setting('about_color_2') }}">{{ get_setting('about_text_bottom') }}</h6>
                             </div>
                             <div class="int-services-content">
-                                <p>{{ get_setting('about_text_details') }}.</p>
+                                <p style="color: {{ get_setting('about_color_3') }}">{{ get_setting('about_text_details') }}.</p>
                                 <a href="#" class="btn mb-5">Contact Us</a>
                             </div>
                         </div>
@@ -623,7 +628,7 @@
                                                     src="{{asset(get_setting('about_image_1'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a
+                                            <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a
                                                     href="#">{{ get_setting('about_image_title_1') }}</a></h3>
                                         </div>
 
@@ -637,7 +642,7 @@
                                                     src="{{asset(get_setting('about_image_2'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a
+                                            <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a
                                                     href="#">{{ get_setting('about_image_title_2') }}</a></h3>
                                         </div>
 
@@ -651,7 +656,7 @@
                                                     src="{{asset(get_setting('about_image_3'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a
+                                            <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a
                                                     href="#">{{ get_setting('about_image_title_3') }}</a></h3>
                                         </div>
 
@@ -665,7 +670,7 @@
                                                     src="{{asset(get_setting('about_image_4'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a
+                                            <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a
                                                     href="#">{{ get_setting('about_image_title_4') }}</a></h3>
                                         </div>
 
@@ -679,7 +684,7 @@
                                                     src="{{asset(get_setting('about_image_5'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a
+                                            <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a
                                                     href="#">{{ get_setting('about_image_title_5') }}</a></h3>
                                         </div>
 
@@ -693,7 +698,7 @@
                                                     src="{{asset(get_setting('about_image_6'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a
+                                            <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a
                                                     href="#">{{ get_setting('about_image_title_6') }}</a></h3>
                                         </div>
 
@@ -718,8 +723,8 @@
                     <div class="row align-items-center">
                         <div class="col-xl-5 col-lg-8 order-2 order-lg-0">
                             <div class="video-title">
-                                <span>{{ get_setting('bottombanner_text_header') }}</span>
-                                <h2>{{ get_setting('bottombanner_text_bottom') }}</h2>
+                                <span style="color: {{ get_setting('btbanner_color_1') }}">{{ get_setting('bottombanner_text_header') }}</span>
+                                <h2 style="color: {{ get_setting('btbanner_color_2') }}">{{ get_setting('bottombanner_text_bottom') }}</h2>
                                 <a href="#">more services<span></span></a>
                             </div>
                         </div>
@@ -746,7 +751,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-7 col-lg-10">
                             <div class="s-section-title text-center mb-60">
-                                <h2>{{ get_setting('work_text_header') }}</h2>
+                                <h2 style="color: {{ get_setting('work_color_1') }}">{{ get_setting('work_text_header') }}</h2>
                                 <!-- <p>Express delivery is an innovative service is effective logistics solution for the delivery of small
                                         cargo. This service is useful for companies various.</p> -->
                             </div>
@@ -759,8 +764,8 @@
                                     <img src="{{ asset(get_setting('work_image_1')) }}" alt="icon">
                                 </div>
                                 <div class="ds-content text-center text-sm-left text-md-right">
-                                    <h5>{{ get_setting('work_image_title_1') }}</h5>
-                                    <p>{{ get_setting('work_image_bottom_1') }}</p>
+                                    <h5 style="color: {{ get_setting('work_color_2') }}">{{ get_setting('work_image_title_1') }}</h5>
+                                    <p style="color: {{ get_setting('work_color_3') }}">{{ get_setting('work_image_bottom_1') }}</p>
                                 </div>
                             </div>
 
