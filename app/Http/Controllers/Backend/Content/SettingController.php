@@ -51,13 +51,8 @@ class SettingController extends Controller
       Setting::save_settings($data);
     }
 
-<<<<<<< HEAD
     
     $data = \request()->only(['banner_color_1','banner_color_2','banner_color_3','banner_text_header', 'banner_text_bottom']);
-=======
-
-    $data = \request()->only(['banner_text_header', 'banner_text_bottom']);
->>>>>>> d7d6ae526a3ec9d1c083f043b19bf7f951873806
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('Banner section Updated Successfully');
   }
@@ -70,7 +65,6 @@ class SettingController extends Controller
       Setting::save_settings($data);
     }
 
-<<<<<<< HEAD
     $data = \request()->only(['btbanner_color_1','btbanner_color_2','btbanner_color_3','bottombanner_text_header', 'bottombanner_text_bottom','bottom_bg_color','bottom_video_link']);
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('Bottom Banner section Updated Successfully');
@@ -85,9 +79,6 @@ class SettingController extends Controller
     }
 
     $data = \request()->only(['notice_color_1','notice_color_2','notice_color_3']);
-=======
-    $data = \request()->only(['bottombanner_text_header', 'bottombanner_text_bottom', 'bottom_bg_color', 'bottom_video_link']);
->>>>>>> d7d6ae526a3ec9d1c083f043b19bf7f951873806
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('Bottom Banner section Updated Successfully');
   }
@@ -125,14 +116,8 @@ class SettingController extends Controller
       Setting::save_settings($data);
     }
 
-<<<<<<< HEAD
     
     $data = \request()->only(['about_color_1','about_color_2','about_color_3','about_text_header', 'about_text_bottom','about_text_details','about_image_title_1','about_image_title_2','about_image_title_3','about_image_title_4','about_image_title_5','about_image_title_6']);
-=======
-
-
-    $data = \request()->only(['about_text_header', 'about_text_bottom', 'about_text_details', 'about_image_title_1', 'about_image_title_2', 'about_image_title_3', 'about_image_title_4', 'about_image_title_5', 'about_image_title_6']);
->>>>>>> d7d6ae526a3ec9d1c083f043b19bf7f951873806
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('About section Updated Successfully');
   }
@@ -154,15 +139,9 @@ class SettingController extends Controller
       $data['work_image_3'] = store_picture(\request()->file('work_image_3'), 'setting/logo');
       Setting::save_settings($data);
     }
-<<<<<<< HEAD
     
     
     $data = \request()->only(['work_color_1','work_color_2','work_color_3','work_text_header', 'work_image_title_1','work_image_title_2','work_image_title_3','work_image_bottom_1','work_image_bottom_2','work_image_bottom_3']);
-=======
-
-
-    $data = \request()->only(['work_text_header', 'work_image_title_1', 'work_image_title_2', 'work_image_title_3', 'work_image_bottom_1', 'work_image_bottom_2', 'work_image_bottom_3']);
->>>>>>> d7d6ae526a3ec9d1c083f043b19bf7f951873806
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('About section Updated Successfully');
   }
