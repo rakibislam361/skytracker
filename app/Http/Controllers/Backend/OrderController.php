@@ -55,13 +55,16 @@ class OrderController extends Controller
                     }
                 }
             }
+
+
+
             $totalcount = count($order);
             $orders = $this->paginate($order, 20);
             $orders->withPath('');
 
 
 
-            return view('backend.content.order.index', compact('orders', 'totalcount'));
+            return view('backend.content.order.index', compact('orders', 'totalcount', 'order'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()
@@ -80,6 +83,7 @@ class OrderController extends Controller
     public function update($id)
     {
         $data = $this->validateOrderItems();
+        Log::info($data);
         if ($data['order_update'] == "withoutajax") {
             $orderResponse = $this->order_update($data);
             if ($orderResponse->status == 'Success') {
@@ -266,6 +270,11 @@ class OrderController extends Controller
 
     public function validateOrderItems($update_id = null)
     {
+        // $weight = json_encode(request()->chn_warehouse_weight);
+        // $weight = request()->chn_warehouse_weight;
+        $weight = implode(',', request()->chn_warehouse_weight);
+        Log::info($weight);
+
         return request()->validate([
             'order_update' => 'nullable',
             'order_item_id' => 'required',
