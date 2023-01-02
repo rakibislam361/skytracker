@@ -63,39 +63,88 @@ $(function () {
         .on("click", "#add-btn", function (e) {
             e.preventDefault();
             ++i;
+
             var input_element = `<tr>
                                     <td>
                                     <div class="row">
                                     <div class="form-group col">
-                                        <select class="form-control" name="data[service_type]">
+                                        <select class="form-control" name="service_type[]">
                                             <option value="d2d">D2D</option>
                                         </select>
                                     </div>
                                     <div class="form-group col">
-                                            <input type="text" name="data[category]" id="category"
+                                            <input type="text" name="category[]" id="category"
                                                 placeholder="category" class="form-control" />
                                         </div>
                                     <div class="form-group col">
-                                        <select class="form-control" name="data[shipped_from]">
+                                        <select class="form-control" name="shipped_from[]">
                                         <option value=""></option>
                                         <option value="china">China</option>
                                         <option value="hongkong">HongKong</option>
                                         </select>
                                         </div>
                                         <div class="form-group col">
-                                        <input type="text" name="data[rate]" id="rate" placeholder="rate" class="form-control" />
+                                        <input type="text" name="rate[]" id="rate" placeholder="rate" class="form-control" />
                                         </div>
                                         </div>
                                         </td>
-                                    <td class="text-right" style="width:1%">
-                                      <button type="button" name="add" id="add-btn" class="btn btn-success">Add</button>
+                                    <td class="text-right" style="width:1%;padding-bottom: 18px;">
+                                      <button type="button" name="add" id="add-btn" class="btn btn-outline-success">+</button>
                                     </td>
-                                    <td class="text-right" style="width:1%">
-                                      <button type="button" class="btn btn-danger remove-tr">Remove</button>
+                                    <td class="text-right" style="width:1%;padding-bottom: 18px;">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                  </tr>`;
 
             $("#dynamicAddRemove").append(input_element);
+        })
+        .on("click", "#carton-btn", function (e) {
+            e.preventDefault();
+            ++i;
+            var carton = `<tr>
+                                    <td><input type="text" name="carton_id[]" placeholder="carton id"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="carton-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+
+            $("#add-carton").append(carton);
+        })
+        .on("click", "#weight-btn", function (e) {
+            e.preventDefault();
+            ++i;
+            var weight = `<tr>
+                                    <td><input type="text" name="chn_warehouse_weight[]"
+                                            placeholder="china warehouse weight" class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="weight-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+
+            $("#add-weight").append(weight);
+        })
+        .on("click", "#tracking-btn", function (e) {
+            e.preventDefault();
+            ++i;
+            var tracking = `<tr>
+                                    <td><input type="text" name="tracking_number[]" placeholder="tracking id"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="tracking-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+
+            $("#add-tracking-number").append(tracking);
         })
         .on("click", ".remove-tr", function (e) {
             e.preventDefault();

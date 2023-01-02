@@ -39,7 +39,7 @@
                                     <div class="row">
                                         <div class="form-group col">
                                             <label for="service_type">Service Type</label>
-                                            <select class="form-control" name="data[service_type]">
+                                            <select class="form-control" name="service_type[]">
                                                 <option value="d2d">D2D</option>
                                                 {{-- <option value="freight">Freight</option> --}}
                                             </select>
@@ -47,13 +47,13 @@
 
                                         <div class="form-group col">
                                             <label for="category">Category Name</label>
-                                            <input type="text" name="data[category]" id="category"
-                                                placeholder="category" class="form-control" />
+                                            <input type="text" name="category[]" id="category" placeholder="category"
+                                                class="form-control" />
                                         </div>
 
                                         <div class="form-group col">
                                             <label for="shipped_from">Shipping From</label>
-                                            <select class="form-control" name="data[shipped_from]">
+                                            <select class="form-control" name="shipped_from[]">
                                                 <option value=""></option>
                                                 <option value="china">China</option>
                                                 <option value="hongkong">HongKong</option>
@@ -62,19 +62,21 @@
 
                                         <div class="form-group col">
                                             <label for="rate">Rate</label>
-                                            <input type="text" name="data[rate]" id="rate" placeholder="rate"
+                                            <input type="text" name="rate[]" id="rate" placeholder="rate"
                                                 class="form-control" />
                                         </div>
                                     </div>
                                 </td>
+                                <div class="form-group col">
+                                    <td class="text-right" style="width:1%;padding-top: 12px;">
 
-                                <td class="text-right" style="width:1%">
-                                    <button type="button" name="add" id="add-btn"
-                                        class="btn btn-success add-btn">Add</button>
-                                </td>
-                                <td class="text-right" style="width:1%">
-                                    <button type="button" class="btn btn-danger remove-tr">Remove</button>
-                                </td>
+                                        <button type="button" name="add" id="add-btn"
+                                            class="btn btn-outline-success add-btn">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%;padding-top: 12px;">
+                                        <button type="button" class="btn btn-outline-danger">-</button>
+                                    </td>
+                                </div>
                             </tr>
                         </table>
                     </x-slot>

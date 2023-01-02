@@ -39,17 +39,22 @@ class ProductController extends Controller
    */
   public function store(Request $request)
   {
+    // dd($request);
+    foreach ($request->category as $key => $category) {
+
+      $createProduct = new Product();
+      $createProduct->category = $request->category[$key];
+      $createProduct->shipped_from = $request->shipped_from[$key];
+      $createProduct->rate = $request->rate[$key];
+      $createProduct->service_type = $request->service_type[$key];
+      $createProduct->save();
+    }
 
     // $data = $this->validateproducts;
-    $createProduct = new Product();
-    $createProduct->category = $request->category;
-    $createProduct->shipped_from = $request->shipped_from;
-    $createProduct->rate = $request->rate;
-    $createProduct->service_type = $request->service_type;
-    $createProduct->save();
+
 
     return redirect()
-      ->back()
+      ->route('admin.product.product.index')
       ->withFlashSuccess('product created successfully');
   }
 
@@ -76,7 +81,6 @@ class ProductController extends Controller
   {
     $product = Product::find($id);
 
-
     return view('backend.products.product.edit', compact('product'));
   }
 
@@ -99,7 +103,7 @@ class ProductController extends Controller
       $updateProduct->save();
     }
     return redirect()
-      ->back()
+      ->route('admin.product.product.index')
       ->withFlashSuccess('product updated successfully');
   }
 
