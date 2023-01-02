@@ -20,7 +20,7 @@ class ProductsTable  extends DataTableComponent
     public function query(): Builder
     {
 
-        return Product::with('warehouse', 'status', 'shipping', 'user');
+        return Product::with('user');
     }
 
 
@@ -28,24 +28,25 @@ class ProductsTable  extends DataTableComponent
     {
 
         return [
-            Column::make('Date', 'created_at')
+
+            Column::make('Service Type', 'service_type')
                 ->searchable(),
 
-            Column::make('Item Number',)
+            Column::make('Category', 'category')
                 ->searchable()
                 ->sortable(),
 
-            Column::make('BD Receive',)
+            Column::make('Shipped From', 'shipped_from')
                 ->searchable(),
 
-            Column::make('BD Out=actual Rmb*Conversion Rate From track',)
+            Column::make('Rate', 'rate')
                 ->searchable(),
 
-            Column::make('Status',)
+
+            Column::make('Status', 'status')
                 ->searchable(),
 
-            Column::make('Profit/Loss',)
-                ->searchable(),
+
 
             Column::make(__('Action'), 'action')
                 ->format(function ($value, $column, $row) {

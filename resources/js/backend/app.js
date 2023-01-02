@@ -17,6 +17,4 @@ require("./adminLte/js/demo");
 // Boilerplate
 require("../plugins");
 require("./product_manage");
-require("./manage-order");
-require("./manage-wallet");
-// require("./_order");
+

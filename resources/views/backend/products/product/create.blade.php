@@ -8,102 +8,101 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
-<div class="row justify-content-center">
-  <div class="col-md-10">
-
-
-    <form action="{{ route('admin.product.product.store') }}" method="post" enctype="multipart/form-data">
-      @csrf
-      <x-backend.card>
-        <x-slot name="header">
-          @lang('Create product')
-        </x-slot>
-
-        <x-slot name="headerActions">
-          <x-utils.link class="btn btn-sm btn-secondary" :href="route('admin.product.product.index')" :text="__('Cancel')" />
-        </x-slot>
-
-        <x-slot name="body">
-
-          <div class="form-group">
-            <label for=" invoice">Invoice</label>
-            <input type="text" name="invoice" required="" placeholder="Invoice ID" class="form-control" />
-          </div>
-
-          <div class="form-group">
-            <label for="productName">Name</label>
-            <table style="width:100%" id="dynamicAddRemove">
-              <tr>
-                <td><input type="text" required="" name="productName[]" placeholder="Enter product name" class="form-control" /></td>
-                <td class="text-right" style="width:10%"><button type="button" name="add" id="add-btn" class="btn btn-success">Add</button></td>
-                <td class="text-right" style="width:10%"><button type="button" class="btn btn-danger">Remove</button></td>
-              </tr>
-            </table>
-          </div>
-
-          <div class="form-group">
-            <label for="shipping">Shipping Type</label>
-            <select class="form group dropdown-item border" name="shipping">
-              <option value=""></option>
-              @foreach ($shipping as $ship)
-              <option required="" value="{{$ship->id}}">{{$ship->name}}</option>
-              @endforeach
-
-            </select>
-          </div> <!-- form-group -->
-
-          <div class="form-group">
-            <label for="status">Status</label>
-            <select class="form group dropdown-item border" name="status">
-              <option value=""></option>
-              @foreach ($status as $stat)
-              <option required="" value="{{$stat->id}}">{{$stat->name}}</option>
-              @endforeach
-
-            </select>
-          </div> <!-- form-group -->
-
-          <div class="form-group">
-            <label for="warehouse">Warehouse</label>
-            <select class="form group dropdown-item border" name="warehouse">
-              <option value=""></option>
-              @foreach ($warehouse as $ware)
-              <option required="" value="{{$ware->id}}">{{$ware->name}}</option>
-              @endforeach
-
-            </select>
-          </div> <!-- form-group -->
+    <div class="row justify-content-center">
+        <div class="col-md-10">
 
 
-        </x-slot>
+            <form action="{{ route('admin.product.product.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <x-backend.card>
+                    <x-slot name="header">
+                        @lang('Create product')
+                    </x-slot>
 
-        <x-slot name="footer">
-          <button class="btn btn-sm btn-primary" type="submit">@lang('Create product')</button>
-        </x-slot>
-      </x-backend.card>
-    </form>
+                    <x-slot name="headerActions">
+
+                        <x-utils.link class="btn btn-sm btn-secondary" :href="route('admin.product.product.create')" :text="__('Add New')" />
+                        <div style="padding-left: 2px;">
+                            <x-utils.link class="btn btn-sm btn-danger" :href="route('admin.product.product.index')" :text="__('Back')" />
+                        </div>
+                    </x-slot>
+
+                    <x-slot name="body">
+
+                        <table style="width:100%" id="dynamicAddRemove">
+                            <tr>
+                                <td>
+                                    <div class="row">
+                                        <div class="form-group col">
+                                            <label for="service_type">Service Type</label>
+                                            <select class="form-control" name="data[service_type]">
+                                                <option value="d2d">D2D</option>
+                                                {{-- <option value="freight">Freight</option> --}}
+                                            </select>
+                                        </div> <!-- form-group -->
+
+                                        <div class="form-group col">
+                                            <label for="category">Category Name</label>
+                                            <input type="text" name="data[category]" id="category"
+                                                placeholder="category" class="form-control" />
+                                        </div>
+
+                                        <div class="form-group col">
+                                            <label for="shipped_from">Shipping From</label>
+                                            <select class="form-control" name="data[shipped_from]">
+                                                <option value=""></option>
+                                                <option value="china">China</option>
+                                                <option value="hongkong">HongKong</option>
+                                            </select>
+                                        </div> <!-- form-group -->
+
+                                        <div class="form-group col">
+                                            <label for="rate">Rate</label>
+                                            <input type="text" name="data[rate]" id="rate" placeholder="rate"
+                                                class="form-control" />
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="text-right" style="width:1%">
+                                    <button type="button" name="add" id="add-btn"
+                                        class="btn btn-success add-btn">Add</button>
+                                </td>
+                                <td class="text-right" style="width:1%">
+                                    <button type="button" class="btn btn-danger remove-tr">Remove</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </x-slot>
+
+                    <x-slot name="footer">
+                        <button class="btn btn-sm btn-primary" type="submit">@lang('Create product')</button>
+                    </x-slot>
+                </x-backend.card>
+            </form>
 
 
-  </div>
+        </div>
 
-</div>
+    </div>
 
-
-{{-- <script type="text/javascript">
-// var i = 0;
-// $("#add-btn").click(function(){
-// ++i;
-// $("#dynamicAddRemove").append('<tr><td><input type="text" name="productName[]" placeholder="Enter product name" class="form-control" /></td><td class="text-right" style="width:10%"><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
-// });
-// $(document).on('click', '.remove-tr', function(){  
-// $(this).parents('tr').remove();
-// });  
-
-</script> --}}
+    {{-- 
+    <script type="text/javascript">
+        var i = 0;
+        $("#add-btn").click(function() {
+            ++i;
+            $("#dynamicAddRemove").append(
+                '<tr><td><div class="row"><div class="form-group col"><select class="form-control" name="service_type"><option value="d2d">D2D</option></select></div><div class="form-group col"><input type="text" name="category" id="category" placeholder="category"class="form-control" /></div><div class="form-group col"><select class="form-control" name="shipped_from"><option value=""></option><option value="china">China</option><option value="hongkong">HongKong</option></select></div><div class="form-group col"><input type="text" name="rate" id="rate" placeholder="rate" class="form-control" /></div></div></td><td class="text-right"><button type="button" name="add" id="add-btn" class="btn btn-success add-btn">Add</button></td><td class="text-right" style="width:1%"><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>'
+            );
+        });
+        $(document).on('click', '.remove-tr', function() {
+            $(this).parents('tr').remove();
+        });
+    </script> --}}
 
 
 

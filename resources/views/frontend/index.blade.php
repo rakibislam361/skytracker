@@ -424,15 +424,15 @@
 
         <!-- slider-area -->
         <section class="s-slider-area">
-            <div class="s-slider-bg fix" style="background-image:url({{(get_setting('banner_image_back')) }})">
+            <div class="s-slider-bg fix" style="background-image:url({{ get_setting('banner_image_back') }})">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="slider-content text-center mt-145">
                                 <h2 data-animation="fadeInUpS" data-delay=".3s" class=""
-                                    style="animation-delay: 0.3s;">{{(get_setting('banner_text_header')) }}</h2>
+                                    style="animation-delay: 0.3s;">{{ get_setting('banner_text_header') }}</h2>
                                 <p data-animation="fadeInUpS" data-delay=".6s" class=""
-                                    style="animation-delay: 0.6s;">{{(get_setting('banner_text_bottom')) }}</p>
+                                    style="animation-delay: 0.6s;">{{ get_setting('banner_text_bottom') }}</p>
                                 <div class="slider-form" data-animation="fadeInUpS" data-delay=".9s"
                                     style="animation-delay: 0.9s;">
                                     <form action="#">
@@ -530,19 +530,23 @@
                                             <div class="card">
                                                 <div class="f-rc-post">
                                                     <ul>
-                                                    @php
-                                               $notices=DB::table('notices')->where('is_active',1)->take(5)->get();
+                                                        @php
+                                                            $notices = DB::table('notices')
+                                                                ->where('is_active', 1)
+                                                                ->take(5)
+                                                                ->get();
                                                         @endphp
-                                                        @foreach($notices as $notice)
-                                                        <li>
-                                                            <div class="f-rc-content">
-                                                                <h5><a href="#">{{$notice->title}}</a></h5>
-                                                                <span>{{$notice->updated_at}}</span>
+                                                        @foreach ($notices as $notice)
+                                                            <li>
+                                                                <div class="f-rc-content">
+                                                                    <h5><a href="#">{{ $notice->title }}</a>
+                                                                    </h5>
+                                                                    <span>{{ $notice->updated_at }}</span>
 
-                                                            </div>
-                                                        </li>
-                                                      @endforeach
-                                                      
+                                                                </div>
+                                                            </li>
+                                                        @endforeach
+
                                                     </ul>
                                                 </div>
                                             </div>
@@ -562,18 +566,21 @@
                                             <div class="card">
                                                 <div class="f-rc-post">
                                                     <ul>
-                                                    @php
-                                               $infos=DB::table('infos')->where('is_active',1)->take(5)->get();
+                                                        @php
+                                                            $infos = DB::table('infos')
+                                                                ->where('is_active', 1)
+                                                                ->take(5)
+                                                                ->get();
                                                         @endphp
-                                                        @foreach($infos as $info)
-                                                        <li>
-                                                            <div class="f-rc-content">
-                                                                <h5><a href="#">{{$info->title}}</a></h5>
-                                                                <span>{{$info->updated_at}}</span>
-                                                            </div>
-                                                        </li>
+                                                        @foreach ($infos as $info)
+                                                            <li>
+                                                                <div class="f-rc-content">
+                                                                    <h5><a href="#">{{ $info->title }}</a></h5>
+                                                                    <span>{{ $info->updated_at }}</span>
+                                                                </div>
+                                                            </li>
                                                         @endforeach
-                                                  
+
                                                     </ul>
                                                 </div>
                                             </div>
@@ -597,11 +604,11 @@
                     <div class="row align-items-center">
                         <div class="col-lg-4">
                             <div class="s-section-title mb-30">
-                                <h2>{{(get_setting('about_text_header')) }}</h2>
-                                <h6>{{(get_setting('about_text_bottom')) }}</h6>
+                                <h2>{{ get_setting('about_text_header') }}</h2>
+                                <h6>{{ get_setting('about_text_bottom') }}</h6>
                             </div>
                             <div class="int-services-content">
-                                <p>{{(get_setting('about_text_details')) }}.</p>
+                                <p>{{ get_setting('about_text_details') }}.</p>
                                 <a href="#" class="btn mb-5">Contact Us</a>
                             </div>
                         </div>
@@ -616,7 +623,8 @@
                                                     src="{{asset(get_setting('about_image_1'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_1')) }}</a></h3>
+                                            <h3 class="text-center"><a
+                                                    href="#">{{ get_setting('about_image_title_1') }}</a></h3>
                                         </div>
 
                                     </div>
@@ -629,7 +637,8 @@
                                                     src="{{asset(get_setting('about_image_2'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_2')) }}</a></h3>
+                                            <h3 class="text-center"><a
+                                                    href="#">{{ get_setting('about_image_title_2') }}</a></h3>
                                         </div>
 
                                     </div>
@@ -642,7 +651,8 @@
                                                     src="{{asset(get_setting('about_image_3'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_3')) }}</a></h3>
+                                            <h3 class="text-center"><a
+                                                    href="#">{{ get_setting('about_image_title_3') }}</a></h3>
                                         </div>
 
                                     </div>
@@ -655,7 +665,8 @@
                                                     src="{{asset(get_setting('about_image_4'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_4')) }}</a></h3>
+                                            <h3 class="text-center"><a
+                                                    href="#">{{ get_setting('about_image_title_4') }}</a></h3>
                                         </div>
 
                                     </div>
@@ -668,7 +679,8 @@
                                                     src="{{asset(get_setting('about_image_5'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_5')) }}</a></h3>
+                                            <h3 class="text-center"><a
+                                                    href="#">{{ get_setting('about_image_title_5') }}</a></h3>
                                         </div>
 
                                     </div>
@@ -681,7 +693,8 @@
                                                     src="{{asset(get_setting('about_image_6'))}}"
                                                     alt="img" width="100px">
                                             </div>
-                                            <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_6')) }}</a></h3>
+                                            <h3 class="text-center"><a
+                                                    href="#">{{ get_setting('about_image_title_6') }}</a></h3>
                                         </div>
 
                                     </div>
@@ -698,20 +711,21 @@
         <!-- services-area-end -->
 
         <!-- video-area -->
-        <section class="video-area" style="background-image: url({{(get_setting('bottombanner_image')) }});overflow: hidden;background-position: center;background-size: cover;">
+        <section class="video-area"
+            style="background-image: url({{ get_setting('bottombanner_image') }});overflow: hidden;background-position: center;background-size: cover;">
             <div class="container">
-                <div class="" style="background-color:{{(get_setting('bottom_bg_color')) }};width:880px">
+                <div class="" style="background-color:{{ get_setting('bottom_bg_color') }};width:880px">
                     <div class="row align-items-center">
                         <div class="col-xl-5 col-lg-8 order-2 order-lg-0">
                             <div class="video-title">
-                                <span>{{(get_setting('bottombanner_text_header')) }}</span>
-                                <h2>{{(get_setting('bottombanner_text_bottom')) }}</h2>
+                                <span>{{ get_setting('bottombanner_text_header') }}</span>
+                                <h2>{{ get_setting('bottombanner_text_bottom') }}</h2>
                                 <a href="#">more services<span></span></a>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="video-play">
-                                <a href="{{(get_setting('bottom_video_link')) }}" class="popup-video"><img
+                                <a href="{{ get_setting('bottom_video_link') }}" class="popup-video"><img
                                         src="{{ asset('assets/images/icon-play_btn.png') }}" alt="img"></a>
                             </div>
                         </div>
@@ -732,7 +746,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-7 col-lg-10">
                             <div class="s-section-title text-center mb-60">
-                                <h2>{{(get_setting('work_text_header')) }}</h2>
+                                <h2>{{ get_setting('work_text_header') }}</h2>
                                 <!-- <p>Express delivery is an innovative service is effective logistics solution for the delivery of small
                                         cargo. This service is useful for companies various.</p> -->
                             </div>
@@ -742,11 +756,11 @@
                         <div class="col-xl-4 col-lg-6 col-md-6">
                             <div class="single-delivery-services mb-70 pr-75">
                                 <div class="ds-icon order-0 order-md-2">
-                                    <img src="{{asset(get_setting('work_image_1'))}}" alt="icon">
+                                    <img src="{{ asset(get_setting('work_image_1')) }}" alt="icon">
                                 </div>
                                 <div class="ds-content text-center text-sm-left text-md-right">
-                                    <h5>{{(get_setting('work_image_title_1')) }}</h5>
-                                    <p>{{(get_setting('work_image_bottom_1')) }}</p>
+                                    <h5>{{ get_setting('work_image_title_1') }}</h5>
+                                    <p>{{ get_setting('work_image_bottom_1') }}</p>
                                 </div>
                             </div>
 
@@ -754,11 +768,11 @@
                         <div class="col-xl-4 col-lg-6 col-md-6">
                             <div class="single-delivery-services mb-70 pr-75">
                                 <div class="ds-icon order-0 order-md-2">
-                                    <img src="{{asset(get_setting('work_image_2'))}}" alt="icon">
+                                    <img src="{{ asset(get_setting('work_image_2')) }}" alt="icon">
                                 </div>
                                 <div class="ds-content text-center text-sm-left text-md-right">
-                                <h5>{{(get_setting('work_image_title_2')) }}</h5>
-                                    <p>{{(get_setting('work_image_bottom_2')) }}</p>
+                                    <h5>{{ get_setting('work_image_title_2') }}</h5>
+                                    <p>{{ get_setting('work_image_bottom_2') }}</p>
                                 </div>
                             </div>
 
@@ -766,11 +780,11 @@
                         <div class="col-xl-4 col-lg-6 col-md-6">
                             <div class="single-delivery-services mb-70 pr-75">
                                 <div class="ds-icon order-0 order-md-2">
-                                    <img src="{{asset(get_setting('work_image_3'))}}" alt="icon">
+                                    <img src="{{ asset(get_setting('work_image_3')) }}" alt="icon">
                                 </div>
                                 <div class="ds-content text-center text-sm-left text-md-right">
-                                <h5>{{(get_setting('work_image_title_3')) }}</h5>
-                                    <p>{{(get_setting('work_image_bottom_3')) }}</p>
+                                    <h5>{{ get_setting('work_image_title_3') }}</h5>
+                                    <p>{{ get_setting('work_image_bottom_3') }}</p>
                                 </div>
                             </div>
 
@@ -813,15 +827,15 @@
                         <div class="footer-widget mb-50">
                             <div class="footer-logo mb-35">
                                 <a href="{{ route('frontend.index') }}"><img
-                                        src="{{asset(get_setting('frontend_logo_footer'))}}" alt="img"></a>
+                                        src="{{ asset(get_setting('frontend_logo_footer')) }}" alt="img"></a>
                             </div>
                             <div class="footer-text">
                                 <p><strong>Head Office</strong></p>
-                                <p>{{(get_setting('office_address')) }}</p>
+                                <p>{{ get_setting('office_address') }}</p>
                                 <p><strong>Email</strong></p>
-                                <p>{{(get_setting('office_email')) }}</p>
+                                <p>{{ get_setting('office_email') }}</p>
                                 <p><strong>Phone</strong></p>
-                                <p>{{(get_setting('office_phone')) }}</p>
+                                <p>{{ get_setting('office_phone') }}</p>
                             </div>
 
                         </div>
@@ -881,10 +895,14 @@
                             <div class="f-support-content">
                                 <div class="footer-social">
                                     <ul>
-                                        <li><a href="{{(get_setting('facebook')) }}"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="{{(get_setting('twitter')) }}"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="{{(get_setting('linkedin')) }}"><i class="fab fa-pinterest-p"></i></a></li>
-                                        <li><a href="{{(get_setting('youtube')) }}"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="{{ get_setting('facebook') }}"><i
+                                                    class="fab fa-facebook-f"></i></a></li>
+                                        <li><a href="{{ get_setting('twitter') }}"><i class="fab fa-twitter"></i></a>
+                                        </li>
+                                        <li><a href="{{ get_setting('linkedin') }}"><i
+                                                    class="fab fa-pinterest-p"></i></a></li>
+                                        <li><a href="{{ get_setting('youtube') }}"><i
+                                                    class="fab fa-linkedin-in"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -898,7 +916,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <div class="copyright-text">
-                            <p>{{(get_setting('copyright_text')) }}</p>
+                            <p>{{ get_setting('copyright_text') }}</p>
                         </div>
                     </div>
 
