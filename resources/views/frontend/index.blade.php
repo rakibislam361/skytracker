@@ -613,7 +613,7 @@
                                         <div class="choose-head">
                                             <div class="choose-icon mb-25">
                                                 <img class="mx-auto d-block"
-                                                    src="{{ asset('assets/img/about/bulk.05d5deb6.svg') }}"
+                                                    src="{{asset(get_setting('about_image_1'))}}"
                                                     alt="img" width="100px">
                                             </div>
                                             <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_1')) }}</a></h3>
@@ -626,7 +626,7 @@
                                         <div class="choose-head">
                                             <div class="choose-icon mb-25">
                                                 <img class="mx-auto d-block"
-                                                    src="{{ asset('assets/img/about/bulk.05d5deb6.svg') }}"
+                                                    src="{{asset(get_setting('about_image_2'))}}"
                                                     alt="img" width="100px">
                                             </div>
                                             <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_2')) }}</a></h3>
@@ -639,7 +639,7 @@
                                         <div class="choose-head">
                                             <div class="choose-icon mb-25">
                                                 <img class="mx-auto d-block"
-                                                    src="{{ asset('assets/img/about/bulk.05d5deb6.svg') }}"
+                                                    src="{{asset(get_setting('about_image_3'))}}"
                                                     alt="img" width="100px">
                                             </div>
                                             <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_3')) }}</a></h3>
@@ -652,7 +652,7 @@
                                         <div class="choose-head">
                                             <div class="choose-icon mb-25">
                                                 <img class="mx-auto d-block"
-                                                    src="{{ asset('assets/img/about/bulk.05d5deb6.svg') }}"
+                                                    src="{{asset(get_setting('about_image_4'))}}"
                                                     alt="img" width="100px">
                                             </div>
                                             <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_4')) }}</a></h3>
@@ -665,7 +665,7 @@
                                         <div class="choose-head">
                                             <div class="choose-icon mb-25">
                                                 <img class="mx-auto d-block"
-                                                    src="{{ asset('assets/img/about/bulk.05d5deb6.svg') }}"
+                                                    src="{{asset(get_setting('about_image_5'))}}"
                                                     alt="img" width="100px">
                                             </div>
                                             <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_5')) }}</a></h3>
@@ -678,7 +678,7 @@
                                         <div class="choose-head">
                                             <div class="choose-icon mb-25">
                                                 <img class="mx-auto d-block"
-                                                    src="{{ asset('assets/img/about/bulk.05d5deb6.svg') }}"
+                                                    src="{{asset(get_setting('about_image_6'))}}"
                                                     alt="img" width="100px">
                                             </div>
                                             <h3 class="text-center"><a href="#">{{(get_setting('about_image_title_6')) }}</a></h3>
