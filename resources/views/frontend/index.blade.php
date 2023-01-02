@@ -539,7 +539,7 @@
                                                         @foreach ($notices as $notice)
                                                             <li>
                                                                 <div class="f-rc-content">
-                                                                    <h5><a href="#">{{ $notice->title }}</a>
+                                                                    <h5><a href="/notice/details/{{{{ $notice->id}}}}">{{ $notice->title }}</a>
                                                                     </h5>
                                                                     <span>{{ $notice->updated_at }}</span>
 
@@ -575,7 +575,7 @@
                                                         @foreach ($infos as $info)
                                                             <li>
                                                                 <div class="f-rc-content">
-                                                                    <h5><a href="#">{{ $info->title }}</a></h5>
+                                                                    <h5><a href="/info/details/{{{{ $notice->id}}}}">{{ $info->title }}</a></h5>
                                                                     <span>{{ $info->updated_at }}</span>
                                                                 </div>
                                                             </li>
