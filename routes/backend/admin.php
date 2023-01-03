@@ -47,6 +47,11 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::post('notice/update', [SettingController::class, 'noticeupdate'])->name('notice.update');
     Route::get('notice/edit/{id}', [SettingController::class, 'noticeedit']);
 
+    Route::get('page', [SettingController::class, 'page'])->name('page');
+    Route::post('page/store', [SettingController::class, 'pagestore'])->name('page.store');
+    Route::post('page/update', [SettingController::class, 'pageupdate'])->name('page.update');
+    Route::get('page/edit/{id}', [SettingController::class, 'pageedit']);
+
     Route::get('info', [SettingController::class, 'info'])->name('info');
     Route::post('info/store', [SettingController::class, 'infostore'])->name('info.store');
     Route::post('info/update', [SettingController::class, 'infoupdate'])->name('info.update');

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Frontend;
  */
 use App\Models\Info;
 use App\Models\Notice;
+use App\Models\page;
 class HomeController
 {
     /**
@@ -36,6 +37,11 @@ class HomeController
     {
         $infos=Info::orderBy('id', 'DESC')->get();
         return view('frontend.content.infoall',compact('infos'));
+    }
+    public function pageshow($slug)
+    {
+        $page=page::where('slug', $slug)->get()->first();
+        return view('frontend.content.dynamicpage',compact('page'));
     }
 
 }

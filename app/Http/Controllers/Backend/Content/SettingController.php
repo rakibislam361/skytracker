@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\Content;
 use App\Http\Controllers\Controller;
 use App\Models\Content\Setting;
 use App\Models\Info;
+use App\Models\Page;
 use App\Models\Notice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -252,6 +253,54 @@ class SettingController extends Controller
     $info->save();
 
     return redirect('/admin/setting/info')->withFlashSuccess('Notice Updated Successfully');;
+  }
+  public function page()
+  {
+    return view('backend.content.settings.page.index');
+  }
+  public function pagestore(Request $request)
+  {
+    $newImageName = time() . '.' . $request->image->extension();
+      $image = $request->image->move(public_path('setting/banner'), $newImageName);
+      $page =new Page;
+      $page->image = $newImageName;
+      $page->title = $request->title;
+      $page->slug = $request->slug;
+      $page->bgcolor = $request->bgcolor;
+      $page->hearder = $request->hearder;
+      $page->footer_left = $request->footer_left;
+      $page->footer_right = $request->footer_right;
+      $page->description = $request->description;
+      $page->save();
+    return redirect()->back()->withFlashSuccess('Page Create Successfully');
+  }
+  public function pageedit($id)
+  {
+    $notice = DB::table('pages')->find($id);
+    return view('backend.content.settings.page.edit', compact('notice'));
+  }
+
+  public function pageupdate(Request $request)
+  {
+    $id = $request->notice_id;
+    if ($request->image) {
+      $newImageName = time() . '.' . $request->image->extension();
+      $image = $request->image->move(public_path('setting/banner'), $newImageName);
+    } else {
+      $newImageName = $request->oldimage;
+    }
+    $page = Page::find($id);
+    $page->image = $newImageName;
+    $page->title = $request->title;
+    $page->slug = $request->slug;
+    $page->bgcolor = $request->bgcolor;
+    $page->hearder = $request->hearder;
+    $page->footer_left = $request->footer_left;
+    $page->footer_right = $request->footer_right;
+    $page->description = $request->description;
+    $page->save();
+
+    return redirect('/admin/setting/page')->withFlashSuccess('Notice Updated Successfully');;
   }
   public function limit()
   {

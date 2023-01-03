@@ -159,6 +159,9 @@
                         <li class="nav-item">
                             <x-utils.link :href="route('admin.setting.info')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Information Settings')" />
                         </li>
+                        <li class="nav-item">
+                            <x-utils.link :href="route('admin.setting.page')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Page Settings')" />
+                        </li>
 
                         {{-- <li class="nav-item">
               <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Color Settings')" />

@@ -5,10 +5,10 @@
 @section('meta_description', get_setting('meta_description'))
 @section('meta_image', asset(get_setting('meta_image')))
 
+
 @php
     $catLoader = get_setting('category_image_loader');
     $productLoader = get_setting('product_image_loader');
-    
 @endphp
 
 @section('content')
@@ -147,10 +147,21 @@
                                     <div class="mean-push"></div>
                                     <nav id="mobile-menu" style="display: none;">
                                         <ul>
+                                        @php
+                                   $headers = DB::table('pages')->where('hearder', 1)->get();
+                                                        @endphp
                                             <li class="active"><a href="{{ route('frontend.index') }}">Home</a></li>
+        
                                             {{-- <li><a href="{{ route('frontend.auth.login') }}">Login</a></li> --}}
                                             {{-- <li><a href="{{ route('frontend.auth.register') }}">Register</a></li> --}}
-                                            <li> @auth
+                                           
+                                           
+                                            @foreach ($headers as $header)
+                                            <li>
+                                                <a href="/page/{{$header->slug}}">{{$header->title}}</a>
+                                            </li>
+                                           @endforeach
+                                                 @auth
                                                     @if ($logged_in_user->isAdmin())
                                                 <li>
                                                     <a href="{{ route('admin.dashboard') }}">
@@ -180,9 +191,11 @@
                                         </ul>
                                     </nav>
                                 </div>
-
+                               
+                                                        
                                 <div class="header-btn">
                                     <!-- <a href="#" class="btn" data-toggle="modal" data-target="#exampleModalLong"><img src="img/icon/calculator-symbols.png" alt="icon">Get Fare Rate</a> -->
+                                
                                     @auth
                                         @if ($logged_in_user->isAdmin())
                                             <li>
@@ -852,13 +865,18 @@
                             </div>
                             <div class="fw-link">
                                 <ul>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> About us</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
+                                @php
+                                   $footer_lefts = DB::table('pages')->where('footer_left', 2)->get();
+                                                        @endphp
+                                                        @foreach ($footer_lefts as $footer_left)
+                                    <li><a href="/page/{{$footer_left->slug}}"><i class="fas fa-caret-right"></i>{{$footer_left->title}}</a></li>
+                                    <!-- <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
                                     </li>
                                     <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
                                             Conditions</a></li>
                                     <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
+                               @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -870,13 +888,25 @@
                             </div>
                             <div class="fw-link">
                                 <ul>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> About us</a></li>
+                                @php
+                                   $footer_rights = DB::table('pages')->where('footer_right', 3)->get();
+                                                        @endphp
+                                                        @foreach ($footer_rights as $footer_right)
+                                    <li><a href="/page/{{$footer_right->slug}}"><i class="fas fa-caret-right"></i>{{$footer_right->title}}</a></li>
+                                    <!-- <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
+                                    </li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
+                                            Conditions</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
+                               @endforeach
+                                    <!-- <li><a href="#"><i class="fas fa-caret-right"></i> About us</a></li>
                                     <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
                                     </li>
                                     <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
                                             Conditions</a></li>
                                     <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
                                 </ul>
                             </div>
                         </div>
