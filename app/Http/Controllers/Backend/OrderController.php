@@ -71,9 +71,6 @@ class OrderController extends Controller
                 ->withFlashError('server error');
         }
         $totalcount = count($order);
-        // $partial = $order['status'];
-        // dd($partial);
-        // $status = count($partial);
         $orders = $this->paginate($order, 20);
         $orders->withPath('');
 
@@ -83,10 +80,14 @@ class OrderController extends Controller
     public function update($id)
     {
         $data = $this->validateOrderItems();
-        Log::info($data);
+
+        // $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
+        $data['tracking_number'] = implode(',', request()->tracking_number);
+        $data['carton_id'] = implode(',', request()->carton_id);
+
         if ($data['order_update'] == "withoutajax") {
             $orderResponse = $this->order_update($data);
-            if ($orderResponse->status == 'Success') {
+            if (!$orderResponse == null) {
                 return redirect()
                     ->back()
                     ->withFlashSuccess('Order Updated Successfully');
@@ -99,6 +100,7 @@ class OrderController extends Controller
 
         if ($data['order_update'] == "") {
             $orderResponse = $this->order_update($data);
+            // dd($orderResponse);
             return $orderResponse;
         }
     }
@@ -272,8 +274,8 @@ class OrderController extends Controller
     {
         // $weight = json_encode(request()->chn_warehouse_weight);
         // $weight = request()->chn_warehouse_weight;
-        $weight = implode(',', request()->chn_warehouse_weight);
-        Log::info($weight);
+        // Log::info($weight);
+
 
         return request()->validate([
             'order_update' => 'nullable',
@@ -301,12 +303,12 @@ class OrderController extends Controller
             'china_local_delivery_rmb' => 'nullable|string',
             'shipping_from' => 'nullable|string',
             'shipping_mark' => 'nullable|string',
-            'chn_warehouse_qty' => 'nullable|string',
-            'chn_warehouse_weight' => 'nullable|string',
+            'chn_warehouse_qty' => 'nullable',
+            'chn_warehouse_weight' => 'nullable',
             'cbm' => 'nullable|string',
-            'carton_id' => 'nullable|string',
+            'carton_id.*' => 'nullable',
             'product_type' => 'nullable|string',
-            'tracking_number' => 'nullable|string',
+            'tracking_number.*' => 'nullable',
             'shipped_by' => 'nullable|string',
             'status' => 'nullable|string',
             'product_bd_received_cost' => 'nullable|string',

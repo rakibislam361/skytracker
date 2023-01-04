@@ -46,11 +46,17 @@ Route::post('contact', [ContactController::class, 'store']);
 
 
 
-Route::get('track', [TrackingController::class, 'Track'])
+Route::get('tracking', [TrackingController::class, 'Tracking'])
     ->name('pages.tracking')
     ->breadcrumbs(function (Trail $trail) {
         $trail->parent('frontend.index')
             ->push(__('_track'), route('frontend.pages.tracking'));
+    });
+Route::get('track', [TrackingController::class, 'Track'])
+    ->name('pages.shippingInformationModal')
+    ->breadcrumbs(function (Trail $trail) {
+        $trail->parent('frontend.index')
+            ->push(__('_track'), route('frontend.pages.shippingInformationModal'));
     });
 
 Route::get('d2d', [d2dController::class, 'd2d'])
@@ -59,3 +65,4 @@ Route::get('d2d', [d2dController::class, 'd2d'])
         $trail->parent('frontend.index')
             ->push(__('_d2d'), route('frontend.pages.d2d'));
     });
+Route::get('/info/{shipped_from}', [HomeController::class, 'index']);

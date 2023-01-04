@@ -74,6 +74,7 @@ trait ApiOrderTrait
         $url = config('api.url') . '/admin/order-item-details/' . $id;
         $get_token = $this->getToken();
         $response = Http::withToken($get_token)->get($url, $id);
+
         return $response->object();
     }
 

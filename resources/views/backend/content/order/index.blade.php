@@ -25,7 +25,7 @@ $purchasedCount = null;
 
 <div class="card">
     <div class="card-header">
-        <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
+        <h5 class="d-inline-block mr-2">@lang('Order Items')</h5>
 
 
         {{-- <div class="btn-group float-right" role="group" aria-label="header_button_group">

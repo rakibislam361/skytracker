@@ -187,7 +187,6 @@ $(function () {
             event.preventDefault();
             var formData = $("#updateItem").serialize();
             let url = $("#updateItem").attr("action");
-            // console.log(url);
             $.ajax({
                 type: "put",
                 url: url,

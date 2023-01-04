@@ -3,6 +3,8 @@
 
 <input type="hidden" name="order_update" id="order_update" value="withoutajax" class="form-control" />
 
+<input type="hidden" name="carton_id[]" class="form-control" />
+
 <input type="hidden" name="order_item_id" id="order_item_id" value={{ $orderItem->id }} class="form-control" />
 
 <div class="row">
@@ -16,7 +18,7 @@
     </div> <!-- form-group -->
     <div class="form-group col-md-4">
         {{ html()->label('China To BD Tracking Number')->for('tracking_number') }}
-        {{ html()->text('tracking_number')->class('form-control')->placeholder('China To BD Tracking Number') }}
+        {{ html()->text('tracking_number[]')->class('form-control')->placeholder('China To BD Tracking Number') }}
     </div> <!-- form-group -->
     <div class="form-group col-md-4">
         {{ html()->label('China to BD Shipping Rate')->for('shipping_rate') }}

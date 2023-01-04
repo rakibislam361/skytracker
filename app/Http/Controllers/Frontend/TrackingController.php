@@ -22,11 +22,26 @@ class TrackingController
 
     public function Track(Request $request)
     {
-        $data = Product::with('warehouse', 'status');
+        $weight = request('weight', null);
+        $shipped_from = request('shipped_from', null);
+        $service_type = request('service_type', null);
+        $category = request('category', null);
+        $calculate_rate = Product::where('category', 'like', "%$category%")
+            ->where('shipped_from', 'like', "%$shipped_from%")
+            ->first();
 
-        if ($request->input('trackid')) {
-            $data = $data->where('invoice', 'LIKE', '' . $request->trackid . '')->paginate(10);
-        }
-        return view('frontend.pages.tracking', compact('data'));
+
+        $rate = $calculate_rate->rate;
+        $cal_rate = $rate * $weight;
+
+        return view('frontend.pages.shippingInformationModal', compact('weight', 'shipped_from', 'category', 'rate', 'cal_rate'));
+
+
+        // return view('frontend.index', compact('rate'));
+
+    }
+    public function Tracking(Request $request)
+    {
+        return view('frontend.pages.tracking');
     }
 }

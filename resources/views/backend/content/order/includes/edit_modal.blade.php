@@ -99,7 +99,7 @@
 
                         <div class="form-group">
                             <label for="chn_warehouse_weight">China Warehouse Weight</label>
-                            <table style="width:100%" id="add-weight">
+                            {{-- <table style="width:100%" id="add-weight">
                                 <tr>
                                     <td><input type="text" name="chn_warehouse_weight[]"
                                             placeholder="china warehouse weight" class="form-control" /></td>
@@ -109,9 +109,9 @@
                                     <td class="text-right" style="width:1%"><button type="button"
                                             class="btn btn-outline-danger">-</button></td>
                                 </tr>
-                            </table>
-                            {{-- <textarea type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" placeholder="chn_warehouse_weight"
-                                class="form-control"> </textarea> --}}
+                            </table> --}}
+                            <textarea type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" placeholder="chn_warehouse_weight"
+                                class="form-control"> </textarea>
                         </div>
 
                         <div class="form-group">
@@ -167,7 +167,8 @@
                                             class="btn btn-outline-danger">-</button></td>
                                 </tr>
                             </table>
-                            {{-- <input type="text" name="tracking_number" id="tracking_number" placeholder="Tracking Id" class="form-control" /> --}}
+                            {{-- <input type="text" name="tracking_number" id="tracking_number"
+                                placeholder="Tracking Id" class="form-control" /> --}}
                         </div>
                     @endif
 

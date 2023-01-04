@@ -16,7 +16,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="d-inline-block mr-2">@lang('Orders')</h5>
+            <h5 class="d-inline-block mr-2">@lang('Recent Orders')</h5>
             @include('backend.content.order.recent.includes.recent_filter')
             {{--
             <div class="status-control mt-5">

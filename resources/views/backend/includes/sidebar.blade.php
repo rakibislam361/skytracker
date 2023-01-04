@@ -153,7 +153,9 @@
                             <x-utils.link :href="route('admin.setting.price')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Price Settings')" />
                         </li>
                         <li class="nav-item">
-                            <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Shipping Products')" />
+                            <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products Category')" />
+                        </li>
+                        <li class="nav-item">
                             <x-utils.link :href="route('admin.setting.notice')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Notice Settings')" />
                         </li>
                         <li class="nav-item">

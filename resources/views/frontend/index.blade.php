@@ -174,7 +174,7 @@
 
                                             @endauth
                                             </li>
-                                            <li><a href="{{ route('frontend.pages.tracking') }}">Tracking</a></li>
+                                            {{-- <li><a href="{{ route('frontend.pages.tracking') }}">Tracking</a></li> --}}
                                             <li><a href="#">Support</a></li>
 
                                         </ul>
@@ -206,8 +206,10 @@
                                         @endif
 
                                     @endauth
-                                    <a href="{{ route('frontend.pages.tracking') }}" class="btn"
+                                    {{-- <a href="{{ route('frontend.pages.tracking') }}" class="btn"
                                         data-target="#exampleModalLong">Track Your
+                                        Order</a> --}}
+                                    <a href="#" class="btn">Track Your
                                         Order</a>
                                 </div>
                             </div>
@@ -230,188 +232,9 @@
                             </div>
                         </div>
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="container">
-                                    <div class="row ownmodal">
-                                        <div class="col-md-6" style="background-color: #4e148c;">
+                        {{-- @include('frontend.pages.tracking') --}}
+                        @include('frontend.pages.shippingInformationModal')
 
-                                            <div class="card" style="background-color: #4e148c; border:0px;">
-                                                <div class="card-header" style="border:0px;">
-                                                    <div
-                                                        style="display: flex; justify-content: center; font-size: 150%; color: white; font-weight: bold;">
-                                                        Approximate shipping cost</div>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div
-                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
-                                                        <div style="font-size: 120%; color: white;">Ship By</div>
-                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
-                                                            air
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
-                                                        <div style="font-size: 120%; color: white;">Ship From</div>
-                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
-                                                            china
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
-                                                        <div style="font-size: 120%; color: white;">Product Type
-                                                        </div>
-                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
-                                                            chemical</div>
-                                                    </div>
-                                                    <div
-                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
-                                                        <div style="font-size: 120%; color: white;">Per kg</div>
-                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
-                                                            2000tk/kg</div>
-                                                    </div>
-                                                    <div
-                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
-                                                        <div
-                                                            style="display: flex; flex-direction: column; font-size: 120%; color: white;">
-                                                            Total weight </div>
-                                                        <div style="font-size: 120%; color: white; font-weight: bold;">
-                                                            5 kg
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row"
-                                                        style="display: flex; flex-direction: row; justify-content: space-around;">
-                                                        <div style="font-size: 150%; color: white; font-weight: bold;">
-                                                            Total
-                                                        </div>
-                                                        <div style="font-size: 150%; color: white; font-weight: bold;">
-                                                            10000Tk
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        style="color: white; font-size: 100%; display: flex; justify-content: center;">
-                                                        (IF 1 CBM= 167kg)</div>
-
-                                                    <div class="row"
-                                                        style="color: orange; font-family: sans-serif; display: flex; justify-content: center; padding: 30px 15px 0px 20px;">
-                                                        **৫ কেজির নিচের সকল পার্সেল এর দাম সাধারণ দামের চেয়ে
-                                                        তুলনামূলক ভাবে
-                                                        বেশি
-                                                        থাকবে ।</div>
-
-                                                    <div class="row mt-3">
-                                                        <div class="col">
-                                                            <div class="center-head" style="margin-bottom: 0px;">
-                                                                <span style="text-transform: none; color: red;">read
-                                                                    carefully</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div
-                                                        style="color: white; padding-top: 15px; padding-bottom: 10px;">
-                                                        উপরের
-                                                        রেটটি সম্ভাব্য রেট। কনফার্ম রেট পেতে নিচের তথ্য প্রদান
-                                                        পূর্বক বুকিং
-                                                        করুন
-                                                        । বুকিং এর ২৪ ঘণ্টার মধ্যে আপনার শিপমেন্টের সকল প্রকার খরচ
-                                                        আপনাকে
-                                                        জানিয়ে
-                                                        দেয়া হবে।</div>
-                                                </div>
-                                            </div>
-
-
-                                        </div> {{-- leftSideEndHere --}}
-                                        <div class="col-md-6">
-                                            <div class="card" style="border:0px;">
-                                                <div class="card-header" style="border:0px;">
-                                                    <div
-                                                        style="display: flex; justify-content: center; font-size: 150%; font-weight: bold;">
-                                                        Book your shipping order</div>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="modal-content fare-rate-modal">
-                                                        <form action="#" method="post">
-
-                                                            <div class="form-row mb-1">Select Date:</div>
-                                                            <div class="form-row mb-2">
-                                                                <div class="col"><input type="date"
-                                                                        name="date" class="form-control"
-                                                                        placeholder="approx date" required=""
-                                                                        value=""
-                                                                        style="border-radius: 10rem; width: 60%;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-1">Carton quantity:</div>
-                                                            <div class="form-row mb-2">
-                                                                <div class="col"><input type="number"
-                                                                        name="ctnQuantity" class="form-control"
-                                                                        placeholder="quantity" required=""
-                                                                        value=""
-                                                                        style="border-radius: 10rem; width: 60%;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-1">Total CBM:</div>
-                                                            <div class="form-row mb-2">
-                                                                <div class="col"><input type="number"
-                                                                        name="totalCbm" class="form-control"
-                                                                        placeholder="total CBM" required=""
-                                                                        value=""
-                                                                        style="border-radius: 10rem; width: 60%;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-1">Product Quantity:</div>
-                                                            <div class="form-row mb-2">
-                                                                <div class="col"><input type="number"
-                                                                        name="productQuantity" class="form-control"
-                                                                        placeholder="product quantity" required=""
-                                                                        value=""
-                                                                        style="border-radius: 10rem; width: 60%;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-1">Products Total Cost:</div>
-                                                            <div class="form-row mb-2">
-                                                                <div class="col"><input type="number"
-                                                                        name="productsTotalCost" class="form-control"
-                                                                        placeholder="total Cost(BDT)" required=""
-                                                                        value=""
-                                                                        style="border-radius: 10rem; width: 60%;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-1">Product Name (specific):
-                                                            </div>
-                                                            <div class="form-row mb-2">
-                                                                <div class="col"><input type="text"
-                                                                        name="othersProductName" class="form-control"
-                                                                        placeholder="product name" required=""
-                                                                        value=""
-                                                                        style="border-radius: 10rem; width: 60%;">
-                                                                </div>
-                                                            </div>
-                                                            <div class="form-row mb-1">Products Image:</div>
-                                                            <div class="form-row mb-4">
-                                                                <div class="box-input-file"
-                                                                    style="display: flex; justify-content: center;">
-                                                                    <input id="upload-image-input" class="upload"
-                                                                        type="file">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                        <button class="btn f-right nextBtn-2 btn-success"
-                                                            type="button">Book Now</button>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-
-                                        </div>{{-- RightSideEndHere --}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
         </header>
@@ -433,19 +256,20 @@
                                     style="animation-delay: 0.3s;">{{ get_setting('banner_text_header') }}</h2>
                                 <p data-animation="fadeInUpS" data-delay=".6s" class=""
                                     style="animation-delay: 0.6s;">{{ get_setting('banner_text_bottom') }}</p>
-                                <div class="slider-form" data-animation="fadeInUpS" data-delay=".9s"
+                                {{-- <div class="slider-form" data-animation="fadeInUpS" data-delay=".9s"
                                     style="animation-delay: 0.9s;">
-                                    <form action="#">
+                                    <form method="GET" action="{{ route('frontend.pages.tracking') }}">
+                                        @csrf
                                         <div class="col-md-1 mbb-10">
-                                            <select class="custom-select" name="" id="">
-                                                <option value="">D2D</option>
+                                            <select class="custom-select" name="service_type" id="service_type">
+                                                <option value="d2d">D2D</option>
                                             </select>
                                         </div>
                                         <div class="col-md-2 mbb-10">
-                                            <select class="custom-select" name="" id="">
+                                            <select class="custom-select" name="shipped_from" id="shipped_from">
                                                 <option value="">Select Country</option>
-                                                <option value="">China</option>
-                                                <option value="">Hongkong</option>
+                                                <option value="china">China</option>
+                                                <option value="hongkong">Hongkong</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3">
@@ -454,13 +278,14 @@
                                         </div>
                                         <div class="col-md-2">
                                             <input type="text" placeholder="Enter Weight(KG)" tabindex="0"
-                                                spellcheck="false" data-ms-editor="true">
+                                                spellcheck="false" data-ms-editor="true" name="weight"
+                                                id="weight">
                                         </div>
                                         <div class="col-md-3 mbb-10">
-                                            <select class="custom-select" name="" id="">
+                                            <select class="custom-select" name="category" id="category">
                                                 <option value="">Select Product Type</option>
-                                                <option value="">Bag</option>
-                                                <option value="">Jewelry</option>
+                                                <option value="bag">Bag</option>
+                                                <option value="jewelry">Jewelry</option>
                                             </select>
                                         </div>
 
@@ -469,7 +294,8 @@
                                                     class="flaticon-magnifying-glass"></i></button></div>
                                         <!-- <button class="btn" tabindex="-1">Tracking</button> -->
                                     </form>
-                                </div>
+                                </div> --}}
+                                @include('frontend.content.trackproduct')
                             </div>
                         </div>
                     </div>
