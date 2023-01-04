@@ -84,8 +84,10 @@ class OrderController extends Controller
         // $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
         $data['tracking_number'] = implode(',', request()->tracking_number);
         $data['carton_id'] = implode(',', request()->carton_id);
-        $data['chinaLocalDelivery'] = request('chinaLocalDelivery', null);
-
+        $chinaLocal = request('chinaLocalDelivery', null);
+        if ($chinaLocal == 0) {
+            $data['chinaLocalDelivery'] = null;
+        }
         if ($data['order_update'] == "withoutajax") {
             unset($data['order_update'], $data['shipping_charge'], $data['quantity'], $data['product_value'], $data['first_payment']);
             $orderResponse = $this->order_update($data);
@@ -125,44 +127,52 @@ class OrderController extends Controller
         ];
 
         $receivedData = $this->recentorderList($filter);
-        $ordersData = $receivedData;
+        $ordersData = $receivedData->data->result;
+        // dd($ordersData->data);
         $order = [];
 
         $userRole = auth()
             ->user()
             ->roles->first();
         $roles = $userRole ? $userRole->name : null;
+
         if ($roles == 'Administrator') {
-            foreach ($ordersData->orders as $data) {
+            foreach ($ordersData->data as $data) {
                 $order[] = $data;
             }
         } elseif ($roles == 'BD Purchase Officer') {
-            foreach ($ordersData->orders as $data) {
+
+            foreach ($ordersData->data as $data) {
                 if ($data->status == 'partial-paid' || $data->status == 'processing' || $data->status == 'Partial Paid' || $data->status == 'on-hold') {
                     $order[] = $data;
                 }
             }
         } elseif ($roles == 'China Purchase Officer') {
-            foreach ($ordersData->orders as $data) {
+            foreach ($ordersData->data as $data) {
                 if ($data->status == 'processing' || $data->status == 'on-hold' || $data->status == 'purchased' || $data->status == 're-order' || $data->status == 'refund-please' || $data->status == 'shipped-from-suppliers') {
                     $order[] = $data;
                 }
             }
         } elseif ($roles == 'China Warehouse Officer') {
-            foreach ($ordersData->orders as $data) {
+            foreach ($ordersData->data as $data) {
                 if ($data->status == 'shipped-from-suppliers' || $data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse') {
                     $order[] = $data;
                 }
             }
         } elseif ($roles == 'BD Logistic Officer') {
-            foreach ($ordersData->orders as $data) {
+            foreach ($ordersData->data as $data) {
                 if ($data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
                     $order[] = $data;
                 }
             }
         }
-        $orders = $this->paginate($order, 20);
-        $orders->withPath('');
+        $count = !empty($order) && count($order) > 0 ? $order : null;
+        $orders = null;
+
+        if ($count) {
+            $orders = $this->paginate($count, 20);
+            $orders->withPath('');
+        }
         return view('backend.content.order.recent.index', compact('orders'));
     }
 

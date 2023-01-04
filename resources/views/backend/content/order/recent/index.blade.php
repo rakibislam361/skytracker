@@ -4,8 +4,9 @@
 
 @section('content')
     @php
+        
+        $allOrdersCount = $orders ? $orders->where('status', 'Partial Paid')->count() : null;
         $status = null;
-        $allOrdersCount = $orders->where('status', 'Partial Paid')->count();
         $partialCount = null;
         $onHold = null;
         $icompleteCount = null;
