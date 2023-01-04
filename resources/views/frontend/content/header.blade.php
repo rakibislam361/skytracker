@@ -1,61 +1,120 @@
-<header class="header-main">
-    <nav class="menu-bar font2-title1">
-        <div class="theme-container container">
-            <div class="row">
-                <div class="col-md-2 col-sm-2">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+ <header>
 
-                    <a class="navbar-logo" href="{{ route('frontend.index') }}">
-                        <img src="{{ asset(get_setting('frontend_logo_menu')) }}"
-                            alt="{{ get_setting('site_name') }}" />
-                    </a>
-                </div>
-                <div class="col-md-10 col-sm-10 fs-12">
-                    <div id="navbar" class="collapse navbar-collapse no-pad">
-                        <ul class="navbar-nav theme-menu">
-                            <li> <a href="{{ route('frontend.index') }}">Home</a> </li>
-                            <li id="about"> <a href="{{ route('frontend.pages.about') }}">about</a> </li>
-                            <li id="contact"> <a href="{{ route('frontend.pages.contact') }}"> contact </a>
-                            </li>
+     <div id="header-sticky" class="main-header">
+         <div class="container-fluid header-container-p">
+             <div class="row align-items-center">
+                 <div class="col-lg-3 col-md-6">
+                     <div class="logo">
+                         <a href="{{ route('frontend.index') }}"><img src="{{ asset(get_setting('frontend_logo_menu')) }}" class="mobile-logo" alt="Logo"></a>
+                     </div>
+                 </div>
+                 <div class="col-lg-9 col-md-6 d-none d-md-block">
+                     <div class="menu-area">
+                         <div class="main-menu">
+                             <div class="mean-push"></div>
+                             <nav id="mobile-menu" style="display: none;">
+                                 <ul>
+                                     @php
+                                     $headers = DB::table('pages')
+                                     ->where('hearder', 1)
+                                     ->get();
+                                     @endphp
+                                     <li class="active"><a href="{{ route('frontend.index') }}">Home</a></li>
+
+                                     {{-- <li><a href="{{ route('frontend.auth.login') }}">Login</a></li> --}}
+                                     {{-- <li><a href="{{ route('frontend.auth.register') }}">Register</a></li> --}}
 
 
-                            @auth
+                                     @foreach ($headers as $header)
+                                     <li>
+                                         <a href="/page/{{ $header->slug }}">{{ $header->title }}</a>
+                                     </li>
+                                     @endforeach
+                                     @auth
+                                     @if ($logged_in_user->isAdmin())
+                                     <li>
+                                         <a href="{{ route('admin.dashboard') }}">
+                                             {{ $logged_in_user->name }} </a>
+                                     </li>
+                                     @endif
 
-                                @if ($logged_in_user->isAdmin())
-                                    <li>
-                                        <button><a href="{{ route('admin.dashboard') }}">
-                                                {{ $logged_in_user->name }} </a></button>
-                                    </li>
-                                @endif
+                                     @if ($logged_in_user->isUser())
+                                     <li>
+                                         <a href="{{ route('frontend.user.dashboard') }}">
+                                             {{ $logged_in_user->name }} </a>
+                                     </li>
+                                     @endif
+                                     @else
+                                     @if (config('boilerplate.access.user.registration'))
+                                     <li>
+                                         <a href="{{ route('frontend.auth.login') }}">Login</a>
+                                     </li>
+                                     <li><a href="{{ route('frontend.auth.register') }}">Register</a></li>
+                                     @endif
 
-                                @if ($logged_in_user->isUser())
-                                    <li>
-                                        <button><a href="{{ route('frontend.user.dashboard') }}">
-                                                {{ $logged_in_user->name }} </a></button>
-                                    </li>
-                                @endif
-                            @else
-                                @if (config('boilerplate.access.user.registration'))
-                                    <li>
-                                        <button><a data-toggle="modal" href="#login-popup" data- target="#login-popup"> Sign
-                                                In </a></button>
-                                    </li>
-                                @endif
+                                     @endauth
+                                     </li>
+                                     {{-- <li><a href="{{ route('frontend.pages.tracking') }}">Tracking</a></li> --}}
+                                     <li><a href="#">Support</a></li>
 
-                            @endauth
+                                 </ul>
+                             </nav>
+                         </div>
 
-                        </ul>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
+                         <div class="header-btn">
+                             <!-- <a href="#" class="btn" data-toggle="modal" data-target="#exampleModalLong"><img src="img/icon/calculator-symbols.png" alt="icon">Get Fare Rate</a> -->
 
-</header>
+                             @auth
+                             @if ($logged_in_user->isAdmin())
+                             <li>
+                                 <a href="{{ route('admin.dashboard') }}" class="btn">
+                                     {{ $logged_in_user->name }} </a>
+                             </li>
+                             @endif
+
+                             @if ($logged_in_user->isUser())
+                             <li>
+                                 <a href="{{ route('frontend.user.dashboard') }}" class="btn">
+                                     {{ $logged_in_user->name }} </a>
+                             </li>
+                             @endif
+                             @else
+                             @if (config('boilerplate.access.user.registration'))
+                             <li>
+                                 <a href="{{ route('frontend.auth.login') }}" class="btn">Login/Register</a>
+                             </li>
+                             @endif
+
+                             @endauth
+                             {{-- <a href="{{ route('frontend.pages.tracking') }}" class="btn"
+                             data-target="#exampleModalLong">Track Your
+                             Order</a> --}}
+                             <a href="#" class="btn">Track Your
+                                 Order</a>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-12">
+                     <div class="mobile-menu mean-container">
+
+                     </div>
+                 </div>
+                 <!-- Modal Search -->
+                 <div class="modal fade" id="search-modal" tabindex="-1" role="dialog" aria-hidden="true">
+                     <div class="modal-dialog" role="document">
+                         <div class="modal-content">
+                             <form>
+                                 <input type="text" placeholder="Search here..." spellcheck="false" data-ms-editor="true">
+                                 <button><i class="fa fa-search"></i></button>
+                             </form>
+                         </div>
+                     </div>
+                 </div>
+                 <!-- Modal -->
+                 {{-- @include('frontend.pages.tracking') --}}
+                 @include('frontend.pages.shippingInformationModal')
+
+             </div>
+         </div>
+ </header>

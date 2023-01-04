@@ -110,13 +110,18 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
               
                 </div>
                 <div class="card-body">
-                <form action="{{ route('admin.setting.info.update') }}" enctype="multipart/form-data" method="POST">
+                <form action="{{ route('admin.setting.page.update') }}" enctype="multipart/form-data" method="POST">
                 @csrf
                 <div class="form-group">
                     <label>Image</label>
                     <input type="file" name="image" class="form-control">
                     <input type="hidden" name="oldimage" value="{{$notice->image}}" class="form-control">
                     
+                   
+                </div>
+				<div class="form-group">
+                    <label>Background Color</label>
+                    <input type="input" name="bgcolor" value="{{$notice->bgcolor}}" class="form-control">
                    
                 </div>
                 <div class="form-group">
@@ -137,6 +142,21 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
                         <option value="0"  @if($notice->is_active == 0) selected @endif>Deactive</option>
                     </select>
                 </div>
+				<div class="form-group">
+                    <label>Slug</label>
+                    <input type="text" name="slug" value="{{$notice->slug}}"  class="form-control">
+                   
+                </div>
+				<div class="form-group">
+                <input type="checkbox" @if($notice->hearder == 1) checked @endif id="vehicle1" name="hearder" value="1">
+                <label for="vehicle1">Header</label><br>
+                <input type="checkbox" @if($notice->footer_left == 2) checked @endif id="vehicle2" name="footer_left" value="2">
+                <label for="vehicle2">Footer Left</label><br>
+                <input type="checkbox" @if($notice->footer_right == 3) checked @endif id="vehicle3" name="footer_right" value="3">
+                <label for="vehicle3"> Footer Right</label><br><br>
+
+                </div>
+
                 <button type="submit" class="btn btn-info">Update</button>
             </form>
                 </div>
@@ -150,7 +170,6 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
     </div>
     
 
-
 	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
 	  tinymce.init({
@@ -160,7 +179,6 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
 
 
 @endsection
-
 
 
 

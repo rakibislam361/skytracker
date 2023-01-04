@@ -20,7 +20,11 @@ Route::get('/', [HomeController::class, 'index'])
     ->breadcrumbs(function (Trail $trail) {
         $trail->push(__('Home'), route('frontend.index'));
     });
-
+    Route::get('notice/details/{id}', [HomeController::class, 'noticedetails']);
+    Route::get('info/details/{id}', [HomeController::class, 'infodetails']);
+    Route::get('notice/all', [HomeController::class, 'noticeall']);
+    Route::get('page/{slug}', [HomeController::class, 'pageshow']);
+    Route::get('info/all', [HomeController::class, 'infoall']);
 Route::get('terms', [TermsController::class, 'index'])
     ->name('pages.terms')
     ->breadcrumbs(function (Trail $trail) {

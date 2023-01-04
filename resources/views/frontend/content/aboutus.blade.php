@@ -1,125 +1,104 @@
-<section class="pad-80 about-wrap clrbg-before">
-    <div class="theme-container container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><i
-                                        class="fa fa-truck"></i> Daily Pick up, No limitations <i
-                                        class="fa fa-angle-right" style="float:right;" aria-hidden="true"></i></a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Skytrack Courier gives you the opportunity of unlimited pickup. You can give
-                                any amount of parcels regardless of their size and weight. Also you don’t
-                                have to bring your parcels to our office! Our trusted pickup man will visit
-                                your location and pick up your parcels on behalf of you. You can request for
-                                pickup for every day of the week.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><i
-                                        class="fa fa-credit-card"></i> Faster Payment Service <i
-                                        class="fa fa-angle-right" style="float:right;" aria-hidden="true"></i></a>
-                            </h4>
-                        </div>
-                        <div id="collapseTwo" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Skytrack Courier gives you the opportunity of unlimited pickup. You can give
-                                any amount of parcels regardless of their size and weight. Also you don’t
-                                have to bring your parcels to our office! Our trusted pickup man will visit
-                                your location and pick up your parcels on behalf of you. You can request for
-                                pickup for every day of the week.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><i
-                                        class="fa fa-clock-o"></i> Real-Time
-                                    Tracking <i class="fa fa-angle-right" style="float:right;"
-                                        aria-hidden="true"></i></a>
-                            </h4>
-                        </div>
-                        <div id="collapseThree" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Skytrack Courier gives you the opportunity of unlimited pickup. You can give
-                                any amount of parcels regardless of their size and weight. Also you don’t
-                                have to bring your parcels to our office! Our trusted pickup man will visit
-                                your location and pick up your parcels on behalf of you. You can request for
-                                pickup for every day of the week.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><i
-                                        class="fa fa-money"></i>Cash on Delivery <i class=" fa fa-angle-right"
-                                        style="float:right;" aria-hidden="true"></i></a>
-                            </h4>
-                        </div>
-                        <div id="collapseFour" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Skytrack Courier gives you the opportunity of unlimited pickup. You can give
-                                any amount of parcels regardless of their size and weight. Also you don’t
-                                have to bring your parcels to our office! Our trusted pickup man will visit
-                                your location and pick up your parcels on behalf of you. You can request for
-                                pickup for every day of the week.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive"><i
-                                        class="fa fa-credit-card"></i> Online
-                                    Management <i class="fa fa-angle-right" style="float:right;"
-                                        aria-hidden="true"></i></a>
-                            </h4>
-                        </div>
-                        <div id="collapseFive" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Skytrack Courier gives you the opportunity of unlimited pickup. You can give
-                                any amount of parcels regardless of their size and weight. Also you don’t
-                                have to bring your parcels to our office! Our trusted pickup man will visit
-                                your location and pick up your parcels on behalf of you. You can request for
-                                pickup for every day of the week.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><i
-                                        class="fa fa-user"></i> Advanced Customer Service <i class="fa fa-angle-right"
-                                        style="float:right;" aria-hidden="true"></i></a>
-                            </h4>
-                        </div>
-                        <div id="collapseSix" class="panel-collapse collapse">
-                            <div class="panel-body">
-                                Skytrack Courier gives you the opportunity of unlimited pickup. You can give
-                                any amount of parcels regardless of their size and weight. Also you don’t
-                                have to bring your parcels to our office! Our trusted pickup man will visit
-                                your location and pick up your parcels on behalf of you. You can request for
-                                pickup for every day of the week.
-                            </div>
-                        </div>
-                    </div>
+ <section class="international-services pb-120 pt-70 fix">
+     <div class="container">
+         <div class="services-wrapper">
+             <div class="row align-items-center">
+                 <div class="col-lg-4">
+                     <div class="s-section-title mb-30">
+                         <h2 style="color: {{ get_setting('about_color_1') }}">
+                             {{ get_setting('about_text_header') }}
+                         </h2>
+                         <h6 style="color: {{ get_setting('about_color_2') }}">
+                             {{ get_setting('about_text_bottom') }}
+                         </h6>
+                     </div>
+                     <div class="int-services-content">
+                         <p style="color: {{ get_setting('about_color_3') }}">
+                             {{ get_setting('about_text_details') }}.
+                         </p>
+                         <a href="#" class="btn mb-5">Contact Us</a>
+                     </div>
+                 </div>
+                 <div class="col-lg-8">
 
+                     <div class="row padStyle">
+                         <div class="col-lg-4 col-md-6">
+                             <div class="single-choose mb-40">
+                                 <div class="choose-head">
+                                     <div class="choose-icon mb-25">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_1')) }}" alt="img" width="100px">
+                                     </div>
+                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}">
+                                         <a href="#">{{ get_setting('about_image_title_1') }}</a>
+                                     </h3>
+                                 </div>
 
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h1>ADD Video Here Leter</h1>
-            </div>
-        </div>
-    </div>
-</section>
+                             </div>
+                         </div>
+                         <div class="col-lg-4 col-md-6">
+                             <div class="single-choose mb-40">
+                                 <div class="choose-head">
+                                     <div class="choose-icon mb-25">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_2')) }}" alt="img" width="100px">
+                                     </div>
+                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}">
+                                         <a href="#">{{ get_setting('about_image_title_2') }}</a>
+                                     </h3>
+                                 </div>
+
+                             </div>
+                         </div>
+                         <div class="col-lg-4 col-md-6">
+                             <div class="single-choose mb-40">
+                                 <div class="choose-head">
+                                     <div class="choose-icon mb-25">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_3')) }}" alt="img" width="100px">
+                                     </div>
+                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}">
+                                         <a href="#">{{ get_setting('about_image_title_3') }}</a>
+                                     </h3>
+                                 </div>
+
+                             </div>
+                         </div>
+                         <div class="col-lg-4 col-md-6">
+                             <div class="single-choose mb-40">
+                                 <div class="choose-head">
+                                     <div class="choose-icon mb-25">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_4')) }}" alt="img" width="100px">
+                                     </div>
+                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}">
+                                         <a href="#">{{ get_setting('about_image_title_4') }}</a>
+                                     </h3>
+                                 </div>
+
+                             </div>
+                         </div>
+                         <div class="col-lg-4 col-md-6">
+                             <div class="single-choose mb-40">
+                                 <div class="choose-head">
+                                     <div class="choose-icon mb-25">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_5')) }}" alt="img" width="100px">
+                                     </div>
+                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a href="#">{{ get_setting('about_image_title_5') }}</a></h3>
+                                 </div>
+
+                             </div>
+                         </div>
+                         <div class="col-lg-4 col-md-6">
+                             <div class="single-choose mb-40">
+                                 <div class="choose-head">
+                                     <div class="choose-icon mb-25">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_6')) }}" alt="img" width="100px">
+                                     </div>
+                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a href="#">{{ get_setting('about_image_title_6') }}</a></h3>
+                                 </div>
+
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <div class="overlay-title paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15" data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground" data-paroller-direction="horizontal">Cargo</div>
+ </section>

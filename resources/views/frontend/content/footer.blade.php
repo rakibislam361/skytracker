@@ -1,59 +1,127 @@
 <footer>
-    <div class="footer-main pad-120 white-clr">
-        <div class="theme-container container">
+    <div class="footer-wrap pt-50" data-background="img/bg/footer_bg.jpg">
+        <div class="container">
             <div class="row">
-                <div class="col-md-3 col-sm-6 footer-widget">
-                    <a class="logo" href="{{ route('frontend.index') }}">
-                        <img class="logo" src="{{ asset(get_setting('frontend_logo_footer')) }}"
-                            alt="{{ get_setting('site_name') }}">
-                    </a>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-widget mb-50">
+                        <div class="footer-logo mb-35">
+                            <a href="{{ route('frontend.index') }}"><img
+                                    src="{{ asset(get_setting('frontend_logo_footer')) }}" alt="img"></a>
+                        </div>
+                        <div class="footer-text">
+                            <p><strong>Head Office</strong></p>
+                            <p>{{ get_setting('office_address') }}</p>
+                            <p><strong>Email</strong></p>
+                            <p>{{ get_setting('office_email') }}</p>
+                            <p><strong>Phone</strong></p>
+                            <p>{{ get_setting('office_phone') }}</p>
+                        </div>
 
+                    </div>
                 </div>
-                <div class="col-md-3 col-sm-6 footer-widget">
-                    <h2 class="title-1 fw-900">Company</h2>
-                    <ul>
-                        <li id="about"> <a href="{{ route('frontend.pages.about') }}">About Us</a> </li>
-                        <li id="contact"> <a href="{{ route('frontend.pages.contact') }}">Contact Us</a> </li>
-                        <li> <a href="#">Our Goal</a> </li>
-                    </ul>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-widget mb-50">
+                        <div class="fw-title mb-30">
+                            <h5>CUSTOMER</h5>
+                        </div>
+                        <div class="fw-link">
+                            <ul>
+                                @php
+                                    $footer_lefts = DB::table('pages')
+                                        ->where('footer_left', 2)
+                                        ->get();
+                                @endphp
+                                @foreach ($footer_lefts as $footer_left)
+                                    <li><a href="/page/{{ $footer_left->slug }}"><i
+                                                class="fas fa-caret-right"></i>{{ $footer_left->title }}</a></li>
+                                    <!-- <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
+                                    </li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
+                                            Conditions</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3 col-sm-6 footer-widget">
-                    <h2 class="title-1 fw-900">important links</h2>
-                    <ul>
-                        <li> <a href="https://www.skybuybd.com/">Skybuy</a> </li>
-                        <li> <a href="https://www.skyonebd.com/">SkyOne</a> </li>
-                    </ul>
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-widget mb-50">
+                        <div class="fw-title mb-30">
+                            <h5>INFORMATION</h5>
+                        </div>
+                        <div class="fw-link">
+                            <ul>
+                                @php
+                                    $footer_rights = DB::table('pages')
+                                        ->where('footer_right', 3)
+                                        ->get();
+                                @endphp
+                                @foreach ($footer_rights as $footer_right)
+                                    <li><a href="/page/{{ $footer_right->slug }}"><i
+                                                class="fas fa-caret-right"></i>{{ $footer_right->title }}</a>
+                                    </li>
+                                    <!-- <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
+                                    </li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
+                                            Conditions</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
+                                @endforeach
+                                <!-- <li><a href="#"><i class="fas fa-caret-right"></i> About us</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
+                                    </li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
+                                            Conditions</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
+                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-3 col-sm-6 footer-widget">
-                    <h2 class="title-1 fw-900">get in touch</h2>
-                    <ul class="social-icons list-inline">
-                        <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".20s"> <a href="#"
-                                class="fa fa-facebook"></a> </li>
-                        <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".25s"> <a href="#"
-                                class="fa fa-twitter"></a> </li>
-                        <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".30s"> <a href="#"
-                                class="fa fa-google-plus"></a> </li>
-                        <li class="wow fadeIn" data-wow-offset="50" data-wow-delay=".35s"> <a href="#"
-                                class="fa fa-linkedin"></a> </li>
-                    </ul>
-
+                <div class="col-xl-3 col-lg-4 col-md-6">
+                    <div class="footer-widget mb-50">
+                        <div class="fw-title mb-30">
+                            <h5>MOBILE APPS</h5>
+                        </div>
+                        <div class="f-support-content mb-30">
+                            <a href="#" class="f-download-btn"><img
+                                    src="{{ asset('assets/images/images-f_download_btn01.png') }}" alt="img"></a>
+                            <a href="#" class="f-download-btn"><img
+                                    src="{{ asset('assets/images/images-f_download_btn02.png') }}" alt="img"></a>
+                        </div>
+                        <div class="fw-title mb-30">
+                            <h5>SOCIAL LINKS</h5>
+                        </div>
+                        <div class="f-support-content">
+                            <div class="footer-social">
+                                <ul>
+                                    <li><a href="{{ get_setting('facebook') }}"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li><a href="{{ get_setting('twitter') }}"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li><a href="{{ get_setting('linkedin') }}"><i class="fab fa-pinterest-p"></i></a>
+                                    </li>
+                                    <li><a href="{{ get_setting('youtube') }}"><i class="fab fa-linkedin-in"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="footer-bottom">
-        <div class="theme-container container">
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <p>SkyTrackBD © All rights reserved </p>
+    <div class="copyright-wrap">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="copyright-text">
+                        <p>{{ get_setting('copyright_text') }}</p>
+                    </div>
                 </div>
-                {{-- <div class="col-md-6 col-sm-6 text-right">
-          <p> Design and <span class="theme-clr fa fa-heart"></span> by <a href="{{ route('frontend.index') }}" class="main-clr"> Avanteca Limited</a> </p>
-        </div> --}}
+
             </div>
         </div>
     </div>
-    </div>
-
 </footer>

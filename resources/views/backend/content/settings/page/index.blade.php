@@ -99,7 +99,7 @@ $demoImg = 'img/backend/front-logo.png';
 }
 </style>
 @php
-$multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get();
+$pages=DB::table('pages')->where('is_active',1)->orwhere('is_active',0)->get();
 @endphp
     <div class="row">
         <div class="col-lg-12">
@@ -108,23 +108,42 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
               
                 </div>
                 <div class="card-body">
-                   <form class="form-horizontal" action="{{ route('admin.setting.notice.store') }}" enctype="multipart/form-data" method="POST">  
+                   <form class="form-horizontal" action="{{ route('admin.setting.page.store') }}" enctype="multipart/form-data" method="POST">  
                    @csrf
                    <div class="form-group">
-                    <label>Image</label>
-                    <input type="file" name="multiimage[]" class="form-control">
+                    <label>Background Image</label>
+                    <input type="file" name="image" class="form-control">
+                   
+                </div>
+                   <div class="form-group">
+                    <label>Background Color</label>
+                    <input type="input" name="bgcolor" class="form-control">
                    
                 </div>
                 <div class="form-group">
-                    <label>Title</label>
-                    <input type="text" name="title[]"  class="form-control">
+                    <label>Page Title</label>
+                    <input type="text" name="title"  class="form-control">
                    
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea id="default" class="form-control" col="10" row="3" name="description[]"></textarea>
+                    <label>Slug</label>
+                    <input type="text" name="slug"  class="form-control">
+                   
+                </div>
+                <div class="form-group">
+                    <label>Page Description</label>
+                    <textarea id="default" class="form-control" col="10" row="3" name="description"></textarea>
 
                   
+                </div>
+                <div class="form-group">
+                <input type="checkbox" id="vehicle1" name="hearder" value="1">
+                <label for="vehicle1">Header</label><br>
+                <input type="checkbox" id="vehicle2" name="footer_left" value="2">
+                <label for="vehicle2">Footer Left</label><br>
+                <input type="checkbox" id="vehicle3" name="footer_right" value="3">
+                <label for="vehicle3"> Footer Right</label><br><br>
+
                 </div>
 
             <div class="table-responsive">  
@@ -166,7 +185,7 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
             </tr>
         </thead>
         <tbody>
-            @foreach($multis as $multi)
+            @foreach($pages as $multi)
             <tr>
             <td><img src="{{ asset('/setting/banner/'.$multi->image) }}" style="height: 100px"></td>
                 <td>{{$multi->title}}</td>
@@ -180,7 +199,7 @@ $multis=DB::table('notices')->where('is_active',1)->orwhere('is_active',0)->get(
                
                
                 <td>
-                    <a href="/admin/setting/notice/edit/{{$multi->id}}" class="btn btn-primary btn-sm editProduct">Edit</a>
+                    <a href="/admin/setting/page/edit/{{$multi->id}}" class="btn btn-primary btn-sm editProduct">Edit</a>
                   
                 </td>
             </tr>

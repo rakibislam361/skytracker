@@ -43,8 +43,14 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::get('price', [SettingController::class, 'price'])->name('price');
     Route::get('notice', [SettingController::class, 'notice'])->name('notice');
     Route::post('notice/store', [SettingController::class, 'noticestore'])->name('notice.store');
+    Route::post('noticecolor/store', [SettingController::class, 'noticecolorstore'])->name('noticecolor.store');
     Route::post('notice/update', [SettingController::class, 'noticeupdate'])->name('notice.update');
     Route::get('notice/edit/{id}', [SettingController::class, 'noticeedit']);
+
+    Route::get('page', [SettingController::class, 'page'])->name('page');
+    Route::post('page/store', [SettingController::class, 'pagestore'])->name('page.store');
+    Route::post('page/update', [SettingController::class, 'pageupdate'])->name('page.update');
+    Route::get('page/edit/{id}', [SettingController::class, 'pageedit']);
 
     Route::get('info', [SettingController::class, 'info'])->name('info');
     Route::post('info/store', [SettingController::class, 'infostore'])->name('info.store');

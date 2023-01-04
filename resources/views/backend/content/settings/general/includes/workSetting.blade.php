@@ -7,6 +7,25 @@
     {{ html()->form('POST', route('admin.setting.work.store'))->attribute('enctype', 'multipart/form-data')->open() }}
 
     <div class="form-group">
+      {{html()->label('Header Color')->for('work_color_1')}}
+      {{html()->text('work_color_1', get_setting('work_color_1'))
+      ->placeholder('work_color_1')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+    <div class="form-group">
+      {{html()->label('Title Color')->for('work_color_2')}}
+      {{html()->text('work_color_2', get_setting('work_color_2'))
+      ->placeholder('work_color_2')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+    <div class="form-group">
+      {{html()->label('Text Color')->for('work_color_3')}}
+      {{html()->text('work_color_3', get_setting('work_color_3'))
+      ->placeholder('work_color_3')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+
+    <div class="form-group">
       {{html()->label('Work Header')->for('work_text_header')}}
       {{html()->text('work_text_header', get_setting('work_text_header'))
       ->placeholder('work_text_header')

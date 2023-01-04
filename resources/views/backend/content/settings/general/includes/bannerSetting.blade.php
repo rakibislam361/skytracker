@@ -7,6 +7,25 @@
     {{ html()->form('POST', route('admin.setting.banner.store'))->attribute('enctype', 'multipart/form-data')->open() }}
 
     <div class="form-group">
+      {{html()->label('Header Color')->for('banner_color_1')}}
+      {{html()->text('banner_color_1', get_setting('banner_color_1'))
+      ->placeholder('banner_color_1')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+    <div class="form-group">
+      {{html()->label('Text Color')->for('banner_color_2')}}
+      {{html()->text('banner_color_2', get_setting('banner_color_2'))
+      ->placeholder('banner_color_2')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+    <div class="form-group">
+      {{html()->label('Search Color')->for('banner_color_3')}}
+      {{html()->text('banner_color_3', get_setting('banner_color_3'))
+      ->placeholder('banner_color_3')
+      ->class('form-control')}}
+    </div> <!-- form-group-->
+
+    <div class="form-group">
       {{html()->label('Banner Header')->for('banner_text_header')}}
       {{html()->text('banner_text_header', get_setting('banner_text_header'))
       ->placeholder('banner_text_header')
