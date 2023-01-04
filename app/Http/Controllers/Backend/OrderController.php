@@ -84,10 +84,13 @@ class OrderController extends Controller
         // $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
         $data['tracking_number'] = implode(',', request()->tracking_number);
         $data['carton_id'] = implode(',', request()->carton_id);
+        $data['chinaLocalDelivery'] = request('chinaLocalDelivery', null);
 
         if ($data['order_update'] == "withoutajax") {
+            unset($data['order_update'], $data['shipping_charge'], $data['quantity'], $data['product_value'], $data['first_payment']);
             $orderResponse = $this->order_update($data);
-            if (!$orderResponse == null) {
+            if (!$orderResponse = null) {
+                // dd('hi');
                 return redirect()
                     ->back()
                     ->withFlashSuccess('Order Updated Successfully');
@@ -243,12 +246,6 @@ class OrderController extends Controller
                 ->withFlashError('Error');
         }
     }
-
-
-    // public function ajaxOrderUpdate()
-    // {
-    //     dd("hello");
-    // }
 
     public function orderStatus()
     {

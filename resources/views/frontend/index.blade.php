@@ -11,7 +11,6 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/favicons/2157-img-favicon.png') }}">
     <!-- Place favicon.ico in the root directory -->
 
-    <!-- CSS here -->
     {{-- @extends('frontend.layouts.app') --}}
     @include('frontend.style.style')
 
@@ -36,7 +35,6 @@
         <!-- slider-area -->
         @include('frontend.content.banner')
         <!-- slider-area-end -->
-
         <!-- services-area -->
         @include('frontend.content.services')
         @include('frontend.content.aboutus')
