@@ -72,4 +72,6 @@
     <!--row-->
 </div>
 @include('frontend.content.footer')
+@include('frontend.style.js')
+
 @endsection

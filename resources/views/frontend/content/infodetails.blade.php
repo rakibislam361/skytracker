@@ -134,73 +134,73 @@
     <!-- main-area -->
     <main>
         <section style="background-image:url(../../{{ get_setting('notice_image') }});padding:50px 0px;">
-        <div class="text-center">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="dots"></li>
-                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Information</li>
-                                        <li class="dots2"></li>
-                                    </ol>
-                                </nav>
-                                
-                            </div>
+            <div class="text-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="dots"></li>
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Information</li>
+                        <li class="dots2"></li>
+                    </ol>
+                </nav>
+
+            </div>
         </section>
 
-    <!-- slider-area -->
-    <section class="banner" style="padding:30px 0px">
-           
-                <div class="container">
-                    <div class="row">
+        <!-- slider-area -->
+        <section class="banner" style="padding:30px 0px">
+
+            <div class="container">
+                <div class="row">
                     <div class="col-md-8">
-                    <img src="{{ asset('/setting/banner/'.$info->image) }}" width="800px" height="300px" alt="img"><br>
-                    <span>{{ $info->updated_at }}</span><br><br>
-                    <h3>  {{$info->title}}</h3><br>
-                    {!! $info->description !!}
-                        </div>
-                        <div class="col-md-4">
-                                <div class="widget mb-40">
-                                    <div class="single-sidebar white-bg">
-                                        <div class="sidebar-title mb-25">
-                                            <h3>Recent Information</h3>
-                                        </div>
-                                        <div class="rc-post">
-                                            <ul>
-                                            @php
-                                    $notices = DB::table('infos')
+                        <img src="{{ asset('/setting/banner/'.$info->image) }}" width="800px" height="300px" alt="img"><br>
+                        <span>{{ $info->updated_at }}</span><br><br>
+                        <h3> {{$info->title}}</h3><br>
+                        {!! $info->description !!}
+                    </div>
+                    <div class="col-md-4">
+                        <div class="widget mb-40">
+                            <div class="single-sidebar white-bg">
+                                <div class="sidebar-title mb-25">
+                                    <h3>Recent Information</h3>
+                                </div>
+                                <div class="rc-post">
+                                    <ul>
+                                        @php
+                                        $notices = DB::table('infos')
                                         ->where('is_active', 1)
                                         ->take(10)->orderBy('id', 'DESC')
                                         ->get();
-                                @endphp
-                                @foreach ($notices as $notice)
-                                                <li>
-                                                    <div class="rc-post-thumb">
-                                                        <a href="/info/details/{{ $notice->id}}"><img src="{{ asset('/setting/banner/'.$notice->image) }}" style="height: 30px;width: 40px;" alt="img"></a>
-                                                    </div>
-                                                    <div class="rc-post-content">
-                                                        <h5><a href="/info/details/{{ $notice->id}}">{{ $notice->title }}</a></h5>
-                                                        <span>{{ $notice->updated_at }}</span>
-                                                    </div>
-                                                </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    </div>
+                                        @endphp
+                                        @foreach ($notices as $notice)
+                                        <li>
+                                            <div class="rc-post-thumb">
+                                                <a href="/info/details/{{ $notice->id}}"><img src="{{ asset('/setting/banner/'.$notice->image) }}" style="height: 30px;width: 40px;" alt="img"></a>
+                                            </div>
+                                            <div class="rc-post-content">
+                                                <h5><a href="/info/details/{{ $notice->id}}">{{ $notice->title }}</a></h5>
+                                                <span>{{ $notice->updated_at }}</span>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
+                            </div>
                         </div>
-                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <!-- slider-area-end -->
 
-     
+
 
     </main>
     <!-- main-area-end -->
-   <!-- footer -->
-   @include('frontend.content.footer')
+    <!-- footer -->
+    @include('frontend.content.footer')
     <!-- footer-end -->
-
+    @include('frontend.style.js')
 </body>
 
 </html>

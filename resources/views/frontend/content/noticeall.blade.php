@@ -133,48 +133,52 @@
 
     <!-- main-area -->
     <main>
-    <section  style="background-image:url(../../{{ get_setting('notice_image') }});padding:50px 0px;">
-        <div class="text-center">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="dots"></li>
-                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">All Information</li>
-                                        <li class="dots2"></li>
-                                    </ol>
-                                </nav>
-                                
-                            </div>
-        </section>
- <section>
-    <div class="container" style="padding:30px 0px">
-    <div class="row">
-        @foreach($notices as $info)
-       
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body">
-            <img src="{{ asset('/setting/banner/'.$info->image) }}" class="img-fluid" style="height:200px !important"  alt="img"><br>
-                    <span>{{ $info->updated_at }}</span><br><br>
-                    <a href="/notice/details/{{ $info->id}}">    <h5>  {{$info->title}}</h5></a>
-                    
+        <section style="background-image:url(../../{{ get_setting('notice_image') }});padding:50px 0px;">
+            <div class="text-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="dots"></li>
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">All Information</li>
+                        <li class="dots2"></li>
+                    </ol>
+                </nav>
+
             </div>
-        </div>
-    </div>
+        </section>
+        <section>
+            <div class="container" style="padding:30px 0px">
+                <div class="row">
+                    @foreach($notices as $info)
 
-    @endforeach
- </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="{{ asset('/setting/banner/'.$info->image) }}" class="img-fluid" style="height:200px !important" alt="img"><br>
+                                <span>{{ $info->updated_at }}</span><br><br>
+                                <a href="/notice/details/{{ $info->id}}">
+                                    <h5> {{$info->title}}</h5>
+                                </a>
 
-    </div>
- </section>
-     
+                            </div>
+                        </div>
+                    </div>
+
+                    @endforeach
+                </div>
+
+            </div>
+        </section>
+
 
     </main>
     <!-- main-area-end -->
 
-      <!-- footer -->
-      @include('frontend.content.footer')
+    <!-- footer -->
+    @include('frontend.content.footer')
     <!-- footer-end -->
+    @include('frontend.style.js')
+
 </body>
 
 </html>
