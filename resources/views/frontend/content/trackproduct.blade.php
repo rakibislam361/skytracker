@@ -36,7 +36,7 @@
             <!-- <button class="btn" tabindex="-1">Tracking</button> -->
         </form>
     </div>
-    {{-- @include('frontend.pages.shippingInformationModal') --}}
+    @include('frontend.pages.shippingInformationModal')
 </section>
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script type="text/javascript">
