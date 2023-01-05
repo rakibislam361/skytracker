@@ -83,8 +83,8 @@ class OrderController extends Controller
         $data = $this->validateOrderItems();
 
         // $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
-        $data['tracking_number'] = implode(',', request()->tracking_number);
-        $data['carton_id'] = implode(',', request()->carton_id);
+        // $data['tracking_number'] = implode(',', request()->tracking_number);
+        // $data['carton_id'] = implode(',', request()->carton_id);
         $chinaLocal = request('chinaLocalDelivery', null);
         if ($chinaLocal == 0) {
             $data['chinaLocalDelivery'] = null;
@@ -106,6 +106,7 @@ class OrderController extends Controller
 
         if ($data['order_update'] == "") {
             $orderResponse = $this->order_update($data);
+            // dd($orderResponse);
             return $orderResponse;
         }
     }
