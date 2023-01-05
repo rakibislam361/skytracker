@@ -65,16 +65,17 @@ class OrderController extends Controller
 
 
             return view('backend.content.order.index', compact('orders', 'totalcount', 'order'));
+
+            $totalcount = count($order);
+            $orders = $this->paginate($order, 20);
+            $orders->withPath('');
+
+            return view('backend.content.order.index', compact('orders', 'totalcount'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()
                 ->withFlashError('server error');
         }
-        $totalcount = count($order);
-        $orders = $this->paginate($order, 20);
-        $orders->withPath('');
-
-        return view('backend.content.order.index', compact('orders', 'totalcount'));
     }
 
     public function update($id)
@@ -105,7 +106,6 @@ class OrderController extends Controller
 
         if ($data['order_update'] == "") {
             $orderResponse = $this->order_update($data);
-            // dd($orderResponse);
             return $orderResponse;
         }
     }
@@ -119,61 +119,67 @@ class OrderController extends Controller
 
     public function recentOrders()
     {
-        $filter = [
-            'order_number' => request('order_number', null),
-            'status' => request('status', null),
-            'from_date' => request('from_date', null),
-            'to_date' => request('to_date', null),
-        ];
+        try {
+            $filter = [
+                'order_number' => request('order_number', null),
+                'status' => request('status', null),
+                'from_date' => request('from_date', null),
+                'to_date' => request('to_date', null),
+            ];
 
-        $receivedData = $this->recentorderList($filter);
-        $ordersData = $receivedData->data->result;
-        // dd($ordersData->data);
-        $order = [];
+            $receivedData = $this->recentorderList($filter);
+            $ordersData = $receivedData->data->result;
+            // dd($ordersData->data);
+            $order = [];
 
-        $userRole = auth()
-            ->user()
-            ->roles->first();
-        $roles = $userRole ? $userRole->name : null;
+            $userRole = auth()
+                ->user()
+                ->roles->first();
+            $roles = $userRole ? $userRole->name : null;
 
-        if ($roles == 'Administrator') {
-            foreach ($ordersData->data as $data) {
-                $order[] = $data;
-            }
-        } elseif ($roles == 'BD Purchase Officer') {
-
-            foreach ($ordersData->data as $data) {
-                if ($data->status == 'partial-paid' || $data->status == 'processing' || $data->status == 'Partial Paid' || $data->status == 'on-hold') {
+            if ($roles == 'Administrator') {
+                foreach ($ordersData->data as $data) {
                     $order[] = $data;
                 }
-            }
-        } elseif ($roles == 'China Purchase Officer') {
-            foreach ($ordersData->data as $data) {
-                if ($data->status == 'processing' || $data->status == 'on-hold' || $data->status == 'purchased' || $data->status == 're-order' || $data->status == 'refund-please' || $data->status == 'shipped-from-suppliers') {
-                    $order[] = $data;
+            } elseif ($roles == 'BD Purchase Officer') {
+
+                foreach ($ordersData->data as $data) {
+                    if ($data->status == 'partial-paid' || $data->status == 'processing' || $data->status == 'Partial Paid' || $data->status == 'on-hold') {
+                        $order[] = $data;
+                    }
+                }
+            } elseif ($roles == 'China Purchase Officer') {
+                foreach ($ordersData->data as $data) {
+                    if ($data->status == 'processing' || $data->status == 'on-hold' || $data->status == 'purchased' || $data->status == 're-order' || $data->status == 'refund-please' || $data->status == 'shipped-from-suppliers') {
+                        $order[] = $data;
+                    }
+                }
+            } elseif ($roles == 'China Warehouse Officer') {
+                foreach ($ordersData->data as $data) {
+                    if ($data->status == 'shipped-from-suppliers' || $data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse') {
+                        $order[] = $data;
+                    }
+                }
+            } elseif ($roles == 'BD Logistic Officer') {
+                foreach ($ordersData->data as $data) {
+                    if ($data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
+                        $order[] = $data;
+                    }
                 }
             }
-        } elseif ($roles == 'China Warehouse Officer') {
-            foreach ($ordersData->data as $data) {
-                if ($data->status == 'shipped-from-suppliers' || $data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse') {
-                    $order[] = $data;
-                }
+            $count = !empty($order) && count($order) > 0 ? $order : null;
+            $orders = null;
+
+            if ($count) {
+                $orders = $this->paginate($count, 20);
+                $orders->withPath('');
             }
-        } elseif ($roles == 'BD Logistic Officer') {
-            foreach ($ordersData->data as $data) {
-                if ($data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
-                    $order[] = $data;
-                }
-            }
+            return view('backend.content.order.recent.index', compact('orders'));
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->withFlashError('server error');
         }
-        $count = !empty($order) && count($order) > 0 ? $order : null;
-        $orders = null;
-
-        if ($count) {
-            $orders = $this->paginate($count, 20);
-            $orders->withPath('');
-        }
-        return view('backend.content.order.recent.index', compact('orders'));
     }
 
     public function show($id)
