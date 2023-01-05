@@ -1,0 +1,1 @@
+<x-utils.delete-button :href="route('admin.booking.booking.destroy', $booking)" />

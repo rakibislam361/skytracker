@@ -11,7 +11,7 @@ class booking extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'booking';
+    protected $table = 'bookings';
 
     public $primaryKey = 'id';
 

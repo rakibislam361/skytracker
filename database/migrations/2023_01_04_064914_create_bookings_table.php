@@ -16,12 +16,12 @@ class CreateBookingsTable extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('date');
-            $table->string('ctnQuantity');
-            $table->string('totalCbm');
-            $table->string('productQuantity');
-            $table->string('productsTotalCost');
-            $table->string('othersProductName');
-            $table->string('bookingProduct');
+            $table->string('ctnQuantity')->nullable();
+            $table->string('totalCbm')->nullable();
+            $table->string('productQuantity')->nullable();
+            $table->string('productsTotalCost')->nullable();
+            $table->string('othersProductName')->nullable();
+            $table->string('bookingProduct')->nullable();
             $table->integer('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();

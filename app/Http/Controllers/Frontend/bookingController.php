@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Models\Content\booking;
 use App\Http\Controllers\Controller;
+use Auth;
 use Illuminate\Http\Request;
 
 class bookingController extends Controller
@@ -15,8 +16,7 @@ class bookingController extends Controller
      */
     public function index()
     {
-        dd('hi');
-        return view('frontend.pages.contact');
+        return view('backend.booking.index');
     }
 
     /**
@@ -37,19 +37,18 @@ class bookingController extends Controller
      */
     public function store(Request $request)
     {
-        dd('hi');
-        $createContact = new booking();
-        $createContact->name = $request->name;
-        $createContact->phone = $request->phone;
-        $createContact->email = $request->email;
-        $createContact->message = $request->message;
-        $createContact->user_id = auth()->id();
-        $createContact->save();
-
-
-        return redirect()
-            ->route('frontend.index')
-            ->withFlashSuccess('Message sent successfully');
+        if (Auth::check()) {
+            $validateData = $this->bookingDataValidate();
+            $validateData['user_id'] = auth()->user()->id ?? null;
+            $store =  booking::create($validateData);
+            if ($store) {
+                return redirect()
+                    ->back()
+                    ->withFlashSuccess('Your Booking Order Placed Successfully');
+            }
+        } else {
+            return view('frontend.auth.login');
+        }
     }
 
     /**
@@ -94,6 +93,26 @@ class bookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $booking = booking::find($id);
+        if ($booking) {
+            $booking->delete($booking);
+        }
+        return redirect()
+            ->back()
+            ->withFlashSuccess('message deleted successfully');
+    }
+
+    public function bookingDataValidate()
+    {
+        return request()->validate([
+            'date' => 'required|date',
+            'ctnQuantity'  => 'nullable|numeric',
+            'totalCbm'  => 'nullable|numeric',
+            'productQuantity'  => 'nullable|numeric',
+            'productsTotalCost'  => 'nullable|between:0,99.99',
+            'othersProductName'  => 'nullable|string',
+            'bookingProduct'  => 'nullable|string',
+            'othersProductName'  => 'nullable|string',
+        ]);
     }
 }

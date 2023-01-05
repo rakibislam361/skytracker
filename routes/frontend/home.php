@@ -79,4 +79,4 @@ Route::get('booking', [bookingController::class, 'index'])
         $trail->parent('frontend.index')
             ->push(__('_booking'), route('frontend.content.booking'));
     });
-Route::post('booking', [bookingController::class, 'store'])->name('booking');
+Route::post('booking', [bookingController::class, 'store'])->name('content.booking');

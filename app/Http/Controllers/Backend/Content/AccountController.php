@@ -29,8 +29,8 @@ class AccountController extends Controller
         ];
 
         $receivedData = $this->recentorderListTrait($filter);
-        $accountsData = $receivedData->orders;
-        $account = $accountsData;
+        $accountsData = $receivedData;
+        $account = $accountsData->data->result->data;
         $total = count($account);
 
         $accounts = $this->paginate($account, 30);
@@ -50,7 +50,6 @@ class AccountController extends Controller
 
         $receivedData = $this->skybuyTableTrait($filter);
         $accountsData = $receivedData->data->result;
-        // $account = $accountsData->data;
         $total = 0;
         $account = [];
         foreach ($accountsData->data as $data) {

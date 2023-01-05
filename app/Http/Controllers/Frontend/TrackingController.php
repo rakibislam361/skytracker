@@ -33,8 +33,9 @@ class TrackingController
 
         $rate = $calculate_rate->rate;
         $cal_rate = $rate * $weight;
+        $product = Product::all();
 
-        return view('frontend.pages.shippingInformationModal', compact('weight', 'shipped_from', 'category', 'rate', 'cal_rate'));
+        return view('frontend.pages.shippingInformationModal', compact('weight', 'shipped_from', 'category', 'rate', 'cal_rate', 'product'));
 
 
         // return view('frontend.index', compact('rate'));

@@ -10,6 +10,7 @@ use App\Domains\Products\Http\Controllers\ShippingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\Content\SettingController;
 use App\Http\Controllers\Backend\Content\AccountController;
+use App\Http\Controllers\Frontend\bookingController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
@@ -68,7 +69,7 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::post('bottombanner-message', [SettingController::class, 'bottombanner'])->name('bottombanner.store');
     Route::post('about-message', [SettingController::class, 'aboutstore'])->name('about.store');
     Route::post('work-message', [SettingController::class, 'workstore'])->name('work.store');
-
+    Route::post('api_store', [SettingController::class, 'apiStore'])->name('api.store');
     Route::get('top-notice', [SettingController::class, 'topNoticeCreate'])->name('topNotice.create');
     Route::post('top-notice', [SettingController::class, 'topNoticeStore'])->name('topNotice.store');
 });
@@ -90,4 +91,9 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
 
     Route::get('skyone', [AccountController::class, 'skyoneIndex'])->name('skyone');
     Route::get('skyonetable', [AccountController::class, 'skyoneTable'])->name('skyonetable');
+});
+Route::group(['prefix' => 'booking', 'as' => 'booking.'], function () {
+    Route::resources([
+        'booking' => bookingController::class,
+    ]);
 });

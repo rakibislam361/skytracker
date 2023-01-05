@@ -1,48 +1,3 @@
-{{-- @extends('frontend.layouts.app')
-@include('frontend.style.style')
-@section('title', get_setting('meta_title'))
-@section('meta_title', get_setting('meta_title'))
-@section('meta_description', get_setting('meta_description'))
-@section('meta_image', asset(get_setting('meta_image')))
-
-@php
-    $catLoader = get_setting('category_image_loader');
-    $productLoader = get_setting('product_image_loader');
-    
-@endphp
-
-@section('content')
-
-
-    <div id="app" class="flex-center position-ref full-height">
-
-        <main class="wrapper">
-
-            @include('frontend.content.header')
-
-            <article>
-
-                @include('frontend.content.banner')
-
-                @include('frontend.content.trackproduct')
-
-                @include('frontend.content.aboutus')
-
-            </article>
-
-            @include('frontend.content.footer')
-
-            @include('frontend.auth.login')
-            @include('frontend.pages.d2dpopup')
-
-        </main>
-        <div class="to-top theme-clr-bg transition"> <i class="fa fa-angle-up"></i> </div>
-
-
-
-    </div> --}}
-
-
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
@@ -133,52 +88,53 @@
     </header>
 
     <!-- header-start-end -->
-<style>
-    .breadcrumb::after {
-    border-width: 74px 25px 0 0 !important;
-}
-.breadcrumb::before {
-    border-width: 0 0 74px 25px !important;
-}
-</style>
+    <style>
+        .breadcrumb::after {
+            border-width: 74px 25px 0 0 !important;
+        }
+
+        .breadcrumb::before {
+            border-width: 0 0 74px 25px !important;
+        }
+    </style>
     <!-- main-area -->
     <main>
         <section style="background-image:url(../../{{ get_setting('notice_image') }});padding:50px 0px;">
-        <div class="text-center">
-                                <nav aria-label="breadcrumb">
-                                    <ol class="breadcrumb">
-                                        <li class="dots"></li>
-                                        <li style="font-size: 32px;" class="breadcrumb-item active" aria-current="page">{{$page->title}}</li>
-                                        <li class="dots2"></li>
-                                    </ol>
-                                </nav>
-                                
-                            </div>
+            <div class="text-center">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="dots"></li>
+                        <li style="font-size: 32px;" class="breadcrumb-item active" aria-current="page">{{$page->title}}</li>
+                        <li class="dots2"></li>
+                    </ol>
+                </nav>
+
+            </div>
         </section>
 
-    <!-- slider-area -->
-    <section class="banner" style="padding:30px 0px">
-           
-                <div class="container">
-                    <div class="row">
+        <!-- slider-area -->
+        <section class="banner" style="padding:30px 0px">
+
+            <div class="container">
+                <div class="row">
                     <div class="col-md-12">
-    
-                    {!! $page->description !!}
-                        </div>
-                   
-                        </div>
+
+                        {!! $page->description !!}
+                    </div>
+
+                </div>
             </div>
         </section>
         <!-- slider-area-end -->
 
-     
 
-   
+
+
     </main>
     <!-- main-area-end -->
 
-      <!-- footer -->
-      @include('frontend.content.footer')
+    <!-- footer -->
+    @include('frontend.content.footer')
     <!-- footer-end -->
 
 </body>

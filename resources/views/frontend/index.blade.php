@@ -37,6 +37,7 @@
         <!-- slider-area-end -->
         <!-- services-area -->
         @include('frontend.content.services')
+
         @include('frontend.content.aboutus')
         <!-- services-area-end -->
 
@@ -53,9 +54,7 @@
     <!-- footer -->
     @include('frontend.content.footer')
     <!-- footer-end -->
-
-
-
+    @include('frontend.style.js')
 </body>
 
 </html>

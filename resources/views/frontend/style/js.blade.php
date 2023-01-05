@@ -1,18 +1,3 @@
-    <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-fontawesome-all.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-aos.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-meanmenu.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-default.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}">
-
-    @stack('after-styles')
-
     @stack('before-scripts')
     <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/334-js-popper.min.js') }}"></script>
