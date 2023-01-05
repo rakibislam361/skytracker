@@ -8,7 +8,7 @@ trait ApiOrderTrait
 {
     public function getToken()
     {
-        $url = config('api.url') . '/login';
+        $url = get_setting('api_url') . '/login';
         $token = session('token', []);
 
         if (!$token) {
@@ -22,7 +22,7 @@ trait ApiOrderTrait
 
     public function orderList($filter)
     {
-        $url = config('api.url') . '/admin/order-item-list';
+        $url = get_setting('api_url') . '/admin/order-item-list';
         $get_token = $this->getToken();
         $response = Http::withToken($get_token)->get($url, $filter);
         return $response->object();
@@ -31,8 +31,8 @@ trait ApiOrderTrait
     public function curlRequest($url)
     {
         $response = Http::post($url, [
-            'email' => config('api.email'),
-            'password' => config('api.password'),
+            'email' => get_setting('api_email'),
+            'password' => get_setting('api_password'),
         ]);
         return $response->object();
     }
@@ -40,14 +40,14 @@ trait ApiOrderTrait
     public function order_update($data)
     {
         $get_token = $this->getToken();
-        $url = config('api.url') . '/admin/order-item-update';
+        $url = get_setting('api_url') . '/admin/order-item-update';
         $response = Http::withToken($get_token)->post($url, $data);
         return $response->object();
     }
 
     public function recentorderList($filter)
     {
-        $url = config('api.url') . '/admin/recent-order';
+        $url = get_setting('api_url') . '/admin/recent-order';
         $get_token = $this->getToken();
         $response = Http::withToken($get_token)->get($url, $filter);
         return $response->object();
@@ -55,7 +55,7 @@ trait ApiOrderTrait
 
     public function singleOrder($id)
     {
-        $url = config('api.url') . '/admin/order-show/' . $id;
+        $url = get_setting('api_url') . '/admin/order-show/' . $id;
         $get_token = $this->getToken();
         $response = Http::withToken($get_token)->get($url, $id);
         return $response->object();
@@ -64,14 +64,14 @@ trait ApiOrderTrait
     public function orderStatusUpdate($data)
     {
         $get_token = $this->getToken();
-        $url = config('api.url') . '/admin/order-status-update';
+        $url = get_setting('api_url') . '/admin/order-status-update';
         $response = Http::withToken($get_token)->post($url, $data);
         return $response->object();
     }
 
     public function OrderItem($id)
     {
-        $url = config('api.url') . '/admin/order-item-details/' . $id;
+        $url = get_setting('api_url') . '/admin/order-item-details/' . $id;
         $get_token = $this->getToken();
         $response = Http::withToken($get_token)->get($url, $id);
 
@@ -81,7 +81,7 @@ trait ApiOrderTrait
     public function updateCouponTrait($data)
     {
         $get_token = $this->getToken();
-        $url = config('api.url') . '/admin/order/coupon-update';
+        $url = get_setting('api_url') . '/admin/order/coupon-update';
         $response = Http::withToken($get_token)->post($url, $data);
         return $response->object();
     }
@@ -89,7 +89,7 @@ trait ApiOrderTrait
     public function depositCouponTrait($data)
     {
         $get_token = $this->getToken();
-        $url = config('api.url') . '/admin/order/deposit-update';
+        $url = get_setting('api_url') . '/admin/order/deposit-update';
         $response = Http::withToken($get_token)->post($url, $data);
         return $response->object();
     }

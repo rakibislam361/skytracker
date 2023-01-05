@@ -1,0 +1,350 @@
+[2023-01-05 05:29:29] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 05:29:29] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:3)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:01:32] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:01:32] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:3)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:03:23] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:03:23] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:3)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:05:14] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:05:14] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:2)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:05:15] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:05:15] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:2)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:05:16] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:05:16] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:2)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:05:17] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:05:17] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:2)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:07:35] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:07:35] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:4)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:07:39] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:07:39] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:4)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:12:20] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:12:20] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:6)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:20:17] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:20:17] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:4)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:20:18] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:20:18] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:4)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:20:19] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:20:19] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:4)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 
+[2023-01-05 06:20:20] laravel.EMERGENCY: Unable to create configured logger. Using emergency logger. {"exception":"[object] (InvalidArgumentException(code: 0): Log [] is not defined. at C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php:200)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(125): Illuminate\\Log\\LogManager->resolve(NULL, NULL)
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(112): Illuminate\\Log\\LogManager->get(NULL)
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Log\\LogManager.php(590): Illuminate\\Log\\LogManager->driver()
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php(252): Illuminate\\Log\\LogManager->error('Call to undefin...', Array)
+#4 C:\\wamp64\\www\\skytracker\\app\\Exceptions\\Handler.php(46): Illuminate\\Foundation\\Exceptions\\Handler->report(Object(Error))
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(415): App\\Exceptions\\Handler->report(Object(Error))
+#6 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(113): Illuminate\\Foundation\\Http\\Kernel->reportException(Object(Error))
+#7 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#8 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#9 {main}
+"} 
+[2023-01-05 06:20:20] laravel.ERROR: Call to undefined function get_setting() {"exception":"[object] (Error(code: 0): Call to undefined function get_setting() at C:\\wamp64\\www\\skytracker\\config\\api.php:4)
+[stacktrace]
+#0 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(72): require()
+#1 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Bootstrap\\LoadConfiguration.php(39): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->loadConfigurationFiles(Object(Illuminate\\Foundation\\Application), Object(Illuminate\\Config\\Repository))
+#2 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(237): Illuminate\\Foundation\\Bootstrap\\LoadConfiguration->bootstrap(Object(Illuminate\\Foundation\\Application))
+#3 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(153): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#4 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(137): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#5 C:\\wamp64\\www\\skytracker\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(111): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#6 C:\\wamp64\\www\\skytracker\\public\\index.php(57): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#7 C:\\wamp64\\www\\skytracker\\server.php(19): require_once('C:\\\\wamp64\\\\www\\\\s...')
+#8 {main}
+"} 

@@ -22,6 +22,7 @@ $demoImg = 'img/backend/front-logo.png';
           <div class="col-5 col-sm-4">
             <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
               <a class="nav-link active" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="true">General Settings</a>
+              <a class="nav-link" id="vert-tabs-api-tab" data-toggle="pill" href="#vert-tabs-api" role="tab" aria-controls="vert-tabs-api" aria-selected="true">Api Settings</a>
               <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">Logo Settings</a>
               <a class="nav-link" id="vert-tabs-messages-tab" data-toggle="pill" href="#vert-tabs-messages" role="tab" aria-controls="vert-tabs-messages" aria-selected="false">Social Settings</a>
               <a class="nav-link" id="vert-tabs-shortMessageSetting-tab" data-toggle="pill" href="#vert-tabs-shortMessageSetting" role="tab" aria-controls="vert-tabs-shortMessageSetting" aria-selected="false">Short Message Setting</a>
@@ -40,6 +41,9 @@ $demoImg = 'img/backend/front-logo.png';
             <div class="tab-content" id="vert-tabs-tabContent">
               <div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
                 @include("backend.content.settings.general.includes.siteSetting")
+              </div>
+              <div class="tab-pane fade" id="vert-tabs-api" role="tabpanel" aria-labelledby="vert-tabs-api-tab">
+                @include("backend.content.settings.general.includes.apiSetting")
               </div>
               <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
                 @include("backend.content.settings.general.includes.logoSetting")

@@ -122,6 +122,13 @@ class SettingController extends Controller
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('About section Updated Successfully');
   }
+  public function apiStore(Request $request)
+  {
+
+    $data = \request()->only(['api_url','api_email','api_password']);
+    Setting::save_settings($data);
+    return redirect()->back()->withFlashSuccess('Api section Updated Successfully');
+  }
   public function workstore(Request $request)
   {
 

@@ -17,6 +17,7 @@ class HomeController
      */
     public function index()
     {
+      
         $product = Product::all();
         return view('frontend.index', compact('product'));
     }

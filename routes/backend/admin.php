@@ -68,7 +68,7 @@ Route::group(['prefix' => 'setting', 'as' => 'setting.'], function () {
     Route::post('bottombanner-message', [SettingController::class, 'bottombanner'])->name('bottombanner.store');
     Route::post('about-message', [SettingController::class, 'aboutstore'])->name('about.store');
     Route::post('work-message', [SettingController::class, 'workstore'])->name('work.store');
-
+    Route::post('api_store', [SettingController::class, 'apiStore'])->name('api.store');
     Route::get('top-notice', [SettingController::class, 'topNoticeCreate'])->name('topNotice.create');
     Route::post('top-notice', [SettingController::class, 'topNoticeStore'])->name('topNotice.store');
 });
