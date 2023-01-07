@@ -27,7 +27,6 @@ class OrderController extends Controller
     public function index()
     {
         try {
-
             $filter = [
                 'item_number' => request('item_number', null),
                 'status' => request('status', null),
@@ -56,13 +55,9 @@ class OrderController extends Controller
                 }
             }
 
-
-
             $totalcount = count($order);
             $orders = $this->paginate($order, 20);
             $orders->withPath('');
-
-
 
             return view('backend.content.order.index', compact('orders', 'totalcount', 'order'));
 
@@ -83,17 +78,17 @@ class OrderController extends Controller
         $data = $this->validateOrderItems();
 
         // $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
-        // $data['tracking_number'] = implode(',', request()->tracking_number);
-        // $data['carton_id'] = implode(',', request()->carton_id);
+        $data['tracking_number'] = implode(',', request()->tracking_number);
+        $data['carton_id'] = implode(',', request()->carton_id);
         $chinaLocal = request('chinaLocalDelivery', null);
         if ($chinaLocal == 0) {
             $data['chinaLocalDelivery'] = null;
         }
-        if ($data['order_update'] == "withoutajax") {
+        if ($data['order_update'] == 'withoutajax') {
             unset($data['order_update'], $data['shipping_charge'], $data['quantity'], $data['product_value'], $data['first_payment']);
             $orderResponse = $this->order_update($data);
-            if (!$orderResponse = null) {
-                // dd('hi');
+            // dd($orderResponse);
+            if (!($orderResponse = null)) {
                 return redirect()
                     ->back()
                     ->withFlashSuccess('Order Updated Successfully');
@@ -104,7 +99,7 @@ class OrderController extends Controller
             }
         }
 
-        if ($data['order_update'] == "") {
+        if ($data['order_update'] == '') {
             $orderResponse = $this->order_update($data);
             // dd($orderResponse);
             return $orderResponse;
@@ -143,7 +138,6 @@ class OrderController extends Controller
                     $order[] = $data;
                 }
             } elseif ($roles == 'BD Purchase Officer') {
-
                 foreach ($ordersData->data as $data) {
                     if ($data->status == 'partial-paid' || $data->status == 'processing' || $data->status == 'Partial Paid' || $data->status == 'on-hold') {
                         $order[] = $data;
@@ -289,7 +283,6 @@ class OrderController extends Controller
         // $weight = json_encode(request()->chn_warehouse_weight);
         // $weight = request()->chn_warehouse_weight;
         // Log::info($weight);
-
 
         return request()->validate([
             'order_update' => 'nullable',
