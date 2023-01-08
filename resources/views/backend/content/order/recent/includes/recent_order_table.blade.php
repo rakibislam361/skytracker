@@ -75,6 +75,6 @@
    </div>
    <div class="mt-4">
        @if ($orders && count($orders) > 0)
-           {{ $orders->links() }}
+           {{ $orders->withQueryString()->links() }}
        @endif
    </div>

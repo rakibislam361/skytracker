@@ -43,12 +43,14 @@
 
                             <tr>
                                 <td class="align-content-center text-center">
-                                    {{ $account->created_at ? date('d/m/Y', strtotime($account->created_at)) : 'N/A' }}</td>
+                                    {{ $account->created_at ? date('d/m/Y', strtotime($account->created_at)) : 'N/A' }}
+                                </td>
                                 <td class="align-content-center text-center">{{ $account->order_item_number ?? 'N/A' }}</td>
                                 <td class="align-content-center text-center">{{ $account->user->name ?? 'N/A' }}</td>
 
                                 <td class="align-content-center text-center">
-                                    {{ $bdReceive ?? 'N/A' }}</td>
+                                    {{ $bdReceive ?? 'N/A' }}
+                                </td>
                                 <td class="align-content-center text-center">{{ $bdOut ?? 'N/A' }}</td>
                                 <td class="align-content-center text-center">{{ $account->status ?? 'N/A' }}</td>
                                 <td class="align-content-center text-center">{{ $pl ?? 'N/A' }}</td>
@@ -61,7 +63,7 @@
                 </table>
             </div>
             <div class="mt-4">
-                {{ $accounts->links() }}
+                {{ $accounts->withQueryString()->links() }}
             </div>
 
         </div> <!-- card-body-->

@@ -50,16 +50,11 @@ class OrderController extends Controller
             }
 
             $totalcount = count($order);
-            $orders = $this->paginate($order, 20);
+
+            $orders = $this->paginate($order, 30);
             $orders->withPath('');
 
             return view('backend.content.order.index', compact('orders', 'totalcount', 'order'));
-
-            $totalcount = count($order);
-            $orders = $this->paginate($order, 20);
-            $orders->withPath('');
-
-            return view('backend.content.order.index', compact('orders', 'totalcount'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()
@@ -70,7 +65,6 @@ class OrderController extends Controller
     public function update($id)
     {
         $data = $this->validateOrderItems();
-        // dd($data['chn_warehouse_weight']);
 
         // if(request()->chn_warehouse_weight){
         //     $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
@@ -88,8 +82,6 @@ class OrderController extends Controller
                 unset($data['chinaLocalDelivery']);
             }
         }
-
-        // dd($data);
 
         unset($data['shipping_charge'], $data['quantity'], $data['product_value'], $data['first_payment']);
         if ($data['order_update'] == 'withoutajax') {
@@ -131,7 +123,7 @@ class OrderController extends Controller
 
             $receivedData = $this->recentorderList($filter);
             $ordersData = $receivedData->data->result;
-            // dd($ordersData->data);
+            $amount = 0;
             $order = [];
 
             $userRole = auth()
@@ -168,6 +160,11 @@ class OrderController extends Controller
                     }
                 }
             }
+            foreach ($order as $value) {
+                $price = $value->amount;
+                $amount += $price;
+            }
+
             $count = !empty($order) && count($order) > 0 ? $order : null;
             $orders = null;
 
@@ -175,7 +172,7 @@ class OrderController extends Controller
                 $orders = $this->paginate($count, 20);
                 $orders->withPath('');
             }
-            return view('backend.content.order.recent.index', compact('orders'));
+            return view('backend.content.order.recent.index', compact('orders', 'amount'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()

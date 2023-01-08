@@ -75,7 +75,7 @@
                         </div>
                     @endif
                     {{-- China Purchase Officer End --}}
-                    @if ($logged_in_user->can('admin.order.carton.edit'))
+                    @if ($logged_in_user->can('admin.order.carton.edit') || $logged_in_user->can('admin.order.order_rmb.edit'))
                         <div class="form-group">
                             <label for="shipping_from">Shipping From</label>
                             <select class="form-control" name="shipping_from" id="shipping_from">
@@ -90,7 +90,8 @@
                             <input type="text" name="shipping_mark" id="shipping_mark" placeholder="shipping mark"
                                 class="form-control" />
                         </div>
-
+                    @endif
+                    @if ($logged_in_user->can('admin.order.carton.edit'))
                         <div class="form-group">
                             <label for="chn_warehouse_qty">China Warehouse Qty</label>
                             <input type="text" name="chn_warehouse_qty" id="chn_warehouse_qty"

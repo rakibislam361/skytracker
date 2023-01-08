@@ -1,4 +1,5 @@
 @include('frontend.includes.nav')
+@include('frontend.style.bstyle')
 @extends('frontend.layouts.app')
 @section('title', __('Dashboard'))
 

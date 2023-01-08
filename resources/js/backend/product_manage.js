@@ -161,13 +161,13 @@ $(function () {
                 if (!isEmpty(carton)) {
                     carton.forEach((val) => {
                         html = `<tr>
-                                    <td><input type="text" name="carton_id[]" value="${val}" placeholder="carton id"
+                                    <td><input type="text" name="carton_id[]" value="${val}" readonly placeholder="carton id"
                                             class="form-control"  /></td>
                                     <td class="text-right" style="width:1%">
                                       <button type="button" name="add" id="carton-btn" class="btn btn-outline-success">+</button>
                                     </td>
                                     <td class="text-right" style="width:1%">
-                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                      <button type="button" class="btn btn-outline-danger">-</button>
                                     </td>
                                 </tr>`;
                         $(".add-carton").append(html);
@@ -191,13 +191,13 @@ $(function () {
                 if (!isEmpty(track)) {
                     track.forEach((val) => {
                         html = `<tr>
-                                    <td><input type="text" name="tracking_number[]" value="${val}" placeholder="tracking id"
+                                    <td><input type="text" name="tracking_number[]" value="${val}" readonly placeholder="tracking id"
                                             class="form-control" /></td>
                                     <td class="text-right" style="width:1%">
                                       <button type="button" name="add" id="tracking-btn" class="btn btn-outline-success">+</button>
                                     </td>
                                     <td class="text-right" style="width:1%">
-                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                      <button type="button" class="btn btn-outline-danger">-</button>
                                     </td>
                                 </tr>`;
                         $(".add-tracking-number").append(html);
@@ -347,7 +347,9 @@ $(function () {
         .on("keyup", "#purchase_rmb", function () {
             let prmb = $(this).val();
             let conRate = $("#actualrmb_rate").val();
-            $("#purchase_cost_bd").val(prmb * conRate);
+
+            let convpurchase = Math.round(prmb * conRate);
+            $("#purchase_cost_bd").val(convpurchase);
 
             let ormb = $("#order_item_rmb").val();
 
@@ -365,12 +367,11 @@ $(function () {
         .on("keyup", "#china_local_delivery_rmb", function () {
             let local = $(this).val();
             let localRate = $("#local_rate").val();
-            $("#chinaLocalDelivery").val(local * localRate);
+            let chnlocal = Math.round(local * localRate);
+            $("#chinaLocalDelivery").val(chnlocal);
             let conv = $("#chinaLocalDelivery").val();
             let prcost = $("#product_value").val();
-
-            $("#product_bd_received_cost").val(
-                parseInt(conv) + parseInt(prcost)
-            );
+            let productbd = Math.round(parseInt(conv) + parseInt(prcost));
+            $("#product_bd_received_cost").val(productbd);
         });
 });
