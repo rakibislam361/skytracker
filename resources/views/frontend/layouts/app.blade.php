@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/css-default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}">
+    @include('includes.partials.messages')
 </head>
 
 <body>

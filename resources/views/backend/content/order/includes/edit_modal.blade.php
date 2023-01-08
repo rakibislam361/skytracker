@@ -122,18 +122,9 @@
 
                         <div class="form-group">
                             <label for="carton_id">Carton ID</label>
-                            <table style="width:100%" id="add-carton">
-                                <tr>
-                                    <td><input type="text" name="carton_id[]" placeholder="carton id"
-                                            class="form-control" /></td>
-                                    <td class="text-right" style="width:1%"><button type="button" name="add"
-                                            id="carton-btn" class="btn btn-outline-success">+</button>
-                                    </td>
-                                    <td class="text-right" style="width:1%"><button type="button"
-                                            class="btn btn-outline-danger">-</button></td>
-                                </tr>
+                            <table style="width:100%" id="add-carton" class="add-carton">
+                                {{-- carton input area will append here --}}
                             </table>
-                            {{-- <textarea type="text" name="carton_id" id="carton_id" placeholder="Carton Id" class="form-control"></textarea> --}}
                         </div>
 
                         <div class="form-group">
@@ -155,20 +146,9 @@
                     @if ($logged_in_user->can('admin.order.purchase.edit') || $logged_in_user->can('admin.order.carton.edit'))
                         <div class="form-group">
                             <label for="tracking_number">Tracking ID</label>
-                            <table style="width:100%" id="add-tracking-number">
-
-                                <tr>
-                                    <td><input type="text" name="tracking_number[]" placeholder="tracking id"
-                                            class="form-control" /></td>
-                                    <td class="text-right" style="width:1%"><button type="button" name="add"
-                                            id="tracking-btn" class="btn btn-outline-success">+</button>
-                                    </td>
-                                    <td class="text-right" style="width:1%"><button type="button"
-                                            class="btn btn-outline-danger">-</button></td>
-                                </tr>
+                            <table style="width:100%" id="add-tracking-number" class="add-tracking-number">
+                                {{-- tracking input area will append here --}}
                             </table>
-                            {{-- <input type="text" name="tracking_number" id="tracking_number"
-                                placeholder="Tracking Id" class="form-control" /> --}}
                         </div>
                     @endif
 

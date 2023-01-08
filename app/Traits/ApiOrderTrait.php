@@ -39,6 +39,7 @@ trait ApiOrderTrait
 
     public function order_update($data)
     {
+        // dd($data);
         $get_token = $this->getToken();
         $url = get_setting('api_url') . '/admin/order-item-update';
         $response = Http::withToken($get_token)->post($url, $data);

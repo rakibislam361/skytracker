@@ -2,18 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Domains\Page\Models\Page;
 use App\Http\Controllers\Controller;
 use App\Traits\ApiOrderTrait;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use App\Traits\PaginationTrait;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use App\Http\Controllers\Backend\Auth;
-use Log;
 
 class OrderController extends Controller
 {
@@ -76,18 +70,31 @@ class OrderController extends Controller
     public function update($id)
     {
         $data = $this->validateOrderItems();
+        // dd($data['chn_warehouse_weight']);
 
-        // $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
-        $data['tracking_number'] = implode(',', request()->tracking_number);
-        $data['carton_id'] = implode(',', request()->carton_id);
-        $chinaLocal = request('chinaLocalDelivery', null);
-        if ($chinaLocal == 0) {
-            $data['chinaLocalDelivery'] = null;
+        // if(request()->chn_warehouse_weight){
+        //     $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
+        // }
+        if (request()->tracking_number) {
+            $data['tracking_number'] = implode(',', request()->tracking_number);
         }
+
+        if (request()->carton_id) {
+            $data['carton_id'] = implode(',', request()->carton_id);
+        }
+
+        if (array_key_exists('chinaLocalDelivery', $data)) {
+            if ($data['chinaLocalDelivery'] == 0 || $data['chinaLocalDelivery'] == null) {
+                unset($data['chinaLocalDelivery']);
+            }
+        }
+
+        // dd($data);
+
+        unset($data['shipping_charge'], $data['quantity'], $data['product_value'], $data['first_payment']);
         if ($data['order_update'] == 'withoutajax') {
-            unset($data['order_update'], $data['shipping_charge'], $data['quantity'], $data['product_value'], $data['first_payment']);
+            unset($data['order_update']);
             $orderResponse = $this->order_update($data);
-            // dd($orderResponse);
             if (!($orderResponse = null)) {
                 return redirect()
                     ->back()
@@ -99,9 +106,8 @@ class OrderController extends Controller
             }
         }
 
-        if ($data['order_update'] == '') {
+        if ($data['order_update'] == null) {
             $orderResponse = $this->order_update($data);
-            // dd($orderResponse);
             return $orderResponse;
         }
     }
@@ -280,10 +286,6 @@ class OrderController extends Controller
 
     public function validateOrderItems($update_id = null)
     {
-        // $weight = json_encode(request()->chn_warehouse_weight);
-        // $weight = request()->chn_warehouse_weight;
-        // Log::info($weight);
-
         return request()->validate([
             'order_update' => 'nullable',
             'order_item_id' => 'required',

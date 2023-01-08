@@ -3,6 +3,7 @@
    @include('includes.partials.messages')
    <div class="container" style="padding-top:20px;padding-bottom:20px;">
        {{-- <div class="row ownmodal"> --}}
+
        <div class="row">
            <div class="col-5" style="background-color: #4e148c;">
                <div class="card" style="background-color: #4e148c; border:0px;">

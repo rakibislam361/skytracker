@@ -12,6 +12,7 @@
 //     }
 // });
 import axios from "axios";
+import { isEmpty } from "lodash";
 const { message } = require("laravel-mix/src/Log");
 const { parse } = require("postcss");
 
@@ -112,7 +113,7 @@ $(function () {
                                     </td>
                                 </tr>`;
 
-            $("#add-carton").append(carton);
+            $(".add-carton").append(carton);
         })
         .on("click", "#weight-btn", function (e) {
             e.preventDefault();
@@ -152,6 +153,70 @@ $(function () {
         })
         .on("click", ".order-modal", function () {
             let itemValue = $(this).data("value");
+            let html = null;
+            let carton = [];
+            let track = [];
+            if (itemValue.carton_id != null) {
+                carton = itemValue.carton_id.split(",");
+                if (!isEmpty(carton)) {
+                    carton.forEach((val) => {
+                        html = `<tr>
+                                    <td><input type="text" name="carton_id[]" value="${val}" placeholder="carton id"
+                                            class="form-control"  /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="carton-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                        $(".add-carton").append(html);
+                    });
+                }
+            } else {
+                html = `<tr>
+                                    <td><input type="text" name="carton_id[]" placeholder="carton id"
+                                            class="form-control"  /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="carton-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                $(".add-carton").append(html);
+            }
+            if (itemValue.tracking_number != null) {
+                track = itemValue.tracking_number.split(",");
+                if (!isEmpty(track)) {
+                    track.forEach((val) => {
+                        html = `<tr>
+                                    <td><input type="text" name="tracking_number[]" value="${val}" placeholder="tracking id"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="tracking-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                        $(".add-tracking-number").append(html);
+                    });
+                }
+            } else {
+                html = `<tr>
+                                    <td><input type="text" name="tracking_number[]" placeholder="tracking id"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="tracking-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                $(".add-tracking-number").append(html);
+            }
+
             $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
             $("#order_item_id").val(itemValue.id);
             $("#order_item_rmb").val(itemValue.order_item_rmb);
@@ -164,11 +229,10 @@ $(function () {
             $("#chn_warehouse_qty").val(itemValue.chn_warehouse_qty);
             $("#chn_warehouse_weight").val(itemValue.chn_warehouse_weight);
             $("#cbm").val(itemValue.cbm);
-            $("#carton_id").val(itemValue.carton_id);
-            $("#tracking_number").val(itemValue.tracking_number);
             $("#shipped_by").val(itemValue.shipped_by);
             $("#status").val(itemValue.status);
             $("#product_value").val(itemValue.product_value);
+            $("#product_type").val(itemValue.product_type);
             $("#product_bd_received_cost").val(
                 itemValue.product_bd_received_cost
             );

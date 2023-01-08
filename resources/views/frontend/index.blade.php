@@ -13,6 +13,7 @@
 
     {{-- @extends('frontend.layouts.app') --}}
     @include('frontend.style.style')
+    @include('includes.partials.messages')
 
 </head>
 

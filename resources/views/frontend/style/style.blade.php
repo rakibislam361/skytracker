@@ -10,9 +10,31 @@
     <link rel="stylesheet" href="{{ asset('assets/css/css-default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}">
+    <style>
+        .booking-table table {
+            border: none;
+        }
+
+        .booking-table {
+            width: 100%;
+        }
+
+        .booking-table table,
+        td:nth-child(2) {
+            float: right;
+        }
+
+
+        .booking-table table,
+        tr,
+        td {
+            color: white;
+            font-size: 18px;
+        }
+    </style>
 
     @stack('after-styles')
-
+    {{-- 
     @stack('before-scripts')
     <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/334-js-popper.min.js') }}"></script>
@@ -34,4 +56,4 @@
     <script src="{{ asset('assets/js/9626-js-plugins.js') }}"></script>
     <script src="{{ asset('assets/js/2325-js-main.js') }}"></script>
 
-    @stack('after-scripts')
+    @stack('after-scripts') --}}

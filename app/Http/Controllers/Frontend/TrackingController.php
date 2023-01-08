@@ -30,8 +30,11 @@ class TrackingController
             ->where('shipped_from', 'like', "%$shipped_from%")
             ->first();
 
-
-        $rate = $calculate_rate->rate;
+        if ($calculate_rate != null) {
+            $rate = $calculate_rate->rate;
+        } else {
+            $rate = 0;
+        }
         $cal_rate = $rate * $weight;
         $product = Product::all();
 
