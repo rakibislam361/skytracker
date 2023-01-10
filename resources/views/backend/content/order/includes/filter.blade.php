@@ -17,6 +17,7 @@
                 <option @if (request('status', null)=='on-hold' ) selected @endif value="on-hold">On Hold</option>
                 <option @if (request('status', null)=='Partial-Paid' ) selected @endif value="Partial-Paid">Partial Paid
                 </option>
+                <option @if (request('status', null)=='delivery-after-holiday' ) selected @endif value="delivery-after-holiday">Delivery after holiday</option>
                 @endif
 
                 @if ($logged_in_user->can('admin.order.purchase.edit') ||

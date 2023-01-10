@@ -2,7 +2,8 @@
     <table class="table table-hover table-bordered mb-0 order-table table-striped" id="tableSelected">
         <thead>
             <tr>
-                {{-- <th class="align-content-center text-center">Select<input type="checkbox" id="allSelectCheckbox" name="allSelectCheckbox" id="checkAllorder"></th> --}}
+                <th class="align-content-center text-center">Select<input type="checkbox" id="allSelectCheckbox"
+                        name="allSelectCheckbox" id="checkAllorder"></th>
                 <th class="align-content-center text-center">Date</th>
                 <th class="align-content-center text-center">Item Number</th>
                 <th class="align-content-center text-center">Order ID</th>
@@ -14,7 +15,6 @@
                     <th class="align-content-center text-center">Order RMB</th>
                     {{-- bd officer --}}
                 @endif
-
                 @if ($logged_in_user->can('admin.order.purchase.edit'))
                     {{-- china purchase officer --}}
                     <th class="align-content-center text-center">Actual RMB</th>
@@ -45,7 +45,8 @@
         <tbody>
             @foreach ($orders as $order)
                 <tr class="order-modal" data-value="{{ json_encode($order) }}">
-                    {{-- <td class="align-content-center text-center"><input type="checkbox" class="checkboxItem" name="checkboxItem" id="checkboxItem" value={{ $order->id }}></td> --}}
+                    <td class="align-content-center text-center"><input type="checkbox" class="checkboxItem"
+                            name="checkboxItem" id="checkboxItem" value={{ $order->id }}></td>
                     <td class="align-content-center text-center">
                         {{ $order->created_at ? date('d/m/Y', strtotime($order->created_at)) : 'N/A' }}
                     </td>

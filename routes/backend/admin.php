@@ -78,6 +78,7 @@ Route::get('order/local', [OrderController::class, 'walletOrders'])->name('order
 Route::get('order/local/{id}', [OrderController::class, 'walletDetails'])->name('order.local.details');
 Route::get('order/recent', [OrderController::class, 'recentOrders'])->name('order.recent');
 Route::post('order/recent/status', [OrderController::class, 'recentorderStatusUpdate'])->name('order.status.update');
+Route::post('order-item/status', [OrderController::class, 'itemStatusUpdate'])->name('order.item.status.update');
 Route::post('order/recent/update/{id}', [OrderController::class, 'orderitemUpdate'])->name('order.recent.singleorder');
 
 Route::post('order/coupon-update/{id}', [OrderController::class, 'updateCoupon'])->name('order.coupon.update');

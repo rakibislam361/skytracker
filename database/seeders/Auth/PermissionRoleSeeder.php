@@ -145,6 +145,87 @@ class PermissionRoleSeeder extends Seeder
       'description' => 'Settings Permissions',
     ]);
 
+    $status = Permission::create([
+      'type' => Order::TYPE_ADMIN,
+      'name' => 'admin.status',
+      'description' => 'Status Permissions',
+    ]);
+    $status->children()->saveMany([
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.waiting-for-payment',
+        'description' => 'Waiting For Payment',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.processing',
+        'description' => 'Processing',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.on-hold',
+        'description' => 'On-hold',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.partial-paid',
+        'description' => 'Partial-paid',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.purchased',
+        'description' => 'Purchased',
+
+      ]),
+
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.re-order',
+        'description' => 'Re-order',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.refund',
+        'description' => 'Refund',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.shipped-from-suppliers',
+        'description' => 'Shipped From Suppliers',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.received-in-chinawarehouse',
+        'description' => 'Received in China Warehouse',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.shipped-from-chinawarehouse',
+        'description' => 'Shipped From China Warehouse',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.received-in-bdwarehouse',
+        'description' => 'Received in BDwarehouse',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.delivered',
+        'description' => 'Deliverd',
+
+      ]),
+    ]);
+
     $this->enableForeignKeys();
   }
 }

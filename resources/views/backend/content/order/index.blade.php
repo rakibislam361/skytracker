@@ -3,61 +3,48 @@
 @section('title', 'Manage Orders')
 
 @section('content')
-@php
-$status = null;
-$allOrdersCount = $orders->where('status', 'Partial Paid')->count();
-$partialCount = null;
-$onHold = null;
-$icompleteCount = null;
-$refundedCount = null;
-$processingCount = null;
-$purchasedCount = null;
-
-// dd($allOrdersCount);
-// $count = null;
-// foreach ($orders as $key => $status) {
-// $count += count($status->status);
-// }
-// dd($totalcount);
-
-@endphp
-
-
-<div class="card">
-    <div class="card-header">
-        <h5 class="d-inline-block mr-2">@lang('Order Items')</h5>
+    @php
+        $status = null;
+        $allOrdersCount = $orders->where('status', 'Partial Paid')->count();
+        $partialCount = null;
+        $onHold = null;
+        $icompleteCount = null;
+        $refundedCount = null;
+        $processingCount = null;
+        $purchasedCount = null;
+        
+        // dd($allOrdersCount);
+        // $count = null;
+        // foreach ($orders as $key => $status) {
+        // $count += count($status->status);
+        // }
+        // dd($totalcount);
+        
+    @endphp
 
 
+    <div class="card">
+        <div class="card-header">
+            <h5 class="d-inline-block mr-2">@lang('Order Items')</h5>
 
-        {{-- <div class="btn-group float-right" role="group" aria-label="header_button_group">
-                <button type="submit" class="btn btn-info findResultButton" data-toggle="tooltip" title="@lang('Search')">
-                    <i class="fa fa-search"></i>
-                </button>
+            <div class="btn-group" role="group" aria-label="header_button_group" style="margin-left: 77%">
                 <button type="button" class="btn btn-primary" id="changeGroupStatusButton" data-toggle="tooltip"
-                    title="@lang('Change Status')">
-                    @lang('Status')
+                    disabled="true" title="@lang('Change Status')">
+                    @lang('Change Status')
                 </button>
-                <button type="button" class="btn btn-danger" id="generateInvoiceButton" data-toggle="tooltip"
-                    title="Generate Invoice" disabled="true">
-                    @lang('Generate')
-                </button>
-                <a href="{{ route('admin.export', 'order_item') }}" class="btn btn-warning" data-toggle="tooltip"
-        title="Full Export">
-        <i class="fa fa-download"></i>
-        </a>
-    </div> --}}
-    <!-- btn-group-->
+            </div>
 
-    @include('backend.content.order.includes.filter')
+            @include('backend.content.order.includes.filter')
 
+        </div>
 
-</div>
-<div class="col-md-2">
-    <span class="badge badge-success" style="font-size: 100%; margin-top: 5px;">Total Items =
-        {{ $totalcount }}</span>
-</div>
-<div class="card-body">
-    {{-- <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
+        <div class="card-body">
+
+            <span class="badge badge-success" style="font-size: 100%; margin-bottom: 2px;">Total Items
+                =
+                {{ $totalcount }}</span>
+
+            <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
@@ -70,16 +57,10 @@ $purchasedCount = null;
                                 </button>
                             </div>
 
-                            <form method="post" id="updateItem">
+                            <form method="post" action="{{ route('admin.order.item.status.update') }}">
                                 @csrf
-
                                 <div class="modal-body">
-
-
-                                    <div class="hiddenField">
-
-                                    </div>
-
+                                    <div class="hiddenField"></div>
                                     <div class="form-group">
                                         <label for="status">Status</label>
                                         <select class="form-control" name="status" id="status">
@@ -93,6 +74,7 @@ $purchasedCount = null;
                                                 <option value="re-order">RE-Order</option>
                                                 <option value="refund-please">Refund Please</option>
                                                 <option value="shipped-from-suppliers">Shipped from suppliers</option>
+                                                <option value="delivery-after-holiday">Delivery after holiday</option>
                                             @endif
                                             @if ($logged_in_user->can('admin.order.status.edit'))
                                                 <option value="received-in-china-warehouse">Received in china warehouse
@@ -107,7 +89,7 @@ $purchasedCount = null;
                                     </div>
                                 </div>
                                 <div class="modal-footer justify-content-between">
-                                    <button type="button" class="btn btn-primary" id="statusSubmitBtn">Save
+                                    <button type="submit" class="btn btn-primary">Save
                                         changes</button>
                                 </div>
                             </form>
@@ -115,15 +97,15 @@ $purchasedCount = null;
                         </div>
                     </div>
                 </div>
-            </div> --}}
-    @include('backend.content.order.includes.order_table')
-</div> <!-- card-body-->
-</div>
+            </div>
+            @include('backend.content.order.includes.order_table')
+        </div> <!-- card-body-->
+    </div>
 
-<!-- Modal -->
-@include('backend.content.order.includes.edit_modal')
-<input id="actualrmb_rate" class="actualrmb_rate" type="hidden" value="{{ get_setting('actualrmb_rate') }}">
-<input id="local_rate" type="hidden" value="{{ get_setting('local_rate') }}">
+    <!-- Modal -->
+    @include('backend.content.order.includes.edit_modal')
+    <input id="actualrmb_rate" class="actualrmb_rate" type="hidden" value="{{ get_setting('actualrmb_rate') }}">
+    <input id="local_rate" type="hidden" value="{{ get_setting('local_rate') }}">
 @endsection
 
 <x-slot name="header">

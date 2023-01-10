@@ -98,22 +98,16 @@
                                 placeholder="chn_warehouse_qty" class="form-control" />
                         </div>
 
+
+
+
                         <div class="form-group">
                             <label for="chn_warehouse_weight">China Warehouse Weight</label>
-                            {{-- <table style="width:100%" id="add-weight">
-                                <tr>
-                                    <td><input type="text" name="chn_warehouse_weight[]"
-                                            placeholder="china warehouse weight" class="form-control" /></td>
-                                    <td class="text-right" style="width:1%"><button type="button" name="add"
-                                            id="weight-btn" class="btn btn-outline-success">+</button>
-                                    </td>
-                                    <td class="text-right" style="width:1%"><button type="button"
-                                            class="btn btn-outline-danger">-</button></td>
-                                </tr>
-                            </table> --}}
-                            <textarea type="text" name="chn_warehouse_weight" id="chn_warehouse_weight" placeholder="chn_warehouse_weight"
-                                class="form-control"> </textarea>
+                            <table style="width:100%" id="chn_weight" class="chn_weight">
+                                {{-- chn_warehouse_weight input area will append here --}}
+                            </table>
                         </div>
+
 
                         <div class="form-group">
                             <label for="cbm">CBM</label>
@@ -166,6 +160,7 @@
                                 <option value="re-order">RE-Order</option>
                                 <option value="refund-please">Refund Please</option>
                                 <option value="shipped-from-suppliers">Shipped from suppliers</option>
+                                <option value="delivery-after-holiday">Delivery after holiday</option>
                             @endif
                             @if ($logged_in_user->can('admin.order.status.edit'))
                                 <option value="received-in-china-warehouse">Received in china warehouse</option>
@@ -176,14 +171,6 @@
                             @endif
                         </select>
                     </div>
-                    {{-- @if ($logged_in_user->hasAllAccess())
-                    <input type="hidden" name="product_value" id="product_value" class="form-control" />
-                     <div class="form-group">
-                        <label for="product_bd_received_coast">BDT Received From Customer(BD Receive)</label>
-                        <input type="text" name="product_bd_received_cost" id="product_bd_received_cost" readonly  placeholder="BD Received Cost" class="form-control" />
-                         <small class="form-text text-muted">(China Local Delivery*Conversion)+Product Value</small>
-                    </div>
-                    @endif --}}
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-primary" id="statusSubmitBtn">Save changes</button>

@@ -32,8 +32,10 @@ $(function () {
             var tbodyCheckbox = $("tbody").find("input.checkboxItem");
             if ($(this).is(":checked")) {
                 tbodyCheckbox.prop("checked", true);
+                enable_proceed_button();
             } else {
                 tbodyCheckbox.prop("checked", false);
+                disabled_proceed_button();
             }
         })
         .on("change", "input.checkboxItem", function () {
@@ -45,22 +47,27 @@ $(function () {
             } else {
                 $("#allSelectCheckbox").prop("checked", false);
             }
+            if (checked_item > 0) {
+                enable_proceed_button();
+            } else {
+                disabled_proceed_button();
+            }
         })
 
-        // .on("click", "#changeGroupStatusButton", function () {
-        //     var changeStatusModal = $("#changeStatusButton");
-        //     var hiddenField = changeStatusModal.find(".hiddenField");
-        //     var hiddenInput = "";
-        //     $("input.checkboxItem:checked").each(function (index) {
-        //         hiddenInput += `<input type="hidden" name="order_item_id[]" value="${$(
-        //             this
-        //         ).val()}">`;
-        //     });
-        //     console.log(hiddenInput);
-        //     hiddenField.html(hiddenInput);
-        //     changeStatusModal.modal("show");
-        //     $("#statusChargeForm").trigger("reset");
-        // })
+        .on("click", "#changeGroupStatusButton", function () {
+            var changeStatusModal = $("#changeStatusButton");
+            var hiddenField = changeStatusModal.find(".hiddenField");
+            var hiddenInput = "";
+            $("input.checkboxItem:checked").each(function (index) {
+                hiddenInput += `<input type="hidden" name="order_item_id[]" value="${$(
+                    this
+                ).val()}">`;
+            });
+            // console.log(hiddenInput);
+            hiddenField.html(hiddenInput);
+            changeStatusModal.modal("show");
+            $("#statusChargeForm").trigger("reset");
+        })
         .on("click", "#add-btn", function (e) {
             e.preventDefault();
             ++i;
@@ -118,7 +125,7 @@ $(function () {
         .on("click", "#weight-btn", function (e) {
             e.preventDefault();
             ++i;
-            var weight = `<tr>
+            var addweight = `<tr>
                                     <td><input type="text" name="chn_warehouse_weight[]"
                                             placeholder="china warehouse weight" class="form-control" /></td>
                                     <td class="text-right" style="width:1%">
@@ -129,7 +136,7 @@ $(function () {
                                     </td>
                                 </tr>`;
 
-            $("#add-weight").append(weight);
+            $("#chn_weight").append(addweight);
         })
         .on("click", "#tracking-btn", function (e) {
             e.preventDefault();
@@ -151,11 +158,12 @@ $(function () {
             e.preventDefault();
             $(this).parents("tr").remove();
         })
-        .on("click", ".order-modal", function () {
+        .on("dblclick", ".order-modal", function () {
             let itemValue = $(this).data("value");
             let html = null;
             let carton = [];
             let track = [];
+            let weight = [];
             if (itemValue.carton_id != null) {
                 carton = itemValue.carton_id.split(",");
                 if (!isEmpty(carton)) {
@@ -216,6 +224,36 @@ $(function () {
                                 </tr>`;
                 $(".add-tracking-number").append(html);
             }
+            if (itemValue.chn_warehouse_weight != null) {
+                weight = itemValue.chn_warehouse_weight.split(",");
+                if (!isEmpty(weight)) {
+                    weight.forEach((val) => {
+                        html = `<tr>
+                                    <td><input type="text" name="chn_warehouse_weight[]" value="${val}" readonly placeholder="china warehouse weight"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="weight-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger">-</button>
+                                    </td>
+                                </tr>`;
+                        $(".chn_weight").append(html);
+                    });
+                }
+            } else {
+                html = `<tr>
+                                   <td><input type="text" name="chn_warehouse_weight[]" placeholder="china warehouse weight"
+                                            class="form-control" /></td>
+                                   <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="weight-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                $(".chn_weight").append(html);
+            }
 
             $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
             $("#order_item_id").val(itemValue.id);
@@ -227,7 +265,7 @@ $(function () {
             $("#shipping_from").val(itemValue.shipping_from);
             $("#shipping_mark").val(itemValue.shipping_mark);
             $("#chn_warehouse_qty").val(itemValue.chn_warehouse_qty);
-            $("#chn_warehouse_weight").val(itemValue.chn_warehouse_weight);
+            // $("#chn_warehouse_weight").val(itemValue.chn_warehouse_weight);
             $("#cbm").val(itemValue.cbm);
             $("#shipped_by").val(itemValue.shipped_by);
             $("#status").val(itemValue.status);
