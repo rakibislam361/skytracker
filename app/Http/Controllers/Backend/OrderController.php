@@ -164,12 +164,11 @@ class OrderController extends Controller
 
   public function itemStatusUpdate()
   {
-    $data = [
-      'order_items_id' => json_encode(request('order_item_id', null)),
-      'status' => request('status', null),
-    ];
-    $orderResponse = $this->order_item_status_update($data);
-    if ($orderResponse->status == 'true') {
+    $order_items_id = request('order_item_id', []);
+    $status = request('status', null);
+    $orderResponse = $this->order_item_status_update($status, $order_items_id);
+
+    if ($orderResponse) {
       return redirect()
         ->back()
         ->withFlashSuccess('Items Status Updated Successfully');
