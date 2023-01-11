@@ -138,6 +138,22 @@ $(function () {
 
             $("#chn_weight").append(addweight);
         })
+        .on("click", "#qty-btn", function (e) {
+            e.preventDefault();
+            ++i;
+            var addqty = `<tr>
+                                    <td><input type="text" name="chn_warehouse_qty[]"
+                                            placeholder="china warehouse qty" class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="qty-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+
+            $("#chn_qty").append(addqty);
+        })
         .on("click", "#tracking-btn", function (e) {
             e.preventDefault();
             ++i;
@@ -164,6 +180,7 @@ $(function () {
             let carton = [];
             let track = [];
             let weight = [];
+            let quantity = [];
             if (itemValue.carton_id != null) {
                 carton = itemValue.carton_id.split(",");
                 if (!isEmpty(carton)) {
@@ -254,6 +271,36 @@ $(function () {
                                 </tr>`;
                 $(".chn_weight").append(html);
             }
+            // if (itemValue.chn_warehouse_qty != null) {
+            //     quantity = itemValue.chn_warehouse_qty.split(",");
+            //     if (!isEmpty(quantity)) {
+            //         quantity.forEach((val) => {
+            //             html = `<tr>
+            //                         <td><input type="text" name="chn_warehouse_qty[]" value="${val}" placeholder="china warehouse qty"
+            //                                 class="form-control" /></td>
+            //                         <td class="text-right" style="width:1%">
+            //                           <button type="button" name="add" id="qty-btn" class="btn btn-outline-success">+</button>
+            //                         </td>
+            //                         <td class="text-right" style="width:1%">
+            //                           <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+            //                         </td>
+            //                     </tr>`;
+            //             $(".chn_qty").append(html);
+            //         });
+            //     }
+            // } else {
+            //     html = `<tr>
+            //                        <td><input type="text" name="chn_warehouse_qty[]" placeholder="china warehouse qty"
+            //                                 class="form-control" /></td>
+            //                        <td class="text-right" style="width:1%">
+            //                           <button type="button" name="add" id="qty-btn" class="btn btn-outline-success">+</button>
+            //                         </td>
+            //                         <td class="text-right" style="width:1%">
+            //                           <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+            //                         </td>
+            //                     </tr>`;
+            //     $(".chn_qty").append(html);
+            // }
 
             $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
             $("#order_item_id").val(itemValue.id);

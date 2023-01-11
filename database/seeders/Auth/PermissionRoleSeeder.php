@@ -145,6 +145,12 @@ class PermissionRoleSeeder extends Seeder
       'description' => 'Settings Permissions',
     ]);
 
+    $accounts = Permission::create([
+      'type' => Setting::TYPE_ADMIN,
+      'name' => 'admin.accounts',
+      'description' => 'Accounts Permissions',
+    ]);
+
     $status = Permission::create([
       'type' => Order::TYPE_ADMIN,
       'name' => 'admin.status',

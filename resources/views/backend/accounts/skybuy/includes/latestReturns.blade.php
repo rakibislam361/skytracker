@@ -1,42 +1,41 @@
-<div class="col-md-6">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Latest Returns</h3>
+<div class="col-md-4">
+    <div class="info-box mb-3 bg-warning">
+        <span class="info-box-icon"><i class="fas fa-tag"></i></span>
 
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fas fa-minus"></i>
-        </button>
-        <button type="button" class="btn btn-tool" data-card-widget="remove">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
+        <div class="info-box-content">
+            <span class="info-box-text">Inventory</span>
+            <span class="info-box-number">5,200</span>
+        </div>
+        <!-- /.info-box-content -->
     </div>
-    <!-- /.card-header -->
-    <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table m-0">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Id</th>
-              <th>Number</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>17/11/2022</td>
-              <td>Id#123</td>
-              <td>1</td>
-              <td><span class="badge badge-success">Shipped</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- /.info-box -->
+    <div class="info-box mb-3 bg-success">
+        <span class="info-box-icon"><i class="far fa-heart"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Mentions</span>
+            <span class="info-box-number">92,050</span>
+        </div>
+        <!-- /.info-box-content -->
     </div>
-    <div class="card-footer text-center">
-      <a href={{ route('admin.order.index') }} class="uppercase">View All</a>
+    <!-- /.info-box -->
+    <div class="info-box mb-3 bg-danger">
+        <span class="info-box-icon"><i class="fas fa-cloud-download-alt"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Downloads</span>
+            <span class="info-box-number">114,381</span>
+        </div>
+        <!-- /.info-box-content -->
     </div>
-  </div>
+    <!-- /.info-box -->
+    <div class="info-box mb-3 bg-info">
+        <span class="info-box-icon"><i class="far fa-comment"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Direct Messages</span>
+            <span class="info-box-number">163,921</span>
+        </div>
+        <!-- /.info-box-content -->
+    </div>
 </div>

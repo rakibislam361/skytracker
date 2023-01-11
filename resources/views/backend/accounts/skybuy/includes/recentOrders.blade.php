@@ -1,4 +1,4 @@
-<div class="col-md-6">
+<div class="col-md-8">
   <div class="card">
     <div class="card-header border-transparent">
       <h3 class="card-title">Latest Orders</h3>

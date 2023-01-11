@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Support\Facades\Http;
 
 trait ApiOrderTrait
@@ -44,13 +45,14 @@ trait ApiOrderTrait
         $response = Http::withToken($get_token)->post($url, $data);
         return $response->object();
     }
-    public function order_item_status_update($data)
+    public function order_item_status_update($status, $order_items_id)
     {
-        dd($data);
         $get_token = $this->getToken();
         $url = get_setting('api_url') . '/admin/order-multiple-item-status';
-        $response = Http::withToken($get_token)->post($url, $data);
-        // dd($response->object());
+        $response = Http::withToken($get_token)->post($url, [
+            'status' => $status,
+            'order_items_id' => $order_items_id,
+        ]);
         return $response->object();
     }
 

@@ -28,58 +28,35 @@ class AccountController extends Controller
             'to_date' => request('to_date', null),
         ];
 
-        $receivedData = $this->recentorderListTrait($filter);
-        $accountsData = $receivedData;
-        $account = $accountsData->data->result->data;
-        $acc = [];
-        $totalcount = 0;
-        $waiting = 0;
-        $processing = 0;
-        $delivered = 0;
-        $purchased = 0;
-        $pending = 0;
+        $accountsData = $this->recentorderListTrait($filter);
+        $account = [];
+        if ($accountsData) {
+            $account = $accountsData->data->result->data;
+            $totalcount = count($account);
+            $waiting = 0;
+            $processing = 0;
+            $delivered = 0;
+            $purchased = 0;
+            $pending = 0;
 
-        foreach ($account as $data) {
-            $acc[] = $data;
-            $count = count($acc);
-            $totalcount += $count;
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'Waiting for Payment') {
-                $acc[] = $data;
-                $count = count($acc);
-                $waiting += $count;
+            foreach ($account as $data) {
+                if ($data->status == "Waiting for Payment") {
+                    $waiting += 1;
+                }
+                if ($data->status == "processing") {
+                    $processing += 1;
+                }
+                if ($data->status == "purchased") {
+                    $purchased += 1;
+                }
+                if ($data->status === "delivered") {
+                    $delivered += 1;
+                }
+                if ($data->status == "on-hold") {
+                    $pending += 1;
+                }
             }
         }
-        foreach ($account as $data) {
-            if ($data->status == 'processing') {
-                $acc[] = $data;
-                $count = count($acc);
-                $processing += $count;
-            }
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'delivered') {
-                $acc[] = $data;
-                $count = count($acc);
-                $delivered += $count;
-            }
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'purchased') {
-                $acc[] = $data;
-                $count = count($acc);
-                $purchased += $count;
-            }
-        }
-        foreach ($account as $data) {
-            if ($data->status == 'on-hold') {
-                $acc[] = $data;
-                $count = count($acc);
-                $pending += $count;
-            }
-        }
-
 
         $accounts = $this->paginate($account, 30);
         $accounts->withPath('');

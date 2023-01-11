@@ -16,26 +16,34 @@
                 </li>
 
                 {{-- order --}}
-                <li class="nav-item {{ activeClass(Route::is('admin.order.*'), 'menu-open') }}">
-                    <x-utils.link-sidebar href="#" :text="__('Orders')" icon="nav-icon icon-star" class="nav-link"
-                        rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.order.*'))" />
-                    <ul class="nav nav-treeview">
-                        @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit'))
+                @if ($logged_in_user->hasAllAccess() ||
+                    $logged_in_user->can('admin.order.order_rmb.edit') ||
+                    $logged_in_user->can('admin.order.localdelivery.edit') ||
+                    $logged_in_user->can('admin.order.purchase.edit') ||
+                    $logged_in_user->can('admin.order.status.edit') ||
+                    $logged_in_user->can('admin.order.carton.edit') ||
+                    $logged_in_user->can('admin.order.rate.edit'))
+                    <li class="nav-item {{ activeClass(Route::is('admin.order.*'), 'menu-open') }}">
+                        <x-utils.link-sidebar href="#" :text="__('Orders')" icon="nav-icon icon-star"
+                            class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.order.*'))" />
+                        <ul class="nav nav-treeview">
+                            @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.order.order_rmb.edit'))
+                                <li class="nav-item">
+                                    <x-utils.link :href="route('admin.order.recent')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                        :text="__('Recent Orders')" />
+                                </li>
+                            @endif
                             <li class="nav-item">
-                                <x-utils.link :href="route('admin.order.recent')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                    :text="__('Recent Orders')" />
+                                <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                    :text="__('Manage Wallet')" />
                             </li>
-                        @endif
-                        <li class="nav-item">
-                            <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                :text="__('Manage Wallet')" />
-                        </li>
 
-                        {{-- <li class="nav-item">
+                            {{-- <li class="nav-item">
               <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
             </li> --}}
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
+                @endif
                 {{-- product --}}
                 {{-- <li class="nav-item {{ activeClass(Route::is('admin.product.*'), 'menu-open') }}">
                 <x-utils.link-sidebar href="#" :text="__('Product')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
@@ -67,7 +75,7 @@
                 </li> --}}
 
                 {{-- Accounts --}}
-                @if ($logged_in_user->hasAllAccess())
+                @if ($logged_in_user->can('admin.accounts'))
                     <li class="nav-item {{ activeClass(Route::is('admin.account.*'), 'menu-open') }}">
                         <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star"
                             class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.account.*'))" />
@@ -129,18 +137,15 @@
 
                 {{-- Messeging --}}
                 {{-- <li class="nav-item {{ activeClass(Route::is('admin.messaging.*'), 'menu-open') }}">
-                    <x-utils.link-sidebar href="#" :text="__('Messaging')" icon="nav-icon icon-envelope"
-                        class="nav-link" rightIcon="fas fa-angle-left right" />
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <x-utils.link :href="route('admin.messaging.contact.index')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                :text="__('Contacts')" />
-                        </li>
-                        <li class="nav-item">
-                            <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                :text="__('Newsletters')" />
-                        </li>
-                    </ul>
+                <x-utils.link-sidebar href="#" :text="__('Messaging')" icon="nav-icon icon-envelope" class="nav-link" rightIcon="fas fa-angle-left right" />
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <x-utils.link :href="route('admin.messaging.contact.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Contacts')" />
+                    </li>
+                    <li class="nav-item">
+                        <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Newsletters')" />
+                    </li>
+                </ul>
                 </li> --}}
 
 

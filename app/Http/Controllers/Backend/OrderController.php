@@ -134,6 +134,10 @@ class OrderController extends Controller
       $data['carton_id'] = implode(',', request()->carton_id);
     }
 
+    if (request()->chn_warehouse_qty) {
+      $data['chn_warehouse_qty'] = implode(',', request()->chn_warehouse_qty);
+    }
+
     if (array_key_exists('chinaLocalDelivery', $data)) {
       if ($data['chinaLocalDelivery'] == 0 || $data['chinaLocalDelivery'] == null) {
         unset($data['chinaLocalDelivery']);
@@ -164,13 +168,11 @@ class OrderController extends Controller
 
   public function itemStatusUpdate()
   {
+    $order_items_id = request('order_item_id', []);
+    $status = request('status', null);
+    $orderResponse = $this->order_item_status_update($status, $order_items_id);
 
-    $data = [
-      'order_items_id' => json_encode(request('order_item_id', null)),
-      'status' => request('status', null),
-    ];
-    $orderResponse = $this->order_item_status_update($data);
-    if ($orderResponse->status == 'true') {
+    if ($orderResponse) {
       return redirect()
         ->back()
         ->withFlashSuccess('Items Status Updated Successfully');
@@ -386,7 +388,7 @@ class OrderController extends Controller
       'china_local_delivery_rmb' => 'nullable|string',
       'shipping_from' => 'nullable|string',
       'shipping_mark' => 'nullable|string',
-      'chn_warehouse_qty' => 'nullable',
+      'chn_warehouse_qty.*' => 'nullable',
       'chn_warehouse_weight.*' => 'nullable',
       'cbm' => 'nullable|string',
       'carton_id.*' => 'nullable',

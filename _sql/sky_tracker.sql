@@ -21,40 +21,10 @@ SET time_zone = "+00:00";
 -- Database: `sky_tracker`
 --
 
--- --------------------------------------------------------
-
---
--- Table structure for table `activity_log`
---
-
-DROP TABLE IF EXISTS `activity_log`;
-CREATE TABLE IF NOT EXISTS `activity_log` (
-  `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
-  `log_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `subject_id` bigint UNSIGNED DEFAULT NULL,
-  `subject_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `causer_id` bigint UNSIGNED DEFAULT NULL,
-  `causer_type` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `properties` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `activity_log_log_name_index` (`log_name`),
-  KEY `subject` (`subject_id`,`subject_type`),
-  KEY `causer` (`causer_id`,`causer_type`)
-) ;
 
 --
 -- Dumping data for table `activity_log`
 --
-
-INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_id`, `subject_type`, `causer_id`, `causer_type`, `properties`, `created_at`, `updated_at`) VALUES
-(1, 'default', 'created', 1, 'App\\Domains\\Announcement\\Models\\Announcement', NULL, NULL, '{\"attributes\":{\"area\":null,\"type\":\"info\",\"message\":\"This is a <strong>Global<\\/strong> announcement that will show on both the frontend and backend. <em>See <strong>AnnouncementSeeder<\\/strong> for more usage examples.<\\/em>\",\"enabled\":true,\"starts_at\":null,\"ends_at\":null}}', '2022-11-22 04:13:10', '2022-11-22 04:13:10'),
-(2, 'user', 'Super Admin created user BD Purchase Officer with roles: None and permissions: Edit Order Rmb, Edit Local Delivery', 3, 'App\\Domains\\Auth\\Models\\User', 1, 'App\\Domains\\Auth\\Models\\User', '{\"user\":{\"type\":\"admin\",\"name\":\"BD Purchase Officer\",\"email\":\"bdofficer@gmail.com\",\"active\":true,\"email_verified_at\":\"2022-11-22T11:01:58.000000Z\"},\"roles\":\"None\",\"permissions\":\"Edit Order Rmb, Edit Local Delivery\"}', '2022-11-22 05:01:58', '2022-11-22 05:01:58'),
-(3, 'user', 'Super Admin created user China Purchase Officer with roles: None and permissions: Actual Cost(Purchase Cost)', 4, 'App\\Domains\\Auth\\Models\\User', 1, 'App\\Domains\\Auth\\Models\\User', '{\"user\":{\"type\":\"admin\",\"name\":\"China Purchase Officer\",\"email\":\"chinapurchase@gmail.com\",\"active\":true,\"email_verified_at\":\"2022-11-22T11:04:33.000000Z\"},\"roles\":\"None\",\"permissions\":\"Actual Cost(Purchase Cost)\"}', '2022-11-22 05:04:33', '2022-11-22 05:04:33'),
-(4, 'user', 'Super Admin created user China Warehouse Officer with roles: None and permissions: Edit Status, Edit Carton Information', 5, 'App\\Domains\\Auth\\Models\\User', 1, 'App\\Domains\\Auth\\Models\\User', '{\"user\":{\"type\":\"admin\",\"name\":\"China Warehouse Officer\",\"email\":\"chinawarehouse@gmail.com\",\"active\":true,\"email_verified_at\":\"2022-11-22T11:05:32.000000Z\"},\"roles\":\"None\",\"permissions\":\"Edit Status, Edit Carton Information\"}', '2022-11-22 05:05:32', '2022-11-22 05:05:32'),
-(5, 'user', 'Super Admin created user BD Logistic Officer with roles: None and permissions: Edit Status, Edit Carton Information, Edit Rate', 6, 'App\\Domains\\Auth\\Models\\User', 1, 'App\\Domains\\Auth\\Models\\User', '{\"user\":{\"type\":\"admin\",\"name\":\"BD Logistic Officer\",\"email\":\"bdlogistic@gmail.com\",\"active\":true,\"email_verified_at\":\"2022-11-22T11:06:30.000000Z\"},\"roles\":\"None\",\"permissions\":\"Edit Status, Edit Carton Information, Edit Rate\"}', '2022-11-22 05:06:30', '2022-11-22 05:06:30');
 
 -- --------------------------------------------------------
 
@@ -73,7 +43,6 @@ CREATE TABLE IF NOT EXISTS `announcements` (
   `ends_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 --
@@ -105,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `deleted_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `brands_slug_unique` (`slug`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
