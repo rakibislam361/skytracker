@@ -101,11 +101,11 @@
                     @if ($logged_in_user->can('admin.order.carton.edit'))
                         <div class="form-group">
                             <label for="chn_warehouse_qty">China Warehouse Qty</label>
-                            {{-- <table style="width:100%" id="chn_qty" class="chn_qty"> --}}
-                            {{-- chn_warehouse_qty input area will append here --}}
-                            {{-- </table> --}}
-                            <input type="text" name="chn_warehouse_qty" id="chn_warehouse_qty"
-                                placeholder="chn warehouse qty" class="form-control" />
+                            <table style="width:100%" id="chn_qty" class="chn_qty">
+                                {{-- chn_warehouse_qty input area will append here --}}
+                            </table>
+                            {{-- <input type="text" name="chn_warehouse_qty" id="chn_warehouse_qty"
+                                placeholder="chn warehouse qty" class="form-control" /> --}}
                         </div>
 
 
