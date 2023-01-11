@@ -59,7 +59,7 @@ class OrderController extends Controller
             }
           }
           if ($userRole->hasPermissionTo('admin.status.partial-paid')) {
-            if ($data->status == 'Partial-Paid') {
+            if ($data->status == 'partial-paid') {
               $order[] = $data;
             }
           }
@@ -84,17 +84,17 @@ class OrderController extends Controller
             }
           }
           if ($userRole->hasPermissionTo('admin.status.received-in-chinawarehouse')) {
-            if ($data->status == 'received-in-chinawarehouse') {
+            if ($data->status == 'received-in-china-warehouse') {
               $order[] = $data;
             }
           }
           if ($userRole->hasPermissionTo('admin.status.shipped-from-chinawarehouse')) {
-            if ($data->status == 'shipped-from-chinawarehouse') {
+            if ($data->status == 'shipped-from-china-warehouse') {
               $order[] = $data;
             }
           }
           if ($userRole->hasPermissionTo('admin.status.received-in-bdwarehouse')) {
-            if ($data->status == 'received-in-bdwarehouse') {
+            if ($data->status == 'received-in-BD-warehouse') {
               $order[] = $data;
             }
           }
@@ -164,6 +164,7 @@ class OrderController extends Controller
 
   public function itemStatusUpdate()
   {
+
     $data = [
       'order_items_id' => json_encode(request('order_item_id', null)),
       'status' => request('status', null),

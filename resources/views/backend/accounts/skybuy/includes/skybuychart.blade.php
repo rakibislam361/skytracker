@@ -1,7 +1,7 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h5 class="card-title">SkyBuy Recap Report</h5>
+            <h5 class="d-inline-block mr-2">SkyBuy Report</h5>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -11,7 +11,7 @@
                 </button>
             </div>
         </div>
-        <div class="card-body">
+        {{-- <div class="card-body">
             <div class="row">
                 <div class="col-md-8">
                     <p class="text-center">
@@ -22,13 +22,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="card-footer">
             <div class="row">
                 <div class="col-sm-2 col-6">
                     <div class="description-block border-right">
-                        <h5 class="description-header">{{ $total }}</h5>
-                        <span class="description-text">Total Order</span>
+                        <h5 class="description-header">{{ $totalcount }}</h5>
+                        <span class="description-text">Total Items</span>
                     </div>
                     <!-- /.description-block -->
                 </div>

@@ -15,7 +15,7 @@
                 $logged_in_user->can('admin.order.rate.edit'))
                 <option @if (request('status', null)=='processing' ) selected @endif value="processing">Processing</option>
                 <option @if (request('status', null)=='on-hold' ) selected @endif value="on-hold">On Hold</option>
-                <option @if (request('status', null)=='Partial-Paid' ) selected @endif value="Partial-Paid">Partial Paid
+                <option @if (request('status', null)=='partial-paid' ) selected @endif value="partial-paid">Partial Paid
                 </option>
                 <option @if (request('status', null)=='delivery-after-holiday' ) selected @endif value="delivery-after-holiday">Delivery after holiday</option>
                 @endif
@@ -52,7 +52,7 @@
                 <option @if (request('status', null)=='out-of-stock' ) selected @endif value="out-of-stock">Out Of Stock
                 </option>
                 <option @if (request('status', null)=='adjustment' ) selected @endif value="out-of-stock">Adjustment</option>
-                <option @if (request('status', null)=='Waiting-for-Payment' ) selected @endif value="Waiting-for-Payment">Waiting For
+                <option @if (request('status', null)=='Waiting for Payment' ) selected @endif value="Waiting for Payment">Waiting For
                     Payment</option>
                 @endif
             </select>

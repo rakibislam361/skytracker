@@ -169,13 +169,13 @@ $(function () {
                 if (!isEmpty(carton)) {
                     carton.forEach((val) => {
                         html = `<tr>
-                                    <td><input type="text" name="carton_id[]" value="${val}" readonly placeholder="carton id"
+                                    <td><input type="text" name="carton_id[]" value="${val}" placeholder="carton id"
                                             class="form-control"  /></td>
                                     <td class="text-right" style="width:1%">
                                       <button type="button" name="add" id="carton-btn" class="btn btn-outline-success">+</button>
                                     </td>
                                     <td class="text-right" style="width:1%">
-                                      <button type="button" class="btn btn-outline-danger">-</button>
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
                         $(".add-carton").append(html);
@@ -199,13 +199,13 @@ $(function () {
                 if (!isEmpty(track)) {
                     track.forEach((val) => {
                         html = `<tr>
-                                    <td><input type="text" name="tracking_number[]" value="${val}" readonly placeholder="tracking id"
+                                    <td><input type="text" name="tracking_number[]" value="${val}" placeholder="tracking id"
                                             class="form-control" /></td>
                                     <td class="text-right" style="width:1%">
                                       <button type="button" name="add" id="tracking-btn" class="btn btn-outline-success">+</button>
                                     </td>
                                     <td class="text-right" style="width:1%">
-                                      <button type="button" class="btn btn-outline-danger">-</button>
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
                         $(".add-tracking-number").append(html);
@@ -229,13 +229,13 @@ $(function () {
                 if (!isEmpty(weight)) {
                     weight.forEach((val) => {
                         html = `<tr>
-                                    <td><input type="text" name="chn_warehouse_weight[]" value="${val}" readonly placeholder="china warehouse weight"
+                                    <td><input type="text" name="chn_warehouse_weight[]" value="${val}" placeholder="china warehouse weight"
                                             class="form-control" /></td>
                                     <td class="text-right" style="width:1%">
                                       <button type="button" name="add" id="weight-btn" class="btn btn-outline-success">+</button>
                                     </td>
                                     <td class="text-right" style="width:1%">
-                                      <button type="button" class="btn btn-outline-danger">-</button>
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
                         $(".chn_weight").append(html);
@@ -265,7 +265,6 @@ $(function () {
             $("#shipping_from").val(itemValue.shipping_from);
             $("#shipping_mark").val(itemValue.shipping_mark);
             $("#chn_warehouse_qty").val(itemValue.chn_warehouse_qty);
-            // $("#chn_warehouse_weight").val(itemValue.chn_warehouse_weight);
             $("#cbm").val(itemValue.cbm);
             $("#shipped_by").val(itemValue.shipped_by);
             $("#status").val(itemValue.status);

@@ -13,13 +13,6 @@
         $processingCount = null;
         $purchasedCount = null;
         
-        // dd($allOrdersCount);
-        // $count = null;
-        // foreach ($orders as $key => $status) {
-        // $count += count($status->status);
-        // }
-        // dd($totalcount);
-        
     @endphp
 
 
@@ -27,7 +20,7 @@
         <div class="card-header">
             <h5 class="d-inline-block mr-2">@lang('Order Items')</h5>
 
-            <div class="btn-group" role="group" aria-label="header_button_group" style="margin-left: 77%">
+            <div class="btn-group" role="group" aria-label="header_button_group" style="margin-left: 78%">
                 <button type="button" class="btn btn-primary" id="changeGroupStatusButton" data-toggle="tooltip"
                     disabled="true" title="@lang('Change Status')">
                     @lang('Change Status')
@@ -41,8 +34,7 @@
         <div class="card-body">
 
             <span class="badge badge-success" style="font-size: 100%; margin-bottom: 2px;">Total Items
-                =
-                {{ $totalcount }}</span>
+                = {{ $totalcount }}</span>
 
             <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

@@ -73,15 +73,22 @@
                                 placeholder="China Local Delivery In BDT" class="form-control" />
 
                         </div>
+
+                        <div class="form-group">
+                            <label for="product_type">Product Type</label>
+                            <textarea type="text" class="form-control" name="product_type" id="product_type" placeholder="Product Type"></textarea>
+                        </div>
                     @endif
                     {{-- China Purchase Officer End --}}
                     @if ($logged_in_user->can('admin.order.carton.edit') || $logged_in_user->can('admin.order.order_rmb.edit'))
                         <div class="form-group">
                             <label for="shipping_from">Shipping From</label>
                             <select class="form-control" name="shipping_from" id="shipping_from">
-                                <option value="">Select Guangzhou/HongKong</option>
-                                <option value="guangzhou">Guangzhou</option>
-                                <option value="hongkong">HongKong</option>
+                                <option @if (request('shipping_from', null) == 'guangzhou') selected @endif value="guangzhou">
+                                    Guangzhou</option>
+                                <option @if (request('shipping_from', null) == 'hongkong') selected @endif value="hongkong">
+                                    HongKong</option>
+
                             </select>
                         </div>
 
@@ -122,10 +129,7 @@
                             </table>
                         </div>
 
-                        <div class="form-group">
-                            <label for="product_type">Product Type</label>
-                            <textarea type="text" class="form-control" name="product_type" id="product_type" placeholder="Product Type"></textarea>
-                        </div>
+
 
                         <div class="form-group">
                             <label for="shipped_by">Shipping By</label>
