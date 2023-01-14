@@ -77,28 +77,32 @@
 
                 {{-- Accounts --}}
                 @if ($logged_in_user->can('admin.accounts'))
-                    <li class="nav-item {{ activeClass(Route::is('admin.account.*'), 'menu-open') }}">
-                        <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star"
-                            class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.account.*'))" />
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <x-utils.link :href="route('admin.account.skybuy')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                    :text="__('SkyBuy Accounts')" />
-                            </li>
-                            <li class="nav-item">
-                                <x-utils.link :href="route('admin.account.skyone')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                    :text="__('SkyOne Accounts')" />
-                            </li>
-                            <li class="nav-item">
-                                <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                    :text="__('Offline Customer Accounts')" />
-                            </li>
-                            <li class="nav-item">
-                                <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                    :text="__('Office Accounts')" />
-                            </li>
-                        </ul>
-                    </li>
+                    @unlessrole('Administrator')
+                        <li class="nav-item {{ activeClass(Route::is('admin.account.*'), 'menu-open') }}">
+                            <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star"
+                                class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.account.*'))" />
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <x-utils.link :href="route('admin.account.skybuy')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                        :text="__('SkyBuy Accounts')" />
+                                </li>
+                                <li class="nav-item">
+                                    <x-utils.link :href="route('admin.account.skyone')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                        :text="__('SkyOne Accounts')" />
+                                </li>
+                                <li class="nav-item">
+                                    <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                        :text="__('Offline Customer Accounts')" />
+                                </li>
+                                <li class="nav-item">
+                                    <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                        :text="__('Office Accounts')" />
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        {{-- Super Admin Accounts will write here --}}
+                    @endunlessrole
                 @endif
 
                 {{-- Reports --}}
@@ -111,9 +115,6 @@
                                 <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link"
                                     :text="__('Shipping Report')" />
                             </li>
-                            {{-- <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Sale Report')" />
-            </li> --}}
                         </ul>
                     </li>
                 @endif
@@ -130,29 +131,6 @@
                     </li>
                 @endif
 
-
-
-                {{-- <li class="nav-item">
-          <x-utils.link-sidebar :href="route('admin.page.index')" :text="__('Manage Page')" :active="activeClass(Route::is('admin.page.*'))" icon="nav-icon fas fa-file-word" class="nav-link" />
-        </li>  --}}
-
-                {{-- Messeging --}}
-                {{-- <li class="nav-item {{ activeClass(Route::is('admin.messaging.*'), 'menu-open') }}">
-                <x-utils.link-sidebar href="#" :text="__('Messaging')" icon="nav-icon icon-envelope" class="nav-link" rightIcon="fas fa-angle-left right" />
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <x-utils.link :href="route('admin.messaging.contact.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Contacts')" />
-                    </li>
-                    <li class="nav-item">
-                        <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Newsletters')" />
-                    </li>
-                </ul>
-                </li> --}}
-
-
-
-
-
                 @if ($logged_in_user->hasAllAccess() ||
                     ($logged_in_user->can('admin.access.user.list') ||
                         $logged_in_user->can('admin.access.user.deactivate') ||
@@ -168,19 +146,10 @@
                         <x-utils.link-sidebar href="#" :text="__('Settings')" icon="nav-icon icon-star"
                             class="nav-link" rightIcon="fas fa-angle-left right" />
                         <ul class="nav nav-treeview">
-
-
                             <li class="nav-item">
                                 <x-utils.link :href="route('frontend.index')" icon="nav-icon icon-arrow-right" class="nav-link"
                                     :text="__('Home')" />
                             </li>
-
-                            {{-- <li class="nav-item">
-              <x-utils.link :href="route('admin.front-setting.topNotice.create')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Top Notice')" />
-            </li> --}}
-                            {{-- <li class="nav-item">
-              <x-utils.link :href="url('#')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Pages')" />
-            </li> --}}
                             <li class="nav-item">
                                 <x-utils.link :href="route('admin.setting.general')" icon="nav-icon icon-arrow-right" class="nav-link"
                                     :text="__('General Settings')" />
@@ -213,6 +182,7 @@
                     </li>
                 @endif
 
+                {{-- Access --}}
                 <x-utils.link-sidebar href="#" :text="__('Access')" icon="nav-icon flaticon-lock" class="nav-link"
                     rightIcon="fas fa-angle-left right" />
                 <ul class="nav nav-treeview">

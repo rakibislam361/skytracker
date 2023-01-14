@@ -59,24 +59,36 @@
                                         <label for="status">Status</label>
                                         <select class="form-control" name="status" id="status">
                                             <option value="">Select</option>
-                                            @if ($logged_in_user->can('admin.order.order_rmb.edit'))
+                                            @if ($logged_in_user->can('admin.order.status.processing'))
                                                 <option value="processing">Processing</option>
                                             @endif
-                                            @if ($logged_in_user->can('admin.order.purchase.edit'))
+                                            @if ($logged_in_user->can('admin.order.status.on-hold'))
                                                 <option value="on-hold">On Hold</option>
+                                            @endif
+                                            @if ($logged_in_user->can('admin.order.status.purchased'))
                                                 <option value="purchased">Purchase Completed</option>
+                                            @endif
+                                            @if ($logged_in_user->can('admin.order.status.re-order'))
                                                 <option value="re-order">RE-Order</option>
+                                            @endif
+                                            @if ($logged_in_user->can('admin.order.status.refund-please'))
                                                 <option value="refund-please">Refund Please</option>
+                                            @endif
+                                            @if ($logged_in_user->can('admin.order.status.shipped-from-suppliers'))
                                                 <option value="shipped-from-suppliers">Shipped from suppliers</option>
+                                            @endif
+                                            @if ($logged_in_user->can('admin.order.status.delivery-after-holiday'))
                                                 <option value="delivery-after-holiday">Delivery after holiday</option>
                                             @endif
-                                            @if ($logged_in_user->can('admin.order.status.edit'))
+                                            @if ($logged_in_user->can('admin.order.status.received-in-china-warehouse'))
                                                 <option value="received-in-china-warehouse">Received in china warehouse
                                                 </option>
+                                            @endif
+                                            @if ($logged_in_user->can('admin.order.status.shipped-from-china-warehouse'))
                                                 <option value="shipped-from-china-warehouse">Shipped from china warehouse
                                                 </option>
                                             @endif
-                                            @if ($logged_in_user->can('admin.order.rate.edit'))
+                                            @if ($logged_in_user->can('admin.order.status.received-in-BD-warehouse'))
                                                 <option value="received-in-BD-warehouse">Received in BD warehouse</option>
                                             @endif
                                         </select>
