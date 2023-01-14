@@ -248,7 +248,7 @@ class OrderController extends Controller
       $orders = null;
 
       if ($count) {
-        $orders = $this->paginate($count, 20);
+        $orders = $this->paginate($count, 30);
         $orders->withPath('');
       }
       return view('backend.content.order.recent.index', compact('orders', 'amount'));

@@ -72,8 +72,6 @@
                @endif
            </tbody>
        </table>
-   </div>
-   <div class="mt-4">
        @if ($orders && count($orders) > 0)
            {{ $orders->withQueryString()->links() }}
        @endif

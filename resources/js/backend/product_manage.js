@@ -63,7 +63,6 @@ $(function () {
                     this
                 ).val()}">`;
             });
-            // console.log(hiddenInput);
             hiddenField.html(hiddenInput);
             changeStatusModal.modal("show");
             $("#statusChargeForm").trigger("reset");
@@ -181,6 +180,9 @@ $(function () {
             let track = [];
             let weight = [];
             let quantity = [];
+            let shipping_mark = null;
+            let shipping_from = null;
+
             if (itemValue.carton_id != null) {
                 carton = itemValue.carton_id.split(",");
                 if (!isEmpty(carton)) {
@@ -309,8 +311,19 @@ $(function () {
             $("#china_local_delivery_rmb").val(
                 itemValue.china_local_delivery_rmb
             );
-            $("#shipping_from").val(itemValue.shipping_from);
-            $("#shipping_mark").val(itemValue.shipping_mark);
+            if (itemValue.shipping_from) {
+                shipping_from = itemValue.shipping_from;
+            } else {
+                shipping_from = "guangzhou";
+            }
+            $("#shipping_from").val(shipping_from);
+
+            if (itemValue.shipping_mark) {
+                shipping_mark = itemValue.shipping_mark;
+            } else {
+                shipping_mark = "SKY" + itemValue.id;
+            }
+            $("#shipping_mark").val(shipping_mark);
             $("#chn_warehouse_qty").val(itemValue.chn_warehouse_qty);
             $("#cbm").val(itemValue.cbm);
             $("#shipped_by").val(itemValue.shipped_by);
@@ -397,36 +410,6 @@ $(function () {
                 $("#shipping_charge").val(Math.round(total));
             }
         )
-
-        // .on("click", "#editBtn", function (event) {
-        //     event.preventDefault();
-        //     var formData = $("#editItemForm").serialize();
-        //     let url = $("#editItemForm").attr("action");
-        //     console.log(url);
-        //     $.ajax({
-        //         type: "put",
-        //         url: url,
-        //         data: formData,
-        //         beforeSend: function () {
-        //             $("#editBtn").prop("disabled", true);
-        //             console.log(formData);
-        //         },
-        //         success: function (res) {
-        //             Swal.fire({
-        //                 icon: "success",
-        //                 text: "Update successful",
-        //             }).then((result) => {
-        //                 window.location.reload();
-        //             });
-        //         },
-        //         error: function () {
-        //             Swal.fire({
-        //                 icon: "warning",
-        //                 text: "Unsuccessful",
-        //             });
-        //         },
-        //     });
-        // })
 
         .on("keyup", "#purchase_rmb", function () {
             let prmb = $(this).val();

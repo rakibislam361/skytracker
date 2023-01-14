@@ -16,15 +16,19 @@
 
     <div class="card">
         <div class="card-header">
-            <h5 class="d-inline-block mr-2">@lang('Order Items')</h5>
-
-            <div class="btn-group" role="group" aria-label="header_button_group" style="margin-left: 78%">
-                <button type="button" class="btn btn-primary" id="changeGroupStatusButton" data-toggle="tooltip"
-                    disabled="true" title="@lang('Change Status')">
-                    @lang('Change Status')
-                </button>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="d-inline-block mr-2">@lang('Order Items')</h5>
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-group float-right" role="group" aria-label="header_button_group">
+                        <button type="button" class="btn btn-primary" id="changeGroupStatusButton" data-toggle="tooltip"
+                            disabled="true" title="@lang('Change Status')">
+                            @lang('Change Status')
+                        </button>
+                    </div>
+                </div>
             </div>
-
             @include('backend.content.order.includes.filter')
 
         </div>

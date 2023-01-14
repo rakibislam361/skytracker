@@ -89,7 +89,5 @@
             @endforeach
         </tbody>
     </table>
-</div>
-<div class="mt-4">
     {{ $orders->withQueryString()->links() }}
 </div>

@@ -6,7 +6,7 @@
  <div class="tracking-area pt-95 pb-115">
      <div class="container">
          <div class="row justify-content-center">
-             <div class="col-xl-4 col-lg-10">
+             <div class="col-md-4">
                  <div class="tracking-id-info text-center">
 
                      <div class="tracking-list">
@@ -17,26 +17,19 @@
 
                                  <x-forms.post :action="route('frontend.auth.login')" id="loginForm">
                                      @csrf
-                                     <div class="cta-form-col d-flex justify-content-between"> <input type="email"
-                                             name="email" id="email" class="cta-email"
-                                             placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}"
-                                             maxlength="255" required autofocus autocomplete="email" /></div>
-                                     <div class="cta-form-col d-flex justify-content-between"> <input type="password"
-                                             name="password" id="password" class="cta-email"
-                                             placeholder="{{ __('Password') }}" maxlength="100" required
-                                             autocomplete="current-password" /></div>
+                                     <div class="cta-form-col d-flex justify-content-between"> <input type="email" name="email" id="email" class="cta-email" placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}" maxlength="255" required autofocus autocomplete="email" /></div>
+                                     <div class="cta-form-col d-flex justify-content-between"> <input type="password" name="password" id="password" class="cta-email" placeholder="{{ __('Password') }}" maxlength="100" required autocomplete="current-password" /></div>
 
 
                                      @error('email')
-                                         <span class="invalid-feedback" role="alert" style="text-align:center">
-                                             <strong class="alert-danger">{{ $message }}</strong>
-                                         </span>
+                                     <span class="invalid-feedback" role="alert" style="text-align:center">
+                                         <strong class="alert-danger">{{ $message }}</strong>
+                                     </span>
                                      @enderror
 
                                      <div class="form-group" style="padding-bottom: 10px;">
                                          <div class="form-check">
-                                             <input name="remember" id="remember" class="form-check-input"
-                                                 type="checkbox" {{ old('remember') ? 'checked' : '' }} />
+                                             <input name="remember" id="remember" class="form-check-input" type="checkbox" {{ old('remember') ? 'checked' : '' }} />
 
                                              <label class="form-check-label" for="remember">
                                                  @lang('Remember Me')
@@ -46,10 +39,10 @@
 
 
                                      @if (config('boilerplate.access.captcha.login'))
-                                         <div class="col">
-                                             @captcha
-                                             <input type="hidden" name="captcha_status" value="true" />
-                                         </div>
+                                     <div class="col">
+                                         @captcha
+                                         <input type="hidden" name="captcha_status" value="true" />
+                                     </div>
                                      @endif
 
                                      <div>

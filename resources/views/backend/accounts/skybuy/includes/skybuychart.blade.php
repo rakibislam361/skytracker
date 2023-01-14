@@ -15,15 +15,6 @@
                                 <option @if (request('current_year', null) == 'current_year') selected @endif value="current_year">This Year
                                 </option>
                             </select>
-                            {{-- <button type="submit" id="current_week" name="current_week" value="current_week"
-                                class="form-control btn-sm btn-secondary">This
-                                Week</button>
-                            <button type="submit" id="current_month" name="current_month" value="current_month"
-                                class="form-control btn-sm btn-secondary">This
-                                Month</button>
-                            <button type="submit" id="current_year" name="current_year" value="current_year"
-                                class="form-control btn-sm btn-secondary">This
-                                Year</button> --}}
                         </div>
                     </div>
 

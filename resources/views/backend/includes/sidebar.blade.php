@@ -20,9 +20,10 @@
                     $logged_in_user->can('admin.order.order_rmb.edit') ||
                     $logged_in_user->can('admin.order.localdelivery.edit') ||
                     $logged_in_user->can('admin.order.purchase.edit') ||
-                    $logged_in_user->can('admin.order.status.edit') ||
-                    $logged_in_user->can('admin.order.carton.edit') ||
-                    $logged_in_user->can('admin.order.rate.edit'))
+                    $logged_in_user->can('admin.order.chn_warehouse_qty') ||
+                    $logged_in_user->can('admin.order.chn_warehouse_weight') ||
+                    $logged_in_user->can('admin.order.status.shipped-from-china-warehouse') ||
+                    $logged_in_user->can('admin.order.status.received-in-BD-warehouse'))
                     <li class="nav-item {{ activeClass(Route::is('admin.order.*'), 'menu-open') }}">
                         <x-utils.link-sidebar href="#" :text="__('Orders')" icon="nav-icon icon-star"
                             class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.order.*'))" />
