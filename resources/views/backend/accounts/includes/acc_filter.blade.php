@@ -1,12 +1,13 @@
 <form class="search" name="search" method="GET">
+    @csrf
     <div class="row">
         <div class="col-2">
             <label for="recap_report">Recap Report</label>
             <select class="form-control" name="recap_report">
                 <option value="">Select</option>
-                <option @if (request('status', null) == 'thirty-days') selected @endif value="thirty-days">Last 30 Days</option>
-                <option @if (request('status', null) == 'seven-days') selected @endif value="seven-days">Last 7 Days</option>
-                <option @if (request('status', null) == 'last-day') selected @endif value="last-day">Last Days</option>
+                <option @if (request('current_week', null) == 'current_week') selected @endif value="current_week">This Week</option>
+                <option @if (request('current_month', null) == 'current_month') selected @endif value="current_month">This Month</option>
+                <option @if (request('current_year', null) == 'current_year') selected @endif value="current_year">This Year</option>
             </select>
 
         </div>
@@ -24,7 +25,7 @@
         </div>
         <div class="col-2">
             <label for="date">To Date</label>
-            <input type="date" id="enddate" name="to_date" class="form-control"
+            <input type="date" id="to_date" name="to_date" class="form-control"
                 value="{{ request('to_date', null) ? date('Y-m-d', strtotime(request('to_date', null))) : '' }}">
         </div>
 
@@ -32,7 +33,7 @@
             <div class="row">
                 <div class="col-8">
                     <label for="status">Status</label>
-                    {{-- <div class="col-7"> --}}
+
                     <select class="form-control" name="status">
                         <option value="">Select</option>
                         <option @if (request('status', null) == 'processing') selected @endif value="processing">Processing</option>
@@ -52,9 +53,6 @@
                         </option>
                         <option @if (request('status', null) == 'adjustment') selected @endif value="out-of-stock">Adjustment
                         </option>
-                        <option @if (request('status', null) == 'Waiting-for-Payment') selected @endif value="Waiting-for-Payment">Waiting
-                            For
-                            Payment</option>
                         <option @if (request('status', null) == 'refunded') selected @endif value="refunded">Refunded</option>
                         <option @if (request('status', null) == 'delivery-after-holiday') selected @endif value="delivery-after-holiday">
                             Delivery after holiday</option>
@@ -69,7 +67,7 @@
                             Received in BD warehouse
                         </option>
                     </select>
-                    {{-- </div> --}}
+
                 </div>
                 <div class="col-4">
                     <button type="submit" class="btn btn-outline-primary" style="margin-top:29px;" id="filter"

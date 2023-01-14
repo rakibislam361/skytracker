@@ -5,10 +5,15 @@
 @section('content')
 
     <div>
+
+
         <div class="text-right">
+            <x-utils.link :href="route('admin.account.skybuy')" class="btn btn-sm btn-outline-primary" style="margin-bottom:5px"
+                data-toggle="tooltip" title="Refresh" :text="__('Refresh')" />
             <x-utils.link :href="route('admin.account.skybuytable')" class="btn btn-sm btn-secondary" style="margin-bottom:5px" data-toggle="tooltip"
                 title="SkyBuy Accounts Table" :text="__('SkyBuy Accounts')" />
         </div>
+
 
         <div class="conainer-fluid">
             <div class="row">
@@ -19,7 +24,7 @@
                             <h3>{{ $totalcount }}</h3>
                             <p>Total Items</p>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <!-- ./col -->
@@ -31,7 +36,7 @@
 
                             <p>Processing</p>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <!-- ./col -->
@@ -43,7 +48,7 @@
 
                             <p>Purchased</p>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <!-- ./col -->
@@ -51,11 +56,11 @@
                     <!-- small box -->
                     <div class="small-box bg-danger">
                         <div class="inner">
-                            <h3>{{ $delivered }}</h3>
+                            <h3>{{ $partial }}</h3>
 
-                            <p>Delivered</p>
+                            <p>Partial Paid</p>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
                     </div>
                 </div>
                 <!-- ./col -->

@@ -17,6 +17,18 @@
 
         </div>
         <div class="card-body">
+            <span class="badge badge-success float-right" style="font-size: 100%; margin-bottom: 10px;">Margin :
+                {{ round($total_bd_receive - $total_bd_out) ?? 0 }}</span>
+            <span class="badge badge-success" style="font-size: 100%; margin-bottom: 10px;margin-right:5px">Total Products :
+                {{ $totalcount ?? 0 }}</span>
+            <span class="badge badge-success" style="font-size: 100%; margin-bottom: 10px;margin-right:5px">Items Value :
+                {{ round($products_value) ?? 0 }}</span>
+            <span class="badge badge-success" style="font-size: 100%; margin-bottom: 10px;margin-right:5px">Total BD Receive
+                :
+                {{ round($total_bd_receive) ?? 0 }}</span>
+            <span class="badge badge-success" style="font-size: 100%; margin-bottom: 10px;margin-left:5px">Total
+                BD Out :
+                {{ round($total_bd_out) ?? 0 }}</span>
             <div class="table-responsive">
                 <table class="table table-hover table-bordered mb-0 table-striped">
                     <thead>
@@ -24,6 +36,7 @@
                             <th class="align-content-center text-center">Date</th>
                             <th class="align-content-center text-center">Item Number</th>
                             <th class="align-content-center text-center">Customer</th>
+                            <th class="align-content-center text-center">Products Value</th>
                             <th class="align-content-center text-center">BD Receive</th>
                             <th class="align-content-center text-center">BD Out</th>
                             <th class="align-content-center text-center">Status</th>
@@ -32,14 +45,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <span class="badge badge-success float-right" style="font-size: 100%; margin-bottom: 10px;">Margin =
-                            {{ $total }}</span>
-                        <span class="badge badge-success"
-                            style="font-size: 100%; margin-bottom: 10px;margin-right:5px">Total BD Receive=
-                            {{ $total_bd_receive }}</span>
-                        <span class="badge badge-success" style="font-size: 100%; margin-bottom: 10px;margin-left:5px">Total
-                            BD Out =
-                            {{ $total_bd_out }}</span>
+
                         @foreach ($accounts as $account)
                             @php
                                 $bdReceive = $account->product_bd_received_cost;
@@ -53,6 +59,7 @@
                                 </td>
                                 <td class="align-content-center text-center">{{ $account->order_item_number ?? 'N/A' }}</td>
                                 <td class="align-content-center text-center">{{ $account->user->name ?? 'N/A' }}</td>
+                                <td class="align-content-center text-center">{{ $account->product_value ?? 'N/A' }}</td>
 
                                 <td class="align-content-center text-center">
                                     {{ $bdReceive ?? 'N/A' }}

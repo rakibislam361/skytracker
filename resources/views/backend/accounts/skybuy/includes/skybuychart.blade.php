@@ -1,69 +1,98 @@
 <div class="col-md-12">
     <div class="card">
-
-        {{-- <h5 class="d-inline-block mr-2">SkyBuy Report</h5>
-            <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div> --}}
         <div class="card-header">
-            <form method="GET" id="filterForm">
+            <form class="search" name="search" method="GET">
+                @csrf
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="input-group">
-                            <button type="button" id="thisWeek" value="thisWeek"
-                                class="form-control btn btn-secondary">This
+                            <select class="form-control" name="recap_report">
+                                <option value="">Recap Report</option>
+                                <option @if (request('current_week', null) == 'current_week') selected @endif value="current_week">This Week
+                                </option>
+                                <option @if (request('current_month', null) == 'current_month') selected @endif value="current_month">This
+                                    Month</option>
+                                <option @if (request('current_year', null) == 'current_year') selected @endif value="current_year">This Year
+                                </option>
+                            </select>
+                            {{-- <button type="submit" id="current_week" name="current_week" value="current_week"
+                                class="form-control btn-sm btn-secondary">This
                                 Week</button>
-                            <button type="button" id="thisMonth" value="thisMonth"
-                                class="form-control btn btn-secondary">This
+                            <button type="submit" id="current_month" name="current_month" value="current_month"
+                                class="form-control btn-sm btn-secondary">This
                                 Month</button>
-                            <button type="button" id="thisYear" value="thisYear"
-                                class="form-control btn btn-secondary">This
-                                Year</button>
-                            <button type="button" id="LastYear" value="LastYear"
-                                class="form-control btn btn-secondary">Last
-                                Year</button>
+                            <button type="submit" id="current_year" name="current_year" value="current_year"
+                                class="form-control btn-sm btn-secondary">This
+                                Year</button> --}}
                         </div>
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-md-2">
                         <div class="input-group">
-                            <select name="status" id="status" class="form-control">
-                                <option selected="" value="Waiting-for-Payment">Waiting for Payment</option>
-                                <option value="Partial-Paid">Partial Paid</option>
-                                <option value="on-hold">On Hold</option>
-                                <option value="processing">Processing</option>
-                                <option value="purchased">Purchased Complete</option>
-                                <option value="shipped-from-suppliers">shipped-from-suppliers</option>
-                                <option value="received-in-china-warehouse">received-in-china-warehouse</option>
-                                <option value="shipped-from-china-warehouse">shipped-from-china-warehouse
+                            <select class="form-control" name="status">
+                                <option value="">Status</option>
+                                <option @if (request('status', null) == 'processing') selected @endif value="processing">Processing
                                 </option>
-                                <option value="received-in-BD-warehouse">received-in-BD-warehouse</option>
-                                <option value="on-transit-to-customer">on-transit-to-customer</option>
-                                <option value="delivered">delivered</option>
-                                <option value="out-of-stock">out-of-stock</option>
-                                <option value="adjustment">adjustment</option>
-                                <option value="refunded">refund</option>
+                                <option @if (request('status', null) == 'on-hold') selected @endif value="on-hold">On Hold
+                                </option>
+                                <option @if (request('status', null) == 'purchased') selected @endif value="purchased">Purchase
+                                    Completed
+                                </option>
+                                <option @if (request('status', null) == 're-order') selected @endif value="re-order">RE Order
+                                </option>
+                                <option @if (request('status', null) == 'Partial-Paid') selected @endif value="Partial-Paid">Partial
+                                    Paid
+                                </option>
+                                <option @if (request('status', null) == 'refund-please') selected @endif value="refund-please">Refund
+                                    Please
+                                </option>
+                                <option @if (request('status', null) == 'refunded') selected @endif value="refunded">Refunded
+                                </option>
+                                <option @if (request('status', null) == 'on-transit-to-customer') selected @endif
+                                    value="on-transit-to-customer">On
+                                    Transit To Customer</option>
+                                <option @if (request('status', null) == 'delivered') selected @endif value="delivered">Delivered
+                                </option>
+                                <option @if (request('status', null) == 'out-of-stock') selected @endif value="out-of-stock">Out Of
+                                    Stock
+                                </option>
+                                <option @if (request('status', null) == 'adjustment') selected @endif value="out-of-stock">
+                                    Adjustment
+                                </option>
+                                <option @if (request('status', null) == 'refunded') selected @endif value="refunded">Refunded
+                                </option>
+                                <option @if (request('status', null) == 'delivery-after-holiday') selected @endif
+                                    value="delivery-after-holiday">
+                                    Delivery after holiday</option>
+
+                                <option @if (request('status', null) == 'received-in-china-warehouse') selected @endif
+                                    value="received-in-china-warehouse">
+                                    Received in china
+                                    warehouse</option>
+                                <option @if (request('status', null) == 'shipped-from-china-warehouse') selected @endif
+                                    value="shipped-from-china-warehouse">Shipped from china
+                                    warehouse</option>
+                                <option @if (request('status', null) == 'received-in-BD-warehouse') selected @endif
+                                    value="received-in-BD-warehouse">
+                                    Received in BD warehouse
+                                </option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="input-group">
-                            <input name="from-date" id="from-date" class="form-control" placeholder="From Date"
-                                onfocus="(this.type='date')">
-                            <input name="end-date" id="to-date" class="form-control" placeholder="To Date"
-                                onfocus="(this.type='date')">
+                            <input type="date" id="startdate" class="form-control" name="from_date"
+                                value="{{ request('from_date', null) ? date('Y-m-d', strtotime(request('from_date', null))) : '' }}">
+                            <input type="date" id="to_date" name="to_date" class="form-control"
+                                value="{{ request('to_date', null) ? date('Y-m-d', strtotime(request('to_date', null))) : '' }}">
                         </div>
                     </div>
 
-                    <div class="col-1">
+                    <div class="col-md-1">
                         <div class="input-group">
-                            <button type="button" class="btn btn-sm btn-primary form-control filter-form-submit"><i
+                            <button type="submit" id="filter" name="filter"
+                                class="btn btn-sm btn-primary form-control filter-form-submit"><i
                                     class="fa fa-search"></i> Search</button>
                         </div>
                     </div>
@@ -74,42 +103,30 @@
         </div>
         <div class="card-footer">
             <div class="row">
-                <div class="col-sm-2 col-6">
+                <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
-                        <h5 class="description-header">{{ $totalcount }}</h5>
+                        <h5 class="description-header">{{ $totalcount ?? 0 }}</h5>
                         <span class="description-text">Total Items</span>
                     </div>
                     <!-- /.description-block -->
                 </div>
                 <!-- /.col -->
-                <div class="col-sm-2 col-6">
+                <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
-                        <h5 class="description-header">{{ $delivered }}</h5>
-                        <span class="description-text">Delivered</span>
+                        <h5 class="description-header">{{ round($products_value) ?? 0 }}</h5>
+                        <span class="description-text">Products Value</span>
                     </div>
                 </div>
-                <div class="col-sm-2 col-6">
+                <div class="col-sm-3 col-6">
                     <div class="description-block border-right">
-                        <h5 class="description-header">{{ $pending }}</h5>
-                        <span class="description-text">On Hold</span>
+                        <h5 class="description-header">{{ round($bd_receive) ?? 0 }}</h5>
+                        <span class="description-text">BD Receive</span>
                     </div>
                 </div>
-                <div class="col-sm-2 col-6">
-                    <div class="description-block border-right">
-                        <h5 class="description-header">{{ $purchased }}</h5>
-                        <span class="description-text">Purchased</span>
-                    </div>
-                </div>
-                <div class="col-sm-2 col-6">
-                    <div class="description-block border-right">
-                        <h5 class="description-header">{{ $processing }}</h5>
-                        <span class="description-text">Processing</span>
-                    </div>
-                </div>
-                <div class="col-sm-2 col-6">
+                <div class="col-sm-3 col-6">
                     <div class="description-block">
-                        <h5 class="description-header">{{ $waiting }}</h5>
-                        <span class="description-text">Waiting For Payment</span>
+                        <h5 class="description-header">{{ round($bd_out) ?? 0 }}</h5>
+                        <span class="description-text">BD out</span>
                     </div>
                 </div>
             </div>

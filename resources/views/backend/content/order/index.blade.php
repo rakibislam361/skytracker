@@ -12,9 +12,7 @@
         $refundedCount = null;
         $processingCount = null;
         $purchasedCount = null;
-        
     @endphp
-
 
     <div class="card">
         <div class="card-header">

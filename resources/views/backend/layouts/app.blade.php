@@ -16,6 +16,7 @@
     <link href="{{ asset('icon_img/assets/icons/simple-line-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/fontawesome.css') }}" rel="stylesheet">
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(get_setting('favicon')) }}">

@@ -46,7 +46,7 @@
             @foreach ($orders as $order)
                 <tr class="order-modal" data-value="{{ json_encode($order) }}">
                     <td class="align-content-center text-center"><input type="checkbox" class="checkboxItem"
-                            name="checkboxItem" id="checkboxItem" value={{ $order->id }}></td>
+                            name="checkboxItem" id="checkboxItem" value={{ $order->id ?? 'N/A' }}></td>
                     <td class="align-content-center text-center">
                         {{ $order->created_at ? date('d/m/Y', strtotime($order->created_at)) : 'N/A' }}
                     </td>

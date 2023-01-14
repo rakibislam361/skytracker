@@ -30,37 +30,58 @@ class AccountController extends Controller
 
         $accountsData = $this->recentorderListTrait($filter);
         $account = [];
-        if ($accountsData) {
-            $account = $accountsData->data->result->data;
-            $totalcount = count($account);
-            $waiting = 0;
-            $processing = 0;
-            $delivered = 0;
-            $purchased = 0;
-            $pending = 0;
+        $totalcount = 0;
+        $processing = 0;
+        $purchased = 0;
+        $partial = 0;
+        $delivered = 0;
+        $received_in_bd = 0;
+        $received_in_china = 0;
+        $shipped_from_china = 0;
+        $products_value = 0;
+        $bd_receive = 0;
+        $bd_out = 0;
 
-            foreach ($account as $data) {
-                if ($data->status == "Waiting for Payment") {
-                    $waiting += 1;
-                }
-                if ($data->status == "processing") {
-                    $processing += 1;
-                }
-                if ($data->status == "purchased") {
-                    $purchased += 1;
-                }
-                if ($data->status === "delivered") {
-                    $delivered += 1;
-                }
-                if ($data->status == "on-hold") {
-                    $pending += 1;
+
+        if ($accountsData) {
+            $acc = $accountsData->data->result->data;
+            foreach ($acc as $ac) {
+                if ($ac->status != 'Waiting for Payment') {
+                    $account[] = $ac;
                 }
             }
-        }
+            $totalcount = count($account);
+            foreach ($account as $data) {
+                if ($data->status == 'processing') {
+                    $processing += 1;
+                }
+                if ($data->status == 'purchased') {
+                    $purchased += 1;
+                }
+                if ($data->status == 'partial-paid') {
+                    $partial += 1;
+                }
+                if ($data->status == 'delivered') {
+                    $delivered += 1;
+                }
+                if ($data->status == 'received-in-BD-warehouse') {
+                    $received_in_bd += 1;
+                }
+                if ($data->status == 'received-in-china-warehouse') {
+                    $received_in_china += 1;
+                }
+                if ($data->status == 'shipped-from-china-warehouse') {
+                    $shipped_from_china += 1;
+                }
 
-        $accounts = $this->paginate($account, 30);
+                $products_value += $data->product_value;
+                $bd_receive += $data->product_bd_received_cost;
+                $bd_out +=  $data->purchase_cost_bd;
+            }
+        }
+        $accounts = $this->paginate($account, 6);
         $accounts->withPath('');
-        return view('backend.accounts.skybuy.index', compact('accounts', 'totalcount', 'waiting', 'processing', 'delivered', 'purchased', 'pending'));
+        return view('backend.accounts.skybuy.index', compact('accounts', 'totalcount', 'processing', 'purchased', 'partial', 'delivered', 'products_value', 'bd_receive', 'bd_out', 'received_in_bd', 'received_in_china', 'shipped_from_china'));
     }
 
     public function skybuyTable()
@@ -73,31 +94,31 @@ class AccountController extends Controller
             'to_date' => request('to_date', null),
         ];
 
-        $receivedData = $this->skybuyTableTrait($filter);
-        $accountsData = $receivedData->data->result;
+        $accountsData = $this->recentorderListTrait($filter);
+
+        $account = [];
         $total = 0;
+        $totalcount = 0;
+        $products_value = 0;
         $total_bd_receive = 0;
         $total_bd_out = 0;
-        $account = [];
-        foreach ($accountsData->data as $data) {
-            if ($data->status != 'Waiting for Payment') {
-                $account[] = $data;
+        if ($accountsData) {
+            $acc = $accountsData->data->result->data;
+            foreach ($acc as $ac) {
+                if ($ac->status != 'Waiting for Payment') {
+                    $account[] = $ac;
+                }
+            }
+            $totalcount = count($account);
+            foreach ($account as $data) {
+                $products_value += $data->product_value;
+                $total_bd_receive += $data->product_bd_received_cost;
+                $total_bd_out += $data->purchase_cost_bd;
             }
         }
-
-        foreach ($account as $accounts) {
-
-            $bdReceive = $accounts->product_bd_received_cost;
-            $bdOut = $accounts->purchase_cost_bd;
-            $pl = $bdReceive - $bdOut;
-            $total += $pl;
-            $total_bd_receive += $bdReceive;
-            $total_bd_out += $bdOut;
-        }
-
-        $accounts = $this->paginate($account, 20);
+        $accounts = $this->paginate($account, 30);
         $accounts->withPath('');
-        return view('backend.accounts.skybuy.skybuyAccountsTable', compact('accounts', 'total', 'total_bd_receive', 'total_bd_out'));
+        return view('backend.accounts.skybuy.skybuyAccountsTable', compact('accounts', 'products_value', 'total_bd_receive', 'total_bd_out', 'totalcount'));
     }
 
     public function skyoneIndex()

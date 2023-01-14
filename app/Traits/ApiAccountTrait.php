@@ -29,15 +29,6 @@ trait ApiAccountTrait
     }
     public function recentorderListTrait($filter)
     {
-        $url = get_setting('api_url') . '/admin/recent-order';
-        $get_token = $this->getToken();
-        $response = Http::withToken($get_token)->get($url, $filter);
-        return $response->object();
-    }
-
-    public function skybuyTableTrait($filter)
-    {
-
         $url = get_setting('api_url') . '/admin/order-item-list';
         $get_token = $this->getToken();
         $response = Http::withToken($get_token)->get($url, $filter);
