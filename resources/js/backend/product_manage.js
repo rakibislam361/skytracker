@@ -173,6 +173,10 @@ $(function () {
             e.preventDefault();
             $(this).parents("tr").remove();
         })
+        .on("hidden", "#mymodal", function () {
+            // $(this).find("#updateItem").trigger("reset");
+            console.log("hi");
+        })
         .on("dblclick", ".order-modal", function () {
             let itemValue = $(this).data("value");
             let html = null;
@@ -211,7 +215,7 @@ $(function () {
                                       <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
-                $(".add-carton").append(html);
+                $(".add-carton").html(html);
             }
             if (itemValue.tracking_number != null) {
                 track = itemValue.tracking_number.split(",");
@@ -241,7 +245,8 @@ $(function () {
                                       <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
-                $(".add-tracking-number").append(html);
+
+                $(".add-tracking-number").html(html);
             }
             if (itemValue.chn_warehouse_weight != null) {
                 weight = itemValue.chn_warehouse_weight.split(",");
@@ -271,7 +276,7 @@ $(function () {
                                       <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
-                $(".chn_weight").append(html);
+                $(".chn_weight").html(html);
             }
             if (itemValue.chn_warehouse_qty != null) {
                 quantity = itemValue.chn_warehouse_qty.split(",");
@@ -301,7 +306,7 @@ $(function () {
                                       <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
-                $(".chn_qty").append(html);
+                $(".chn_qty").html(html);
             }
 
             $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
@@ -336,6 +341,9 @@ $(function () {
             $("#chinaLocalDelivery").val(itemValue.chinaLocalDelivery);
             $("#purchase_cost_bd").val(itemValue.purchase_cost_bd);
             $("#updateButton").modal("show");
+        })
+        .on("hidden", ".order-modal", function () {
+            console.log("hi");
         })
 
         .on("click", ".order-item-modal", function () {
