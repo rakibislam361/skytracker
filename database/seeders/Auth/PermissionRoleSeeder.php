@@ -91,51 +91,118 @@ class PermissionRoleSeeder extends Seeder
     $orders = Permission::create([
       'type' => Order::TYPE_ADMIN,
       'name' => 'admin.order',
-      'description' => 'All Order Permissions',
+      'description' => 'Edit All Order Permissions',
     ]);
     $orders->children()->saveMany([
       new Permission([
         'type' => Order::TYPE_ADMIN,
-        'name' => 'admin.order.order_rmb.edit',
+        'name' => 'admin.order.order_rmb',
         'description' => 'Edit Order Rmb',
-
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
-        'name' => 'admin.order.localdelivery.edit',
-        'description' => 'Edit Local Delivery',
-
-      ]),
-      new Permission([
-        'type' => Order::TYPE_ADMIN,
-        'name' => 'admin.order.purchase.edit',
+        'name' => 'admin.order.purchase',
         'description' => 'Actual Cost(Purchase Cost)',
-
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
-        'name' => 'admin.order.status.edit',
-        'description' => 'Edit Status',
-
-      ]),
-
-      new Permission([
-        'type' => Order::TYPE_ADMIN,
-        'name' => 'admin.order.carton.edit',
-        'description' => 'Edit Carton Information',
-
+        'name' => 'admin.order.localdelivery',
+        'description' => 'Edit Local Delivery',
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
-        'name' => 'admin.order.rate.edit',
-        'description' => 'Edit Rate',
-
+        'name' => 'admin.order.product_type',
+        'description' => 'Edit Product Type',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.shipping_from',
+        'description' => 'Edit Shipping From(GZ/HK)',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.shipping_mark',
+        'description' => 'Edit Shipping Mark',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.chn_warehouse_qty',
+        'description' => 'Edit China Warehouse Quantity',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.chn_warehouse_weight',
+        'description' => 'Edit China Warehouse Weight',
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.order.cbm.edit',
         'description' => 'Edit Cbm',
-
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.carton_id',
+        'description' => 'Edit Carton Number',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.shipped_by',
+        'description' => 'Edit Shipped By(air/sea)',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.tracking_id',
+        'description' => 'Edit Tracking Number',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.processing',
+        'description' => 'Edit Status processing',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.on-hold',
+        'description' => 'Edit Status on-hold',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.purchased',
+        'description' => 'Edit Status purchase completed',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.re-order',
+        'description' => 'Edit Status re-order',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.refund-please',
+        'description' => 'Edit Status refund-please',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.shipped-from-suppliers',
+        'description' => 'Edit Status shipped-from-suppliers',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.delivery-after-holiday',
+        'description' => 'Edit Status delivery-after-holiday',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.received-in-china-warehouse',
+        'description' => 'Edit Status received-in-china-warehouse',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.shipped-from-china-warehouse',
+        'description' => 'Edit Status shipped-from-china-warehouse',
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.order.status.received-in-BD-warehouse',
+        'description' => 'Edit Status received-in-BD-warehouse',
       ]),
     ]);
 
@@ -145,83 +212,95 @@ class PermissionRoleSeeder extends Seeder
       'description' => 'Settings Permissions',
     ]);
 
+    $accounts = Permission::create([
+      'type' => Setting::TYPE_ADMIN,
+      'name' => 'admin.accounts',
+      'description' => 'Accounts Permissions',
+    ]);
+
     $status = Permission::create([
       'type' => Order::TYPE_ADMIN,
       'name' => 'admin.status',
-      'description' => 'Status Permissions',
+      'description' => 'View All Status Permissions',
     ]);
     $status->children()->saveMany([
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.waiting-for-payment',
-        'description' => 'Waiting For Payment',
+        'description' => 'View Waiting For Payment',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.processing',
-        'description' => 'Processing',
+        'description' => 'View Processing',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.on-hold',
-        'description' => 'On-hold',
+        'description' => 'View On-hold',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.partial-paid',
-        'description' => 'Partial-paid',
+        'description' => 'View Partial-paid',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.purchased',
-        'description' => 'Purchased',
+        'description' => 'View Purchased',
 
       ]),
 
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.re-order',
-        'description' => 'Re-order',
+        'description' => 'View Re-order',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.refund',
-        'description' => 'Refund',
+        'description' => 'View Refund',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.shipped-from-suppliers',
-        'description' => 'Shipped From Suppliers',
+        'description' => 'View Shipped From Suppliers',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.received-in-chinawarehouse',
-        'description' => 'Received in China Warehouse',
+        'description' => 'View Received in China Warehouse',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.shipped-from-chinawarehouse',
-        'description' => 'Shipped From China Warehouse',
+        'description' => 'View Shipped From China Warehouse',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.received-in-bdwarehouse',
-        'description' => 'Received in BDwarehouse',
+        'description' => 'View Received in BDwarehouse',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.delivery-after-holiday',
+        'description' => 'View Delivery After Holiday',
 
       ]),
       new Permission([
         'type' => Order::TYPE_ADMIN,
         'name' => 'admin.status.delivered',
-        'description' => 'Deliverd',
+        'description' => 'View Deliverd',
 
       ]),
     ]);

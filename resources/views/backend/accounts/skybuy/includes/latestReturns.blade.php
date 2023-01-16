@@ -1,42 +1,41 @@
-<div class="col-md-6">
-  <div class="card">
-    <div class="card-header">
-      <h3 class="card-title">Latest Returns</h3>
+<div class="col-md-4">
+    <div class="info-box mb-3 bg-warning">
+        <span class="info-box-icon"><i class="fa fa-truck"></i></span>
 
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-          <i class="fas fa-minus"></i>
-        </button>
-        <button type="button" class="btn btn-tool" data-card-widget="remove">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
+        <div class="info-box-content">
+            <span class="info-box-text">Deliverd</span>
+            <span class="info-box-number">{{ $delivered }}</span>
+        </div>
+        <!-- /.info-box-content -->
     </div>
-    <!-- /.card-header -->
-    <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table m-0">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Id</th>
-              <th>Number</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>17/11/2022</td>
-              <td>Id#123</td>
-              <td>1</td>
-              <td><span class="badge badge-success">Shipped</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- /.info-box -->
+    <div class="info-box mb-3 bg-success">
+        <span class="info-box-icon"><i class="fa fa-home"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Received in China Warehouse</span>
+            <span class="info-box-number">{{ $received_in_china }}</span>
+        </div>
+        <!-- /.info-box-content -->
     </div>
-    <div class="card-footer text-center">
-      <a href={{ route('admin.order.index') }} class="uppercase">View All</a>
+    <!-- /.info-box -->
+    <div class="info-box mb-3 bg-danger">
+        <span class="info-box-icon"><i class="fas fa fa-plane"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Shipped From China Warehouse</span>
+            <span class="info-box-number">{{ $shipped_from_china }}</span>
+        </div>
+        <!-- /.info-box-content -->
     </div>
-  </div>
+    <!-- /.info-box -->
+    <div class="info-box mb-3 bg-info">
+        <span class="info-box-icon"><i class="fa fa-home"></i></span>
+
+        <div class="info-box-content">
+            <span class="info-box-text">Received In BD Warehouse</span>
+            <span class="info-box-number">{{ $received_in_bd }}</span>
+        </div>
+        <!-- /.info-box-content -->
+    </div>
 </div>

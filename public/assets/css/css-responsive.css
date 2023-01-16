@@ -103,13 +103,13 @@
 	padding: 0;
 }
 .cta-from .custom-select {
-	width: 215px;
+	width: 100%;
 }
 .cta-from .cta-form-col input {
-	width: 98px;
+	width: 100%;
 }
 .cta-from .cta-form-col input.cta-email {
-	width: 215px;
+	width: 100%;
 }
 .cta-pl {
 	padding-left: 0;
@@ -402,13 +402,13 @@ blockquote.classic-blockquote-post::after {
 	padding: 0;
 }
 .cta-from .custom-select {
-	width: 330px;
+	width: 100%;
 }
 .cta-from .cta-form-col input {
-	width: 150px;
+	width: 100%;
 }
 .cta-from .cta-form-col input.cta-email {
-	width: 330px;
+	width: 100%;
 }
 .cta-pl {
 	padding-left: 0;

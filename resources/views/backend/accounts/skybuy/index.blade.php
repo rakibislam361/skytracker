@@ -3,61 +3,68 @@
 @section('title', __('Manage Accounts'))
 
 @section('content')
-    @php
-        $acc = [];
-        $totalcount = 0;
-        $waiting = 0;
-        $processing = 0;
-        $delivered = 0;
-        $purchased = 0;
-        $pending = 0;
-        foreach ($accounts as $data) {
-            $acc[] = $data;
-            $count = count($acc);
-            $totalcount += $count;
-        }
-        foreach ($accounts as $data) {
-            if ($data->status == 'Waiting for Payment') {
-                $acc[] = $data;
-                $count = count($acc);
-                $waiting += $count;
-            }
-        }
-        foreach ($accounts as $data) {
-            if ($data->status == 'processing') {
-                $acc[] = $data;
-                $count = count($acc);
-                $processing += $count;
-            }
-        }
-        foreach ($accounts as $data) {
-            if ($data->status == 'delivered') {
-                $acc[] = $data;
-                $count = count($acc);
-                $delivered += $count;
-            }
-        }
-        foreach ($accounts as $data) {
-            if ($data->status == 'purchased') {
-                $acc[] = $data;
-                $count = count($acc);
-                $purchased += $count;
-            }
-        }
-        foreach ($accounts as $data) {
-            if ($data->status == 'on-hold') {
-                $acc[] = $data;
-                $count = count($acc);
-                $pending += $count;
-            }
-        }
-        // dd($totalcount);
-    @endphp
 
     <div>
+
+
         <div class="text-right">
-            <x-utils.link :href="route('admin.account.skybuytable')" class="btn btn-sm btn-secondary" data-toggle="tooltip"
+            <x-utils.link :href="route('admin.account.skybuy')" class="btn btn-sm btn-outline-primary" style="margin-bottom:5px"
+                data-toggle="tooltip" title="Refresh" :text="__('Refresh')" />
+            <x-utils.link :href="route('admin.account.skybuytable')" class="btn btn-sm btn-secondary" style="margin-bottom:5px" data-toggle="tooltip"
                 title="SkyBuy Accounts Table" :text="__('SkyBuy Accounts')" />
+        </div>
+
+
+        <div class="conainer-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{ $totalcount }}</h3>
+                            <p>Total Items</p>
+                        </div>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{ $processing }}</h3>
+
+                            <p>Processing</p>
+                        </div>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>{{ $purchased }}</h3>
+
+                            <p>Purchased</p>
+                        </div>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{ $partial }}</h3>
+
+                            <p>Partial Paid</p>
+                        </div>
+                        {{-- <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> --}}
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
         </div>
 
         <div class="row">

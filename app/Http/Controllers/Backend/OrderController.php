@@ -59,7 +59,7 @@ class OrderController extends Controller
             }
           }
           if ($userRole->hasPermissionTo('admin.status.partial-paid')) {
-            if ($data->status == 'Partial-Paid') {
+            if ($data->status == 'partial-paid') {
               $order[] = $data;
             }
           }
@@ -84,17 +84,17 @@ class OrderController extends Controller
             }
           }
           if ($userRole->hasPermissionTo('admin.status.received-in-chinawarehouse')) {
-            if ($data->status == 'received-in-chinawarehouse') {
+            if ($data->status == 'received-in-china-warehouse') {
               $order[] = $data;
             }
           }
           if ($userRole->hasPermissionTo('admin.status.shipped-from-chinawarehouse')) {
-            if ($data->status == 'shipped-from-chinawarehouse') {
+            if ($data->status == 'shipped-from-china-warehouse') {
               $order[] = $data;
             }
           }
           if ($userRole->hasPermissionTo('admin.status.received-in-bdwarehouse')) {
-            if ($data->status == 'received-in-bdwarehouse') {
+            if ($data->status == 'received-in-BD-warehouse') {
               $order[] = $data;
             }
           }
@@ -132,6 +132,10 @@ class OrderController extends Controller
 
     if (request()->carton_id) {
       $data['carton_id'] = implode(',', request()->carton_id);
+    }
+
+    if (request()->chn_warehouse_qty) {
+      $data['chn_warehouse_qty'] = implode(',', request()->chn_warehouse_qty);
     }
 
     if (array_key_exists('chinaLocalDelivery', $data)) {
@@ -244,7 +248,7 @@ class OrderController extends Controller
       $orders = null;
 
       if ($count) {
-        $orders = $this->paginate($count, 20);
+        $orders = $this->paginate($count, 30);
         $orders->withPath('');
       }
       return view('backend.content.order.recent.index', compact('orders', 'amount'));
@@ -384,7 +388,7 @@ class OrderController extends Controller
       'china_local_delivery_rmb' => 'nullable|string',
       'shipping_from' => 'nullable|string',
       'shipping_mark' => 'nullable|string',
-      'chn_warehouse_qty' => 'nullable',
+      'chn_warehouse_qty.*' => 'nullable',
       'chn_warehouse_weight.*' => 'nullable',
       'cbm' => 'nullable|string',
       'carton_id.*' => 'nullable',

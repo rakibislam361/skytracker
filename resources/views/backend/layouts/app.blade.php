@@ -16,6 +16,7 @@
     <link href="{{ asset('icon_img/assets/icons/simple-line-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/fontawesome.css') }}" rel="stylesheet">
 
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(get_setting('favicon')) }}">
@@ -59,7 +60,8 @@
     </div>
 
     @stack('before-scripts')
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/backend.js') }}"></script>
