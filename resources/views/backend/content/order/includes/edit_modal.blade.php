@@ -1,9 +1,9 @@
 <div class="modal fade" id="updateButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
 
-    <div class="modal-dialog modal-dialog-centered" role="document" id="mymodal">
+    <div class="modal-dialog modal-dialog-centered mymodal" role="document">
         <div class="modal-content">
-            <form method="post" id="updateItem">
+            <form method="post" id="updateItem" class="itemModal">
                 @csrf
                 <input type="hidden" name="order_update" id="order_update" value="" class="form-control" />
                 <div class="modal-header">
@@ -153,7 +153,7 @@
                         </div>
                     @endif
 
-                    <div class="form-group">
+                    <div class="form-group status">
                         <label for="status">Status</label>
                         <select class="form-control" name="status" id="status">
                             <option value="">Select</option>

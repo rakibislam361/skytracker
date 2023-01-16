@@ -23,6 +23,7 @@ function enable_proceed_button() {
 function disabled_proceed_button() {
     $("#changeGroupStatusButton").attr("disabled", "disabled");
 }
+
 $(function () {
     var i = 0;
     let itemNumber = 0;
@@ -173,10 +174,7 @@ $(function () {
             e.preventDefault();
             $(this).parents("tr").remove();
         })
-        .on("hidden", "#mymodal", function () {
-            // $(this).find("#updateItem").trigger("reset");
-            console.log("hi");
-        })
+
         .on("dblclick", ".order-modal", function () {
             let itemValue = $(this).data("value");
             let html = null;
@@ -186,7 +184,7 @@ $(function () {
             let quantity = [];
             let shipping_mark = null;
             let shipping_from = null;
-
+            let selectstatus = null;
             if (itemValue.carton_id != null) {
                 carton = itemValue.carton_id.split(",");
                 if (!isEmpty(carton)) {
@@ -201,6 +199,7 @@ $(function () {
                                       <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
+
                         $(".add-carton").append(html);
                     });
                 }
@@ -215,7 +214,7 @@ $(function () {
                                       <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
-                $(".add-carton").html(html);
+                $(".add-carton").append(html);
             }
             if (itemValue.tracking_number != null) {
                 track = itemValue.tracking_number.split(",");
@@ -246,7 +245,7 @@ $(function () {
                                     </td>
                                 </tr>`;
 
-                $(".add-tracking-number").html(html);
+                $(".add-tracking-number").append(html);
             }
             if (itemValue.chn_warehouse_weight != null) {
                 weight = itemValue.chn_warehouse_weight.split(",");
@@ -276,7 +275,7 @@ $(function () {
                                       <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
-                $(".chn_weight").html(html);
+                $(".chn_weight").append(html);
             }
             if (itemValue.chn_warehouse_qty != null) {
                 quantity = itemValue.chn_warehouse_qty.split(",");
@@ -306,7 +305,7 @@ $(function () {
                                       <button type="button" class="btn btn-outline-danger remove-tr">-</button>
                                     </td>
                                 </tr>`;
-                $(".chn_qty").html(html);
+                $(".chn_qty").append(html);
             }
 
             $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
@@ -328,11 +327,187 @@ $(function () {
             } else {
                 shipping_mark = "SKY" + itemValue.id;
             }
+            if (itemValue.status) {
+                selectstatus = itemValue.status;
+            }
             $("#shipping_mark").val(shipping_mark);
-            $("#chn_warehouse_qty").val(itemValue.chn_warehouse_qty);
             $("#cbm").val(itemValue.cbm);
             $("#shipped_by").val(itemValue.shipped_by);
-            $("#status").val(itemValue.status);
+            $("div.status select").val(selectstatus);
+            $("#product_value").val(itemValue.product_value);
+            $("#product_type").val(itemValue.product_type);
+            $("#product_bd_received_cost").val(
+                itemValue.product_bd_received_cost
+            );
+
+            $("#chinaLocalDelivery").val(itemValue.chinaLocalDelivery);
+            $("#purchase_cost_bd").val(itemValue.purchase_cost_bd);
+            $("#updateButton").modal("show");
+        })
+        .on("hidden.bs.modal", "#updateButton", function () {
+            $(".chn_qty").html("");
+            $(".chn_weight").html("");
+            $(".add-tracking-number").html("");
+            $(".add-carton").html("");
+        })
+
+        .on("click", ".order-item-modal", function () {
+            let itemValue = $(this).data("value");
+            $("#updateItem").attr("action", `/admin/order/${itemValue.id}`);
+            let html = null;
+            let carton = [];
+            let track = [];
+            let weight = [];
+            let quantity = [];
+            let shipping_mark = null;
+            let shipping_from = null;
+            let selectstatus = null;
+            if (itemValue.carton_id != null) {
+                carton = itemValue.carton_id.split(",");
+                if (!isEmpty(carton)) {
+                    carton.forEach((val) => {
+                        html = `<tr>
+                                    <td><input type="text" name="carton_id[]" value="${val}" placeholder="carton id"
+                                            class="form-control"  /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="carton-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+
+                        $(".add-carton").append(html);
+                    });
+                }
+            } else {
+                html = `<tr>
+                                    <td><input type="text" name="carton_id[]" placeholder="carton id"
+                                            class="form-control"  /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="carton-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                $(".add-carton").append(html);
+            }
+            if (itemValue.tracking_number != null) {
+                track = itemValue.tracking_number.split(",");
+                if (!isEmpty(track)) {
+                    track.forEach((val) => {
+                        html = `<tr>
+                                    <td><input type="text" name="tracking_number[]" value="${val}" placeholder="tracking id"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="tracking-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                        $(".add-tracking-number").append(html);
+                    });
+                }
+            } else {
+                html = `<tr>
+                                    <td><input type="text" name="tracking_number[]" placeholder="tracking id"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="tracking-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+
+                $(".add-tracking-number").append(html);
+            }
+            if (itemValue.chn_warehouse_weight != null) {
+                weight = itemValue.chn_warehouse_weight.split(",");
+                if (!isEmpty(weight)) {
+                    weight.forEach((val) => {
+                        html = `<tr>
+                                    <td><input type="text" name="chn_warehouse_weight[]" value="${val}" placeholder="china warehouse weight"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="weight-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                        $(".chn_weight").append(html);
+                    });
+                }
+            } else {
+                html = `<tr>
+                                   <td><input type="text" name="chn_warehouse_weight[]" placeholder="china warehouse weight"
+                                            class="form-control" /></td>
+                                   <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="weight-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                $(".chn_weight").append(html);
+            }
+            if (itemValue.chn_warehouse_qty != null) {
+                quantity = itemValue.chn_warehouse_qty.split(",");
+                if (!isEmpty(quantity)) {
+                    quantity.forEach((val) => {
+                        html = `<tr>
+                                    <td><input type="text" name="chn_warehouse_qty[]" value="${val}" placeholder="china warehouse qty"
+                                            class="form-control" /></td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="qty-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                        $(".chn_qty").append(html);
+                    });
+                }
+            } else {
+                html = `<tr>
+                                   <td><input type="text" name="chn_warehouse_qty[]" placeholder="china warehouse qty"
+                                            class="form-control" /></td>
+                                   <td class="text-right" style="width:1%">
+                                      <button type="button" name="add" id="qty-btn" class="btn btn-outline-success">+</button>
+                                    </td>
+                                    <td class="text-right" style="width:1%">
+                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button>
+                                    </td>
+                                </tr>`;
+                $(".chn_qty").append(html);
+            }
+            $(".order_item_id").val(itemValue.id);
+            $("#order_item_rmb").val(itemValue.order_item_rmb);
+            $("#purchase_rmb").val(itemValue.purchase_rmb);
+            $("#china_local_delivery_rmb").val(
+                itemValue.china_local_delivery_rmb
+            );
+            if (itemValue.shipping_from) {
+                shipping_from = itemValue.shipping_from;
+            } else {
+                shipping_from = "guangzhou";
+            }
+            if (itemValue.shipping_mark) {
+                shipping_mark = itemValue.shipping_mark;
+            } else {
+                shipping_mark = "SKY" + itemValue.id;
+            }
+            if (itemValue.status) {
+                selectstatus = itemValue.status;
+            }
+            $("#shipping_from").val(shipping_from);
+            $("#shipping_mark").val(shipping_mark);
+            $("#cbm").val(itemValue.cbm);
+            $("#shipped_by").val(itemValue.shipped_by);
+            $("div.status select").val(selectstatus);
             $("#product_value").val(itemValue.product_value);
             $("#product_type").val(itemValue.product_type);
             $("#product_bd_received_cost").val(
@@ -340,15 +515,6 @@ $(function () {
             );
             $("#chinaLocalDelivery").val(itemValue.chinaLocalDelivery);
             $("#purchase_cost_bd").val(itemValue.purchase_cost_bd);
-            $("#updateButton").modal("show");
-        })
-        .on("hidden", ".order-modal", function () {
-            console.log("hi");
-        })
-
-        .on("click", ".order-item-modal", function () {
-            let itemValue = $(this).data("value");
-            $(".order_item_id").val(itemValue);
             $("#updateButton").modal("show");
         })
 
