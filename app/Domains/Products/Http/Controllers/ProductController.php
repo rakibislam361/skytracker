@@ -15,7 +15,6 @@ class ProductController extends Controller
    */
   public function index()
   {
-    // $product = Product::all();
     return view('backend.products.product.index');
   }
 
@@ -39,7 +38,6 @@ class ProductController extends Controller
    */
   public function store(Request $request)
   {
-    // dd($request);
     foreach ($request->category as $key => $category) {
 
       $createProduct = new Product();

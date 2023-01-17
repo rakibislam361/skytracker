@@ -124,7 +124,7 @@
                             class="nav-link" rightIcon="fas fa-angle-left right" />
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <x-utils.link :href="route('admin.booking.booking.index')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                <x-utils.link :href="route('admin.booking.index')" icon="nav-icon icon-arrow-right" class="nav-link"
                                     :text="__('Booking Order')" />
                             </li>
                         </ul>

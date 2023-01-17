@@ -54,7 +54,7 @@
                                         <div class="form-group col">
                                             <label for="shipped_from">Shipping From</label>
                                             <select class="form-control" name="shipped_from[]">
-                                                <option value=""></option>
+                                                <option value="">Select</option>
                                                 <option value="china">China</option>
                                                 <option value="hongkong">HongKong</option>
                                             </select>
@@ -91,23 +91,4 @@
         </div>
 
     </div>
-
-    {{-- 
-    <script type="text/javascript">
-        var i = 0;
-        $("#add-btn").click(function() {
-            ++i;
-            $("#dynamicAddRemove").append(
-                '<tr><td><div class="row"><div class="form-group col"><select class="form-control" name="service_type"><option value="d2d">D2D</option></select></div><div class="form-group col"><input type="text" name="category" id="category" placeholder="category"class="form-control" /></div><div class="form-group col"><select class="form-control" name="shipped_from"><option value=""></option><option value="china">China</option><option value="hongkong">HongKong</option></select></div><div class="form-group col"><input type="text" name="rate" id="rate" placeholder="rate" class="form-control" /></div></div></td><td class="text-right"><button type="button" name="add" id="add-btn" class="btn btn-success add-btn">Add</button></td><td class="text-right" style="width:1%"><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>'
-            );
-        });
-        $(document).on('click', '.remove-tr', function() {
-            $(this).parents('tr').remove();
-        });
-    </script> --}}
-
-
-
-
-
 @endsection

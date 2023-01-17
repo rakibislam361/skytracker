@@ -93,8 +93,7 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
     Route::get('skyone', [AccountController::class, 'skyoneIndex'])->name('skyone');
     Route::get('skyonetable', [AccountController::class, 'skyoneTable'])->name('skyonetable');
 });
-Route::group(['prefix' => 'booking', 'as' => 'booking.'], function () {
-    Route::resources([
-        'booking' => bookingController::class,
-    ]);
-});
+
+Route::resources([
+    'booking' => bookingController::class,
+]);

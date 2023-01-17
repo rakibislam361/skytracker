@@ -30,83 +30,85 @@
                 </div>
             </div>
             @include('backend.content.order.includes.filter')
-
         </div>
 
         <div class="card-body">
+            <div class="badge badge-success" style="font-size: 100%; margin-bottom: 2px;">Total Items
+                = {{ $totalcount }}</div>
+            @include('backend.content.order.includes.order_table')
+        </div>
+    </div>
 
-            <span class="badge badge-success" style="font-size: 100%; margin-bottom: 2px;">Total Items
-                = {{ $totalcount }}</span>
-
-            <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="statusChangeFormModalLabel">Change status</h5><span
-                                    class="orderId"></span>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <form method="post" action="{{ route('admin.order.item.status.update') }}">
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="hiddenField"></div>
-                                    <div class="form-group">
-                                        <label for="status">Status</label>
-                                        <select class="form-control" name="status" id="status">
-                                            <option value="">Select</option>
-                                            @if ($logged_in_user->can('admin.order.status.processing'))
-                                                <option value="processing">Processing</option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.on-hold'))
-                                                <option value="on-hold">On Hold</option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.purchased'))
-                                                <option value="purchased">Purchase Completed</option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.re-order'))
-                                                <option value="re-order">RE-Order</option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.refund-please'))
-                                                <option value="refund-please">Refund Please</option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.shipped-from-suppliers'))
-                                                <option value="shipped-from-suppliers">Shipped from suppliers</option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.delivery-after-holiday'))
-                                                <option value="delivery-after-holiday">Delivery after holiday</option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.received-in-china-warehouse'))
-                                                <option value="received-in-china-warehouse">Received in china warehouse
-                                                </option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.shipped-from-china-warehouse'))
-                                                <option value="shipped-from-china-warehouse">Shipped from china warehouse
-                                                </option>
-                                            @endif
-                                            @if ($logged_in_user->can('admin.order.status.received-in-BD-warehouse'))
-                                                <option value="received-in-BD-warehouse">Received in BD warehouse</option>
-                                            @endif
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="modal-footer justify-content-between">
-                                    <button type="submit" class="btn btn-primary">Save
-                                        changes</button>
-                                </div>
-                            </form>
-
-                        </div>
+    </div>
+    <div class="modal fade" id="changeStatusButton" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="statusChangeFormModalLabel">Change status</h5><span
+                            class="orderId"></span>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+
+                    <form method="post" action="{{ route('admin.order.item.status.update') }}">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="hiddenField"></div>
+                            <div class="form-group">
+                                <label for="status">Status</label>
+                                <select class="form-control" name="status" id="status">
+                                    <option value="">Select</option>
+                                    @if ($logged_in_user->can('admin.order.status.processing'))
+                                        <option value="processing">Processing</option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.on-hold'))
+                                        <option value="on-hold">On Hold</option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.purchased'))
+                                        <option value="purchased">Purchase Completed</option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.re-order'))
+                                        <option value="re-order">RE-Order</option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.refund-please'))
+                                        <option value="refund-please">Refund Please</option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.shipped-from-suppliers'))
+                                        <option value="shipped-from-suppliers">Shipped from suppliers</option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.delivery-after-holiday'))
+                                        <option value="delivery-after-holiday">Delivery after holiday</option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.received-in-china-warehouse'))
+                                        <option value="received-in-china-warehouse">Received in china warehouse
+                                        </option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.shipped-from-china-warehouse'))
+                                        <option value="shipped-from-china-warehouse">Shipped from china warehouse
+                                        </option>
+                                    @endif
+                                    @if ($logged_in_user->can('admin.order.status.received-in-BD-warehouse'))
+                                        <option value="received-in-BD-warehouse">Received in BD warehouse</option>
+                                    @endif
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer justify-content-between">
+                            <button type="submit" class="btn btn-primary">Save
+                                changes</button>
+                        </div>
+                    </form>
+
                 </div>
             </div>
-            @include('backend.content.order.includes.order_table')
-        </div> <!-- card-body-->
+        </div>
     </div>
+
+
+
 
     <!-- Modal -->
     @include('backend.content.order.includes.edit_modal')
@@ -115,5 +117,5 @@
 @endsection
 
 <x-slot name="header">
-    <h4>Order List</h4>
+    <h4>Order Item List</h4>
 </x-slot>

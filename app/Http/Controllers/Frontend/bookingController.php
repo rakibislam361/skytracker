@@ -26,7 +26,8 @@ class bookingController extends Controller
      */
     public function create()
     {
-        //
+        $booking = booking::all();
+        return view('backend.booking.create', compact('booking'));
     }
 
     /**
@@ -70,7 +71,9 @@ class bookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $booking = booking::find($id);
+
+        return view('backend.booking.edit', compact('booking'));
     }
 
     /**
@@ -82,7 +85,25 @@ class bookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateBooking = booking::findOrFail($id);
+        if (Auth::check()) {
+            if ($updateBooking) {
+                $validateData = $this->bookingDataValidate();
+                $validateData['user_id'] = auth()->user()->id ?? null;
+                $update =  booking::create($validateData);
+                if ($update) {
+                    return redirect()
+                        ->back()
+                        ->withFlashSuccess('Booking Order Updated Successfully');
+                } else {
+                    return redirect()
+                        ->back()
+                        ->withFlashError('Error');
+                }
+            }
+        } else {
+            return view('frontend.auth.login');
+        }
     }
 
     /**
@@ -99,13 +120,13 @@ class bookingController extends Controller
         }
         return redirect()
             ->back()
-            ->withFlashSuccess('message deleted successfully');
+            ->withFlashSuccess('Booking Deleted Successfully');
     }
 
     public function bookingDataValidate()
     {
         return request()->validate([
-            'date' => 'required|date',
+            'date' => 'nullable|date',
             'ctnQuantity'  => 'nullable|numeric',
             'totalCbm'  => 'nullable|numeric',
             'productQuantity'  => 'nullable|numeric',
@@ -113,6 +134,15 @@ class bookingController extends Controller
             'othersProductName'  => 'nullable|string',
             'bookingProduct'  => 'nullable|string',
             'othersProductName'  => 'nullable|string',
+            'shipping_mark'  => 'nullable|string',
+            'carton_number'  => 'nullable|string',
+            'shipping_number'  => 'nullable|string',
+            'actual_weight'  => 'nullable|string',
+            'unit_price'  => 'nullable|string',
+            'amount'  => 'nullable|string',
+            'tracking_id'  => 'nullable|string',
+            'remarks'  => 'nullable|string',
+            'status'  => 'nullable|string',
         ]);
     }
 }

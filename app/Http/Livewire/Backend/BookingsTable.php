@@ -16,7 +16,7 @@ class BookingsTable extends DataTableComponent
     public function query(): Builder
     {
 
-        return booking::with('user:id')->latest();
+        return booking::with('user')->latest();
     }
 
     public function columns(): array
@@ -26,6 +26,8 @@ class BookingsTable extends DataTableComponent
                 ->sortable()
                 ->searchable(),
 
+            Column::make('Customer', 'user.name')->searchable(),
+
             Column::make('Products Name', 'othersProductName')
                 ->searchable(),
 
@@ -33,12 +35,33 @@ class BookingsTable extends DataTableComponent
 
             Column::make('Quantity', 'productQuantity'),
 
-            Column::make('CBM', 'totalCbm')
+            Column::make('CBM', 'totalCbm'),
+
+            Column::make('Carton Quantity', 'ctnQuantity'),
+
+            Column::make('Shipping Mark', 'shipping_mark')
                 ->searchable(),
 
-            Column::make('Carton Quantity', 'ctnQuantity')
+            Column::make('Carton Number', 'carton_number')
                 ->searchable(),
-            Column::make('Image', 'bookingProduct'),
+
+            Column::make('Shipping Number', 'shipping_number')
+                ->searchable(),
+
+            Column::make('Actual Weight', 'actual_weight'),
+
+            Column::make('Unit Price', 'unit_price'),
+
+            Column::make('Amount', 'amount'),
+
+
+            Column::make('Tracking Number', 'tracking_id')
+                ->searchable(),
+
+            Column::make('Remarks', 'remarks'),
+
+            Column::make('Status', 'status')
+                ->searchable(),
 
             Column::make(__('Action'), 'action')
                 ->format(function ($value, $column, $row) {
