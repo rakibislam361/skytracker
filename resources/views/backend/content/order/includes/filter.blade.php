@@ -10,42 +10,52 @@
             <label for="status">Status</label>
             <select class="form-control" name="status">
                 <option value="">Select</option>
-                @if ($logged_in_user->can('admin.order.order_rmb.edit') ||
-                    $logged_in_user->can('admin.order.purchase.edit') ||
-                    $logged_in_user->can('admin.order.status.edit') ||
-                    $logged_in_user->can('admin.order.rate.edit'))
+                @if ($logged_in_user->can('admin.status.processing'))
                     <option @if (request('status', null) == 'processing') selected @endif value="processing">Processing</option>
+                @endif
+                @if ($logged_in_user->can('admin.status.on-hold'))
                     <option @if (request('status', null) == 'on-hold') selected @endif value="on-hold">On Hold</option>
+                @endif
+                @if ($logged_in_user->can('admin.status.partial-paid'))
                     <option @if (request('status', null) == 'partial-paid') selected @endif value="partial-paid">Partial Paid
                     </option>
+                @endif
+                @if ($logged_in_user->can('admin.status.delivery-after-holiday'))
                     <option @if (request('status', null) == 'delivery-after-holiday') selected @endif value="delivery-after-holiday">Delivery
                         after holiday</option>
                 @endif
-
-                @if ($logged_in_user->can('admin.order.purchase.edit') ||
-                    $logged_in_user->can('admin.order.status.edit') ||
-                    $logged_in_user->can('admin.order.rate.edit'))
+                @if ($logged_in_user->can('admin.status.purchased'))
                     <option @if (request('status', null) == 'purchased') selected @endif value="purchased">Purchase Completed
                     </option>
+                @endif
+                @if ($logged_in_user->can('admin.status.re-order'))
                     <option @if (request('status', null) == 're-order') selected @endif value="re-order">RE Order</option>
+                @endif
+                @if ($logged_in_user->can('admin.status.refund'))
                     <option @if (request('status', null) == 'refund-please') selected @endif value="refund-please">Refund Please
                     </option>
+                @endif
+                @if ($logged_in_user->can('admin.status.shipped-from-suppliers'))
                     <option @if (request('status', null) == 'shipped-from-suppliers') selected @endif value="shipped-from-suppliers">Shipped
                         From Suppliers</option>
                 @endif
-
-                @if ($logged_in_user->can('admin.order.status.edit') || $logged_in_user->can('admin.order.rate.edit'))
+                @if ($logged_in_user->can('admin.status.received-in-chinawarehouse'))
                     <option @if (request('status', null) == 'received-in-china-warehouse') selected @endif value="received-in-china-warehouse">
                         Received in china
                         warehouse</option>
+                @endif
+                @if ($logged_in_user->can('admin.status.shipped-from-chinawarehouse'))
                     <option @if (request('status', null) == 'shipped-from-china-warehouse') selected @endif value="shipped-from-china-warehouse">
                         Shipped from china
                         warehouse</option>
+                @endif
+                @if ($logged_in_user->can('admin.status.received-in-bdwarehouse'))
                     <option @if (request('status', null) == 'received-in-BD-warehouse') selected @endif value="received-in-BD-warehouse">
                         Received
                         in BD warehouse
                     </option>
                 @endif
+
 
                 @if ($logged_in_user->hasAllAccess())
                     <option @if (request('status', null) == 'refunded') selected @endif value="refunded">Refunded</option>
@@ -54,8 +64,10 @@
                     <option @if (request('status', null) == 'delivered') selected @endif value="delivered">Delivered</option>
                     <option @if (request('status', null) == 'out-of-stock') selected @endif value="out-of-stock">Out Of Stock
                     </option>
-                    <option @if (request('status', null) == 'adjustment') selected @endif value="out-of-stock">Adjustment</option>
-                    <option @if (request('status', null) == 'Waiting for Payment') selected @endif value="Waiting for Payment">Waiting For
+                    <option @if (request('status', null) == 'adjustment') selected @endif value="out-of-stock">Adjustment
+                    </option>
+                    <option @if (request('status', null) == 'Waiting for Payment') selected @endif value="Waiting for Payment">Waiting
+                        For
                         Payment</option>
                 @endif
             </select>

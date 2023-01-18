@@ -26,6 +26,7 @@ trait ApiOrderTrait
         $url = get_setting('api_url') . '/admin/order-item-list';
         $get_token = $this->getToken();
         $response = Http::withToken($get_token)->get($url, $filter);
+        // dd($response->object());
         return $response->object();
     }
 

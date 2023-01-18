@@ -72,7 +72,5 @@
                @endif
            </tbody>
        </table>
-       @if ($orders && count($orders) > 0)
-           {{ $orders->withQueryString()->links() }}
-       @endif
+       {{ $orders->withQueryString()->links() }}
    </div>

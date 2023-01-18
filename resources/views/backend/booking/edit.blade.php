@@ -38,6 +38,7 @@
                             <td>
                                 <div class="row">
                                     <div class="form-group col-md-6">
+                                        <input type="hidden" id="date" name="date" value={{ $booking->date }}>
                                         <label for="ctnQuantity">Carton Quantity</label>
                                         <input type="text" name="ctnQuantity" class="form-control"
                                             placeholder="carton quantity" value="{{ $booking->ctnQuantity }}">
