@@ -41,12 +41,16 @@ class OrderController extends Controller
             $roles = $userRole ? $userRole->name : null;
             if ($roles == 'Administrator') {
                 foreach ($ordersData->data as $data) {
-                    $totalweight += $data->actual_weight;
                     $order[] = $data;
+                    if ($data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
+                        $totalweight += $data->actual_weight;
+                    }
                 }
             } else {
                 foreach ($ordersData->data as $data) {
-                    $totalweight += $data->actual_weight;
+                    if ($data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
+                        $totalweight += $data->actual_weight;
+                    }
                     if ($userRole->hasPermissionTo('admin.status.processing')) {
                         if ($data->status == 'processing' || $data->status == 'delivery-after-holiday') {
                             $order[] = $data;
