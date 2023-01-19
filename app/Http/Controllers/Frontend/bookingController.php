@@ -44,7 +44,7 @@ class bookingController extends Controller
             $store = booking::create($validateData);
             if ($store) {
                 return redirect()
-                    ->route('admin.booking.index')
+                    ->back()
                     ->withFlashSuccess('Your Booking Order Placed Successfully');
             }
         } else {
