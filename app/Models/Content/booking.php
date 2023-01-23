@@ -3,11 +3,12 @@
 namespace App\Models\Content;
 
 use App\Domains\Auth\Models\User;
+use App\Models\Content\Carton;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class booking extends Model
+class Booking extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -19,10 +20,13 @@ class booking extends Model
 
     protected $guarded = [];
 
-
-
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function cartons()
+    {
+        return $this->belongsToMany(Carton::class);
     }
 }

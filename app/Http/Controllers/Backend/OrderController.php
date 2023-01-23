@@ -28,7 +28,6 @@ class OrderController extends Controller
                 'from_date' => request('from_date', null),
                 'to_date' => request('to_date', null),
             ];
-
             $receivedData = $this->orderList($filter);
             $ordersData = $receivedData->data->result;
             $page = $ordersData->current_page;

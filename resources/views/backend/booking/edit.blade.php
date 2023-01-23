@@ -16,7 +16,22 @@
 
             {{ html()->modelForm($booking, 'PATCH', route('admin.booking.update', $booking))->attribute('enctype', 'multipart/form-data')->open() }}
             @csrf
-
+            @php
+                // dd($booking->cartons);
+                $cartons = $booking->cartons;
+                $carton_number = null;
+                $shipping_mark = null;
+                $shipping_number = null;
+                $actual_weight = null;
+                $tracking_id = null;
+                foreach ($cartons as $key => $value) {
+                    $carton_number = $value->carton_number;
+                    $shipping_mark = $value->shipping_mark;
+                    $shipping_number = $value->shipping_number;
+                    $actual_weight = $value->actual_weight;
+                    $tracking_id = $value->tracking_id;
+                }
+            @endphp
 
             <x-backend.card>
                 <x-slot name="header">
@@ -46,7 +61,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="carton_number">Carton Number</label>
                                         <input type="text" name="carton_number" class="form-control"
-                                            placeholder="carton number" value="{{ $booking->carton_number }}">
+                                            placeholder="carton number" value="{{ $carton_number }}">
                                     </div>
 
 
@@ -73,7 +88,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="shipping_mark">Shipping Mark</label>
                                         <input type="text" name="shipping_mark" class="form-control"
-                                            placeholder="shipping mark" value="{{ $booking->shipping_mark }}">
+                                            placeholder="shipping mark" value="{{ $shipping_mark }}">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -85,14 +100,14 @@
                                     <div class="form-group col-md-6">
                                         <label for="shipping_number">Shipping Number</label>
                                         <input type="text" name="shipping_number" class="form-control"
-                                            placeholder="shipping number" value="{{ $booking->shipping_number }}">
+                                            placeholder="shipping number" value="{{ $shipping_number }}">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="actual_weight">Actual Weight</label>
                                         <input type="text" name="actual_weight" class="form-control"
-                                            placeholder="actual weight" value="{{ $booking->actual_weight }}">
+                                            placeholder="actual weight" value="{{ $actual_weight }}">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="unit_price">Unit Price/kg</label>
@@ -110,7 +125,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="tracking_id">Tracking Number</label>
                                         <input type="text" name="tracking_id" class="form-control"
-                                            placeholder="tracking number" value="{{ $booking->tracking_id }}">
+                                            placeholder="tracking number" value="{{ $tracking_id }}">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -123,6 +138,9 @@
                                         <label for="status">Status</label>
                                         <select class="form-control" name="status">
                                             <option value="">Select</option>
+                                            <option @if ($booking->status == 'booking-pending') selected @endif
+                                                value="booking-pending">
+                                                Booking Pending</option>
                                             <option @if ($booking->status == 'received-in-china-warehouse') selected @endif
                                                 value="received-in-china-warehouse">
                                                 Received in china
@@ -144,7 +162,7 @@
                     </table>
                 </x-slot>
                 <x-slot name="footer">
-                    <button class="btn btn-sm btn-primary" type="submit">@lang('Update Booking')</button>
+                    <button class="btn btn-sm btn-primary float-right" type="submit">@lang('Update Booking')</button>
                 </x-slot>
             </x-backend.card>
 

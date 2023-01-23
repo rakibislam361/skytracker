@@ -14,7 +14,7 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('date');
             $table->integer('user_id')->nullable();
             $table->string('ctnQuantity')->nullable();
@@ -23,16 +23,16 @@ class CreateBookingsTable extends Migration
             $table->string('productsTotalCost')->nullable();
             $table->string('othersProductName')->nullable();
             $table->string('bookingProduct')->nullable();
-            $table->string('shipping_mark')->nullable();
-            $table->string('carton_number')->nullable();
-            $table->string('shipping_number')->nullable();
-            $table->string('actual_weight')->nullable();
+            // $table->foreignId('carton_id')->nullable();
+            // $table->string('shipping_mark')->nullable();
+            // $table->string('carton_number')->nullable();
+            // $table->string('shipping_number')->nullable();
+            // $table->string('actual_weight')->nullable();
             $table->string('unit_price')->nullable();
             $table->double('amount')->nullable();
-            $table->string('tracking_id')->nullable();
+            // $table->string('tracking_id')->nullable();
             $table->string('remarks')->nullable();
             $table->string('status')->nullable();
-            
             $table->timestamps();
             $table->softDeletes();
         });

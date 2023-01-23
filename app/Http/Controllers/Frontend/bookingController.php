@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Models\Content\booking;
+use App\Models\Content\Booking;
+use App\Models\Content\Carton;
 use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
@@ -16,11 +17,21 @@ class bookingController extends Controller
      */
     public function index()
     {
+
+        // $carton = Carton::get();
+        // $booking = Booking::with('cartons');
+        // $newVal = [];
+        // foreach ($booking as $key => $value) {
+        //     $newVal = $value->carton;
+        // }
+
+        // dd($booking);
+
         return view('backend.booking.index');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource.`
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,9 +51,13 @@ class bookingController extends Controller
     {
         if (Auth::check()) {
             $validateData = $this->bookingDataValidate();
+            $cartonvalidateData = $this->cartonDataValidate();
             $validateData['user_id'] = auth()->user()->id ?? null;
-            $store = booking::create($validateData);
-            if ($store) {
+            $store = Booking::create($validateData);
+            $storecarton = Carton::create($cartonvalidateData);
+            $store->cartons()->attach($storecarton->id);
+
+            if ($store && $storecarton) {
                 return redirect()
                     ->back()
                     ->withFlashSuccess('Your Booking Order Placed Successfully');
@@ -71,7 +86,7 @@ class bookingController extends Controller
      */
     public function edit($id)
     {
-        $booking = booking::find($id);
+        $booking = booking::with('cartons')->find($id);
 
         return view('backend.booking.edit', compact('booking'));
     }
@@ -86,8 +101,11 @@ class bookingController extends Controller
     public function update(Request $request, $id)
     {
         $updateBooking = booking::findOrFail($id);
+        $updateCarton = carton::findOrFail($id);
+        $updateBooking->cartons()->detach($updateCarton->id);
 
         if ($updateBooking) {
+
             $updateBooking->date = $request->date;
             $updateBooking->ctnQuantity = $request->ctnQuantity;
             $updateBooking->totalCbm = $request->totalCbm;
@@ -95,16 +113,20 @@ class bookingController extends Controller
             $updateBooking->productsTotalCost = $request->productsTotalCost;
             $updateBooking->othersProductName = $request->othersProductName;
             $updateBooking->bookingProduct = $request->bookingProduct;
-            $updateBooking->shipping_mark = $request->shipping_mark;
-            $updateBooking->carton_number = $request->carton_number;
-            $updateBooking->shipping_number = $request->shipping_number;
-            $updateBooking->actual_weight = $request->actual_weight;
             $updateBooking->unit_price = $request->unit_price;
             $updateBooking->amount = $request->amount;
-            $updateBooking->tracking_id = $request->tracking_id;
             $updateBooking->remarks = $request->remarks;
             $updateBooking->status = $request->status;
+
+            $updateCarton->shipping_mark = $request->shipping_mark;
+            $updateCarton->carton_number = $request->carton_number;
+            $updateCarton->shipping_number = $request->shipping_number;
+            $updateCarton->actual_weight = $request->actual_weight;
+            $updateCarton->tracking_id = $request->tracking_id;
+
             $updateBooking->save();
+            $updateCarton->save();
+            $updateBooking->cartons()->attach($updateCarton->id);
         }
         return redirect()
             ->route('admin.booking.index')
@@ -120,8 +142,10 @@ class bookingController extends Controller
     public function destroy($id)
     {
         $booking = booking::find($id);
-        if ($booking) {
+        $carton = carton::find($id);
+        if ($booking && $carton) {
             $booking->delete($booking);
+            $carton->delete($carton);
         }
         return redirect()
             ->back()
@@ -138,15 +162,28 @@ class bookingController extends Controller
             'productsTotalCost' => 'nullable|between:0,99.99',
             'othersProductName' => 'nullable|string',
             'bookingProduct' => 'nullable|string',
+            // 'shipping_mark' => 'nullable|string',
+            // 'carton_number' => 'nullable|string',
+            // 'shipping_number' => 'nullable|string',
+            // 'actual_weight' => 'nullable|string',
+            'unit_price' => 'nullable|string',
+            'amount' => 'nullable|string',
+            // 'tracking_id' => 'nullable|string',
+            'remarks' => 'nullable|string',
+            'status' => 'nullable|string',
+        ]);
+    }
+    public function cartonDataValidate()
+    {
+        return request()->validate([
+
             'shipping_mark' => 'nullable|string',
             'carton_number' => 'nullable|string',
             'shipping_number' => 'nullable|string',
             'actual_weight' => 'nullable|string',
-            'unit_price' => 'nullable|string',
-            'amount' => 'nullable|string',
             'tracking_id' => 'nullable|string',
-            'remarks' => 'nullable|string',
-            'status' => 'nullable|string',
+            'warehouse_quantity' => 'nullable|string',
+
         ]);
     }
 }

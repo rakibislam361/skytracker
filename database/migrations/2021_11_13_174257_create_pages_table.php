@@ -15,17 +15,15 @@ class CreatePagesTable extends Migration
   {
     Schema::create('pages', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->text("title");
-      $table->string("slug", 255);
-      $table->longText("content")->nullable();
-      $table->text("excerpt")->nullable();
-      $table->string("status", 45)->index();
-      $table->timestamp("schedule_time")->nullable();
-      $table->string("post_format", 55)->default("standard");
-      $table->string("thumb")->nullable();
-      $table->boolean("thumb_status")->default(1);
-      $table->integer("update_by")->nullable();
-      $table->bigInteger("user_id");
+      $table->text("title")->nullable();
+      $table->string("slug", 255)->nullable();
+      $table->string("bgcolor", 255)->nullable();
+      $table->string("image", 255)->nullable();
+      $table->longText("description")->nullable();
+      $table->integer("hearder")->nullable();
+      $table->integer("footer_left")->nullable();
+      $table->integer("footer_right")->nullable();
+      $table->integer("is_active");
       $table->timestamps();
       $table->softDeletes();
     });

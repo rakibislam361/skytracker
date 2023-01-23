@@ -14,7 +14,12 @@ class CreateInfosTable extends Migration
     public function up()
     {
         Schema::create('infos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->string('link');
+            $table->string('image');
+            $table->longText("description")->nullable();
+            $table->integer("is_active");
             $table->timestamps();
         });
     }

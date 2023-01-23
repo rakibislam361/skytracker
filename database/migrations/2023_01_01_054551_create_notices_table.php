@@ -14,7 +14,12 @@ class CreateNoticesTable extends Migration
     public function up()
     {
         Schema::create('notices', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('title')->nullable();
+            $table->string('link')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('description')->nullable();
+            $table->integer('is_active');
             $table->timestamps();
         });
     }
