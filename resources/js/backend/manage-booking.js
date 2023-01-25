@@ -70,7 +70,7 @@ $(function () {
                                                 id="add-shipping-number-btn" class="btn btn-outline-success">+</button>
                                         </td>
                                         <td class="text-right" style="width:1%"> <button type="button"
-                                                class="btn btn-outline-danger">-</button></td>
+                                                class="btn btn-outline-danger remove-tr">-</button></td>
                                                                    
                                  </tr>`;
 
@@ -86,7 +86,7 @@ $(function () {
                                                 id="add-tracking-id-btn" class="btn btn-outline-success">+</button>
                                         </td>
                                         <td class="text-right" style="width:1%"> <button type="button"
-                                                class="btn btn-outline-danger">-</button></td>
+                                                class="btn btn-outline-danger remove-tr">-</button></td>
                                                                    
                                  </tr>`;
 
