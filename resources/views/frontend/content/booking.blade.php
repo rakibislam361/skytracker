@@ -34,7 +34,7 @@
          <div class="form-row mb-1">Product Name (specific):
          </div>
          <div class="form-row mb-2">
-             <div class="col"><input type="text" name="othersProductName" class="form-control" placeholder="product name" style="border-radius: 10rem; width: 60%;">
+             <div class="col"><input type="text" name="othersProductName[]" class="form-control" placeholder="product name" style="border-radius: 10rem; width: 60%;">
              </div>
          </div>
          <div class="form-row mb-1">Products Image:</div>

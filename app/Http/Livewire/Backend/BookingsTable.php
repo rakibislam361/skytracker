@@ -76,6 +76,14 @@ class BookingsTable extends DataTableComponent
 
             Column::make('Amount', 'amount'),
 
+            Column::make('Warehouse Quantity', 'warehouse_quantity')->format(function ($value, $column, $row) {
+                $carton = $row->cartons;
+                $warehouse_qty = null;
+                foreach ($carton as $key => $value) {
+                    $warehouse_qty = $value->warehouse_quantity;
+                }
+                return $warehouse_qty;
+            }),
             Column::make('Tracking Number', 'tracking_id')->format(function ($value, $column, $row) {
                 $carton = $row->cartons;
                 $tracking_id = null;

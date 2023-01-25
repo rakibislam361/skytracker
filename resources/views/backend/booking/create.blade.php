@@ -28,10 +28,6 @@
                     </x-slot>
 
                     <x-slot name="body">
-
-                        {{-- <table style="width:100%">
-                            <tr>
-                                <td> --}}
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="ctnQuantity">Carton Quantity</label>
@@ -90,7 +86,6 @@
                                                 class="btn btn-outline-danger">-</button></td>
                                     </tr>
                                 </table>
-                                {{-- <input type="text" name="shipping_mark" class="form-control" placeholder="shipping mark"> --}}
                             </div>
                         </div>
                         <div class="row">
@@ -111,8 +106,6 @@
                                                 class="btn btn-outline-danger">-</button></td>
                                     </tr>
                                 </table>
-                                {{-- <input type="text" name="shipping_number" class="form-control"
-                                    placeholder="shipping number"> --}}
                             </div>
                         </div>
                         <div class="row">
@@ -146,8 +139,6 @@
                                                 class="btn btn-outline-danger">-</button></td>
                                     </tr>
                                 </table>
-                                {{-- <input type="text" name="tracking_id" class="form-control"
-                                    placeholder="tracking number"> --}}
                             </div>
                         </div>
                         <div class="row">
@@ -172,9 +163,6 @@
                                 </select>
                             </div>
                         </div>
-                        {{-- </td>
-                            </tr>
-                        </table> --}}
                     </x-slot>
 
                     <x-slot name="footer">

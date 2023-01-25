@@ -6,6 +6,7 @@ use App\Models\Content\Booking;
 use App\Models\Content\Carton;
 use App\Http\Controllers\Controller;
 use Auth;
+use PDF;
 use Illuminate\Http\Request;
 
 class bookingController extends Controller
@@ -85,7 +86,10 @@ class bookingController extends Controller
      */
     public function show($id)
     {
-        //
+        $booking = booking::with('cartons')->find($id);
+        $pdf = PDF::loadView('backend.booking.invoice', compact('booking'));
+
+        return $pdf->download('invoice.pdf');
     }
 
     /**
@@ -114,7 +118,7 @@ class bookingController extends Controller
         $updateCarton = carton::findOrFail($id);
         $updateBooking->cartons()->detach($updateCarton->id);
 
-        if ($updateBooking) {
+        if ($updateBooking && $updateCarton) {
 
             $updateBooking->date = $request->date;
             $updateBooking->ctnQuantity = $request->ctnQuantity;

@@ -17,25 +17,22 @@
             {{ html()->modelForm($booking, 'PATCH', route('admin.booking.update', $booking))->attribute('enctype', 'multipart/form-data')->open() }}
             @csrf
             @php
-                // dd($booking->othersProductName);
                 $cartons = $booking->cartons;
                 $carton_number = [];
-                $shipping_mark = null;
-                $shipping_number = null;
-                $actual_weight = null;
-                $tracking_id = null;
+                $shipping_mark = [];
+                $shipping_number = [];
+                $actual_weight = [];
+                $tracking_id = [];
+                $warehouse_qty = null;
                 $product_name = explode(',', $booking->othersProductName);
                 foreach ($cartons as $key => $value) {
                     $carton_number = explode(',', $value->carton_number);
                     $shipping_mark = explode(',', $value->shipping_mark);
                     $shipping_number = explode(',', $value->shipping_number);
                     $actual_weight = $value->actual_weight;
+                    $warehouse_qty = $value->warehouse_quantity;
                     $tracking_id = explode(',', $value->tracking_id);
                 }
-                // foreach ($booking as $key => $value) {
-                //     $product_name = explode(',', $value->othersProductName);
-                // }
-                // dd($product_name);
             @endphp
 
             <x-backend.card>
@@ -52,10 +49,6 @@
                 </x-slot>
 
                 <x-slot name="body">
-
-                    {{-- <table style="width:100%" id="dynamicAddRemove">
-                        <tr>
-                            <td> --}}
                     <div class="row">
                         <div class="form-group col-md-6">
                             <input type="hidden" id="date" name="date" value={{ $booking->date }}>
@@ -80,8 +73,6 @@
                                 </table>
                             @endforeach
                         </div>
-
-
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
@@ -113,8 +104,6 @@
                                     </tr>
                                 </table>
                             @endforeach
-                            {{-- <input type="text" name="othersProductName" class="form-control" placeholder="product name"
-                                value="{{ $booking->othersProductName }}"> --}}
                         </div>
                         <div class="form-group col-md-6">
                             <label for="shipping_mark">Shipping Mark</label>
@@ -130,8 +119,6 @@
                                     </tr>
                                 </table>
                             @endforeach
-                            {{-- <input type="text" name="shipping_mark" class="form-control" placeholder="shipping mark"
-                                value="{{ $shipping_mark }}"> --}}
                         </div>
                     </div>
                     <div class="row">
@@ -155,8 +142,6 @@
                                     </tr>
                                 </table>
                             @endforeach
-                            {{-- <input type="text" name="shipping_number" class="form-control"
-                                placeholder="shipping number" value="{{ $shipping_number }}"> --}}
                         </div>
                     </div>
                     <div class="row">
@@ -193,17 +178,20 @@
                                     </tr>
                                 </table>
                             @endforeach
-                            {{-- <input type="text" name="tracking_id" class="form-control" placeholder="tracking number"
-                                value="{{ $tracking_id }}"> --}}
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="remarks">Remarks</label>
                             <input type="text" name="remarks" class="form-control" placeholder="remarks"
                                 value="{{ $booking->remarks }}">
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
+                            <label for="warehouse_quantity">Warehouse Quantity</label>
+                            <input type="text" name="warehouse_quantity" class="form-control"
+                                placeholder="warehouse_quantity" value="{{ $warehouse_qty }}">
+                        </div>
+                        <div class="form-group col-md-4">
                             <label for="status">Status</label>
                             <select class="form-control" name="status">
                                 <option value="">Select</option>
@@ -224,9 +212,6 @@
                             </select>
                         </div>
                     </div>
-                    {{-- </td>
-                        </tr>
-                    </table> --}}
                 </x-slot>
                 <x-slot name="footer">
                     <button class="btn btn-sm btn-primary float-right" type="submit">@lang('Update Booking')</button>
