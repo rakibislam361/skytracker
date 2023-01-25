@@ -17,16 +17,6 @@ class bookingController extends Controller
      */
     public function index()
     {
-
-        // $carton = Carton::get();
-        // $booking = Booking::with('cartons');
-        // $newVal = [];
-        // foreach ($booking as $key => $value) {
-        //     $newVal = $value->carton;
-        // }
-
-        // dd($booking);
-
         return view('backend.booking.index');
     }
 
@@ -51,7 +41,27 @@ class bookingController extends Controller
     {
         if (Auth::check()) {
             $validateData = $this->bookingDataValidate();
+
+            if (request()->othersProductName) {
+                $validateData['othersProductName'] = implode(',', request()->othersProductName);
+            }
+
+
             $cartonvalidateData = $this->cartonDataValidate();
+
+            if (request()->carton_number) {
+                $cartonvalidateData['carton_number'] = implode(',', request()->carton_number);
+            }
+            if (request()->shipping_mark) {
+                $cartonvalidateData['shipping_mark'] = implode(',', request()->shipping_mark);
+            }
+            if (request()->shipping_number) {
+                $cartonvalidateData['shipping_number'] = implode(',', request()->shipping_number);
+            }
+            if (request()->tracking_id) {
+                $cartonvalidateData['tracking_id'] = implode(',', request()->tracking_id);
+            }
+
             $validateData['user_id'] = auth()->user()->id ?? null;
             $store = Booking::create($validateData);
             $storecarton = Carton::create($cartonvalidateData);
@@ -111,18 +121,18 @@ class bookingController extends Controller
             $updateBooking->totalCbm = $request->totalCbm;
             $updateBooking->productQuantity = $request->productQuantity;
             $updateBooking->productsTotalCost = $request->productsTotalCost;
-            $updateBooking->othersProductName = $request->othersProductName;
+            $updateBooking->othersProductName = implode(',', $request->othersProductName);
             $updateBooking->bookingProduct = $request->bookingProduct;
             $updateBooking->unit_price = $request->unit_price;
             $updateBooking->amount = $request->amount;
             $updateBooking->remarks = $request->remarks;
             $updateBooking->status = $request->status;
 
-            $updateCarton->shipping_mark = $request->shipping_mark;
-            $updateCarton->carton_number = $request->carton_number;
-            $updateCarton->shipping_number = $request->shipping_number;
+            $updateCarton->shipping_mark = implode(',', $request->shipping_mark);
+            $updateCarton->carton_number = implode(',', $request->carton_number);
+            $updateCarton->shipping_number = implode(',', $request->shipping_number);
             $updateCarton->actual_weight = $request->actual_weight;
-            $updateCarton->tracking_id = $request->tracking_id;
+            $updateCarton->tracking_id = implode(',', $request->tracking_id);
 
             $updateBooking->save();
             $updateCarton->save();
@@ -160,15 +170,10 @@ class bookingController extends Controller
             'totalCbm' => 'nullable|numeric',
             'productQuantity' => 'nullable|numeric',
             'productsTotalCost' => 'nullable|between:0,99.99',
-            'othersProductName' => 'nullable|string',
+            'othersProductName.*' => 'nullable|string',
             'bookingProduct' => 'nullable|string',
-            // 'shipping_mark' => 'nullable|string',
-            // 'carton_number' => 'nullable|string',
-            // 'shipping_number' => 'nullable|string',
-            // 'actual_weight' => 'nullable|string',
             'unit_price' => 'nullable|string',
             'amount' => 'nullable|string',
-            // 'tracking_id' => 'nullable|string',
             'remarks' => 'nullable|string',
             'status' => 'nullable|string',
         ]);
@@ -177,11 +182,11 @@ class bookingController extends Controller
     {
         return request()->validate([
 
-            'shipping_mark' => 'nullable|string',
-            'carton_number' => 'nullable|string',
-            'shipping_number' => 'nullable|string',
+            'shipping_mark.*' => 'nullable|string',
+            'carton_number.*' => 'nullable|string',
+            'shipping_number.*' => 'nullable|string',
             'actual_weight' => 'nullable|string',
-            'tracking_id' => 'nullable|string',
+            'tracking_id.*' => 'nullable|string',
             'warehouse_quantity' => 'nullable|string',
 
         ]);

@@ -42,7 +42,7 @@ class BookingsTable extends DataTableComponent
                 $carton = $row->cartons;
                 $shipping_mark = null;
                 foreach ($carton as $key => $value) {
-                    $shipping_mark = $value->shipping_mark . ',';
+                    $shipping_mark = $value->shipping_mark;
                 }
                 return $shipping_mark;
             }),
@@ -50,7 +50,7 @@ class BookingsTable extends DataTableComponent
                 $carton = $row->cartons;
                 $carton_number = null;
                 foreach ($carton as $key => $value) {
-                    $carton_number = $value->carton_number . ',';
+                    $carton_number = $value->carton_number;
                 }
                 return $carton_number;
             }),
@@ -58,7 +58,7 @@ class BookingsTable extends DataTableComponent
                 $carton = $row->cartons;
                 $shipping_number = null;
                 foreach ($carton as $key => $value) {
-                    $shipping_number = $value->shipping_number . ',';
+                    $shipping_number = $value->shipping_number;
                 }
                 return $shipping_number;
             }),
@@ -67,7 +67,7 @@ class BookingsTable extends DataTableComponent
                 $carton = $row->cartons;
                 $actual_weight = null;
                 foreach ($carton as $key => $value) {
-                    $actual_weight = $value->actual_weight . ',';
+                    $actual_weight = $value->actual_weight;
                 }
                 return $actual_weight;
             }),
@@ -80,7 +80,7 @@ class BookingsTable extends DataTableComponent
                 $carton = $row->cartons;
                 $tracking_id = null;
                 foreach ($carton as $key => $value) {
-                    $tracking_id = $value->tracking_id . ',';
+                    $tracking_id = $value->tracking_id;
                 }
                 return $tracking_id;
             }),
