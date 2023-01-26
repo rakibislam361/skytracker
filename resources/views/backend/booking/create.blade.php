@@ -29,10 +29,23 @@
 
                     <x-slot name="body">
                         <div class="row">
+
+                            <div class="form-group col-md-6">
+                                <label for="date">Date</label>
+                                <input type="date" name="date" class="form-control" placeholder="approx date">
+                            </div>
                             <div class="form-group col-md-6">
                                 <label for="ctnQuantity">Carton Quantity</label>
                                 <input type="text" name="ctnQuantity" class="form-control" placeholder="quantity">
                             </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="productQuantity">Product Quantity</label>
+                                <input type="text" name="productQuantity" class="form-control"
+                                    placeholder="product quantity">
+                            </div> <!-- form-group -->
                             <div class="form-group col-md-6">
                                 <label for="carton_number">Carton Number</label>
                                 <table style="width:100%" id="carton-number">
@@ -46,19 +59,7 @@
                                     </tr>
                                 </table>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-md-6">
-                                <label for="productQuantity">Product Quantity</label>
-                                <input type="text" name="productQuantity" class="form-control"
-                                    placeholder="product quantity">
-                            </div> <!-- form-group -->
 
-                            <div class="form-group col-md-6">
-                                <label for="productsTotalCost">Products Total Cost</label>
-                                <input type="text" name="productsTotalCost" class="form-control"
-                                    placeholder="total Cost(BDT)">
-                            </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -89,9 +90,20 @@
                             </div>
                         </div>
                         <div class="row">
+
                             <div class="form-group col-md-6">
-                                <label for="totalCbm">Total Cbm</label>
-                                <input type="text" name="totalCbm" class="form-control" placeholder="total CBM">
+                                <label for="tracking_id">Tracking Number</label>
+                                <table style="width:100%" id="tracking-id">
+                                    <tr>
+                                        <td><input type="text" name="tracking_id[]" placeholder="tracking number"
+                                                class="form-control" /></td>
+                                        <td class="text-right" style="width:1%"> <button type="button"
+                                                id="add-tracking-id-btn" class="btn btn-outline-success">+</button>
+                                        </td>
+                                        <td class="text-right" style="width:1%"> <button type="button"
+                                                class="btn btn-outline-danger">-</button></td>
+                                    </tr>
+                                </table>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="shipping_number">Shipping Number</label>
@@ -110,6 +122,18 @@
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
+                                <label for="productsTotalCost">Products Total Cost</label>
+                                <input type="text" name="productsTotalCost" class="form-control"
+                                    placeholder="total Cost(BDT)">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="totalCbm">Total Cbm</label>
+                                <input type="text" name="totalCbm" class="form-control" placeholder="total CBM">
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
                                 <label for="actual_weight">Actual Weight</label>
                                 <input type="text" name="actual_weight" class="form-control"
                                     placeholder="actual weight">
@@ -120,38 +144,25 @@
                                     placeholder="unit price/kg">
                             </div>
                         </div>
+
                         <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="remarks">Remarks</label>
+                                <input type="text" name="remarks" class="form-control" placeholder="remarks">
+                            </div>
                             <div class="form-group col-md-6">
                                 <label for="amount">Amount</label>
                                 <input type="double" name="amount" class="form-control" placeholder="amount">
                             </div>
 
-                            <div class="form-group col-md-6">
-                                <label for="tracking_id">Tracking Number</label>
-                                <table style="width:100%" id="tracking-id">
-                                    <tr>
-                                        <td><input type="text" name="tracking_id[]" placeholder="tracking number"
-                                                class="form-control" /></td>
-                                        <td class="text-right" style="width:1%"> <button type="button"
-                                                id="add-tracking-id-btn" class="btn btn-outline-success">+</button>
-                                        </td>
-                                        <td class="text-right" style="width:1%"> <button type="button"
-                                                class="btn btn-outline-danger">-</button></td>
-                                    </tr>
-                                </table>
-                            </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="remarks">Remarks</label>
-                                <input type="text" name="remarks" class="form-control" placeholder="remarks">
-                            </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="warehouse_quantity">Warehouse Quantity</label>
                                 <input type="text" name="warehouse_quantity" class="form-control"
                                     placeholder="warehouse_quantity">
                             </div>
-                            <div class="form-group col-md-4">
+                            <div class="form-group col-md-6">
                                 <label for="status">Status</label>
                                 <select class="form-control" name="status">
                                     <option value="">Select</option>
@@ -160,6 +171,7 @@
                                     <option value="shipped-from-china-warehouse">Shipped from china warehouse
                                     </option>
                                     <option value="received-in-BD-warehouse">Received in BD warehouse</option>
+                                    <option value="delivered">Delivered</option>
                                 </select>
                             </div>
                         </div>

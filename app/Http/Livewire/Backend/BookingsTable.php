@@ -24,7 +24,11 @@ class BookingsTable extends DataTableComponent
         return [
             Column::make('Date', 'date')
                 ->sortable()
-                ->searchable(),
+                ->searchable()->format(
+                    function ($value, $column, $row) {
+                        return date('d/m/Y', strtotime($row->date));
+                    }
+                ),
 
             Column::make('Customer', 'user.name')->searchable(),
 

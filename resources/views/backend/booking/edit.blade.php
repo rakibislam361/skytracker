@@ -50,8 +50,8 @@
 
                 <x-slot name="body">
                     <div class="row">
+                        <input type="hidden" id="date" name="date" value={{ $booking->date }}>
                         <div class="form-group col-md-6">
-                            <input type="hidden" id="date" name="date" value={{ $booking->date }}>
                             <label for="ctnQuantity">Carton Quantity</label>
                             <input type="text" name="ctnQuantity" class="form-control" placeholder="carton quantity"
                                 value="{{ $booking->ctnQuantity }}">
@@ -61,9 +61,8 @@
                             @foreach ($carton_number as $cart)
                                 <table style="width:100%" id="carton-number">
                                     <tr>
-                                        <td><input type="text" required="" name="carton_number[]"
-                                                placeholder="carton number" class="form-control"
-                                                value="{{ $cart }}" /></td>
+                                        <td><input type="text" name="carton_number[]" placeholder="carton number"
+                                                class="form-control" value="{{ $cart }}" /></td>
                                         <td class="text-right" style="width:1%"> <button type="button" id="add-carton-btn"
                                                 class="btn btn-outline-success">+</button>
                                         </td>
@@ -93,9 +92,8 @@
                             @foreach ($product_name as $name)
                                 <table style="width:100%" id="product-name">
                                     <tr>
-                                        <td><input type="text" required="" name="othersProductName[]"
-                                                placeholder="product name" class="form-control"
-                                                value="{{ $name }}" /></td>
+                                        <td><input type="text" name="othersProductName[]" placeholder="product name"
+                                                class="form-control" value="{{ $name }}" /></td>
                                         <td class="text-right" style="width:1%"> <button type="button"
                                                 id="add-productName-btn" class="btn btn-outline-success">+</button>
                                         </td>
@@ -208,6 +206,9 @@
                                 <option @if ($booking->status == 'received-in-BD-warehouse') selected @endif value="received-in-BD-warehouse">
                                     Received
                                     in BD warehouse
+                                </option>
+                                <option @if ($booking->status == 'delivered') selected @endif value="delivered">
+                                    Delivered
                                 </option>
                             </select>
                         </div>

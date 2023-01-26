@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ app_name() }} | @yield('title')</title>
     <meta name="description" content="@yield('meta_description', app_name())">
-    <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
+    <meta name="author" content="@yield('meta_author', 'SkyTrackBD')">
     @yield('meta')
     <link href="{{ asset('icon_img/assets/icons/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/ionicons.min.css') }}" rel="stylesheet">

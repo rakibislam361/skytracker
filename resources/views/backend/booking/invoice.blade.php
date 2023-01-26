@@ -1,238 +1,191 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
-    <title>Generate Invoice PDF - SkytrackBD.com</title>
+    <meta charset="utf-8">
+    <title>Invoice No : INVLOCAL{{ $booking->id }}</title>
+
+    {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/print/font-awesome/css/font-awesome.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/plugins/print/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/print/order_print.css') }}" type="text/css" />
 </head>
-<style type="text/css">
-    body {
-        font-family: 'Roboto Condensed', sans-serif;
-    }
-
-    .m-0 {
-        margin: 0px;
-    }
-
-    .p-0 {
-        padding: 0px;
-    }
-
-    .pt-5 {
-        padding-top: 5px;
-    }
-
-    .mt-10 {
-        margin-top: 10px;
-    }
-
-    .text-center {
-        text-align: center !important;
-    }
-
-    .w-100 {
-        width: 100%;
-    }
-
-    .w-50 {
-        width: 50%;
-    }
-
-    .w-85 {
-        width: 85%;
-    }
-
-    .w-15 {
-        width: 15%;
-    }
-
-    .logo img {
-        width: 45px;
-        height: 45px;
-        padding-top: 30px;
-    }
-
-    .logo span {
-        margin-left: 8px;
-        top: 19px;
-        position: absolute;
-        font-weight: bold;
-        font-size: 25px;
-    }
-
-    .gray-color {
-        color: #5D5D5D;
-    }
-
-    .text-bold {
-        font-weight: bold;
-    }
-
-    .border {
-        border: 1px solid black;
-    }
-
-    table tr,
-    th,
-    td {
-        border: 1px solid #d2d2d2;
-        border-collapse: collapse;
-        padding: 7px 8px;
-    }
-
-    table tr th {
-        background: #F4F4F4;
-        font-size: 15px;
-    }
-
-    table tr td {
-        font-size: 13px;
-    }
-
-    table {
-        border-collapse: collapse;
-    }
-
-    .box-text p {
-        line-height: 10px;
-    }
-
-    .float-left {
-        float: left;
-    }
-
-    .total-part {
-        font-size: 16px;
-        line-height: 12px;
-    }
-
-    .total-right p {
-        padding-right: 20px;
-    }
-</style>
 
 <body>
-    <div class="head-title">
-        <h1 class="text-center m-0 p-0">SkytrackBD Invoice</h1>
-    </div>
-    <div>
-        <div>
-            <p>Invoice Id - <span>INVLOCAL{{ $booking->id }}</span>
-            </p>
-            {{-- <p class="m-0 pt-5 text-bold w-100">Order Id - <span class="gray-color">162695CDFS</span></p>
-            <p class="m-0 pt-5 text-bold w-100">Order Date - <span class="gray-color">03-06-2022</span></p> --}}
-        </div>
-        {{-- <div class="w-50 float-left logo mt-10">
-
-            <img src="https://www.nicesnippets.com/image/imgpsh_fullsize.png"> <span>SkytrackBD.com</span>
-        </div> --}}
-        {{-- <div style="clear: both;"></div> --}}
-    </div>
-    {{-- <div class="table-section bill-tbl w-100 mt-10">
-        <table class="table w-100 mt-10">
-            <tr>
-                <th class="w-50">From</th>
-                <th class="w-50">To</th>
-            </tr>
-            <tr>
-                <td>
-                    <div class="box-text">
-                        <p>Gujarat</p>
-                        <p>360004</p>
-                        <p>Near Haveli Road,</p>
-                        <p>Lal Darvaja,</p>
-                        <p>India</p>
-                        <p>Contact : 1234567890</p>
+    <div id="wrapper">
+        <div id="receiptData">
+            <div id="receipt-data">
+                <div id="receipt-data">
+                    <div class="logo_header" style="padding-bottom: 50px">
+                        <table class="width_100_p">
+                            <tr>
+                                <td style="width: 20% !important;">
+                                    @php
+                                        $fLogo = get_setting('invoice_logo', 'img/backend/no-image.gif');
+                                    @endphp
+                                    <img src="{{ asset($fLogo) }}">
+                                </td>
+                                <td class="text-center">
+                                    <h1 class="p_txt_1">{{ get_setting('invoice_site_name', config('app.name')) }}</h1>
+                                    {!! get_setting('invoice_site_address') !!}
+                                    <p class="inv_black">Invoice</p>
+                                </td>
+                                <td style="width: 20% !important;"></td>
+                            </tr>
+                        </table>
                     </div>
-                </td>
-                <td>
-                    <div class="box-text">
-                        <p>Rajkot</p>
-                        <p>360012</p>
-                        <p>Hanumanji Temple,</p>
-                        <p>Lati Ploat</p>
-                        <p>Gujarat</p>
-                        <p>Contact : 1234567890</p>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div> --}}
-    {{-- <div class="table-section bill-tbl w-100 mt-10">
-        <table class="table w-100 mt-10">
-            <tr>
-                <th class="w-50">Payment Method</th>
-                <th class="w-50">Shipping Method</th>
-            </tr>
-            <tr>
-                <td>Cash On Delivery</td>
-                <td>Free Shipping - Free Shipping</td>
-            </tr>
-        </table>
-    </div> --}}
-    @php
-        $cartons = $booking->cartons;
-        $carton_number = [];
-        $shipping_mark = [];
-        $shipping_number = [];
-        $actual_weight = null;
-        $tracking_id = [];
-        foreach ($cartons as $key => $value) {
-            $carton_number = $value->carton_number;
-            $shipping_mark = $value->shipping_mark;
-            $shipping_number = $value->shipping_number;
-            $actual_weight = $value->actual_weight;
-            $tracking_id = $value->tracking_id;
-        }
-    @endphp
-    <div class="table-responsive">
-        <table class="table table-hover table-bordered mb-0 order-table table-striped">
-            <thead>
-                <tr>
-                    <th class="align-content-center text-center">Date</th>
-                    <th class="align-content-center text-center">Customer</th>
-                    <th class="align-content-center text-center">Products</th>
-                    <th class="align-content-center text-center">Qty</th>
-                    <th class="align-content-center text-center">Price</th>
-                    <th class="align-content-center text-center">Shipping Mark</th>
-                    <th class="align-content-center text-center">Carton Number</th>
-                    <th class="align-content-center text-center">Tracking Number</th>
-                    <th class="align-content-center text-center">Weight</th>
-                    <th class="align-content-center text-center">Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="align-content-center text-center">
-                        {{ $booking->date ? date('d/m/Y', strtotime($booking->date)) : date('d/m/Y', strtotime($booking->created_at)) }}
-                    </td>
-                    <td class="align-content-center text-center">{{ $booking->user->name ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $booking->othersProductName ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $booking->productQuantity ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $booking->productsTotalCost ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $shipping_mark ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $carton_number ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $tracking_id ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $actual_weight ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $booking->amount ?? 'N/A' }}</td>
-                </tr>
-            <tbody>
-                <tr>
-                    <td colspan="10">
-                        <div class="total-part">
-                            <div class="total-left w-85 float-left" align="right">
-                                {{-- <p>Sub Total</p> --}}
-                                {{-- <p>Tax (18%)</p> --}}
-                                <p>Total Amount:</p>
-                            </div>
-                            <div class="total-right w-15 float-left text-bold" align="right">
 
-                                <p>{{ $booking->amount ?? 'N/A' }}</p>
-                            </div>
-                            <div style="clear: both;"></div>
+                    <div class="row" style="margin-bottom: 15px">
+                        <div class="col-sm-4">
+                            <table class="table table-bordered table-condensed">
+                                <tr>
+                                    <td class="p_txt_5"> Invoice: </td>
+                                    <td class="p_txt_6"> INVLOCAL{{ $booking->id }} </td>
+                                </tr>
+                                <tr>
+                                    <td class="p_txt_5"> Date: </td>
+                                    <td class="p_txt_6"> {{ date('M d, Y', strtotime($booking->date)) }}</td>
+                                </tr>
+                            </table>
                         </div>
-                    </td>
-                </tr>
-        </table>
+                        <div class="col-sm-4">
+                        </div>
+                        <div class="col-sm-4">
+                            <table class="table table-bordered table-condensed">
+                                <tr>
+                                    <td class="p_txt_5"><b>Customer:</b></td>
+                                    <td class="p_txt_6"><b>{{ $booking->user->name ?? 'N/A' }}</b></td>
+                                </tr>
+                                <tr>
+                                    <td class="p_txt_5"><b>Phone:</b></td>
+                                    <td class="p_txt_6">{{ $booking->user->phone ?? 'N/A' }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="p_txt_5"><b>Address:</b></td>
+                                    <td class="p_txt_6">{{ $booking->user->address ?? 'N/A' }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">Date</th>
+                                <th scope="col" class="text-center">Carton Qty</th>
+                                <th scope="col" class="text-center">Carton Number</th>
+                                <th scope="col" class="text-center">Products</th>
+                                <th scope="col" class="text-center">Product Qty</th>
+                                <th scope="col" class="text-center">Carton Weight</th>
+                                <th scope="col" class="text-center">Remarks</th>
+                                <th scope="col" class="text-center">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $cartons = $booking->cartons;
+                                $carton_number = [];
+                                $shipping_mark = [];
+                                $shipping_number = [];
+                                $actual_weight = null;
+                                $tracking_id = [];
+                                foreach ($cartons as $key => $value) {
+                                    $carton_number = $value->carton_number;
+                                    $shipping_mark = $value->shipping_mark;
+                                    $shipping_number = $value->shipping_number;
+                                    $actual_weight = $value->actual_weight;
+                                    $tracking_id = $value->tracking_id;
+                                }
+                            @endphp
+
+                            <tr>
+                                <td class="text-center align-middle">
+                                    {{ date('m/d/Y', strtotime($booking->updated_at)) }}
+                                </td>
+                                <td class="text-center align-middle">{{ $booking->ctnQuantity ?? '00' }}</td>
+                                <td class="text-center align-middle">{{ $carton_number ?? '0' }}</td>
+                                <td class="text-center align-middle">{{ $booking->othersProductName ?? 'N/A' }}</td>
+                                <td class="text-center align-middle">{{ $booking->productQuantity ?? 'N/A' }}</td>
+                                <td class="text-center align-middle">{{ $actual_weight }}</td>
+                                <td class="text-center align-middle">{{ $booking->remarks }}</td>
+                                <td class="text-center align-middle">{{ $booking->amount }}</td>
+                            </tr>
+
+                        </tbody>
+                        <tfoot id="invoiceFooter">
+                            {{-- <tr>
+                                <td colspan="6" class="text-right">Paid</td>
+                                <td class="text-center align-middle"><span class="total_payable"
+                                        data-user="{{ $booking->user->id }}">{{ round($booking->amount) }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="6" class="text-right">Due</td>
+                                <td class="text-center align-middle"><span class="total_payable"
+                                        data-user="{{ $booking->user->id }}">{{ round($booking->amount) }}</span>
+                                </td>
+                            </tr> --}}
+                            <tr>
+                                <td colspan="7" class="text-right">Total Payable</td>
+                                <td class="text-center align-middle"><span class="total_payable"
+                                        data-user="{{ $booking->user->id }}">{{ round($booking->amount) }}</span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                </div>
+            </div>
+            <div class="clear_both"></div>
+        </div>
+
+        <footer style="margin-top: 70px;">
+            <td class="p_txt_12">
+                <div class="p_txt_13">
+                    <p class="p_txt_14">&nbsp;&nbsp;&nbsp;&nbsp; Customer Signature</p>
+                </div>
+                <div class="p_txt_13">
+                    <p>&nbsp;</p>
+                </div>
+                <div class="p_txt_13">
+                    <p>&nbsp;</p>
+                </div>
+                <p class="p_txt_14">Authorized Signature</p>
+            </td>
+        </footer>
+        <div class="p_txt_16 no_print">
+            <hr>
+            <span class="pull-right col-xs-12">
+                <button onclick="window.print();" class="btn btn-block btn-primary">Print</button> </span>
+            <div class="clear_both"></div>
+            <div class="p_txt_17">
+                <div class="p_txt_18">
+                    Please follow these steps before you print for first tiem:
+                </div>
+                <p class="p_txt_19">
+                    1. Disable Header and Footer in browser's print setting<br>
+                    For Firefox: File &gt; Page Setup &gt; Margins &amp; Header/Footer &gt; Headers & Footers &gt; Make
+                    all
+                    --blank--<br>
+                    For Chrome: Menu &gt; Print &gt; Uncheck Header/Footer in More Options
+                </p>
+                <p class="p_txt_19">
+                    2. Set margin 0.5<br>
+                    For Firefox: File &gt; Page Setup &gt; Margins &amp; Header/Footer &gt; Headers & Footers &gt;
+                    Margins
+                    (inches) &gt; set all margins
+                    0.5<br>
+                    For Chrome: Menu &gt; Print &gt; Set Margins to Default
+                </p>
+            </div>
+            <div class="clear_both"></div>
+        </div>
+        {{-- @dd('hi'); --}}
     </div>
+    <script src="{{ asset('assets/plugins/print/print/jquery-2.0.3.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/print/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/print/print/custom.js') }}"></script>
+    {{-- <script src="{{ asset('assets/plugins/print/onload_print.js') }}"></script> --}}
+
+</body>
 
 </html>

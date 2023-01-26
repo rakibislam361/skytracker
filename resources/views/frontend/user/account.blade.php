@@ -1,5 +1,5 @@
-@include('frontend.includes.nav')
 @include('frontend.style.bstyle')
+@include('frontend.includes.nav')
 @extends('frontend.layouts.app')
 
 @section('title', __('My Account'))
@@ -7,7 +7,7 @@
 @section('content')
 <div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <x-frontend.card>
                 <x-slot name="header">
                     @lang('My Account')
@@ -62,3 +62,4 @@
 </div>
 <!--container-->
 @endsection
+@include('frontend.style.js')

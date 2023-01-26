@@ -1,18 +1,17 @@
+@include('frontend.style.style')
 @include('frontend.includes.nav')
-@include('frontend.style.bstyle')
 @extends('frontend.layouts.app')
 @section('title', __('Dashboard'))
 
 @section('content')
 
-    <div class="container py-4  ">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 <x-frontend.card>
                     <x-slot name="header">
                         @lang('Dashboard')
                     </x-slot>
-
                     <x-slot name="body">
                         @lang('You are logged in!')
                     </x-slot>

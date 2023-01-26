@@ -1,8 +1,8 @@
 <!doctype html>
 @langrtl
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 @else
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @endlangrtl
 
 <head>
@@ -14,7 +14,7 @@
     <meta property="og:image" content="@yield('meta_image')">
     @yield('meta')
     {{-- favicon --}}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
+    {{-- <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(get_setting('favicon')) }}">
     <link rel="manifest" href="{{ asset(get_setting('favicon')) }}">
@@ -30,23 +30,50 @@
     <link rel="stylesheet" href="{{ asset('assets/css/css-slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}"> --}}
+    <link href="{{ asset('icon_img/assets/icons/flaticon.css') }}" rel="stylesheet">
+    <link href="{{ asset('icon_img/assets/icons/ionicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('icon_img/assets/icons/linearicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('icon_img/assets/icons/simple-line-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('icon_img/assets/icons/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/all.css') }}" rel="stylesheet">
+    <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/fontawesome.css') }}" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(get_setting('favicon')) }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(get_setting('favicon')) }}">
+    <link rel="manifest" href="{{ asset(get_setting('favicon')) }}">
     @include('includes.partials.messages')
+    @stack('before-styles')
+    <link href="{{ mix('css/backend.css') }}" rel="stylesheet">
+    <livewire:styles />
+    @stack('after-styles')
 </head>
 
 <body>
+
     <script>
         var settings = document.getElementById('settings_all').innerText;
         window.b2b = settings ? JSON.parse(settings) : {};
     </script>
 
-    <div id="app">
-        <main>
+    <div class="wrapper" id="app">
+        @include('frontend.user.includes.sidebar')
+        <section class="content">
             @yield('content')
-        </main>
+        </section>
+
     </div>
     <!--app-->
-    <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
+    @stack('before-scripts')
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
+    <script src="{{ mix('js/backend.js') }}"></script>
+    <livewire:scripts />
+    @stack('after-scripts')
+    {{-- <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/334-js-popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/3741-js-bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/5085-js-isotope.pkgd.min.js') }}"></script>
@@ -64,7 +91,7 @@
     <script src="{{ asset('assets/js/788-js-jquery.magnific-popup.min.js') }}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
     <script src="{{ asset('assets/js/9626-js-plugins.js') }}"></script>
-    <script src="{{ asset('assets/js/2325-js-main.js') }}"></script>
+    <script src="{{ asset('assets/js/2325-js-main.js') }}"></script> --}}
 
 </body>
 

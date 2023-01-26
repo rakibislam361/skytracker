@@ -7,9 +7,9 @@
                         <x-utils.link :href="$crumb->url()" :text="$crumb->title()" />
                     </li>
                 @else
-                    <li class="breadcrumb-item active" aria-current="page">
+                    {{-- <li class="breadcrumb-item active" aria-current="page">
                         {{ $crumb->title() }}
-                    </li>
+                    </li> --}}
                 @endif
             @endforeach
         </ol>

@@ -47,7 +47,6 @@ class bookingController extends Controller
                 $validateData['othersProductName'] = implode(',', request()->othersProductName);
             }
 
-
             $cartonvalidateData = $this->cartonDataValidate();
 
             if (request()->carton_number) {
@@ -87,9 +86,9 @@ class bookingController extends Controller
     public function show($id)
     {
         $booking = booking::with('cartons')->find($id);
-        $pdf = PDF::loadView('backend.booking.invoice', compact('booking'));
+        return view('backend.booking.invoice', compact('booking'));
 
-        return $pdf->download('invoice.pdf');
+        // return $pdf->download('invoice.pdf');
     }
 
     /**
@@ -132,10 +131,12 @@ class bookingController extends Controller
             $updateBooking->remarks = $request->remarks;
             $updateBooking->status = $request->status;
 
+
             $updateCarton->shipping_mark = implode(',', $request->shipping_mark);
             $updateCarton->carton_number = implode(',', $request->carton_number);
             $updateCarton->shipping_number = implode(',', $request->shipping_number);
             $updateCarton->actual_weight = $request->actual_weight;
+            $updateCarton->warehouse_quantity = $request->warehouse_quantity;
             $updateCarton->tracking_id = implode(',', $request->tracking_id);
 
             $updateBooking->save();

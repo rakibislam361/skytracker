@@ -87,6 +87,7 @@ class UserService extends BaseService
                 $user = $this->createUser([
                     'name' => $info->name,
                     'email' => $info->email,
+                    'address' => $info->address,
                     'provider' => $provider,
                     'provider_id' => $info->id,
                     'email_verified_at' => now(),
@@ -120,6 +121,7 @@ class UserService extends BaseService
                 'type' => $data['type'],
                 'name' => $data['name'],
                 'email' => $data['email'],
+                'address' => $data['address'],
                 'password' => $data['password'],
                 // 'email_verified_at' => isset($data['email_verified']) && $data['email_verified'] === '1' ? now() : null,
                 'email_verified_at' => now(),
@@ -165,6 +167,7 @@ class UserService extends BaseService
                 'type' => $user->isMasterAdmin() ? $this->model::TYPE_ADMIN : $data['type'] ?? $user->type,
                 'name' => $data['name'],
                 'email' => $data['email'],
+                'address' => $data['address'],
             ]);
 
             if (!$user->isMasterAdmin()) {
@@ -196,9 +199,12 @@ class UserService extends BaseService
     public function updateProfile(User $user, array $data = []): User
     {
         $user->name = $data['name'] ?? null;
+        $user->address = $data['address'] ?? null;
+        $user->phone = $data['phone'] ?? null;
 
         if ($user->canChangeEmail() && $user->email !== $data['email']) {
             $user->email = $data['email'];
+            // $user->address = $data['address'];
             $user->email_verified_at = now();
             $user->sendEmailVerificationNotification();
             session()->flash('resent', true);
@@ -327,6 +333,7 @@ class UserService extends BaseService
             'type' => $data['type'] ?? $this->model::TYPE_USER,
             'name' => $data['name'] ?? null,
             'email' => $data['email'] ?? null,
+            'phone' => $data['phone'] ?? null,
             'password' => $data['password'] ?? null,
             'provider' => $data['provider'] ?? null,
             'provider_id' => $data['provider_id'] ?? null,
