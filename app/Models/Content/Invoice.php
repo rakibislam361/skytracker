@@ -2,6 +2,7 @@
 
 namespace App\Models\Content;
 
+use App\Domains\Auth\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;

@@ -31,6 +31,12 @@ class InvoiceController extends Controller
         // $booking = booking::all();
         // return view('backend.invoice.create', compact('booking'));
     }
+    public function details($id)
+    {
+
+        $invoice = Invoice::findOrFail($id);
+        return view('backend.booking.invoice', compact('invoice'));
+    }
 
     /**
      * Store a newly created resource in storage.

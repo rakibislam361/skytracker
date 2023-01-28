@@ -18,8 +18,7 @@ class bookingController extends Controller
      */
     public function index()
     {
-        $booking = booking::all();
-        return view('backend.booking.index', compact('booking'));
+        return view('backend.booking.index');
     }
 
     /**
@@ -29,7 +28,7 @@ class bookingController extends Controller
      */
     public function create()
     {
-        $booking = booking::all();
+        $booking = Booking::all();
         return view('backend.booking.create', compact('booking'));
     }
 
@@ -86,7 +85,7 @@ class bookingController extends Controller
      */
     public function show($id)
     {
-        $booking = booking::with('cartons')->find($id);
+        $booking = Booking::with('cartons')->find($id);
         return view('backend.booking.invoice', compact('booking'));
 
         // return $pdf->download('invoice.pdf');
@@ -100,7 +99,7 @@ class bookingController extends Controller
      */
     public function edit($id)
     {
-        $booking = booking::with('cartons')->find($id);
+        $booking = Booking::with('cartons')->find($id);
 
         return view('backend.booking.edit', compact('booking'));
     }
@@ -114,8 +113,8 @@ class bookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateBooking = booking::findOrFail($id);
-        $updateCarton = carton::findOrFail($id);
+        $updateBooking = Booking::findOrFail($id);
+        $updateCarton = Carton::findOrFail($id);
         $updateBooking->cartons()->detach($updateCarton->id);
 
         if ($updateBooking && $updateCarton) {
@@ -157,8 +156,8 @@ class bookingController extends Controller
      */
     public function destroy($id)
     {
-        $booking = booking::find($id);
-        $carton = carton::find($id);
+        $booking = Booking::find($id);
+        $carton = Carton::find($id);
         if ($booking && $carton) {
             $booking->delete($booking);
             $carton->delete($carton);

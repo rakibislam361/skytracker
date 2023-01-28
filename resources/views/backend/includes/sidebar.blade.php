@@ -16,14 +16,15 @@
                 </li>
 
                 {{-- order --}}
-                @if ($logged_in_user->hasAllAccess() ||
-                    $logged_in_user->can('admin.order.order_rmb.edit') ||
-                    $logged_in_user->can('admin.order.localdelivery.edit') ||
-                    $logged_in_user->can('admin.order.purchase.edit') ||
-                    $logged_in_user->can('admin.order.chn_warehouse_qty') ||
-                    $logged_in_user->can('admin.order.chn_warehouse_weight') ||
-                    $logged_in_user->can('admin.order.status.shipped-from-china-warehouse') ||
-                    $logged_in_user->can('admin.order.status.received-in-BD-warehouse'))
+                @if (
+                    $logged_in_user->hasAllAccess() ||
+                        $logged_in_user->can('admin.order.order_rmb.edit') ||
+                        $logged_in_user->can('admin.order.localdelivery.edit') ||
+                        $logged_in_user->can('admin.order.purchase.edit') ||
+                        $logged_in_user->can('admin.order.chn_warehouse_qty') ||
+                        $logged_in_user->can('admin.order.chn_warehouse_weight') ||
+                        $logged_in_user->can('admin.order.status.shipped-from-china-warehouse') ||
+                        $logged_in_user->can('admin.order.status.received-in-BD-warehouse'))
                     <li class="nav-item {{ activeClass(Route::is('admin.order.*'), 'menu-open') }}">
                         <x-utils.link-sidebar href="#" :text="__('Orders')" icon="nav-icon icon-star"
                             class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.order.*'))" />
@@ -38,6 +39,10 @@
                                 <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link"
                                     :text="__('Manage Wallet')" />
                             </li>
+                            <li class="nav-item">
+                                <x-utils.link :href="route('admin.invoice.index')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                    :text="__('Invoice')" />
+                            </li>
 
                             {{-- <li class="nav-item">
               <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
@@ -45,36 +50,6 @@
                         </ul>
                     </li>
                 @endif
-                {{-- product --}}
-                {{-- <li class="nav-item {{ activeClass(Route::is('admin.product.*'), 'menu-open') }}">
-                <x-utils.link-sidebar href="#" :text="__('Product')" icon="nav-icon icon-star" class="nav-link" rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.product.*'))" />
-                <ul class="nav nav-treeview">
-
-                    <li class="nav-item">
-                        <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Products Details')" />
-                    </li>
-
-                    <li class="nav-item menu-open">
-                        <x-utils.link-sidebar href="#" :text="__('Product`s Settings')" icon="nav-icon icon-settings" class="nav nav-link" rightIcon="fas fa-angle-left right" />
-                        <ul class="nav nav-treeview">
-
-                            <li class="nav-item">
-                                <x-utils.link :href="route('admin.product.status.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Status')" />
-                            </li>
-
-                            <li class="nav-item">
-                                <x-utils.link :href="route('admin.product.warehouse.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Warehouse')" />
-                            </li>
-
-                            <li class="nav-item">
-                                <x-utils.link :href="route('admin.product.shipping.index')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Shipping')" />
-                            </li>
-
-                        </ul>
-                    </li>
-                </ul>
-                </li> --}}
-
                 {{-- Accounts --}}
                 @if ($logged_in_user->can('admin.accounts'))
                     @unlessrole('Administrator')
@@ -131,13 +106,14 @@
                     </li>
                 @endif
 
-                @if ($logged_in_user->hasAllAccess() ||
-                    ($logged_in_user->can('admin.access.user.list') ||
-                        $logged_in_user->can('admin.access.user.deactivate') ||
-                        $logged_in_user->can('admin.access.user.reactivate') ||
-                        $logged_in_user->can('admin.access.user.clear-session') ||
-                        $logged_in_user->can('admin.access.user.impersonate') ||
-                        $logged_in_user->can('admin.access.user.change-password')))
+                @if (
+                    $logged_in_user->hasAllAccess() ||
+                        ($logged_in_user->can('admin.access.user.list') ||
+                            $logged_in_user->can('admin.access.user.deactivate') ||
+                            $logged_in_user->can('admin.access.user.reactivate') ||
+                            $logged_in_user->can('admin.access.user.clear-session') ||
+                            $logged_in_user->can('admin.access.user.impersonate') ||
+                            $logged_in_user->can('admin.access.user.change-password')))
                     <li class="nav-header">@lang('System')</li>
                     <li
                         class="nav-item {{ activeClass(Route::is('admin.auth.user.') || Route::is('admin.auth.role.'), 'menu-open') }}">
@@ -187,13 +163,14 @@
                     rightIcon="fas fa-angle-left right" />
                 <ul class="nav nav-treeview">
 
-                    @if ($logged_in_user->hasAllAccess() ||
-                        ($logged_in_user->can('admin.access.user.list') ||
-                            $logged_in_user->can('admin.access.user.deactivate') ||
-                            $logged_in_user->can('admin.access.user.reactivate') ||
-                            $logged_in_user->can('admin.access.user.clear-session') ||
-                            $logged_in_user->can('admin.access.user.impersonate') ||
-                            $logged_in_user->can('admin.access.user.change-password')))
+                    @if (
+                        $logged_in_user->hasAllAccess() ||
+                            ($logged_in_user->can('admin.access.user.list') ||
+                                $logged_in_user->can('admin.access.user.deactivate') ||
+                                $logged_in_user->can('admin.access.user.reactivate') ||
+                                $logged_in_user->can('admin.access.user.clear-session') ||
+                                $logged_in_user->can('admin.access.user.impersonate') ||
+                                $logged_in_user->can('admin.access.user.change-password')))
                         <li class="nav-item">
                             <x-utils.link :href="route('admin.auth.user.index')" icon="nav-icon icon-user" class="nav-link"
                                 :text="__('User Management')" :active="activeClass(Route::is('admin.auth.user.*'))" />

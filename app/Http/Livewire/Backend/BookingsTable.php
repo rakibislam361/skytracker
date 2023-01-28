@@ -3,8 +3,6 @@
 namespace App\Http\Livewire\Backend;
 
 use App\Models\Content\Booking;
-use App\Models\Content\Carton;
-use App\Models\Content\Booking_carton;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;

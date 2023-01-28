@@ -98,7 +98,7 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
 Route::resources([
     'booking' => bookingController::class,
 ]);
-
+Route::get('invoice/details/{invoice}', [InvoiceController::class, 'details'])->name('invoice.details');
 Route::resources([
     'invoice' => InvoiceController::class,
 ]);

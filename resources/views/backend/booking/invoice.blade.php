@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Invoice No : INVLOCAL{{ $booking->id }}</title>
+    <title>Invoice No : {{ $invoice->invoice_id }}</title>
 
     {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/print/font-awesome/css/font-awesome.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/plugins/print/bootstrap/dist/css/bootstrap.min.css') }}">
@@ -39,11 +39,11 @@
                             <table class="table table-bordered table-condensed">
                                 <tr>
                                     <td class="p_txt_5"> Invoice: </td>
-                                    <td class="p_txt_6"> INVLOCAL{{ $booking->id }} </td>
+                                    <td class="p_txt_6"> {{ $invoice->invoice_id }} </td>
                                 </tr>
                                 <tr>
                                     <td class="p_txt_5"> Date: </td>
-                                    <td class="p_txt_6"> {{ date('M d, Y', strtotime($booking->date)) }}</td>
+                                    <td class="p_txt_6"> {{ date('M d, Y', strtotime($invoice->created_at)) }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -53,15 +53,15 @@
                             <table class="table table-bordered table-condensed">
                                 <tr>
                                     <td class="p_txt_5"><b>Customer:</b></td>
-                                    <td class="p_txt_6"><b>{{ $booking->user->name ?? 'N/A' }}</b></td>
+                                    <td class="p_txt_6"><b>{{ $invoice->customer_name ?? 'N/A' }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="p_txt_5"><b>Phone:</b></td>
-                                    <td class="p_txt_6">{{ $booking->user->phone ?? 'N/A' }}</td>
+                                    <td class="p_txt_6">{{ $invoice->customer_name ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <td class="p_txt_5"><b>Address:</b></td>
-                                    <td class="p_txt_6">{{ $booking->user->address ?? 'N/A' }}</td>
+                                    <td class="p_txt_6">{{ $invoice->address ?? 'N/A' }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -81,33 +81,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $cartons = $booking->cartons;
-                                $carton_number = [];
-                                $shipping_mark = [];
-                                $shipping_number = [];
-                                $actual_weight = null;
-                                $tracking_id = [];
-                                foreach ($cartons as $key => $value) {
-                                    $carton_number = $value->carton_number;
-                                    $shipping_mark = $value->shipping_mark;
-                                    $shipping_number = $value->shipping_number;
-                                    $actual_weight = $value->actual_weight;
-                                    $tracking_id = $value->tracking_id;
-                                }
-                            @endphp
+                            {{-- @php
+                            $cartons = $booking->cartons;
+                            $carton_number = [];
+                            $shipping_mark = [];
+                            $shipping_number = [];
+                            $actual_weight = null;
+                            $tracking_id = [];
+                            foreach ($cartons as $key => $value) {
+                            $carton_number = $value->carton_number;
+                            $shipping_mark = $value->shipping_mark;
+                            $shipping_number = $value->shipping_number;
+                            $actual_weight = $value->actual_weight;
+                            $tracking_id = $value->tracking_id;
+                            }
+                            @endphp --}}
 
                             <tr>
                                 <td class="text-center align-middle">
-                                    {{ date('m/d/Y', strtotime($booking->updated_at)) }}
+                                    {{ date('m/d/Y', strtotime($invoice->created_at)) }}
                                 </td>
-                                <td class="text-center align-middle">{{ $booking->ctnQuantity ?? '00' }}</td>
-                                <td class="text-center align-middle">{{ $carton_number ?? '0' }}</td>
-                                <td class="text-center align-middle">{{ $booking->othersProductName ?? 'N/A' }}</td>
-                                <td class="text-center align-middle">{{ $booking->productQuantity ?? 'N/A' }}</td>
-                                <td class="text-center align-middle">{{ $actual_weight }}</td>
-                                <td class="text-center align-middle">{{ $booking->remarks }}</td>
-                                <td class="text-center align-middle">{{ $booking->amount }}</td>
+                                <td class="text-center align-middle">{{ $invoice->carton_qty ?? '00' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->carton_number ?? '0' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->product_name ?? 'N/A' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->product_qty ?? 'N/A' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->actual_weight }}</td>
+                                <td class="text-center align-middle">{{ $invoice->remarks }}</td>
+                                <td class="text-center align-middle">{{ $invoice->amount }}</td>
                             </tr>
 
                         </tbody>
@@ -115,19 +115,18 @@
                             {{-- <tr>
                                 <td colspan="6" class="text-right">Paid</td>
                                 <td class="text-center align-middle"><span class="total_payable"
-                                        data-user="{{ $booking->user->id }}">{{ round($booking->amount) }}</span>
-                                </td>
+                                        data-user="{{ $booking->user->id }}">{{ round($invoice->amount) }}</span>
+                            </td>
                             </tr>
                             <tr>
                                 <td colspan="6" class="text-right">Due</td>
-                                <td class="text-center align-middle"><span class="total_payable"
-                                        data-user="{{ $booking->user->id }}">{{ round($booking->amount) }}</span>
+                                <td class="text-center align-middle"><span class="total_payable" data-user="{{ $invoice->user->id }}">{{ round($invoice->amount) }}</span>
                                 </td>
                             </tr> --}}
                             <tr>
                                 <td colspan="7" class="text-right">Total Payable</td>
                                 <td class="text-center align-middle"><span class="total_payable"
-                                        data-user="{{ $booking->user->id }}">{{ round($booking->amount) }}</span>
+                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->amount) }}</span>
                                 </td>
                             </tr>
                         </tfoot>
