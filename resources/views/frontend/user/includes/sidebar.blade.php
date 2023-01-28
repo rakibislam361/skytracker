@@ -6,8 +6,8 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                 <li class="nav-item">
-                    <x-utils.link-sidebar :href="route('admin.dashboard')" :text="__('Dashboard')" icon="nav-icon icon-speedometer"
-                        :active="activeClass(Route::is('admin.dashboard'))" class="nav-link" />
+                    <x-utils.link-sidebar :href="route('frontend.user.dashboard')" :text="__('Dashboard')" icon="nav-icon icon-speedometer"
+                        :active="activeClass(Route::is('frontend.user.dashboard'))" class="nav-link" />
                 </li>
 
                 {{-- order --}}
@@ -27,36 +27,8 @@
                                 :text="__('Manage Wallet')" />
                         </li>
 
-                        {{-- <li class="nav-item">
-              <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
-            </li> --}}
                     </ul>
                 </li>
-
-
-                <li class="nav-item {{ activeClass(Route::is('admin.account.*'), 'menu-open') }}">
-                    <x-utils.link-sidebar href="#" :text="__('Accounts')" icon="nav-icon icon-star" class="nav-link"
-                        rightIcon="fas fa-angle-left right" :active="activeClass(Route::is('admin.account.*'))" />
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <x-utils.link :href="route('admin.account.skybuy')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                :text="__('SkyBuy Accounts')" />
-                        </li>
-                        <li class="nav-item">
-                            <x-utils.link :href="route('admin.account.skyone')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                :text="__('SkyOne Accounts')" />
-                        </li>
-                        <li class="nav-item">
-                            <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                :text="__('Offline Customer Accounts')" />
-                        </li>
-                        <li class="nav-item">
-                            <x-utils.link :href="route('admin.product.product.index')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                :text="__('Office Accounts')" />
-                        </li>
-                    </ul>
-                </li>
-
 
 
                 <li class="nav-item">
@@ -146,8 +118,8 @@
 
 
                 <li class="nav-item ">
-                    <x-utils.link-sidebar href="#" :text="__('Logs')" icon="nav-icon fas fa-list"
-                        class="nav-link" rightIcon="fas fa-angle-left right" />
+                    <x-utils.link-sidebar href="#" :text="__('Logs')" icon="nav-icon fas fa-list" class="nav-link"
+                        rightIcon="fas fa-angle-left right" />
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <x-utils.link :href="route('log-viewer::dashboard')" icon="nav-icon far fa-circle" class="nav-link"

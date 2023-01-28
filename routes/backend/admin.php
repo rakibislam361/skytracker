@@ -10,6 +10,7 @@ use App\Domains\Products\Http\Controllers\ShippingController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\Content\SettingController;
 use App\Http\Controllers\Backend\Content\AccountController;
+use App\Http\Controllers\Backend\Content\InvoiceController;
 use App\Http\Controllers\Frontend\bookingController;
 use App\Http\Controllers\Backend\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -96,4 +97,8 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
 
 Route::resources([
     'booking' => bookingController::class,
+]);
+
+Route::resources([
+    'invoice' => InvoiceController::class,
 ]);

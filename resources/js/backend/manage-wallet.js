@@ -216,130 +216,130 @@ $(function () {
         $("#statusChargeForm").trigger("reset");
     });
 
-    body.on("click", "#generateInvoiceButton", function () {
-        var generateInvoiceModal = $("#generateInvoiceModal");
-        var hiddenInput = "";
-        var is_generate = true;
-        var duePayment = "";
-        var serial = 1;
-        var userTrack = 0;
-        var total_due = 0;
-        var total_weight = 0;
-        var invoices = [];
+    // body.on("click", "#generateInvoiceButton", function () {
+    //     var generateInvoiceModal = $("#generateInvoiceModal");
+    //     var hiddenInput = "";
+    //     var is_generate = true;
+    //     var duePayment = "";
+    //     var serial = 1;
+    //     var userTrack = 0;
+    //     var total_due = 0;
+    //     var total_weight = 0;
+    //     var invoices = [];
 
-        $("input.checkboxItem:checked").each(function (index) {
-            var item_id = $(this).val();
-            var status = $(this).attr("data-status");
-            var user_id = $(this).attr("data-user");
-            var invoice_item = {};
-            if (userTrack === 0) {
-                userTrack = user_id;
-            }
-            if (userTrack !== 0 && userTrack !== user_id) {
-                is_generate = false;
-            }
-            var status_allow = [
-                "received-in-BD-warehouse",
-                "out-of-stock",
-                "adjustment",
-                "refunded",
-            ];
-            // received-in-BD-warehouse
-            // alert(status);
-            if (!status_allow.includes(status)) {
-                is_generate = false;
-            }
-            if (is_generate) {
-                var itemRow = $(document).find("#" + item_id);
-                var product_name = itemRow
-                    .find(".productInfo")
-                    .attr("data-product-name");
-                var product_id = itemRow
-                    .find(".productInfo")
-                    .attr("data-product-id");
-                var order_item_number = itemRow
-                    .find(".order_item_number")
-                    .text();
-                var actual_weight = itemRow.find(".actual_weight").text();
-                var due_payment = itemRow.find(".due_payment").text();
+    //     $("input.checkboxItem:checked").each(function (index) {
+    //         var item_id = $(this).val();
+    //         var status = $(this).attr("data-status");
+    //         var user_id = $(this).attr("data-user");
+    //         var invoice_item = {};
+    //         if (userTrack === 0) {
+    //             userTrack = user_id;
+    //         }
+    //         if (userTrack !== 0 && userTrack !== user_id) {
+    //             is_generate = false;
+    //         }
+    //         var status_allow = [
+    //             "received-in-BD-warehouse",
+    //             "out-of-stock",
+    //             "adjustment",
+    //             "refunded",
+    //         ];
+    //         // received-in-BD-warehouse
+    //         // alert(status);
+    //         if (!status_allow.includes(status)) {
+    //             is_generate = false;
+    //         }
+    //         if (is_generate) {
+    //             var itemRow = $(document).find("#" + item_id);
+    //             var product_name = itemRow
+    //                 .find(".productInfo")
+    //                 .attr("data-product-name");
+    //             var product_id = itemRow
+    //                 .find(".productInfo")
+    //                 .attr("data-product-id");
+    //             var order_item_number = itemRow
+    //                 .find(".order_item_number")
+    //                 .text();
+    //             var actual_weight = itemRow.find(".actual_weight").text();
+    //             var due_payment = itemRow.find(".due_payment").text();
 
-                total_due += Number(due_payment);
-                total_weight += Number(actual_weight);
-                duePayment += `<tr>
-                          <td class=" align-middle">${serial}</td>
-                          <td class=" align-middle">${order_item_number}</td>
-                          <td class="text-left align-middle">${product_name}</td>
-                          <td class=" align-middle">${status}</td>
-                          <td class="text-right align-middle">${Number(
-                              actual_weight
-                          ).toFixed(3)}</td>
-                          <td class="text-right align-middle">${Number(
-                              due_payment
-                          ).toFixed(2)}</td>
-                        </tr>`;
-                invoice_item.id = item_id;
-                invoice_item.order_item_number = order_item_number;
-                invoice_item.product_id = product_id;
-                invoice_item.product_name = product_name;
-                invoice_item.actual_weight = actual_weight;
-                invoice_item.due_payment = due_payment;
-                invoice_item.status = status;
-            }
-            serial += 1;
-            invoices.push(invoice_item);
-        });
+    //             total_due += Number(due_payment);
+    //             total_weight += Number(actual_weight);
+    //             duePayment += `<tr>
+    //                       <td class=" align-middle">${serial}</td>
+    //                       <td class=" align-middle">${order_item_number}</td>
+    //                       <td class="text-left align-middle">${product_name}</td>
+    //                       <td class=" align-middle">${status}</td>
+    //                       <td class="text-right align-middle">${Number(
+    //                           actual_weight
+    //                       ).toFixed(3)}</td>
+    //                       <td class="text-right align-middle">${Number(
+    //                           due_payment
+    //                       ).toFixed(2)}</td>
+    //                     </tr>`;
+    //             invoice_item.id = item_id;
+    //             invoice_item.order_item_number = order_item_number;
+    //             invoice_item.product_id = product_id;
+    //             invoice_item.product_name = product_name;
+    //             invoice_item.actual_weight = actual_weight;
+    //             invoice_item.due_payment = due_payment;
+    //             invoice_item.status = status;
+    //         }
+    //         serial += 1;
+    //         invoices.push(invoice_item);
+    //     });
 
-        if (is_generate) {
-            var invoiceFooter = $("#invoiceFooter");
-            invoiceFooter
-                .find(".total_weight")
-                .text(Number(total_weight).toFixed(3));
-            invoiceFooter.find(".total_due").text(Number(total_due).toFixed(2));
-            // invoiceFooter.find('.courier_bill').text(Number(0.00).toFixed(2));
-            invoiceFooter
-                .find(".total_payable")
-                .text(Number(total_due).toFixed(2));
-            invoiceFooter.find(".total_payable").attr("data-user", userTrack);
-            invoiceFooter
-                .find(".total_payable")
-                .attr(
-                    "data-invoices",
-                    encodeURIComponent(JSON.stringify(invoices))
-                );
-            $("#invoiceItem").html(duePayment);
-            generateInvoiceModal.modal("show");
-        } else {
-            Swal.fire({
-                icon: "warning",
-                text: "Selected items are not ready for generate invoice",
-            });
-        }
-        //console.log('invoices', invoices);
-        // hiddenField.html(hiddenInput);
-        // changeStatusModal.modal('show');
-    });
+    //     if (is_generate) {
+    //         var invoiceFooter = $("#invoiceFooter");
+    //         invoiceFooter
+    //             .find(".total_weight")
+    //             .text(Number(total_weight).toFixed(3));
+    //         invoiceFooter.find(".total_due").text(Number(total_due).toFixed(2));
+    //         // invoiceFooter.find('.courier_bill').text(Number(0.00).toFixed(2));
+    //         invoiceFooter
+    //             .find(".total_payable")
+    //             .text(Number(total_due).toFixed(2));
+    //         invoiceFooter.find(".total_payable").attr("data-user", userTrack);
+    //         invoiceFooter
+    //             .find(".total_payable")
+    //             .attr(
+    //                 "data-invoices",
+    //                 encodeURIComponent(JSON.stringify(invoices))
+    //             );
+    //         $("#invoiceItem").html(duePayment);
+    //         generateInvoiceModal.modal("show");
+    //     } else {
+    //         Swal.fire({
+    //             icon: "warning",
+    //             text: "Selected items are not ready for generate invoice",
+    //         });
+    //     }
+    //     //console.log('invoices', invoices);
+    //     // hiddenField.html(hiddenInput);
+    //     // changeStatusModal.modal('show');
+    // });
 
-    function generate_process_related_data() {
-        var invoiceFooter = $("#invoiceFooter");
-        var courier_bill = invoiceFooter.find(".courier_bill").text();
-        var payment_method = invoiceFooter.find("#payment_method").val();
-        var delivery_method = invoiceFooter.find("#delivery_method").val();
-        var total_payable = invoiceFooter.find(".total_payable").text();
-        var total_due = invoiceFooter.find(".total_due").text();
-        var customer_id = invoiceFooter
-            .find(".total_payable")
-            .attr("data-user");
-        var isNotify = $("#notifyUser").is(":checked") ? 1 : 0;
-        var related_data = {};
-        related_data.courier_bill = courier_bill;
-        related_data.payment_method = payment_method;
-        related_data.delivery_method = delivery_method;
-        related_data.total_due = total_due;
-        related_data.total_payable = total_payable;
-        related_data.user_id = customer_id;
-        related_data.isNotify = isNotify;
-        return related_data;
-    }
+    // function generate_process_related_data() {
+    //     var invoiceFooter = $("#invoiceFooter");
+    //     var courier_bill = invoiceFooter.find(".courier_bill").text();
+    //     var payment_method = invoiceFooter.find("#payment_method").val();
+    //     var delivery_method = invoiceFooter.find("#delivery_method").val();
+    //     var total_payable = invoiceFooter.find(".total_payable").text();
+    //     var total_due = invoiceFooter.find(".total_due").text();
+    //     var customer_id = invoiceFooter
+    //         .find(".total_payable")
+    //         .attr("data-user");
+    //     var isNotify = $("#notifyUser").is(":checked") ? 1 : 0;
+    //     var related_data = {};
+    //     related_data.courier_bill = courier_bill;
+    //     related_data.payment_method = payment_method;
+    //     related_data.delivery_method = delivery_method;
+    //     related_data.total_due = total_due;
+    //     related_data.total_payable = total_payable;
+    //     related_data.user_id = customer_id;
+    //     related_data.isNotify = isNotify;
+    //     return related_data;
+    // }
 
     $(document).on("click", ".applyCourierBtn", function () {
         var courier_bill = $(this)
@@ -370,50 +370,50 @@ $(function () {
         $(".courierSubmitForm").show();
     });
 
-    $(document).on("click", "#generateSubmitBtn", function () {
-        var invoices = $("#invoiceFooter")
-            .find(".total_payable")
-            .attr("data-invoices");
-        if (invoices) {
-            invoices = decodeURIComponent(invoices);
-        }
-        var related = generate_process_related_data();
-        var csrf = $('meta[name="csrf-token"]');
-        $.ajax({
-            type: "POST",
-            url: $(this).attr("data-action"),
-            data: {
-                invoices: invoices,
-                related: JSON.stringify(related),
-            },
-            headers: {
-                "X-CSRF-TOKEN": csrf.attr("content"),
-            },
-            beforeSend: function () {
-                // before loading...
-            },
-            success: function (response) {
-                if (response.status) {
-                    window.location.href = "/admin/invoice";
-                } else {
-                    Swal.fire({
-                        icon: "warning",
-                        text: "Invoice Generate Fail",
-                    });
-                }
-            },
-            error: function (xhr) {
-                // if error occurred
-                Swal.fire({
-                    icon: "warning",
-                    text: "Invoice Generate Error",
-                });
-            },
-            complete: function () {
-                $("#generateInvoiceModal").modal("hide");
-            },
-        });
-    });
+    // $(document).on("click", "#generateSubmitBtn", function () {
+    //     var invoices = $("#invoiceFooter")
+    //         .find(".total_payable")
+    //         .attr("data-invoices");
+    //     if (invoices) {
+    //         invoices = decodeURIComponent(invoices);
+    //     }
+    //     var related = generate_process_related_data();
+    //     var csrf = $('meta[name="csrf-token"]');
+    //     $.ajax({
+    //         type: "POST",
+    //         url: $(this).attr("data-action"),
+    //         data: {
+    //             invoices: invoices,
+    //             related: JSON.stringify(related),
+    //         },
+    //         headers: {
+    //             "X-CSRF-TOKEN": csrf.attr("content"),
+    //         },
+    //         beforeSend: function () {
+    //             // before loading...
+    //         },
+    //         success: function (response) {
+    //             if (response.status) {
+    //                 window.location.href = "/admin/invoice";
+    //             } else {
+    //                 Swal.fire({
+    //                     icon: "warning",
+    //                     text: "Invoice Generate Fail",
+    //                 });
+    //             }
+    //         },
+    //         error: function (xhr) {
+    //             // if error occurred
+    //             Swal.fire({
+    //                 icon: "warning",
+    //                 text: "Invoice Generate Error",
+    //             });
+    //         },
+    //         complete: function () {
+    //             $("#generateInvoiceModal").modal("hide");
+    //         },
+    //     });
+    // });
 });
 
 $(function () {

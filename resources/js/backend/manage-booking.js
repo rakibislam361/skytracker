@@ -92,8 +92,85 @@ $(function () {
 
             $("#tracking-id").append(input_element);
         })
+
         .on("click", ".remove-tr", function (e) {
             e.preventDefault();
             $(this).parents("tr").remove();
         });
+});
+function generate_process_related_data() {
+    var invoiceFooter = $("#invoiceFooter");
+    var courier_bill = invoiceFooter.find(".courier_bill").text();
+    var payment_method = invoiceFooter.find("#payment_method").val();
+    var delivery_method = invoiceFooter.find("#delivery_method").val();
+    var total_payable = invoiceFooter.find(".total_payable").text();
+    var total_due = invoiceFooter.find(".total_due").text();
+    var customer_id = invoiceFooter.find(".total_payable").attr("data-user");
+    var isNotify = $("#notifyUser").is(":checked") ? 1 : 0;
+    var related_data = {};
+    related_data.courier_bill = courier_bill;
+    related_data.payment_method = payment_method;
+    related_data.delivery_method = delivery_method;
+    related_data.total_due = total_due;
+    related_data.total_payable = total_payable;
+    related_data.user_id = customer_id;
+    related_data.isNotify = isNotify;
+    return related_data;
+}
+
+$(function () {
+    const body = $(document);
+    body.on("click", "#generateInvoiceButton", function (e) {
+        var duePayment = "";
+        let itemValue = $(this).data("value");
+        duePayment += `<tr>
+                          <td class=" align-middle">${itemValue.user.name}</td>
+                          <td class=" align-middle">${
+                              itemValue.othersProductName
+                          }</td>
+                          <td class="text-left align-middle">${
+                              itemValue.cartons[0].carton_number
+                          }</td>
+                          <td class=" align-middle">${itemValue.status}</td>
+                          <td class="text-right align-middle">${Number(
+                              itemValue.cartons[0].actual_weight
+                          ).toFixed(2)}</td>                     
+                        </tr>`;
+        let hidden = `<input type="hidden" name="booking_id" id="booking_id" value="${itemValue.id}">`;
+        $(".hiddenField").html(hidden);
+        $("#invoiceItem").html(duePayment);
+        $("#generateInvoiceModal").modal("show");
+    });
+    $(document).on("click", ".applyCourierBtn", function () {
+        var courier_bill = $(this)
+            .closest(".input-group")
+            .find(".form-control")
+            .val();
+        var total_due = $("#invoiceFooter").find(".total_due").text();
+        var total_payable = Number(courier_bill) + Number(total_due);
+        let total_pay = `<input type="hidden" name="total_payable" id="total_payable" value="${total_payable}">`;
+        let total_d = `<input type="hidden" name="total_due" id="total_due" value="${total_due}">`;
+        $(".totalPay").html(total_pay);
+        $(".totalDue").html(total_d);
+        $("#invoiceFooter")
+            .find(".courier_bill")
+            .text(Number(courier_bill).toFixed(2));
+        $("#invoiceFooter")
+            .find(".total_payable")
+            .text(Number(total_payable).toFixed(2));
+
+        $(".courier_bill_text").show();
+        $(".courierSubmitForm").hide();
+    });
+
+    $(document).on("click", ".removeCourierBtn", function () {
+        $(this).closest("div").find(".form-control").val("");
+        var total_due = $("#invoiceFooter").find(".total_due").text();
+        $("#invoiceFooter").find(".courier_bill").text(0.0);
+        $("#invoiceFooter")
+            .find(".total_payable")
+            .text(Number(total_due).toFixed(2));
+        $(".courier_bill_text").hide();
+        $(".courierSubmitForm").show();
+    });
 });
