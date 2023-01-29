@@ -81,22 +81,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @php
-                            $cartons = $booking->cartons;
-                            $carton_number = [];
-                            $shipping_mark = [];
-                            $shipping_number = [];
-                            $actual_weight = null;
-                            $tracking_id = [];
-                            foreach ($cartons as $key => $value) {
-                            $carton_number = $value->carton_number;
-                            $shipping_mark = $value->shipping_mark;
-                            $shipping_number = $value->shipping_number;
-                            $actual_weight = $value->actual_weight;
-                            $tracking_id = $value->tracking_id;
-                            }
-                            @endphp --}}
-
                             <tr>
                                 <td class="text-center align-middle">
                                     {{ date('m/d/Y', strtotime($invoice->created_at)) }}

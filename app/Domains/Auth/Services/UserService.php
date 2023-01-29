@@ -168,6 +168,7 @@ class UserService extends BaseService
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'address' => $data['address'],
+                'phone' => $data['phone'],
             ]);
 
             if (!$user->isMasterAdmin()) {

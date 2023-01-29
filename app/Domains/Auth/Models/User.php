@@ -50,6 +50,7 @@ class User extends Authenticatable implements TwoFactorAuthenticatable
     'type',
     'name',
     'phone',
+    'address',
     'email',
     'shipping_id',
     'billing_id',

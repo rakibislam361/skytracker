@@ -113,7 +113,6 @@ class UserController
     public function update(UpdateUserRequest $request, User $user)
     {
         $this->userService->update($user, $request->validated());
-
         return redirect()->route('admin.auth.user.show', $user)->withFlashSuccess(__('The user was successfully updated.'));
     }
 
