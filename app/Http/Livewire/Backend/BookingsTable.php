@@ -5,16 +5,18 @@ namespace App\Http\Livewire\Backend;
 use App\Models\Content\Booking;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Traits\HtmlComponents;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 
 class BookingsTable extends DataTableComponent
 {
+    use HtmlComponents;
     /**
-     * @return Builder
+     * @var string
      */
     public function query(): Builder
     {
-        return Booking::with('user', 'cartons');
+        return Booking::with('user', 'cartons')->latest();
     }
 
     public function columns(): array
@@ -65,6 +67,24 @@ class BookingsTable extends DataTableComponent
                 return $shipping_number;
             }),
 
+            Column::make('Tracking Number', 'tracking_id')->format(function ($value, $column, $row) {
+                $carton = $row->cartons;
+                $tracking_id = null;
+                foreach ($carton as $key => $value) {
+                    $tracking_id = $value->tracking_id;
+                }
+                return $tracking_id;
+            }),
+
+            Column::make('Warehouse Quantity', 'warehouse_quantity')->format(function ($value, $column, $row) {
+                $carton = $row->cartons;
+                $warehouse_qty = null;
+                foreach ($carton as $key => $value) {
+                    $warehouse_qty = $value->warehouse_quantity;
+                }
+                return $warehouse_qty;
+            }),
+
             Column::make('Actual Weight', 'actual_weight')->format(function ($value, $column, $row) {
                 $carton = $row->cartons;
                 $actual_weight = null;
@@ -77,23 +97,7 @@ class BookingsTable extends DataTableComponent
             Column::make('Unit Price', 'unit_price'),
 
             Column::make('Amount', 'amount'),
-
-            Column::make('Warehouse Quantity', 'warehouse_quantity')->format(function ($value, $column, $row) {
-                $carton = $row->cartons;
-                $warehouse_qty = null;
-                foreach ($carton as $key => $value) {
-                    $warehouse_qty = $value->warehouse_quantity;
-                }
-                return $warehouse_qty;
-            }),
-            Column::make('Tracking Number', 'tracking_id')->format(function ($value, $column, $row) {
-                $carton = $row->cartons;
-                $tracking_id = null;
-                foreach ($carton as $key => $value) {
-                    $tracking_id = $value->tracking_id;
-                }
-                return $tracking_id;
-            }),
+            Column::make('Paid', 'paid'),
 
             Column::make('Remarks', 'remarks'),
 

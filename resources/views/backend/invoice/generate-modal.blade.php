@@ -29,15 +29,15 @@
                         <tbody id="invoiceItem"></tbody>
                         <tfoot id="invoiceFooter">
                             <tr>
-                                <td colspan="4" class="text-right">Total Due</td>
-                                <td class="text-right"><span class="total_weight">0.000</span></td>
-                                <td class="text-right"><span class="total_due">0.00</span></td>
+                                <td colspan="5" class="text-right">Total Due</td>
+                                {{-- <td class="text-right"><span class="total_weight">0.000</span></td> --}}
+                                <td class="align-middle"><span class="total_due">0.00</span></td>
                                 <div class="totalDue">
                                     {{-- hidden input field append here --}}
                                 </div>
                             </tr>
                             <tr>
-                                <td colspan="4" class="align-middle text-right">
+                                <td colspan="5" class="align-middle text-right">
                                     <div class="row">
                                         <div class="col">
                                             @php
@@ -86,13 +86,11 @@
                                         </div>
                                     </div> <!-- row -->
                                 </td>
-                                <td class="text-center">-</td>
-                                <td class="text-right"><span class="courier_bill">0.00</span></td>
+                                <td class="align-middle"><span class="courier_bill">0.00</span></td>
                             </tr>
                             <tr>
-                                <td colspan="4" class="text-right">Total Payable</td>
-                                <td class="text-center">-</td>
-                                <td class="text-right"><span class="total_payable">0.00</span></td>
+                                <td colspan="5" class="text-right">Total Payable</td>
+                                <td class="align-middle"><span class="total_payable">0.00</span></td>
                                 <div class="totalPay">
                                     {{-- hidden input field append here --}}
                                 </div>

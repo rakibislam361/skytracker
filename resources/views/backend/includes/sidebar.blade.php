@@ -39,10 +39,7 @@
                                 <x-utils.link :href="route('admin.order.index')" icon="nav-icon icon-arrow-right" class="nav-link"
                                     :text="__('Manage Wallet')" />
                             </li>
-                            <li class="nav-item">
-                                <x-utils.link :href="route('admin.invoice.index')" icon="nav-icon icon-arrow-right" class="nav-link"
-                                    :text="__('Invoice')" />
-                            </li>
+
 
                             {{-- <li class="nav-item">
               <x-utils.link :href="route('admin.order.local')" icon="nav-icon icon-arrow-right" class="nav-link" :text="__('Local Product')" />
@@ -95,12 +92,16 @@
                 @endif
                 @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.setting'))
                     <li class="nav-item {{ activeClass(Route::is('admin.booking.*'), 'menu-open') }}">
-                        <x-utils.link-sidebar href="#" :text="__('Booking')" icon="nav-icon icon-star"
+                        <x-utils.link-sidebar href="#" :text="__('Local Booking')" icon="nav-icon icon-star"
                             class="nav-link" rightIcon="fas fa-angle-left right" />
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
                                 <x-utils.link :href="route('admin.booking.index')" icon="nav-icon icon-arrow-right" class="nav-link"
                                     :text="__('Booking Order')" />
+                            </li>
+                            <li class="nav-item">
+                                <x-utils.link :href="route('admin.invoice.index')" icon="nav-icon icon-arrow-right" class="nav-link"
+                                    :text="__('Invoice')" />
                             </li>
                         </ul>
                     </li>

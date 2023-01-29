@@ -50,7 +50,7 @@ class InvoiceController extends Controller
         $booking = booking::findOrFail($id);
         // dd($booking->cartons[0]->shipping_mark);
         $createInvoice = new Invoice();
-        $createInvoice->invoice_id = 'INV' . generate_order_number($id, 4);
+        // $createInvoice->invoice_id = 'INV' . generate_order_number($id, 4);
         $createInvoice->customer_name = $booking->user->name;
         $createInvoice->customer_phone = $booking->user->phone;
         $createInvoice->customer_address = $booking->user->address;
@@ -74,48 +74,15 @@ class InvoiceController extends Controller
         $createInvoice->unit_price = $booking->unit_price;
         $createInvoice->remarks = $booking->remarks;
         $createInvoice->amount = $booking->amount;
+        $createInvoice->paid = $booking->paid;
         $createInvoice->status = $booking->status;
         $createInvoice->save();
+        $createInvoice->update([
+            'invoice_id' => 'INV' . generate_order_number($createInvoice->id, 4),
+        ]);
         return redirect()
-            ->back()
+            ->route('admin.invoice.index')
             ->withFlashSuccess('Invoice Generated Successfully');
-
-        // dd($booking->othersProductName);
-        // if (Auth::check()) {
-        //     $validateData = $this->bookingDataValidate();
-
-        //     if (request()->othersProductName) {
-        //         $validateData['othersProductName'] = implode(',', request()->othersProductName);
-        //     }
-
-        //     $cartonvalidateData = $this->cartonDataValidate();
-
-        //     if (request()->carton_number) {
-        //         $cartonvalidateData['carton_number'] = implode(',', request()->carton_number);
-        //     }
-        //     if (request()->shipping_mark) {
-        //         $cartonvalidateData['shipping_mark'] = implode(',', request()->shipping_mark);
-        //     }
-        //     if (request()->shipping_number) {
-        //         $cartonvalidateData['shipping_number'] = implode(',', request()->shipping_number);
-        //     }
-        //     if (request()->tracking_id) {
-        //         $cartonvalidateData['tracking_id'] = implode(',', request()->tracking_id);
-        //     }
-
-        //     $validateData['user_id'] = auth()->user()->id ?? null;
-        //     $store = Booking::create($validateData);
-        //     $storecarton = Carton::create($cartonvalidateData);
-        //     $store->cartons()->attach($storecarton->id);
-
-        //     if ($store && $storecarton) {
-        //         return redirect()
-        //             ->back()
-        //             ->withFlashSuccess('Your Booking Order Placed Successfully');
-        //     }
-        // } else {
-        //     return view('frontend.auth.login');
-        // }
     }
 
     /**
@@ -197,14 +164,13 @@ class InvoiceController extends Controller
      */
     public function destroy($id)
     {
-        // $booking = booking::find($id);
-        // $carton = carton::find($id);
-        // if ($booking && $carton) {
-        //     $booking->delete($booking);
-        //     $carton->delete($carton);
-        // }
-        // return redirect()
-        //     ->back()
-        //     ->withFlashSuccess('Booking Deleted Successfully');
+        $invoice = Invoice::find($id);
+
+        if ($invoice) {
+            $invoice->delete($invoice);
+        }
+        return redirect()
+            ->back()
+            ->withFlashSuccess('Invoice Deleted Successfully');
     }
 }

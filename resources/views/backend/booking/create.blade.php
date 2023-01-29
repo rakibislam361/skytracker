@@ -146,13 +146,18 @@
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="remarks">Remarks</label>
                                 <input type="text" name="remarks" class="form-control" placeholder="remarks">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="amount">Amount</label>
                                 <input type="double" name="amount" class="form-control" placeholder="amount">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="paid">Paid</label>
+                                <input type="double" name="paid" class="form-control" placeholder="paid">
                             </div>
 
                         </div>

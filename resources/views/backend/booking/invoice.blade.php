@@ -57,11 +57,11 @@
                                 </tr>
                                 <tr>
                                     <td class="p_txt_5"><b>Phone:</b></td>
-                                    <td class="p_txt_6">{{ $invoice->customer_name ?? 'N/A' }}</td>
+                                    <td class="p_txt_6">{{ $invoice->customer_phone ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <td class="p_txt_5"><b>Address:</b></td>
-                                    <td class="p_txt_6">{{ $invoice->address ?? 'N/A' }}</td>
+                                    <td class="p_txt_6">{{ $invoice->customer_address ?? 'N/A' }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -112,21 +112,44 @@
 
                         </tbody>
                         <tfoot id="invoiceFooter">
-                            {{-- <tr>
-                                <td colspan="6" class="text-right">Paid</td>
-                                <td class="text-center align-middle"><span class="total_payable"
-                                        data-user="{{ $booking->user->id }}">{{ round($invoice->amount) }}</span>
-                            </td>
+                            <tr>
+                                <td colspan="7" class="text-right">Subtotal</td>
+                                <td class="text-center align-middle"><span
+                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->amount) ?? 0 }}</span>
+                                </td>
                             </tr>
                             <tr>
-                                <td colspan="6" class="text-right">Due</td>
-                                <td class="text-center align-middle"><span class="total_payable" data-user="{{ $invoice->user->id }}">{{ round($invoice->amount) }}</span>
+                                <td colspan="7" class="text-right">Courier Bill</td>
+                                <td class="text-center align-middle"><span
+                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->total_courier) ?? 0 }}</span>
                                 </td>
-                            </tr> --}}
+                            </tr>
+                            @php
+                                $total_sub = round($invoice->total_courier) + round($invoice->amount);
+                                $due = $total_sub - round($invoice->paid);
+                            @endphp
+                            <tr>
+                                <td colspan="7" class="text-right">Subtotal</td>
+                                <td class="text-center align-middle"><span
+                                        data-user="{{ $invoice->user->id }}">{{ $total_sub }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-right">Paid</td>
+                                <td class="text-center align-middle"><span
+                                        data-user="{{ $invoice->user->id }}">{{ $invoice->paid ?? 0 }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-right">Due</td>
+                                <td class="text-center align-middle"><span
+                                        data-user="{{ $invoice->user->id }}">{{ $due ?? 0 }}</span>
+                                </td>
+                            </tr>
                             <tr>
                                 <td colspan="7" class="text-right">Total Payable</td>
-                                <td class="text-center align-middle"><span class="total_payable"
-                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->amount) }}</span>
+                                <td class="text-center align-middle"><span
+                                        data-user="{{ $invoice->user->id }}">{{ $due }}</span>
                                 </td>
                             </tr>
                         </tfoot>

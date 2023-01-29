@@ -123,6 +123,9 @@ $(function () {
     body.on("click", "#generateInvoiceButton", function (e) {
         var duePayment = "";
         let itemValue = $(this).data("value");
+        let due = itemValue.amount - itemValue.paid;
+        $("#invoiceFooter").find(".total_due").text(Number(due).toFixed(2));
+
         duePayment += `<tr>
                           <td class=" align-middle">${itemValue.user.name}</td>
                           <td class=" align-middle">${
@@ -134,7 +137,8 @@ $(function () {
                           <td class=" align-middle">${itemValue.status}</td>
                           <td class="text-right align-middle">${Number(
                               itemValue.cartons[0].actual_weight
-                          ).toFixed(2)}</td>                     
+                          ).toFixed(2)}</td>  
+                           <td class="align-middle">${due}</td>                   
                         </tr>`;
         let hidden = `<input type="hidden" name="booking_id" id="booking_id" value="${itemValue.id}">`;
         $(".hiddenField").html(hidden);

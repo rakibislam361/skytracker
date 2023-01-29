@@ -128,6 +128,7 @@ class bookingController extends Controller
             $updateBooking->bookingProduct = $request->bookingProduct;
             $updateBooking->unit_price = $request->unit_price;
             $updateBooking->amount = $request->amount;
+            $updateBooking->paid = $request->paid;
             $updateBooking->remarks = $request->remarks;
             $updateBooking->status = $request->status;
 
@@ -179,6 +180,7 @@ class bookingController extends Controller
             'bookingProduct' => 'nullable|string',
             'unit_price' => 'nullable|string',
             'amount' => 'nullable|string',
+            'paid' => 'nullable|string',
             'remarks' => 'nullable|string',
             'status' => 'nullable|string',
         ]);
