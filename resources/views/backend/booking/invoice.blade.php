@@ -149,7 +149,7 @@
                             <tr>
                                 <td colspan="7" class="text-right">Total Payable</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $due }}</span>
+                                        data-user="{{ $invoice->user->id }}">{{ $invoice->total_payable }}</span>
                                 </td>
                             </tr>
                         </tfoot>
