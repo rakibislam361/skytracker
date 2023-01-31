@@ -142,7 +142,7 @@
                                 <div class="packing">
                                     {{-- hidden input field append here --}}
                                 </div>
-                                <div class="localdelivery">
+                                <div id="localdelivery">
                                     {{-- hidden input field append here --}}
                                 </div>
                                 <div class="courier">

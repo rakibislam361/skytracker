@@ -27,13 +27,11 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-
         // $booking = booking::all();
         // return view('backend.invoice.create', compact('booking'));
     }
     public function details($id)
     {
-
         $invoice = Invoice::findOrFail($id);
         return view('backend.booking.invoice', compact('invoice'));
     }
@@ -46,6 +44,8 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        $local_delivery = null;
+        $pack = null;
         $id = $request->booking_id;
         $booking = booking::findOrFail($id);
         // dd($booking->cartons[0]->shipping_mark);
@@ -59,10 +59,20 @@ class InvoiceController extends Controller
         $createInvoice->total_due = $request->total_due;
         $createInvoice->payment_method = $request->payment_method;
 
-        $createInvoice->packing_cost = $request->packing_cost;
-        $createInvoice->chinalocal = $request->chinalocal;
-
+        if ($request->chinalocal == null && $booking->cartons[0]->chinalocal != null) {
+            $local_delivery = $booking->cartons[0]->chinalocal;
+        } elseif ($request->chinalocal != null) {
+            $local_delivery = $request->chinalocal;
+        }
+        if ($request->packing_cost == null && $booking->cartons[0]->packing_cost != null) {
+            $pack = $booking->cartons[0]->packing_cost;
+        } elseif ($request->packing_cost != null) {
+            $pack = $request->packing_cost;
+        }
+        $createInvoice->packing_cost = $pack;
+        $createInvoice->chinalocal = $local_delivery;
         $createInvoice->delivery_method = $request->delivery_method;
+
         $createInvoice->product_name = $booking->othersProductName;
         $createInvoice->product_cost = $booking->productsTotalCost;
         $createInvoice->product_qty = $booking->productQuantity;
@@ -74,6 +84,7 @@ class InvoiceController extends Controller
         $createInvoice->shipping_number = $booking->cartons[0]->shipping_number;
         $createInvoice->tracking_number = $booking->cartons[0]->tracking_id;
         $createInvoice->actual_weight = $booking->cartons[0]->actual_weight;
+        $createInvoice->total_weight = $booking->cartons[0]->total_weight;
         $createInvoice->unit_price = $booking->unit_price;
         $createInvoice->remarks = $booking->remarks;
         $createInvoice->amount = $booking->amount;
@@ -141,7 +152,6 @@ class InvoiceController extends Controller
         //     $updateBooking->amount = $request->amount;
         //     $updateBooking->remarks = $request->remarks;
         //     $updateBooking->status = $request->status;
-
 
         //     $updateCarton->shipping_mark = implode(',', $request->shipping_mark);
         //     $updateCarton->carton_number = implode(',', $request->carton_number);

@@ -339,15 +339,16 @@ $(function () {
         let local = $("#invoiceFooter").find(".chinalocal").text();
         let total_payable = $("#invoiceFooter").find(".total_payable").text();
 
-        let total_pay = `<input type="hidden" name="total_payable" value="${total_payable}">`;
-        let total_courier = `<input type="hidden" name="total_courier" value="${courier_bill}">`;
-        let total_chinalocal = `<input type="hidden" name="chinalocal" value="${local}">`;
-        let total_packing = `<input type="hidden" name="packing_cost" value="${packing}">`;
-        let total_d = `<input type="hidden" name="total_due" value="${total_due}">`;
+        var total_pay = `<input type="hidden" name="total_payable" value="${total_payable}">`;
+        var total_courier = `<input type="hidden" name="total_courier" value="${courier_bill}">`;
+        var total_chinalocal = `<input type="hidden" name="chinalocal" value="${local}">`;
+        var total_packing = `<input type="hidden" name="packing_cost" value="${packing}">`;
+        var total_d = `<input type="hidden" name="total_due" value="${total_due}">`;
+
         $(".totalPay").html(total_pay);
         $(".totalDue").html(total_d);
         $(".packing").html(total_packing);
-        $(".localdelivery").html(total_chinalocal);
+        $("#localdelivery").html(total_chinalocal);
         $(".courier").html(total_courier);
     });
 });

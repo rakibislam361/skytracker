@@ -128,8 +128,8 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="warehouse_quantity">Total Carton Weight</label>
-                                <input type="text" name="warehouse_quantity" class="form-control" id="totalWeight"
+                                <label for="warehouse_quantity">Warehouse Quantity</label>
+                                <input type="text" name="warehouse_quantity" class="form-control"
                                     placeholder="warehouse_quantity">
                             </div>
 
