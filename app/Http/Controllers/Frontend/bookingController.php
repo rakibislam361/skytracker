@@ -40,11 +40,15 @@ class bookingController extends Controller
      */
     public function store(Request $request)
     {
+        $totalWeight = 0;
         if (Auth::check()) {
             $validateData = $this->bookingDataValidate();
 
             if (request()->othersProductName) {
                 $validateData['othersProductName'] = implode(',', request()->othersProductName);
+            }
+            if (request()->customer_name == null) {
+                $validateData['customer_name'] = auth()->user()->name;
             }
 
             $cartonvalidateData = $this->cartonDataValidate();
@@ -60,6 +64,13 @@ class bookingController extends Controller
             }
             if (request()->tracking_id) {
                 $cartonvalidateData['tracking_id'] = implode(',', request()->tracking_id);
+            }
+            if (request()->actual_weight) {
+                foreach (request()->actual_weight as $key => $value) {
+                    $totalWeight += $value;
+                }
+                $cartonvalidateData['total_weight'] = $totalWeight;
+                $cartonvalidateData['actual_weight'] = implode(',', request()->actual_weight);
             }
 
             $validateData['user_id'] = auth()->user()->id ?? null;
@@ -113,12 +124,12 @@ class bookingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $totalWeight = 0;
         $updateBooking = Booking::findOrFail($id);
         $updateCarton = Carton::findOrFail($id);
         $updateBooking->cartons()->detach($updateCarton->id);
 
         if ($updateBooking && $updateCarton) {
-
             $updateBooking->date = $request->date;
             $updateBooking->ctnQuantity = $request->ctnQuantity;
             $updateBooking->totalCbm = $request->totalCbm;
@@ -132,12 +143,30 @@ class bookingController extends Controller
             $updateBooking->remarks = $request->remarks;
             $updateBooking->status = $request->status;
 
+            if (request()->customer_name == null) {
+                $updateBooking->customer_name = auth()->user()->name;
+            } else {
+                $updateBooking->customer_name = $request->customer_name;
+            }
+
+            $updateBooking->customer_phone = $request->customer_phone;
+            $updateBooking->customer_address = $request->customer_address;
+
+            if (request()->actual_weight) {
+                foreach (request()->actual_weight as $key => $value) {
+                    $totalWeight += $value;
+                }
+            }
 
             $updateCarton->shipping_mark = implode(',', $request->shipping_mark);
             $updateCarton->carton_number = implode(',', $request->carton_number);
             $updateCarton->shipping_number = implode(',', $request->shipping_number);
-            $updateCarton->actual_weight = $request->actual_weight;
+            $updateCarton->actual_weight = implode(',', $request->actual_weight);
+            $updateCarton->total_weight = $totalWeight;
             $updateCarton->warehouse_quantity = $request->warehouse_quantity;
+            $updateCarton->shipping_method = $request->shipping_method;
+            $updateCarton->chinalocal = $request->chinalocal;
+            $updateCarton->packing_cost = $request->packing_cost;
             $updateCarton->tracking_id = implode(',', $request->tracking_id);
 
             $updateBooking->save();
@@ -183,19 +212,24 @@ class bookingController extends Controller
             'paid' => 'nullable|string',
             'remarks' => 'nullable|string',
             'status' => 'nullable|string',
+            'customer_name' => 'nullable|string',
+            'customer_phone' => 'nullable|string',
+            'customer_address' => 'nullable|string',
         ]);
     }
     public function cartonDataValidate()
     {
         return request()->validate([
-
             'shipping_mark.*' => 'nullable|string',
             'carton_number.*' => 'nullable|string',
             'shipping_number.*' => 'nullable|string',
-            'actual_weight' => 'nullable|string',
+            'actual_weight.*' => 'nullable|string',
             'tracking_id.*' => 'nullable|string',
             'warehouse_quantity' => 'nullable|string',
-
+            'shipping_method' => 'nullable|string',
+            'chinalocal' => 'nullable|numeric',
+            'packing_cost' => 'nullable|numeric',
+            'total_weight' => 'nullable|numeric',
         ]);
     }
 }

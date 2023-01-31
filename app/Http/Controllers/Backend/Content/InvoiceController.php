@@ -50,15 +50,18 @@ class InvoiceController extends Controller
         $booking = booking::findOrFail($id);
         // dd($booking->cartons[0]->shipping_mark);
         $createInvoice = new Invoice();
-        // $createInvoice->invoice_id = 'INV' . generate_order_number($id, 4);
-        $createInvoice->customer_name = $booking->user->name;
-        $createInvoice->customer_phone = $booking->user->phone;
-        $createInvoice->customer_address = $booking->user->address;
+        $createInvoice->customer_name = $booking->customer_name;
+        $createInvoice->customer_phone = $booking->customer_phone;
+        $createInvoice->customer_address = $booking->customer_address;
         $createInvoice->user_id = $booking->user->id;
         $createInvoice->total_payable = $request->total_payable;
         $createInvoice->total_courier = $request->total_courier;
         $createInvoice->total_due = $request->total_due;
         $createInvoice->payment_method = $request->payment_method;
+
+        $createInvoice->packing_cost = $request->packing_cost;
+        $createInvoice->chinalocal = $request->chinalocal;
+
         $createInvoice->delivery_method = $request->delivery_method;
         $createInvoice->product_name = $booking->othersProductName;
         $createInvoice->product_cost = $booking->productsTotalCost;

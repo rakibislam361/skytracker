@@ -30,7 +30,9 @@ class BookingsTable extends DataTableComponent
                     }
                 ),
 
-            Column::make('Customer', 'user.name')->searchable(),
+            Column::make('Customer', 'customer_name')->searchable(),
+
+            Column::make('Customer Phone', 'customer_phone')->searchable(),
 
             Column::make('Products Name', 'othersProductName')->searchable(),
 
@@ -92,6 +94,14 @@ class BookingsTable extends DataTableComponent
                     $actual_weight = $value->actual_weight;
                 }
                 return $actual_weight;
+            }),
+            Column::make('Total Weight', 'total_weight')->format(function ($value, $column, $row) {
+                $carton = $row->cartons;
+                $total_weight = null;
+                foreach ($carton as $key => $value) {
+                    $total_weight = $value->total_weight;
+                }
+                return $total_weight;
             }),
 
             Column::make('Unit Price', 'unit_price'),

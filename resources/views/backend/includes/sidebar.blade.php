@@ -76,7 +76,12 @@
                         {{-- Super Admin Accounts will write here --}}
                     @endunlessrole
                 @endif
-
+                @if ($logged_in_user->can('admin.order.carton_id'))
+                    <li class="nav-item">
+                        <x-utils.link :href="route('admin.booking.create')" icon="nav-icon fa fa-ship" class="nav-link"
+                            :text="__('ADD LOCAL BOOKING')" />
+                    </li>
+                @endif
                 {{-- Reports --}}
                 @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.setting'))
                     <li class="nav-item">
@@ -90,7 +95,7 @@
                         </ul>
                     </li>
                 @endif
-                @if ($logged_in_user->hasAllAccess() || $logged_in_user->can('admin.setting'))
+                @if ($logged_in_user->can('admin.order.carton_id'))
                     <li class="nav-item {{ activeClass(Route::is('admin.booking.*'), 'menu-open') }}">
                         <x-utils.link-sidebar href="#" :text="__('Local Booking')" icon="nav-icon icon-star"
                             class="nav-link" rightIcon="fas fa-angle-left right" />

@@ -89,11 +89,66 @@
                                 <td class="align-middle"><span class="courier_bill">0.00</span></td>
                             </tr>
                             <tr>
+                                <div class="row">
+                                    <td colspan="5">
+                                        <div class="col-4 float-right">
+                                            <p class="packing_cost_text m-0 text-right" style="display: none">
+                                                Packing Cost <a href="#"
+                                                    class="ml-3 removePackingBtn text-danger">Remove</a>
+                                            </p>
+                                            <div class="input-group packingSubmitForm">
+                                                <input type="text" class="form-control" placeholder="Packing Cost"
+                                                    aria-label="Packing Cost" name="packing_cost"
+                                                    aria-describedby="Packing-addon2">
+                                                <div class="input-group-append applyPackingrBtn"
+                                                    style="cursor: pointer">
+                                                    <span class="input-group-text" id="Packing-addon2">Apply</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle"><span class="packing_cost">0.00</span></td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div class="row">
+                                    <td colspan="5">
+                                        <div class="col-4 float-right">
+                                            <p class="chinalocal_text m-0 text-right" style="display: none">
+                                                China Local Delivery <a href="#"
+                                                    class="ml-3 removeChinalocalBtn text-danger">Remove</a>
+                                            </p>
+                                            <div class="input-group chinalocalSubmitForm">
+                                                <input type="text" class="form-control"
+                                                    placeholder="China Local Delivery" aria-label="Packing Cost"
+                                                    name="chinalocal" aria-describedby="Chinalocal-addon2">
+                                                <div class="input-group-append applyChinalocalBtn"
+                                                    style="cursor: pointer">
+                                                    <span class="input-group-text" id="Chinalocal-addon2">Apply</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle"><span class="chinalocal">0.00</span></td>
+                                </div>
+                            </tr>
+
+                            <tr>
                                 <td colspan="5" class="text-right">Total Payable</td>
                                 <td class="align-middle"><span class="total_payable">0.00</span></td>
                                 <div class="totalPay">
                                     {{-- hidden input field append here --}}
                                 </div>
+                                <div class="packing">
+                                    {{-- hidden input field append here --}}
+                                </div>
+                                <div class="localdelivery">
+                                    {{-- hidden input field append here --}}
+                                </div>
+                                <div class="courier">
+                                    {{-- hidden input field append here --}}
+                                </div>
+
                             </tr>
                         </tfoot>
                     </table>

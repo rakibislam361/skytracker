@@ -108,9 +108,22 @@
                                         data-user="{{ $invoice->user->id }}">{{ round($invoice->total_courier) ?? 0 }}</span>
                                 </td>
                             </tr>
+                            <tr>
+                                <td colspan="7" class="text-right">China Local Delivery</td>
+                                <td class="text-center align-middle"><span
+                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->chinalocal) ?? 0 }}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="7" class="text-right">Packing Cost</td>
+                                <td class="text-center align-middle"><span
+                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->packing_cost) ?? 0 }}</span>
+                                </td>
+                            </tr>
                             @php
-                                $total_sub = round($invoice->total_courier) + round($invoice->amount);
+                                $total_sub = round($invoice->total_courier) + round($invoice->amount) + round($invoice->chinalocal) + round($invoice->packing_cost);
                                 $due = $total_sub - round($invoice->paid);
+                                
                             @endphp
                             <tr>
                                 <td colspan="7" class="text-right">Subtotal</td>
