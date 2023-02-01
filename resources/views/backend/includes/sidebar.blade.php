@@ -78,7 +78,7 @@
                 @endif
                 @if ($logged_in_user->can('admin.order.carton_id'))
                     <li class="nav-item">
-                        <x-utils.link :href="route('admin.booking.create')" icon="nav-icon fa fa-ship" class="nav-link"
+                        <x-utils.link :href="route('admin.booking.create')" icon="nav-icon fa fa-calendar-plus" class="nav-link"
                             :text="__('ADD LOCAL BOOKING')" />
                     </li>
                 @endif

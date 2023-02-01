@@ -41,6 +41,7 @@ class bookingController extends Controller
     public function store(Request $request)
     {
         $totalWeight = 0;
+        $amount = 0;
         if (Auth::check()) {
             $validateData = $this->bookingDataValidate();
 
@@ -71,6 +72,10 @@ class bookingController extends Controller
                 }
                 $cartonvalidateData['total_weight'] = $totalWeight;
                 $cartonvalidateData['actual_weight'] = implode(',', request()->actual_weight);
+            }
+            if (request()->unit_price && request()->actual_weight) {
+                $amount = $totalWeight * request()->unit_price;
+                $validateData['amount'] = $amount;
             }
 
             $validateData['user_id'] = auth()->user()->id ?? null;
@@ -125,6 +130,7 @@ class bookingController extends Controller
     public function update(Request $request, $id)
     {
         $totalWeight = 0;
+        $amount = 0;
         $updateBooking = Booking::findOrFail($id);
         $updateCarton = Carton::findOrFail($id);
         $updateBooking->cartons()->detach($updateCarton->id);
@@ -138,8 +144,9 @@ class bookingController extends Controller
             $updateBooking->othersProductName = implode(',', $request->othersProductName);
             $updateBooking->bookingProduct = $request->bookingProduct;
             $updateBooking->unit_price = $request->unit_price;
-            $updateBooking->amount = $request->amount;
+
             $updateBooking->paid = $request->paid;
+
             $updateBooking->remarks = $request->remarks;
             $updateBooking->status = $request->status;
 
@@ -157,6 +164,11 @@ class bookingController extends Controller
                     $totalWeight += $value;
                 }
             }
+
+            if ($totalWeight > 0) {
+                $amount = $totalWeight * $request->unit_price;
+            }
+            $updateBooking->amount = $amount;
 
             $updateCarton->shipping_mark = implode(',', $request->shipping_mark);
             $updateCarton->carton_number = implode(',', $request->carton_number);

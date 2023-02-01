@@ -169,16 +169,11 @@
                         </div>
 
 
-                        <div class="form-group col-md-6">
-                            <label for="warehouse_quantity">Total Carton Weight</label>
+                        {{-- <div class="form-group col-md-6">
+                            <label for="warehouse_quantity">Warehouse Quantity</label>
                             <input type="text" name="warehouse_quantity" class="form-control"
                                 placeholder="warehouse_quantity" value="{{ $warehouse_qty }}">
-                        </div>
-
-
-                    </div>
-
-                    <div class="row">
+                        </div> --}}
                         <div class="form-group col-md-6">
                             <label for="tracking_id">Tracking Number</label>
                             @foreach ($tracking_id as $track)
@@ -195,18 +190,24 @@
                                 </table>
                             @endforeach
                         </div>
+
+                    </div>
+
+                    <div class="row">
+
                         <div class="form-group col-md-6">
                             <label for="chinalocal">China Local Delivery</label>
                             <input type="text" name="chinalocal" class="form-control"
                                 placeholder="china local delivery" value="{{ $chinalocal }}">
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="form-group col-md-6">
                             <label for="packing_cost">Packing Cost</label>
                             <input type="text" name="packing_cost" class="form-control" placeholder="packing cost"
                                 value="{{ $packing_cost }}">
                         </div>
+                    </div>
+                    <div class="row">
+
                         <div class="form-group col-md-6">
                             <label for="shipping_number">Shipping Number</label>
                             @foreach ($shipping_number as $mark)
@@ -223,34 +224,36 @@
                                 </table>
                             @endforeach
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="form-group col-md-6">
                             <label for="productsTotalCost">Products Total Cost</label>
                             <input type="text" name="productsTotalCost" class="form-control"
                                 placeholder="total Cost(BDT)" value="{{ $booking->productsTotalCost }}">
                         </div>
+                    </div>
+
+                    <div class="row">
+
                         <div class="form-group col-md-6">
                             <label for="unit_price">Unit Price/kg</label>
                             <input type="text" name="unit_price" class="form-control" placeholder="unit price/kg"
                                 value="{{ $booking->unit_price }}">
                         </div>
-                    </div>
-
-                    <div class="row">
                         <div class="form-group col-md-6">
                             <label for="remarks">Remarks</label>
                             <input type="text" name="remarks" class="form-control" placeholder="remarks"
                                 value="{{ $booking->remarks }}">
                         </div>
-                        <div class="form-group col-md-6">
+                    </div>
+
+                    {{-- <div class="row"> --}}
+
+                    {{-- <div class="form-group col-md-6">
                             <label for="amount">Amount</label>
                             <input type="double" name="amount" class="form-control" placeholder="amount"
                                 value="{{ $booking->amount }}">
-                        </div>
+                        </div> --}}
 
-                    </div>
+                    {{-- </div> --}}
                     <div class="row">
 
                         <div class="form-group col-md-6">

@@ -123,19 +123,14 @@
                                                 class="btn btn-outline-danger">-</button></td>
                                     </tr>
                                 </table>
-                                {{-- <input type="text" name="actual_weight" class="form-control"
-                                    placeholder="actual weight"> --}}
+
                             </div>
 
-                            <div class="form-group col-md-6">
+                            {{-- <div class="form-group col-md-6">
                                 <label for="warehouse_quantity">Warehouse Quantity</label>
                                 <input type="text" name="warehouse_quantity" class="form-control"
                                     placeholder="warehouse_quantity">
-                            </div>
-
-                        </div>
-
-                        <div class="row">
+                            </div> --}}
                             <div class="form-group col-md-6">
                                 <label for="tracking_id">Tracking Number</label>
                                 <table style="width:100%" id="tracking-id">
@@ -151,19 +146,26 @@
                                 </table>
                             </div>
 
+                        </div>
+
+                        <div class="row">
+
+
                             <div class="form-group col-md-6">
                                 <label for="chinalocal">China Local Delivery</label>
                                 <input type="text" name="chinalocal" class="form-control"
                                     placeholder="china local delivery">
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="packing_cost">Packing Cost</label>
                                 <input type="text" name="packing_cost" class="form-control"
                                     placeholder="packing cost">
                             </div>
+                        </div>
+
+                        <div class="row">
+
 
                             <div class="form-group col-md-6">
                                 <label for="shipping_number">Shipping Number</label>
@@ -179,35 +181,39 @@
                                     </tr>
                                 </table>
                             </div>
-                        </div>
 
-
-                        <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="productsTotalCost">Products Total Cost</label>
                                 <input type="text" name="productsTotalCost" class="form-control"
                                     placeholder="products total Cost(BDT)">
                             </div>
+                        </div>
+
+
+                        <div class="row">
+
 
                             <div class="form-group col-md-6">
                                 <label for="unit_price">Unit Price/kg</label>
                                 <input type="text" name="unit_price" class="form-control"
                                     placeholder="unit price/kg">
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="form-group col-md-6">
                                 <label for="remarks">Remarks</label>
                                 <input type="text" name="remarks" class="form-control" placeholder="remarks">
                             </div>
+                        </div>
 
-                            <div class="form-group col-md-6">
+                        {{-- <div class="row"> --}}
+
+
+                        {{-- <div class="form-group col-md-6">
                                 <label for="amount">Amount</label>
                                 <input type="double" name="amount" class="form-control" placeholder="amount">
-                            </div>
+                            </div> --}}
 
-                        </div>
+                        {{-- </div> --}}
 
                         <div class="row">
                             <div class="form-group col-md-6">

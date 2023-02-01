@@ -60,6 +60,7 @@
                         if ($invoice->actual_weight != null) {
                             $actualWeight = explode(',', $invoice->actual_weight);
                         }
+                        $count = count($product);
                         
                     @endphp
                     <div class="row" style="margin-bottom: 15px">
@@ -124,53 +125,63 @@
                             </tr> --}}
 
                             <tr>
-                                <td class="text-center align-middle">
-                                    {{ date('m/d/Y', strtotime($invoice->created_at)) }}
+                                <td class="text-center align-middle" style="padding-top: 3%;">
+                                    {{ date('d/m/Y', strtotime($invoice->created_at)) }}
                                 </td>
-                                <td class="text-center align-middle">
-
+                                <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($product as $p_name)
-                                        <table>
+                                        <table class="table">
                                             <tr>
-                                                {{ $p_name }}
+                                                <td style="padding-bottom: 0%">
+                                                    {{ $p_name }}
+                                                </td>
                                             </tr>
                                         </table>
                                     @endforeach
-
                                 </td>
-                                <td class="text-center align-middle">
+                                <td class="text-center align-middle" style="padding: 0%;">
                                     @foreach ($shipMark as $ship)
-                                        <table>
+                                        <table class="table">
                                             <tr>
-                                                {{ $ship }}
+                                                <td style="padding-bottom: 0%">
+                                                    {{ $ship }}
+                                                </td>
                                             </tr>
                                         </table>
                                     @endforeach
                                 </td>
-                                <td class="text-center align-middle">
+                                <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($carton as $cart)
-                                        <table>
+                                        <table class="table">
                                             <tr>
-                                                {{ $cart }}
+                                                <td style="padding-bottom: 0%">
+                                                    {{ $cart }}
+                                                </td>
                                             </tr>
                                         </table>
                                     @endforeach
                                 </td>
-                                <td class="text-center align-middle">
+                                <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($shipNo as $ship)
-                                        <table>
+                                        <table class="table">
                                             <tr>
-                                                {{ $ship }}
+                                                <td style="padding-bottom: 0%">
+                                                    {{ $ship }}
+                                                </td>
                                             </tr>
                                         </table>
                                     @endforeach
                                 </td>
-                                <td class="text-center align-middle">{{ $invoice->carton_qty ?? '00' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->total_weight ?? '00' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->unit_price ?? '00' }}</td>
-                                <td class="text-center align-middle">{{ $amount }}</td>
+                                <td class="text-center align-middle" style="padding-top: 3%;">
+                                    {{ $invoice->carton_qty ?? '00' }}</td>
+                                <td class="text-center align-middle" style="padding-top: 3%;">
+                                    {{ $invoice->total_weight ?? '00' }}</td>
+                                <td class="text-center align-middle" style="padding-top: 3%;">
+                                    {{ $invoice->unit_price ?? '00' }}</td>
+                                <td class="text-center align-middle" style="padding-top: 3%;">{{ $amount }}</td>
 
                             </tr>
+
 
                         </tbody>
                         <tfoot id="invoiceFooter">
@@ -200,8 +211,7 @@
                             </tr>
                             @php
                                 $total_sub = round($invoice->total_courier) + round($amount) + round($invoice->chinalocal) + round($invoice->packing_cost);
-                                $due = $total_sub - round($invoice->paid);
-                                $payable = round($total_sub) - round($due);
+                                $due = abs(round($total_sub)) - abs(round($invoice->paid));
                                 
                             @endphp
                             <tr>
@@ -225,7 +235,7 @@
                             <tr>
                                 <td colspan="8" class="text-right">Total Payable</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $payable }}</span>
+                                        data-user="{{ $invoice->user->id }}">{{ $due ?? 0 }}</span>
                                 </td>
                             </tr>
                         </tfoot>

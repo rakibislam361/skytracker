@@ -78,14 +78,6 @@ class BookingsTable extends DataTableComponent
                 return $tracking_id;
             }),
 
-            Column::make('Warehouse Quantity', 'warehouse_quantity')->format(function ($value, $column, $row) {
-                $carton = $row->cartons;
-                $warehouse_qty = null;
-                foreach ($carton as $key => $value) {
-                    $warehouse_qty = $value->warehouse_quantity;
-                }
-                return $warehouse_qty;
-            }),
 
             Column::make('Actual Weight', 'actual_weight')->format(function ($value, $column, $row) {
                 $carton = $row->cartons;
