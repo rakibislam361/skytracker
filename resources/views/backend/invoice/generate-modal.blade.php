@@ -1,7 +1,6 @@
 <div class="modal fade" id="generateInvoiceModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog  modal-xl" role="document">
         <div class="modal-content">
-
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalCenterTitle">Generate Invoice</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -20,24 +19,26 @@
                             <tr>
                                 <th scope="col">Customer</th>
                                 <th scope="col">Products</th>
-                                <th scope="col" class="text-left">Cartons</th>
+                                <th scope="col">Shipping Mark</th>
+                                <th scope="col">Carton Number</th>
+                                <th scope="col">Shipping Number</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Weight</th>
-                                <th scope="col">Due</th>
+                                <th scope="col">Unit Price</th>
+                                <th scope="col">Amount</th>
                             </tr>
                         </thead>
                         <tbody id="invoiceItem"></tbody>
                         <tfoot id="invoiceFooter">
                             <tr>
-                                <td colspan="5" class="text-right">Total Due</td>
-                                {{-- <td class="text-right"><span class="total_weight">0.000</span></td> --}}
+                                <td colspan="8" class="text-right">Total Amount</td>
                                 <td class="align-middle"><span class="total_due">0.00</span></td>
                                 <div class="totalDue">
                                     {{-- hidden input field append here --}}
                                 </div>
                             </tr>
                             <tr>
-                                <td colspan="5" class="align-middle text-right">
+                                <td colspan="8" class="align-middle text-right">
                                     <div class="row">
                                         <div class="col">
                                             @php
@@ -90,7 +91,7 @@
                             </tr>
                             <tr>
                                 <div class="row">
-                                    <td colspan="5">
+                                    <td colspan="8">
                                         <div class="col-4 float-right">
                                             <p class="packing_cost_text m-0 text-right" style="display: none">
                                                 Packing Cost <a href="#"
@@ -112,7 +113,7 @@
                             </tr>
                             <tr>
                                 <div class="row">
-                                    <td colspan="5">
+                                    <td colspan="8">
                                         <div class="col-4 float-right">
                                             <p class="chinalocal_text m-0 text-right" style="display: none">
                                                 China Local Delivery <a href="#"
@@ -132,20 +133,56 @@
                                     <td class="align-middle"><span class="chinalocal">0.00</span></td>
                                 </div>
                             </tr>
+                            <tr>
+                                <div class="row">
+                                    <td colspan="8">
+                                        <div class="col-4 float-right">
+                                            <p class="paid_text m-0 text-right" style="display: none">
+                                                Paid <a href="#"
+                                                    class="ml-3 removePaidBtn text-danger">Remove</a>
+                                            </p>
+                                            <div class="input-group paidSubmitForm">
+                                                <input type="text" class="form-control" placeholder="Paid"
+                                                    aria-label="Paid" name="paid"
+                                                    aria-describedby="Paidlocal-addon2">
+                                                <div class="input-group-append applyPaidBtn" style="cursor: pointer">
+                                                    <span class="input-group-text" id="Paid-addon2">Apply</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle"><span class="paid">0.00</span></td>
+                                </div>
+                            </tr>
 
                             <tr>
-                                <td colspan="5" class="text-right">Total Payable</td>
+                                <td colspan="8" class="text-right">Total Payable</td>
                                 <td class="align-middle"><span class="total_payable">0.00</span></td>
                                 <div class="totalPay">
                                     {{-- hidden input field append here --}}
                                 </div>
-                                <div class="packing">
+                                <div id="packing">
                                     {{-- hidden input field append here --}}
                                 </div>
                                 <div id="localdelivery">
                                     {{-- hidden input field append here --}}
                                 </div>
-                                <div class="courier">
+                                <div id="courier">
+                                    {{-- hidden input field append here --}}
+                                </div>
+                                <div class="product_name">
+                                    {{-- hidden input field append here --}}
+                                </div>
+                                <div class="carton">
+                                    {{-- hidden input field append here --}}
+                                </div>
+                                <div class="weight">
+                                    {{-- hidden input field append here --}}
+                                </div>
+                                <div class="unit">
+                                    {{-- hidden input field append here --}}
+                                </div>
+                                <div class="total_pay">
                                     {{-- hidden input field append here --}}
                                 </div>
 

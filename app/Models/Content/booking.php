@@ -27,6 +27,6 @@ class Booking extends Model
 
     public function cartons()
     {
-        return $this->belongsToMany(Carton::class);
+        return $this->belongsTo(Carton::class, 'carton_id', 'id');
     }
 }

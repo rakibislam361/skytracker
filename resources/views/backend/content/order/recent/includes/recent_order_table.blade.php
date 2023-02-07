@@ -72,5 +72,8 @@
                @endif
            </tbody>
        </table>
-       {{ $orders->withQueryString()->links() }}
+       @if ($orders != null)
+           {{ $orders->withQueryString()->links() }}
+       @endif
+
    </div>

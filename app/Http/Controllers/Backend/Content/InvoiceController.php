@@ -46,9 +46,9 @@ class InvoiceController extends Controller
     {
         $local_delivery = null;
         $pack = null;
+
         $id = $request->booking_id;
-        $booking = booking::findOrFail($id);
-        // dd($booking->cartons[0]->shipping_mark);
+        $booking = Booking::findOrFail($id);
         $createInvoice = new Invoice();
         $createInvoice->customer_name = $booking->customer_name;
         $createInvoice->customer_phone = $booking->customer_phone;
@@ -59,13 +59,13 @@ class InvoiceController extends Controller
         $createInvoice->total_due = $request->total_due;
         $createInvoice->payment_method = $request->payment_method;
 
-        if ($request->chinalocal == null && $booking->cartons[0]->chinalocal != null) {
-            $local_delivery = $booking->cartons[0]->chinalocal;
+        if ($request->chinalocal == null && $booking->chinalocal != null) {
+            $local_delivery = $booking->chinalocal;
         } elseif ($request->chinalocal != null) {
             $local_delivery = $request->chinalocal;
         }
-        if ($request->packing_cost == null && $booking->cartons[0]->packing_cost != null) {
-            $pack = $booking->cartons[0]->packing_cost;
+        if ($request->packing_cost == null && $booking->packing_cost != null) {
+            $pack = $booking->packing_cost;
         } elseif ($request->packing_cost != null) {
             $pack = $request->packing_cost;
         }
@@ -73,22 +73,22 @@ class InvoiceController extends Controller
         $createInvoice->chinalocal = $local_delivery;
         $createInvoice->delivery_method = $request->delivery_method;
 
-        $createInvoice->product_name = $booking->othersProductName;
+        $createInvoice->product_name = $request->othersProductName;
         $createInvoice->product_cost = $booking->productsTotalCost;
         $createInvoice->product_qty = $booking->productQuantity;
         $createInvoice->cbm = $booking->totalCbm;
         $createInvoice->carton_qty = $booking->ctnQuantity;
-        $createInvoice->warehouse_qty = $booking->cartons[0]->warehouse_quantity;
-        $createInvoice->carton_number = $booking->cartons[0]->carton_number;
-        $createInvoice->shipping_mark = $booking->cartons[0]->shipping_mark;
-        $createInvoice->shipping_number = $booking->cartons[0]->shipping_number;
-        $createInvoice->tracking_number = $booking->cartons[0]->tracking_id;
-        $createInvoice->actual_weight = $booking->cartons[0]->actual_weight;
-        $createInvoice->total_weight = $booking->cartons[0]->total_weight;
-        $createInvoice->unit_price = $booking->unit_price;
+        $createInvoice->warehouse_qty = $booking->warehouse_quantity;
+        $createInvoice->carton_number = $request->carton_number;
+        $createInvoice->shipping_mark = $booking->shipping_mark;
+        $createInvoice->shipping_number = $booking->shipping_number;
+        $createInvoice->tracking_number = $booking->tracking_id;
+        $createInvoice->actual_weight = $request->actual_weight;
+        $createInvoice->total_weight = $booking->total_weight;
+        $createInvoice->unit_price = $request->unit_price;
         $createInvoice->remarks = $booking->remarks;
-        $createInvoice->amount = $booking->amount;
-        $createInvoice->paid = $booking->paid;
+        $createInvoice->amount = $request->amount;
+        $createInvoice->paid = $request->paid;
         $createInvoice->status = $booking->status;
         $createInvoice->save();
         $createInvoice->update([

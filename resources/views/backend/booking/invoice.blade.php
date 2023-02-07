@@ -35,33 +35,32 @@
                     </div>
                     @php
                         
-                        $product = [];
-                        $carton = [];
-                        $shipMark = [];
-                        $shipNo = [];
-                        $track = [];
-                        $actualWeight = [];
-                        $amount = $invoice->total_weight * $invoice->unit_price;
-                        if ($invoice->product_name != null) {
-                            $product = explode(',', $invoice->product_name);
-                        }
-                        if ($invoice->carton_number != null) {
-                            $carton = explode(',', $invoice->carton_number);
-                        }
-                        if ($invoice->shipping_mark != null) {
-                            $shipMark = explode(',', $invoice->shipping_mark);
-                        }
-                        if ($invoice->shipping_number != null) {
-                            $shipNo = explode(',', $invoice->shipping_number);
-                        }
-                        if ($invoice->tracking_number != null) {
-                            $track = explode(',', $invoice->tracking_number);
-                        }
-                        if ($invoice->actual_weight != null) {
-                            $actualWeight = explode(',', $invoice->actual_weight);
-                        }
-                        $count = count($product);
-                        
+                        // $product = [];
+                        // $carton = [];
+                        // $shipMark = [];
+                        // $shipNo = [];
+                        // $track = [];
+                        // $actualWeight = [];
+                        // $amount = $invoice->total_weight * $invoice->unit_price;
+                        // if ($invoice->product_name != null) {
+                        //     $product = explode(',', $invoice->product_name);
+                        // }
+                        // if ($invoice->carton_number != null) {
+                        //     $carton = explode(',', $invoice->carton_number);
+                        // }
+                        // if ($invoice->shipping_mark != null) {
+                        //     $shipMark = explode(',', $invoice->shipping_mark);
+                        // }
+                        // if ($invoice->shipping_number != null) {
+                        //     $shipNo = explode(',', $invoice->shipping_number);
+                        // }
+                        // if ($invoice->tracking_number != null) {
+                        //     $track = explode(',', $invoice->tracking_number);
+                        // }
+                        // if ($invoice->actual_weight != null) {
+                        //     $actualWeight = explode(',', $invoice->actual_weight);
+                        // }
+                        // $count = count($product);
                     @endphp
                     <div class="row" style="margin-bottom: 15px">
                         <div class="col-sm-4">
@@ -105,26 +104,27 @@
                                 <th scope="col" class="text-center">Carton Number</th>
                                 <th scope="col" class="text-center">Shipping Number</th>
                                 <th scope="col" class="text-center">Carton Qty</th>
-                                <th scope="col" class="text-center">Total Weight</th>
+                                <th scope="col" class="text-center">Weight</th>
                                 <th scope="col" class="text-center">Unit Price</th>
                                 <th scope="col" class="text-center">Amount</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- <tr>
+                            <tr>
                                 <td class="text-center align-middle">
                                     {{ date('m/d/Y', strtotime($invoice->created_at)) }}
                                 </td>
-                                <td class="text-center align-middle">{{ $invoice->carton_qty ?? '00' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->carton_number ?? '0' }}</td>
                                 <td class="text-center align-middle">{{ $invoice->product_name ?? 'N/A' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->product_qty ?? 'N/A' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->actual_weight }}</td>
-                                <td class="text-center align-middle">{{ $invoice->remarks }}</td>
-                                <td class="text-center align-middle">{{ $invoice->amount }}</td>
-                            </tr> --}}
+                                <td class="text-center align-middle">{{ $invoice->shipping_mark ?? 'N/A' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->carton_number ?? '0' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->shipping_number ?? 'N/A' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->carton_qty ?? 'N/A' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->actual_weight ?? '0' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->unit_price ?? '0' }}</td>
+                                <td class="text-center align-middle">{{ $invoice->amount ?? '0' }}</td>
+                            </tr>
 
-                            <tr>
+                            {{-- <tr>
                                 <td class="text-center align-middle" style="padding-top: 3%;">
                                     {{ date('d/m/Y', strtotime($invoice->created_at)) }}
                                 </td>
@@ -180,7 +180,7 @@
                                     {{ $invoice->unit_price ?? '00' }}</td>
                                 <td class="text-center align-middle" style="padding-top: 3%;">{{ $amount }}</td>
 
-                            </tr>
+                            </tr> --}}
 
 
                         </tbody>
@@ -188,7 +188,7 @@
                             <tr>
                                 <td colspan="8" class="text-right">Subtotal</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $amount ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id }}">{{ $invoice->amount ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -210,7 +210,7 @@
                                 </td>
                             </tr>
                             @php
-                                $total_sub = round($invoice->total_courier) + round($amount) + round($invoice->chinalocal) + round($invoice->packing_cost);
+                                $total_sub = round($invoice->total_courier) + round($invoice->amount) + round($invoice->chinalocal) + round($invoice->packing_cost);
                                 $due = abs(round($total_sub)) - abs(round($invoice->paid));
                                 
                             @endphp

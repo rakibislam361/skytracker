@@ -8,17 +8,48 @@ use App\Http\Controllers\Controller;
 use Auth;
 use PDF;
 use Illuminate\Http\Request;
+use App\Traits\PaginationTrait;
 
 class bookingController extends Controller
 {
+    use PaginationTrait;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('backend.booking.index');
+        $customer_name = request('customer_name', null);
+        $customer_phone = request('customer_phone', null);
+        $status = request('status', null);
+        $carton_number = request('carton_number', null);
+        $shipping_number = request('shipping_number', null);
+
+        $booking = Booking::with('cartons')->latest();
+
+        if ($customer_name) {
+            $booking->where('customer_name', $customer_name);
+        }
+        if ($customer_phone) {
+            $booking->where('customer_phone', $customer_phone);
+        }
+        if ($status) {
+            $booking->where('status', $status);
+        }
+        if ($shipping_number) {
+            $booking->where('customer_name', $shipping_number);
+        }
+
+        if ($carton_number) {
+            // $booking->where('cartons.carton_number', $carton_number);
+            $booking->whereHas('cartons', function ($query) use ($carton_number) {
+                $query->where('carton_number', 'like', '%' . $carton_number . '%');
+            });
+        }
+
+        $bookings = $booking->paginate(30);
+        return view('backend.booking.index', compact('bookings'));
     }
 
     /**
@@ -40,50 +71,49 @@ class bookingController extends Controller
      */
     public function store(Request $request)
     {
-        $totalWeight = 0;
-        $amount = 0;
         if (Auth::check()) {
-            $validateData = $this->bookingDataValidate();
+            $createCarton = new Carton();
+            $createCarton->carton_number = $request->carton_number ?? null;
+            $createCarton->carton_weight = $request->carton_weight ?? null;
+            $createCarton->shipping_method = $request->shipping_method ?? null;
+            $createCarton->carton_status = $request->carton_status ?? null;
+            $createCarton->save();
 
-            if (request()->othersProductName) {
-                $validateData['othersProductName'] = implode(',', request()->othersProductName);
-            }
-            if (request()->customer_name == null) {
-                $validateData['customer_name'] = auth()->user()->name;
-            }
-
-            $cartonvalidateData = $this->cartonDataValidate();
-
-            if (request()->carton_number) {
-                $cartonvalidateData['carton_number'] = implode(',', request()->carton_number);
-            }
-            if (request()->shipping_mark) {
-                $cartonvalidateData['shipping_mark'] = implode(',', request()->shipping_mark);
-            }
-            if (request()->shipping_number) {
-                $cartonvalidateData['shipping_number'] = implode(',', request()->shipping_number);
-            }
-            if (request()->tracking_id) {
-                $cartonvalidateData['tracking_id'] = implode(',', request()->tracking_id);
-            }
-            if (request()->actual_weight) {
-                foreach (request()->actual_weight as $key => $value) {
-                    $totalWeight += $value;
+            foreach ($request->othersProductName as $key => $value) {
+                $createBooking = new Booking();
+                $createBooking->date = $request->date[$key];
+                $createBooking->user_id = auth()->user()->id ?? null;
+                $createBooking->carton_id = $createCarton->id ?? null;
+                $createBooking->ctnQuantity = $request->ctnQuantity[$key] ?? null;
+                $createBooking->totalCbm = $request->totalCbm[$key] ?? null;
+                $createBooking->productQuantity = $request->productQuantity[$key] ?? null;
+                $createBooking->productsTotalCost = $request->productsTotalCost[$key] ?? null;
+                $createBooking->othersProductName = $request->othersProductName[$key] ?? null;
+                $createBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
+                $createBooking->customer_name = $request->customer_name[$key] ?? null;
+                $createBooking->customer_phone = $request->customer_phone[$key] ?? null;
+                $createBooking->customer_address = $request->customer_address[$key] ?? null;
+                $createBooking->shipping_mark = $request->shipping_mark[$key] ?? null;
+                $createBooking->shipping_number = $request->shipping_number[$key] ?? null;
+                $createBooking->actual_weight = $request->actual_weight[$key] ?? null;
+                $createBooking->unit_price = $request->unit_price[$key] ?? null;
+                $createBooking->chinalocal = $request->chinalocal[$key] ?? null;
+                $createBooking->packing_cost = $request->packing_cost[$key] ?? null;
+                $createBooking->courier_bill = $request->courier_bill[$key] ?? null;
+                if ($request->actual_weight[$key] != null && $request->unit_price[$key] != null) {
+                    $createBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
+                    // $createBooking->amount = $request->amount[$key] ?? null;
+                } else {
+                    $createBooking->amount = $request->amount[$key] ?? null;
                 }
-                $cartonvalidateData['total_weight'] = $totalWeight;
-                $cartonvalidateData['actual_weight'] = implode(',', request()->actual_weight);
-            }
-            if (request()->unit_price && request()->actual_weight) {
-                $amount = $totalWeight * request()->unit_price;
-                $validateData['amount'] = $amount;
+                $createBooking->paid = $request->paid[$key] ?? null;
+                $createBooking->tracking_number = $request->tracking_number[$key] ?? null;
+                $createBooking->remarks = $request->remarks[$key] ?? null;
+                $createBooking->status = $request->status[$key] ?? null;
+                $createBooking->save();
             }
 
-            $validateData['user_id'] = auth()->user()->id ?? null;
-            $store = Booking::create($validateData);
-            $storecarton = Carton::create($cartonvalidateData);
-            $store->cartons()->attach($storecarton->id);
-
-            if ($store && $storecarton) {
+            if ($createBooking && $createCarton) {
                 return redirect()
                     ->back()
                     ->withFlashSuccess('Your Booking Order Placed Successfully');
@@ -115,7 +145,8 @@ class bookingController extends Controller
      */
     public function edit($id)
     {
-        $booking = Booking::with('cartons')->find($id);
+        $booking = Booking::with('cartons')->findOrFail($id);
+        // $booking = Carton::with('bookings')->findOrFail($id);
 
         return view('backend.booking.edit', compact('booking'));
     }
@@ -129,62 +160,102 @@ class bookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $totalWeight = 0;
-        $amount = 0;
-        $updateBooking = Booking::findOrFail($id);
-        $updateCarton = Carton::findOrFail($id);
-        $updateBooking->cartons()->detach($updateCarton->id);
+        // $updateCarton = Carton::with('bookings')->findOrFail($id);
+        $updateBooking = Booking::with('cartons')->findOrFail($id);
 
-        if ($updateBooking && $updateCarton) {
-            $updateBooking->date = $request->date;
-            $updateBooking->ctnQuantity = $request->ctnQuantity;
-            $updateBooking->totalCbm = $request->totalCbm;
-            $updateBooking->productQuantity = $request->productQuantity;
-            $updateBooking->productsTotalCost = $request->productsTotalCost;
-            $updateBooking->othersProductName = implode(',', $request->othersProductName);
-            $updateBooking->bookingProduct = $request->bookingProduct;
-            $updateBooking->unit_price = $request->unit_price;
+        $updateCarton = $updateBooking->cartons;
 
-            $updateBooking->paid = $request->paid;
-
-            $updateBooking->remarks = $request->remarks;
-            $updateBooking->status = $request->status;
-
-            if (request()->customer_name == null) {
-                $updateBooking->customer_name = auth()->user()->name;
-            } else {
-                $updateBooking->customer_name = $request->customer_name;
-            }
-
-            $updateBooking->customer_phone = $request->customer_phone;
-            $updateBooking->customer_address = $request->customer_address;
-
-            if (request()->actual_weight) {
-                foreach (request()->actual_weight as $key => $value) {
-                    $totalWeight += $value;
-                }
-            }
-
-            if ($totalWeight > 0) {
-                $amount = $totalWeight * $request->unit_price;
-            }
-            $updateBooking->amount = $amount;
-
-            $updateCarton->shipping_mark = implode(',', $request->shipping_mark);
-            $updateCarton->carton_number = implode(',', $request->carton_number);
-            $updateCarton->shipping_number = implode(',', $request->shipping_number);
-            $updateCarton->actual_weight = implode(',', $request->actual_weight);
-            $updateCarton->total_weight = $totalWeight;
-            $updateCarton->warehouse_quantity = $request->warehouse_quantity;
-            $updateCarton->shipping_method = $request->shipping_method;
-            $updateCarton->chinalocal = $request->chinalocal;
-            $updateCarton->packing_cost = $request->packing_cost;
-            $updateCarton->tracking_id = implode(',', $request->tracking_id);
-
-            $updateBooking->save();
+        if ($updateCarton->carton_number == $request->carton_number) {
+            $updateCarton->carton_number = $request->carton_number ?? null;
+            $updateCarton->carton_weight = $request->carton_weight ?? null;
+            $updateCarton->shipping_method = $request->shipping_method ?? null;
+            $updateCarton->carton_status = $request->carton_status ?? null;
             $updateCarton->save();
-            $updateBooking->cartons()->attach($updateCarton->id);
+        } else {
+            $createCarton = new Carton();
+            $createCarton->carton_number = $request->carton_number ?? null;
+            $createCarton->carton_weight = $request->carton_weight ?? null;
+            $createCarton->shipping_method = $request->shipping_method ?? null;
+            $createCarton->carton_status = $request->carton_status ?? null;
+            $createCarton->save();
         }
+        foreach ($request->othersProductName as $key => $value) {
+            if ($value == $updateBooking->othersProductName) {
+                $updateBooking->date = $request->date[$key];
+                $updateBooking->user_id = auth()->user()->id ?? null;
+                if ($updateCarton->carton_number == $request->carton_number) {
+                    $updateBooking->carton_id = $updateCarton->id ?? null;
+                } else {
+                    $updateBooking->carton_id = $createCarton->id ?? null;
+                }
+                $updateBooking->ctnQuantity = $request->ctnQuantity[$key] ?? null;
+                $updateBooking->totalCbm = $request->totalCbm[$key] ?? null;
+                $updateBooking->productQuantity = $request->productQuantity[$key] ?? null;
+                $updateBooking->productsTotalCost = $request->productsTotalCost[$key] ?? null;
+                $updateBooking->othersProductName = $request->othersProductName[$key] ?? null;
+                $updateBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
+                $updateBooking->customer_name = $request->customer_name[$key] ?? null;
+                $updateBooking->customer_phone = $request->customer_phone[$key] ?? null;
+                $updateBooking->customer_address = $request->customer_address[$key] ?? null;
+                $updateBooking->shipping_mark = $request->shipping_mark[$key] ?? null;
+                $updateBooking->shipping_number = $request->shipping_number[$key] ?? null;
+                $updateBooking->actual_weight = $request->actual_weight[$key] ?? null;
+                $updateBooking->unit_price = $request->unit_price[$key] ?? null;
+                $updateBooking->chinalocal = $request->chinalocal[$key] ?? null;
+                $updateBooking->packing_cost = $request->packing_cost[$key] ?? null;
+                $updateBooking->courier_bill = $request->courier_bill[$key] ?? null;
+                if ($request->actual_weight[$key] != null && $request->unit_price[$key] != null) {
+                    $updateBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
+                    // $createBooking->amount = $request->amount[$key] ?? null;
+                } else {
+                    $updateBooking->amount = $request->amount[$key] ?? null;
+                }
+                // $updateBooking->amount = $request->amount[$key] ?? null;
+                $updateBooking->paid = $request->paid[$key] ?? null;
+                $updateBooking->tracking_number = $request->tracking_number[$key] ?? null;
+                $updateBooking->remarks = $request->remarks[$key] ?? null;
+                $updateBooking->status = $request->status[$key] ?? null;
+                $updateBooking->save();
+            } else {
+                $createBooking = new Booking();
+                $createBooking->date = $request->date[$key];
+
+                if ($updateCarton->carton_number == $request->carton_number) {
+                    $createBooking->carton_id = $updateCarton->id ?? null;
+                } else {
+                    $createBooking->carton_id = $createCarton->id ?? null;
+                }
+                $createBooking->ctnQuantity = $request->ctnQuantity[$key] ?? null;
+                $createBooking->totalCbm = $request->totalCbm[$key] ?? null;
+                $createBooking->productQuantity = $request->productQuantity[$key] ?? null;
+                $createBooking->productsTotalCost = $request->productsTotalCost[$key] ?? null;
+                $createBooking->othersProductName = $request->othersProductName[$key] ?? null;
+                $createBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
+                $createBooking->customer_name = $request->customer_name[$key] ?? null;
+                $createBooking->customer_phone = $request->customer_phone[$key] ?? null;
+                $createBooking->customer_address = $request->customer_address[$key] ?? null;
+                $createBooking->shipping_mark = $request->shipping_mark[$key] ?? null;
+                $createBooking->shipping_number = $request->shipping_number[$key] ?? null;
+                $createBooking->actual_weight = $request->actual_weight[$key] ?? null;
+                $createBooking->unit_price = $request->unit_price[$key] ?? null;
+                $createBooking->chinalocal = $request->chinalocal[$key] ?? null;
+                $createBooking->packing_cost = $request->packing_cost[$key] ?? null;
+                $createBooking->courier_bill = $request->courier_bill[$key] ?? null;
+                if ($request->actual_weight[$key] != null && $request->unit_price[$key] != null) {
+                    $createBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
+                    // $createBooking->amount = $request->amount[$key] ?? null;
+                } else {
+                    $createBooking->amount = $request->amount[$key] ?? null;
+                }
+                // $createBooking->amount = $request->amount[$key] ?? null;
+                $createBooking->paid = $request->paid[$key] ?? null;
+                $createBooking->tracking_number = $request->tracking_number[$key] ?? null;
+                $createBooking->remarks = $request->remarks[$key] ?? null;
+                $createBooking->status = $request->status[$key] ?? null;
+                $createBooking->save();
+            }
+        }
+
         return redirect()
             ->route('admin.booking.index')
             ->withFlashSuccess('Booking Order Updated Successfully');
@@ -199,29 +270,46 @@ class bookingController extends Controller
     public function destroy($id)
     {
         $booking = Booking::find($id);
-        $carton = Carton::find($id);
-        if ($booking && $carton) {
+        if ($booking) {
             $booking->delete($booking);
-            $carton->delete($carton);
         }
         return redirect()
             ->back()
             ->withFlashSuccess('Booking Deleted Successfully');
+    }
+    public function statusUpdate(Request $request)
+    {
+        foreach ($request->booking_id as $key => $value) {
+            $booking = Booking::with('cartons')->findOrFail($value);
+            $booking->status = $request->status;
+            $booking->save();
+        }
+        return redirect()
+            ->back()
+            ->withFlashSuccess('Booking Status Updated Successfully');
     }
 
     public function bookingDataValidate()
     {
         return request()->validate([
             'date' => 'nullable|date',
+            'carton_id' => 'nullable|numeric',
             'ctnQuantity' => 'nullable|numeric',
             'totalCbm' => 'nullable|numeric',
             'productQuantity' => 'nullable|numeric',
             'productsTotalCost' => 'nullable|between:0,99.99',
             'othersProductName.*' => 'nullable|string',
             'bookingProduct' => 'nullable|string',
+            'shipping_mark' => 'nullable|string',
+            'shipping_number' => 'nullable|string',
+            'actual_weight' => 'nullable|string',
             'unit_price' => 'nullable|string',
+            'chinalocal' => 'nullable|string',
+            'packing_cost' => 'nullable|string',
+            'courier_bill' => 'nullable|string',
             'amount' => 'nullable|string',
             'paid' => 'nullable|string',
+            'tracking_number' => 'nullable|string',
             'remarks' => 'nullable|string',
             'status' => 'nullable|string',
             'customer_name' => 'nullable|string',
@@ -232,16 +320,11 @@ class bookingController extends Controller
     public function cartonDataValidate()
     {
         return request()->validate([
-            'shipping_mark.*' => 'nullable|string',
-            'carton_number.*' => 'nullable|string',
-            'shipping_number.*' => 'nullable|string',
-            'actual_weight.*' => 'nullable|string',
-            'tracking_id.*' => 'nullable|string',
-            'warehouse_quantity' => 'nullable|string',
+            'carton_number' => 'nullable|string',
+            'product_total_weight' => 'nullable|string',
+            'carton_weight' => 'nullable|string',
+            'carton_status' => 'nullable|string',
             'shipping_method' => 'nullable|string',
-            'chinalocal' => 'nullable|numeric',
-            'packing_cost' => 'nullable|numeric',
-            'total_weight' => 'nullable|numeric',
         ]);
     }
 }
