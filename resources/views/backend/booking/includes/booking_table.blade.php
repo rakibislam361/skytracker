@@ -26,7 +26,8 @@
             @foreach ($bookings as $booking)
                 <tr data-value="{{ $booking }}">
                     <td class="align-content-center text-center"><input type="checkbox" class="checkboxItemBook"
-                            name="checkboxItemBook" id="checkboxItemBook" value={{ $booking->id ?? 'N/A' }}></td>
+                            name="checkboxItemBook" id="checkboxItemBook" data-value="{{ $booking }}"
+                            value={{ $booking->id ?? 'N/A' }}></td>
                     <td class="align-content-center text-center">
                         {{ $booking->created_at ? date('d/m/Y', strtotime($booking->date)) : 'N/A' }}
                     </td>
@@ -52,11 +53,6 @@
                     <td class="align-content-center text-center">{{ $booking->status ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">
                         <x-utils.edit-button :href="route('admin.booking.edit', $booking)" />
-
-                        <button type="button" class="btn btn-outline-primary" data-value="{{ $booking }}"
-                            id="generateInvoiceButtonBook" data-toggle="tooltip" title="Generate Invoice">
-                            @lang('Generate')
-                        </button>
 
                         <x-utils.delete-button :href="route('admin.booking.destroy', $booking)" />
                     </td>

@@ -95,10 +95,10 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function () {
     Route::get('skyonetable', [AccountController::class, 'skyoneTable'])->name('skyonetable');
 });
 
-Route::resources([
-    'booking' => bookingController::class,
-]);
+Route::resource('booking', bookingController::class);
+
 Route::post('booking', [bookingController::class, 'statusUpdate'])->name('booking.status.update');
+// Route::post('booking', [bookingController::class, 'store'])->name('booking.store');
 
 Route::get('invoice/details/{invoice}', [InvoiceController::class, 'details'])->name('invoice.details');
 Route::resources([

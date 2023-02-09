@@ -44,52 +44,106 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        $local_delivery = null;
-        $pack = null;
+        $product_name = null;
+        $carton = null;
+        $weight = null;
+        $unit = null;
+        $amount = null;
+        $customer_name = [];
+        $customer_phone = [];
+        $customer_address = [];
+        $productsTotalCost = [];
+        // $user_id = [];
+        $productQuantity = [];
+        $totalCbm = [];
+        $ctnQuantity = [];
+        $shipping_mark = [];
+        $shipping_number = [];
+        $tracking_id = [];
+        $remarks = [];
+        $status = [];
 
-        $id = $request->booking_id;
-        $booking = Booking::findOrFail($id);
         $createInvoice = new Invoice();
-        $createInvoice->customer_name = $booking->customer_name;
-        $createInvoice->customer_phone = $booking->customer_phone;
-        $createInvoice->customer_address = $booking->customer_address;
-        $createInvoice->user_id = $booking->user->id;
+        foreach ($request->booking_id as $key => $value) {
+            $id = $value;
+            $booking = Booking::findOrFail($id);
+            $customer_name[] = $booking->customer_name;
+            $customer_phone[] = $booking->customer_phone;
+            $customer_address[] = $booking->customer_address;
+            $productsTotalCost[] = $booking->productsTotalCost;
+            $productQuantity[] = $booking->productQuantity;
+            $totalCbm[] = $booking->totalCbm;
+            // $user_id[] = $booking->user_id;
+            $ctnQuantity[] = $booking->ctnQuantity;
+            $shipping_mark[] = $booking->shipping_mark;
+            $shipping_number[] = $booking->shipping_number;
+            $tracking_id[] = $booking->tracking_number;
+            $remarks[] = $booking->remarks;
+            $status[] = $booking->status;
+        }
+        if ($request->othersProductName) {
+            $product_name = implode(',', $request->othersProductName);
+        }
+        if ($request->carton_number) {
+            $carton = implode(',', $request->carton_number);
+        }
+        if ($request->actual_weight) {
+            $weight = implode(',', $request->actual_weight);
+        }
+        if ($request->unit_price) {
+            $unit = implode(',', $request->unit_price);
+        }
+        if ($request->amount) {
+            $amount = implode(',', $request->amount);
+        }
+        $customer_name = implode(',', $customer_name);
+        $customer_phone = implode(',', $customer_phone);
+        $customer_address = implode(',', $customer_address);
+        $productsTotalCost = implode(',', $productsTotalCost);
+        $productQuantity = implode(',', $productQuantity);
+        $totalCbm = implode(',', $totalCbm);
+        // $user_id = implode(',', $user_id);
+        $ctnQuantity = implode(',', $ctnQuantity);
+        $shipping_mark = implode(',', $shipping_mark);
+        $shipping_number = implode(',', $shipping_number);
+        $tracking_id = implode(',', $tracking_id);
+        $remarks = implode(',', $remarks);
+        $status = implode(',', $status);
+
+
+        $createInvoice = new Invoice();
+
+        $createInvoice->customer_name = $customer_name;
+        $createInvoice->customer_phone = $customer_phone;
+        $createInvoice->customer_address = $customer_address;
         $createInvoice->total_payable = $request->total_payable;
         $createInvoice->total_courier = $request->total_courier;
         $createInvoice->total_due = $request->total_due;
         $createInvoice->payment_method = $request->payment_method;
 
-        if ($request->chinalocal == null && $booking->chinalocal != null) {
-            $local_delivery = $booking->chinalocal;
-        } elseif ($request->chinalocal != null) {
-            $local_delivery = $request->chinalocal;
-        }
-        if ($request->packing_cost == null && $booking->packing_cost != null) {
-            $pack = $booking->packing_cost;
-        } elseif ($request->packing_cost != null) {
-            $pack = $request->packing_cost;
-        }
-        $createInvoice->packing_cost = $pack;
-        $createInvoice->chinalocal = $local_delivery;
+        $createInvoice->packing_cost = $request->packing_cost;
+        $createInvoice->chinalocal = $request->chinalocal;
         $createInvoice->delivery_method = $request->delivery_method;
 
-        $createInvoice->product_name = $request->othersProductName;
-        $createInvoice->product_cost = $booking->productsTotalCost;
-        $createInvoice->product_qty = $booking->productQuantity;
+        $createInvoice->product_name = $product_name;
+
+        $createInvoice->product_cost = $productsTotalCost;
+        $createInvoice->user_id = auth()->user()->id ?? null;
+        $createInvoice->product_qty = $productQuantity;
         $createInvoice->cbm = $booking->totalCbm;
-        $createInvoice->carton_qty = $booking->ctnQuantity;
-        $createInvoice->warehouse_qty = $booking->warehouse_quantity;
-        $createInvoice->carton_number = $request->carton_number;
-        $createInvoice->shipping_mark = $booking->shipping_mark;
-        $createInvoice->shipping_number = $booking->shipping_number;
-        $createInvoice->tracking_number = $booking->tracking_id;
-        $createInvoice->actual_weight = $request->actual_weight;
-        $createInvoice->total_weight = $booking->total_weight;
-        $createInvoice->unit_price = $request->unit_price;
-        $createInvoice->remarks = $booking->remarks;
-        $createInvoice->amount = $request->amount;
+        $createInvoice->carton_qty = $ctnQuantity;
+        // $createInvoice->warehouse_qty = $booking->warehouse_quantity;
+        $createInvoice->carton_number = $carton;
+        $createInvoice->shipping_mark = $shipping_mark;
+        $createInvoice->shipping_number = $shipping_number;
+        $createInvoice->tracking_number = $tracking_id;
+        $createInvoice->actual_weight = $weight;
+        // $createInvoice->total_weight = $booking->total_weight;
+        $createInvoice->unit_price = $unit;
+        $createInvoice->remarks = $remarks;
+        $createInvoice->amount = $amount;
         $createInvoice->paid = $request->paid;
-        $createInvoice->status = $booking->status;
+        $createInvoice->status = $status;
         $createInvoice->save();
         $createInvoice->update([
             'invoice_id' => 'INV' . generate_order_number($createInvoice->id, 4),
@@ -135,38 +189,6 @@ class InvoiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $updateBooking = booking::findOrFail($id);
-        // $updateCarton = carton::findOrFail($id);
-        // $updateBooking->cartons()->detach($updateCarton->id);
-
-        // if ($updateBooking && $updateCarton) {
-
-        //     $updateBooking->date = $request->date;
-        //     $updateBooking->ctnQuantity = $request->ctnQuantity;
-        //     $updateBooking->totalCbm = $request->totalCbm;
-        //     $updateBooking->productQuantity = $request->productQuantity;
-        //     $updateBooking->productsTotalCost = $request->productsTotalCost;
-        //     $updateBooking->othersProductName = implode(',', $request->othersProductName);
-        //     $updateBooking->bookingProduct = $request->bookingProduct;
-        //     $updateBooking->unit_price = $request->unit_price;
-        //     $updateBooking->amount = $request->amount;
-        //     $updateBooking->remarks = $request->remarks;
-        //     $updateBooking->status = $request->status;
-
-        //     $updateCarton->shipping_mark = implode(',', $request->shipping_mark);
-        //     $updateCarton->carton_number = implode(',', $request->carton_number);
-        //     $updateCarton->shipping_number = implode(',', $request->shipping_number);
-        //     $updateCarton->actual_weight = $request->actual_weight;
-        //     $updateCarton->warehouse_quantity = $request->warehouse_quantity;
-        //     $updateCarton->tracking_id = implode(',', $request->tracking_id);
-
-        //     $updateBooking->save();
-        //     $updateCarton->save();
-        //     $updateBooking->cartons()->attach($updateCarton->id);
-        // }
-        // return redirect()
-        //     ->route('admin.booking.index')
-        //     ->withFlashSuccess('Booking Order Updated Successfully');
     }
 
     /**

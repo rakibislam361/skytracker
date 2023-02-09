@@ -43,14 +43,14 @@ class InvoicesTable extends DataTableComponent
             Column::make('Courier Bill', 'total_courier'),
             Column::make('Paid', 'paid'),
 
-            Column::make('Due', 'due')->format(function ($value, $column, $row) {
-                $amount = $row->amount;
-                $paid = $row->paid;
-                $courier = $row->total_courier;
-                $due = $amount - $paid + $courier;
+            // Column::make('Due', 'due')->format(function ($value, $column, $row) {
+            //     $amount = $row->amount;
+            //     $paid = $row->paid;
+            //     $courier = $row->total_courier;
+            //     $due = $amount - $paid + $courier;
 
-                return $due;
-            }),
+            //     return $due;
+            // }),
 
             Column::make('Payment Method', 'payment_method')->searchable(),
             Column::make('Status', 'status')->searchable(),

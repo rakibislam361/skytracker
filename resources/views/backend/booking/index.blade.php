@@ -13,10 +13,10 @@
                     disabled="true" title="@lang('Change Status')">
                     @lang('Change Status')
                 </button>
-                {{-- <button type="button" class="btn btn-danger" id="InvoiceButtonBook" data-toggle="tooltip"
+                <button type="button" class="btn btn-danger" id="InvoiceButtonBook" data-toggle="tooltip"
                     title="Generate Invoice" disabled="true">
                     @lang('Generate Invoice')
-                </button> --}}
+                </button>
             </div>
             <x-utils.link :href="route('admin.booking.create')" icon="fas fa-plus" class="btn btn-sm btn-secondary" :text="__('Create Booking')" />
 

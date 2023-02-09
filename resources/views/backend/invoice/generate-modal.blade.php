@@ -14,7 +14,7 @@
                         {{-- hidden input field append here --}}
                     </div>
 
-                    <table class="table table-bordered text-center">
+                    <table class="table table-bordered text-center invoiceTable">
                         <thead>
                             <tr>
                                 <th scope="col">Customer</th>

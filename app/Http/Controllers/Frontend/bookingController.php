@@ -29,10 +29,10 @@ class bookingController extends Controller
         $booking = Booking::with('cartons')->latest();
 
         if ($customer_name) {
-            $booking->where('customer_name', $customer_name);
+            $booking->where('customer_name', 'like', '%' . $customer_name . '%');
         }
         if ($customer_phone) {
-            $booking->where('customer_phone', $customer_phone);
+            $booking->where('customer_phone', 'like', '%' .  $customer_phone . '%');
         }
         if ($status) {
             $booking->where('status', $status);
@@ -42,7 +42,6 @@ class bookingController extends Controller
         }
 
         if ($carton_number) {
-            // $booking->where('cartons.carton_number', $carton_number);
             $booking->whereHas('cartons', function ($query) use ($carton_number) {
                 $query->where('carton_number', 'like', '%' . $carton_number . '%');
             });

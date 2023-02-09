@@ -35,32 +35,59 @@
                     </div>
                     @php
                         
-                        // $product = [];
-                        // $carton = [];
-                        // $shipMark = [];
-                        // $shipNo = [];
-                        // $track = [];
-                        // $actualWeight = [];
-                        // $amount = $invoice->total_weight * $invoice->unit_price;
-                        // if ($invoice->product_name != null) {
-                        //     $product = explode(',', $invoice->product_name);
-                        // }
-                        // if ($invoice->carton_number != null) {
-                        //     $carton = explode(',', $invoice->carton_number);
-                        // }
-                        // if ($invoice->shipping_mark != null) {
-                        //     $shipMark = explode(',', $invoice->shipping_mark);
-                        // }
-                        // if ($invoice->shipping_number != null) {
-                        //     $shipNo = explode(',', $invoice->shipping_number);
-                        // }
-                        // if ($invoice->tracking_number != null) {
-                        //     $track = explode(',', $invoice->tracking_number);
-                        // }
-                        // if ($invoice->actual_weight != null) {
-                        //     $actualWeight = explode(',', $invoice->actual_weight);
-                        // }
-                        // $count = count($product);
+                        $product = [];
+                        $carton = [];
+                        $shipMark = [];
+                        $shipNo = [];
+                        $cartonQty = [];
+                        $actualWeight = [];
+                        $unit_price = [];
+                        $amount = [];
+                        $customer = [];
+                        $phone = [];
+                        $address = [];
+                        
+                        if ($invoice->product_name != null) {
+                            $product = explode(',', $invoice->product_name);
+                        }
+                        if ($invoice->carton_number != null) {
+                            $carton = explode(',', $invoice->carton_number);
+                        }
+                        if ($invoice->shipping_mark != null) {
+                            $shipMark = explode(',', $invoice->shipping_mark);
+                        }
+                        if ($invoice->shipping_number != null) {
+                            $shipNo = explode(',', $invoice->shipping_number);
+                        }
+                        if ($invoice->carton_qty != null) {
+                            $cartonQty = explode(',', $invoice->carton_qty);
+                        }
+                        if ($invoice->actual_weight != null) {
+                            $actualWeight = explode(',', $invoice->actual_weight);
+                        }
+                        if ($invoice->unit_price != null) {
+                            $unit_price = explode(',', $invoice->unit_price);
+                        }
+                        if ($invoice->amount != null) {
+                            $amount = explode(',', $invoice->amount);
+                        }
+                        if ($invoice->customer_name != null) {
+                            $customer = explode(',', $invoice->customer_name);
+                            $customer = array_unique($customer);
+                            $customer = implode(',', $customer);
+                        }
+                        if ($invoice->customer_phone != null) {
+                            $phone = explode(',', $invoice->customer_phone);
+                            $phone = array_unique($phone);
+                            $phone = implode(',', $phone);
+                        }
+                        if ($invoice->customer_address != null) {
+                            $address = explode(',', $invoice->customer_address);
+                            $address = array_unique($address);
+                            $address = implode(',', $address);
+                        }
+                        
+                        $count = count($product);
                     @endphp
                     <div class="row" style="margin-bottom: 15px">
                         <div class="col-sm-4">
@@ -78,20 +105,22 @@
                         <div class="col-sm-4">
                         </div>
                         <div class="col-sm-4">
+
                             <table class="table table-bordered table-condensed">
                                 <tr>
                                     <td class="p_txt_5"><b>Customer:</b></td>
-                                    <td class="p_txt_6"><b>{{ $invoice->customer_name ?? 'N/A' }}</b></td>
+                                    <td class="p_txt_6"><b>{{ $customer ?? 'N/A' }}</b></td>
                                 </tr>
                                 <tr>
                                     <td class="p_txt_5"><b>Phone:</b></td>
-                                    <td class="p_txt_6">{{ $invoice->customer_phone ?? 'N/A' }}</td>
+                                    <td class="p_txt_6">{{ $phone ?? 'N/A' }}</td>
                                 </tr>
                                 <tr>
                                     <td class="p_txt_5"><b>Address:</b></td>
-                                    <td class="p_txt_6">{{ $invoice->customer_address ?? 'N/A' }}</td>
+                                    <td class="p_txt_6">{{ $address ?? 'N/A' }}</td>
                                 </tr>
                             </table>
+
                         </div>
                     </div>
 
@@ -112,39 +141,25 @@
                         <tbody>
                             <tr>
                                 <td class="text-center align-middle">
-                                    {{ date('m/d/Y', strtotime($invoice->created_at)) }}
-                                </td>
-                                <td class="text-center align-middle">{{ $invoice->product_name ?? 'N/A' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->shipping_mark ?? 'N/A' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->carton_number ?? '0' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->shipping_number ?? 'N/A' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->carton_qty ?? 'N/A' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->actual_weight ?? '0' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->unit_price ?? '0' }}</td>
-                                <td class="text-center align-middle">{{ $invoice->amount ?? '0' }}</td>
-                            </tr>
-
-                            {{-- <tr>
-                                <td class="text-center align-middle" style="padding-top: 3%;">
                                     {{ date('d/m/Y', strtotime($invoice->created_at)) }}
                                 </td>
                                 <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($product as $p_name)
                                         <table class="table">
                                             <tr>
-                                                <td style="padding-bottom: 0%">
-                                                    {{ $p_name }}
+                                                <td>
+                                                    {{ $p_name ?? 'N/A' }}
                                                 </td>
                                             </tr>
                                         </table>
                                     @endforeach
                                 </td>
-                                <td class="text-center align-middle" style="padding: 0%;">
+                                <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($shipMark as $ship)
                                         <table class="table">
                                             <tr>
-                                                <td style="padding-bottom: 0%">
-                                                    {{ $ship }}
+                                                <td>
+                                                    {{ $ship ?? 'N/A' }}
                                                 </td>
                                             </tr>
                                         </table>
@@ -154,8 +169,8 @@
                                     @foreach ($carton as $cart)
                                         <table class="table">
                                             <tr>
-                                                <td style="padding-bottom: 0%">
-                                                    {{ $cart }}
+                                                <td>
+                                                    {{ $cart ?? 'N/A' }}
                                                 </td>
                                             </tr>
                                         </table>
@@ -165,30 +180,71 @@
                                     @foreach ($shipNo as $ship)
                                         <table class="table">
                                             <tr>
-                                                <td style="padding-bottom: 0%">
-                                                    {{ $ship }}
+                                                <td>
+                                                    {{ $ship ?? 'N/A' }}
                                                 </td>
                                             </tr>
                                         </table>
                                     @endforeach
                                 </td>
-                                <td class="text-center align-middle" style="padding-top: 3%;">
-                                    {{ $invoice->carton_qty ?? '00' }}</td>
-                                <td class="text-center align-middle" style="padding-top: 3%;">
-                                    {{ $invoice->total_weight ?? '00' }}</td>
-                                <td class="text-center align-middle" style="padding-top: 3%;">
-                                    {{ $invoice->unit_price ?? '00' }}</td>
-                                <td class="text-center align-middle" style="padding-top: 3%;">{{ $amount }}</td>
-
-                            </tr> --}}
-
+                                <td class="text-center align-middle" style="padding: 0%">
+                                    @foreach ($cartonQty as $ctnQty)
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    {{ $ctnQty ?? 'N/A' }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @endforeach
+                                </td>
+                                <td class="text-center align-middle" style="padding: 0%">
+                                    @foreach ($actualWeight as $weight)
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    {{ $weight ?? 'N/A' }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @endforeach
+                                </td>
+                                <td class="text-center align-middle" style="padding: 0%">
+                                    @foreach ($unit_price as $unit)
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    {{ $unit ?? 'N/A' }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @endforeach
+                                </td>
+                                <td class="text-center align-middle" style="padding: 0%">
+                                    @foreach ($amount as $amt)
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    {{ $amt ?? 'N/A' }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    @endforeach
+                                </td>
+                            </tr>
+                            @php
+                                $subtotal = 0;
+                                foreach ($amount as $amt) {
+                                    $subtotal += round($amt);
+                                }
+                            @endphp
 
                         </tbody>
                         <tfoot id="invoiceFooter">
                             <tr>
                                 <td colspan="8" class="text-right">Subtotal</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $invoice->amount ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id }}">{{ $subtotal ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
@@ -210,7 +266,7 @@
                                 </td>
                             </tr>
                             @php
-                                $total_sub = round($invoice->total_courier) + round($invoice->amount) + round($invoice->chinalocal) + round($invoice->packing_cost);
+                                $total_sub = round($invoice->total_courier) + round($subtotal) + round($invoice->chinalocal) + round($invoice->packing_cost);
                                 $due = abs(round($total_sub)) - abs(round($invoice->paid));
                                 
                             @endphp

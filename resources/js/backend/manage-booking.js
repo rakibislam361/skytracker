@@ -316,134 +316,7 @@ function generate_process_related_data() {
 
 $(function () {
     const body = $(document);
-    body.on("click", "#generateInvoiceButtonBook", function (e) {
-        var duePayment = "";
-        let itemValue = $(this).data("value");
-        let total_amount = itemValue.amount;
-        let customer = null;
-        let packing = null;
-        let local = null;
-        let actual_weight = null;
-        let unit_price = null;
-        let amount = null;
 
-        if (itemValue.actual_weight != null) {
-            actual_weight = itemValue.actual_weight;
-        } else {
-            actual_weight = 0;
-        }
-        if (itemValue.unit_price != null) {
-            unit_price = itemValue.unit_price;
-        } else {
-            unit_price = 0;
-        }
-        if (itemValue.amount != null) {
-            amount = itemValue.amount;
-        }
-        if (unit_price != 0 && actual_weight != 0) {
-            amount = Math.round(Number(actual_weight) * Number(unit_price));
-        } else {
-            amount = 0;
-        }
-        if (itemValue.customer_name != null) {
-            customer = itemValue.customer_name;
-        } else {
-            customer = itemValue.user.name;
-        }
-        if (itemValue.packing_cost != null) {
-            packing = itemValue.packing_cost;
-        } else {
-            packing = 0;
-        }
-        if (itemValue.chinalocal != null) {
-            local = itemValue.chinalocal;
-        } else {
-            local = 0;
-        }
-        $("#invoiceFooter")
-            .find(".total_due")
-            .text(Number(total_amount).toFixed(2));
-
-        duePayment += `<tr>
-                          <td class=" align-middle">${customer}</td>
-                          <td class=" align-middle">
-                         <div class="col">
-                                            <p class="product_name_text m-0" style="display: none">
-                                               <a href="#"
-                                                    class="ml-3 removeProduct text-danger">remove</a>
-                                            </p> <div class="input-group productSubmit">
-                                                <input type="text" class="form-control" placeholder="product"
-                                                    aria-label="Product Name" id="othersProductName" name="othersProductName" value=${itemValue.othersProductName}
-                                                    aria-describedby="Product-addon2">
-                                                <div class="input-group-append applyProductName" style="cursor: pointer">
-                                                    <span class="input-group-text" id="product-addon2">✓</span>
-                                                </div>
-                                            </div>
-                                            </div></td>
-                          <td class=" align-middle">${itemValue.shipping_mark}</td>
-                          <td class="align-middle"><p class="carton_text m-0" style="display: none">
-                                               <a href="#"
-                                                    class="ml-3 removeProduct text-danger">remove</a>
-                                            </p> <div class="input-group cartonSubmit">
-                                                <input type="text" class="form-control" placeholder="carton"
-                                                    aria-label="Carton" id="carton_number" name="carton_number" value=${itemValue.cartons.carton_number}
-                                                    aria-describedby="carton-addon2">
-                                                <div class="input-group-append applyCarton" style="cursor: pointer">
-                                                    <span class="input-group-text" id="carton-addon2">✓</span>
-                                                </div>
-                                            </div></td>
-                           <td class=" align-middle">${itemValue.shipping_number}</td>
-                          <td class=" align-middle">${itemValue.status}</td>
-                          <td class="text-right align-middle"><p class="weight_text m-0" style="display: none">
-                                               <a href="#"
-                                                    class="ml-3 removeProduct text-danger">remove</a>
-                                            </p><div class="input-group weightForm">
-                                                <input type="text" class="form-control" placeholder="actual weight"
-                                                    aria-label="Carton" id="actual_weight" name="actual_weight" value=${actual_weight}
-                                                    aria-describedby="carton-addon2">
-                                                <div class="input-group-append applyWeight" style="cursor: pointer">
-                                                    <span class="input-group-text" id="carton-addon2">✓</span>
-                                                </div>
-                                            </div></td>  
-                          <td class="text-right align-middle"><p class="unit_price_text m-0" style="display: none">
-                                               <a href="#"
-                                                    class="ml-3 removeProduct text-danger">remove</a>
-                                            </p><div class="input-group UnitPriceForm">
-                                                <input type="text" class="form-control" placeholder="unit price"
-                                                    aria-label="Carton" id="unit_price" name="unit_price" value=${unit_price}
-                                                    aria-describedby="carton-addon2">
-                                                <div class="input-group-append applyUnitPrice" style="cursor: pointer">
-                                                    <span class="input-group-text" id="carton-addon2">✓</span>
-                                                </div>
-                                            </div></td>  
-                          <td class="text-right align-middle"><p class="amount_text m-0" style="display: none">
-                                               <a href="#"
-                                                    class="ml-3 removeProduct text-danger">remove</a>
-                                            </p><div class="input-group amountForm">
-                                                <input type="text" class="form-control" placeholder="amount"
-                                                    aria-label="Carton" id="amount" name="amount" value=${amount}
-                                                    aria-describedby="carton-addon2">
-                                                <div class="input-group-append applyAmount" style="cursor: pointer">
-                                                    <span class="input-group-text" id="carton-addon2">✓</span>
-                                                </div>
-                                            </div></td>                  
-                        </tr>`;
-        let hidden = `<input type="hidden" name="booking_id" id="booking_id" value="${itemValue.id}">`;
-        $("#invoiceFooter")
-            .find(".packing_cost")
-            .text(Number(packing).toFixed(2));
-        $("#invoiceFooter").find(".chinalocal").text(Number(local).toFixed(2));
-
-        let payable = Number(total_amount) + Number(packing) + Number(local);
-
-        $("#invoiceFooter")
-            .find(".total_payable")
-            .text(Number(payable).toFixed(2));
-
-        $(".hiddenField").html(hidden);
-        $("#invoiceItem").html(duePayment);
-        $("#generateInvoiceModal").modal("show");
-    });
     $(document).on("click", ".applyCourierBtn", function () {
         let courier_bill = $(this)
             .closest(".input-group")
@@ -469,96 +342,38 @@ $(function () {
         $(".courier_bill_text").show();
         $(".courierSubmitForm").hide();
     });
-    $(document).on("click", ".applyProductName", function () {
-        let product_name = $(this)
-            .closest(".input-group")
-            .find(".form-control")
-            .val();
 
-        $(".product_name_text").show();
-        $(".productSubmit").hide();
-        $("#invoiceItem").find(".product_name_text").text(product_name);
+    $(document).on("keyup", ".actual_weight", function () {
+        // alert("hello");
+        let total = 0;
+        let weight = $(this).val();
+        let product_id = $(this).attr("id2");
+        let unit_price = $("#unit_price_" + product_id).val();
+        let amount = Math.round(Number(weight) * Number(unit_price));
+        $("#amount_" + product_id).val(amount);
+
+        let val = 0;
+
+        $(".invoiceTable tbody tr").each(function () {
+            val += parseInt($(this).find(".amount").val());
+        });
+        $("#invoiceFooter").find(".total_due").text(Number(val).toFixed(2));
     });
-    $(document).on("click", ".applyCarton", function () {
-        let carton = $(this)
-            .closest(".input-group")
-            .find(".form-control")
-            .val();
 
-        $(".carton_text").show();
-        $(".cartonSubmit").hide();
-        $("#invoiceItem").find(".carton_text").text(carton);
-    });
-    $(document).on("click", ".applyWeight", function () {
-        let weight = $(this)
-            .closest(".input-group")
-            .find(".form-control")
-            .val();
-        let unit_price = null;
-
-        if ($("#unit_price").val() != null) {
-            unit_price = $("#unit_price").val();
-        } else {
-            unit_price = $("#invoiceItem").find(".unit_price_text").text();
-        }
-
+    $(document).on("keyup", ".unit_price", function () {
+        let unit_price = $(this).val();
+        let product_id = $(this).attr("id2");
+        let weight = (weight = $("#actual_weight_" + product_id).val());
         let amount = Math.round(Number(weight) * Number(unit_price));
 
-        $("#amount").val(amount);
+        $("#amount_" + product_id).val(amount);
 
-        $("#invoiceFooter").find(".total_due").text(Number(amount).toFixed(2));
+        let val = 0;
 
-        $(".weight_text").show();
-        $(".weightForm").hide();
-        $("#invoiceItem").find(".weight_text").text(weight);
-    });
-    $(document).on("click", ".applyUnitPrice", function () {
-        let unit_price = $(this)
-            .closest(".input-group")
-            .find(".form-control")
-            .val();
-        let weight = null;
-        if ($("#actual_weight").val() != null) {
-            weight = $("#actual_weight").val();
-        } else {
-            weight = $("#invoiceItem").find(".weight_text").text();
-        }
-        let amount = Math.round(Number(weight) * Number(unit_price));
-
-        $("#amount").val(amount);
-
-        $("#invoiceFooter").find(".total_due").text(Number(amount).toFixed(2));
-
-        $(".unit_price_text").show();
-        $(".UnitPriceForm").hide();
-        $("#invoiceItem").find(".unit_price_text").text(unit_price);
-    });
-    $(document).on("click", ".applyAmount", function () {
-        let amount = $(this)
-            .closest(".input-group")
-            .find(".form-control")
-            .val();
-        let courier_bill = $("#invoiceFooter").find(".courier_bill").text();
-        let packing = $("#invoiceFooter").find(".packing_cost").text();
-        let chinalocal = $("#invoiceFooter").find(".chinalocal").text();
-        let paid = $("#invoiceFooter").find(".paid").text();
-
-        let total_payable =
-            Number(chinalocal) +
-            Number(amount) +
-            Number(courier_bill) +
-            Number(packing) -
-            Number(paid);
-
-        $("#invoiceFooter").find(".total_due").text(Number(amount).toFixed(2));
-
-        $("#invoiceFooter")
-            .find(".total_payable")
-            .text(Number(total_payable).toFixed(2));
-
-        $(".amount_text").show();
-        $(".amountForm").hide();
-        $("#invoiceItem").find(".amount_text").text(amount);
+        $(".invoiceTable tbody tr").each(function () {
+            val += parseInt($(this).find(".amount").val());
+        });
+        $("#invoiceFooter").find(".total_due").text(Number(val).toFixed(2));
     });
 
     $(document).on("click", ".removeCourierBtn", function () {
@@ -725,84 +540,7 @@ $(function () {
         $(".chinalocal_text").hide();
         $(".chinalocalSubmitForm").show();
     });
-    $(document).on("click", "#generateSubmitBtn", function () {
-        let product_name = null;
-        let carton_number = null;
-        let actual_weight = null;
-        let unit_price = null;
-        let courier_bill = null;
-        let packing = null;
-        let local = null;
 
-        let amount = $("#invoiceFooter").find(".total_due").text();
-
-        if ($("#invoiceFooter").find(".courier_bill").text() != null) {
-            courier_bill = $("#invoiceFooter").find(".courier_bill").text();
-        } else {
-            courier_bill = $("#invoiceFooter")
-                .find(".courier_bill_text")
-                .text();
-        }
-        if ($("#invoiceFooter").find(".packing_cost").text() != null) {
-            packing = $("#invoiceFooter").find(".packing_cost").text();
-        } else {
-            packing = $("#invoiceFooter").find(".packing_cost_text").text();
-        }
-        if ($("#invoiceFooter").find(".chinalocal").text() != null) {
-            local = $("#invoiceFooter").find(".courier_bill").text();
-        } else {
-            local = $("#invoiceFooter").find(".chinalocal_text").text();
-        }
-
-        // let packing = $("#invoiceFooter").find(".packing_cost").text();
-        // let local = $("#invoiceFooter").find(".chinalocal").text();
-
-        let total_payable = $("#invoiceFooter").find(".total_payable").text();
-        let paid = $("#invoiceFooter").find(".paid").text();
-
-        if ($("#othersProductName").val() != null) {
-            product_name = $("#othersProductName").val();
-        } else {
-            product_name = $("#invoiceItem").find(".product_name_text").text();
-        }
-        if ($("#carton_number").val() != null) {
-            carton_number = $("#carton_number").val();
-        } else {
-            carton_number = $("#invoiceItem").find(".carton_text").text();
-        }
-        if ($("#actual_weight").val() != null) {
-            actual_weight = $("#actual_weight").val();
-        } else {
-            actual_weight = $("#invoiceItem").find(".weight_text").text();
-        }
-        if ($("#unit_price").val() != null) {
-            unit_price = $("#unit_price").val();
-        } else {
-            unit_price = $("#invoiceItem").find(".unit_price_text").text();
-        }
-
-        var total_pay = `<input type="hidden" name="total_payable" value="${total_payable}">`;
-        var total_courier = `<input type="hidden" name="total_courier" value="${courier_bill}">`;
-        var total_chinalocal = `<input type="hidden" name="chinalocal" value="${local}">`;
-        var total_packing = `<input type="hidden" name="packing_cost" value="${packing}">`;
-        var total_d = `<input type="hidden" name="total_due" value="${amount}">`;
-        var product = `<input type="hidden" name="othersProductName" value="${product_name}">`;
-        var carton = `<input type="hidden" name="carton_number" value="${carton_number}">`;
-        var weight = `<input type="hidden" name="actual_weight" value="${actual_weight}">`;
-        var unit = `<input type="hidden" name="unit_price" value="${unit_price}">`;
-        var total_paid = `<input type="hidden" name="paid" value="${paid}">`;
-
-        $(".totalPay").html(total_pay);
-        $(".totalDue").html(total_d);
-        $("#packing").html(total_packing);
-        $("#localdelivery").html(total_chinalocal);
-        $("#courier").html(total_courier);
-        $(".product_name").html(product);
-        $(".carton").html(carton);
-        $(".weight").html(weight);
-        $(".unit").html(unit);
-        $(".total_pay").html(total_paid);
-    });
     function enable_proceed_button() {
         $("#changeGroupStatusButtonBook").removeAttr("disabled");
         $("#InvoiceButtonBook").removeAttr("disabled");
@@ -846,12 +584,77 @@ $(function () {
                 this
             ).val()}">`;
         });
-        // console.log(hiddenInput);
         hiddenField.html(hiddenInput);
         changeStatusModal.modal("show");
         $("#statusChargeForm").trigger("reset");
     });
+
+    $(document).on("hidden.bs.modal", "#generateInvoiceModal", function () {
+        var hiddenInput = "";
+        $(".invoiceItem").html(hiddenInput);
+    });
+
     $(document).on("click", "#InvoiceButtonBook", function () {
-        console.log("hello inv");
+        var hiddenInput = "";
+        var total_amount = 0;
+        $("input.checkboxItemBook:checked").each(function (index) {
+            var item = $(this).data("value");
+            if (item.amount) {
+                total_amount += item.amount;
+            }
+
+            hiddenInput = `<tr>
+                          <td class=" align-middle">${item.customer_name}</td>
+                            <td class=" align-middle">
+                                <div class="col">                                                                                    
+                                        <input type="text" class="form-control" placeholder="product"
+                                            aria-label="Product Name" id="othersProductName" name="othersProductName[]" value=${item.othersProductName}>                                                                        
+                                    </div>
+                                </div>
+                            </td>
+                          <td class=" align-middle">${item.shipping_mark}</td>
+                          <td class="align-middle">                         
+                                            <div class="col">
+                                                <input type="text" class="form-control" placeholder="carton"
+                                                    aria-label="Carton" id="carton_number" name="carton_number[]" value=${item.cartons.carton_number}
+                                                    aria-describedby="carton-addon2">
+                                               
+                                                
+                                            </div></td>
+                           <td class=" align-middle">${item.shipping_number}</td>
+                          <td class=" align-middle">${item.status}</td>
+                          <td class="text-right align-middle">
+                                                <div class="col">
+
+                                                   
+                                                <input type="text" class="form-control actual_weight" placeholder="actual weight"
+                                                    aria-label="Carton" id="actual_weight_${item.id}" id2="${item.id}" name="actual_weight[]" value=${item.actual_weight}
+                                                    aria-describedby="carton-addon2">
+                                               
+                                            </div></td>  
+                          <td class="text-right align-middle">
+                         <div class="col">
+                                                <input type="text" class="form-control unit_price" placeholder="unit price"
+                                                    aria-label="Carton" id="unit_price_${item.id}" id2="${item.id}" name="unit_price[]" value=${item.unit_price}
+                                                    aria-describedby="carton-addon2">
+                                                
+                                            </div></td>  
+                          <td class="text-right align-middle">
+                                            <div class="col">                  
+                                                <input type="text" class="form-control amount" placeholder="amount"
+                                                    aria-label="Carton" id="amount_${item.id}" id2="${item.id}" readonly name="amount[]" value=${item.amount}
+                                                    aria-describedby="carton-addon2">
+                                               
+                                            </div>
+                                           <input type="hidden" name="booking_id[]" value="${item.id}"></td>                  
+                        </tr>`;
+
+            $("#invoiceFooter")
+                .find(".total_due")
+                .text(Number(total_amount).toFixed(2));
+
+            $("#invoiceItem").append(hiddenInput);
+            $("#generateInvoiceModal").modal("show");
+        });
     });
 });
