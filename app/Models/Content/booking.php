@@ -6,11 +6,15 @@ use App\Domains\Auth\Models\User;
 use App\Models\Content\Carton;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Booking extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasRoles;
+
+    public const TYPE_ADMIN = 'booking';
+    public const TYPE_USER = 'user';
 
     protected $table = 'bookings';
 

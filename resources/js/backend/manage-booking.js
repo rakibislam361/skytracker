@@ -122,7 +122,7 @@ $(function () {
                                         <div class="form-group col-md-6">
                                             <label for="date">Date</label>
                                             <input type="date" name="date[]" class="form-control"
-                                                placeholder="approx date">
+                                                placeholder="approx date" value="{{ now()->format('Y-m-d') }}">
                                         </div>
 
                                         <div class="form-group col-md-6">
@@ -579,6 +579,7 @@ $(function () {
         var changeStatusModal = $("#changeStatusButtonBook");
         var hiddenField = changeStatusModal.find(".hiddenFieldBook");
         var hiddenInput = "";
+
         $("input.checkboxItemBook:checked").each(function (index) {
             hiddenInput += `<input type="hidden" name="booking_id[]" value="${$(
                 this
@@ -596,14 +597,23 @@ $(function () {
 
     $(document).on("click", "#InvoiceButtonBook", function () {
         var hiddenInput = "";
+        var is_generate = false;
         var total_amount = 0;
+        let packing = null;
+        let local = null;
+        let courier = null;
         $("input.checkboxItemBook:checked").each(function (index) {
             var item = $(this).data("value");
-            if (item.amount) {
-                total_amount += item.amount;
+            var status = item.status;
+            if (status == "received-in-BD-warehouse" || status == "delivered") {
+                is_generate = true;
             }
+            if (is_generate) {
+                if (item.amount) {
+                    total_amount += item.amount;
+                }
 
-            hiddenInput = `<tr>
+                hiddenInput = `<tr>
                           <td class=" align-middle">${item.customer_name}</td>
                             <td class=" align-middle">
                                 <div class="col">                                                                                    
@@ -649,12 +659,56 @@ $(function () {
                                            <input type="hidden" name="booking_id[]" value="${item.id}"></td>                  
                         </tr>`;
 
-            $("#invoiceFooter")
-                .find(".total_due")
-                .text(Number(total_amount).toFixed(2));
+                if (item.packing_cost != null) {
+                    packing += parseInt(item.packing_cost);
+                } else {
+                    packing = 0;
+                }
 
-            $("#invoiceItem").append(hiddenInput);
-            $("#generateInvoiceModal").modal("show");
+                if (item.chinalocal != null) {
+                    local += parseInt(item.chinalocal);
+                } else {
+                    local = 0;
+                }
+                if (item.courier_bill != null) {
+                    courier += parseInt(item.courier_bill);
+                } else {
+                    courier = 0;
+                }
+
+                $("#invoiceFooter")
+                    .find(".packing_cost")
+                    .text(Number(packing).toFixed(2));
+
+                $("#invoiceFooter")
+                    .find(".chinalocal")
+                    .text(Number(local).toFixed(2));
+
+                $("#invoiceFooter")
+                    .find(".courier_bill")
+                    .text(Number(courier).toFixed(2));
+
+                $("#invoiceFooter")
+                    .find(".total_due")
+                    .text(Number(total_amount).toFixed(2));
+                let total_payable =
+                    Number(total_amount) +
+                    Number(packing) +
+                    Number(local) +
+                    Number(courier);
+
+                $("#invoiceFooter")
+                    .find(".total_payable")
+                    .text(Number(total_payable).toFixed(2));
+
+                $("#invoiceItem").append(hiddenInput);
+                $("#generateInvoiceModal").modal("show");
+            } else {
+                Swal.fire({
+                    icon: "warning",
+                    text: "Selected bookings are not ready for generate invoice",
+                });
+            }
         });
     });
 });

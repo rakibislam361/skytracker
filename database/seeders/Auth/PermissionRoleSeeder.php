@@ -6,6 +6,7 @@ use App\Domains\Auth\Models\Permission;
 use App\Domains\Auth\Models\Role;
 use App\Domains\Auth\Models\User;
 use App\Models\Content\Order;
+use App\Models\Content\Booking;
 use App\Models\Content\Setting;
 use Database\Seeders\Traits\DisableForeignKeys;
 use Illuminate\Database\Seeder;
@@ -303,7 +304,118 @@ class PermissionRoleSeeder extends Seeder
         'description' => 'View Deliverd',
 
       ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.shipping_mark',
+        'description' => 'Local Shipping Mark',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.product_name',
+        'description' => 'Local Product Name',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.product_qty',
+        'description' => 'Local Product Qty',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.carton_qty',
+        'description' => 'Local Carton Qty',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.cbm',
+        'description' => 'Local CBM',
+
+      ]),
+
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.products_weight',
+        'description' => 'Local Products Weight',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.tracking_number',
+        'description' => 'Local Tracking Number',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.shipping_number',
+        'description' => 'Local Shipping Number',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.product_cost',
+        'description' => 'Local Product Cost',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.courier',
+        'description' => 'Local Courier Bill',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.unit_price',
+        'description' => 'Local Unit Price',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.remarks',
+        'description' => 'Local Remarks',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.chinalocal',
+        'description' => 'Local China Local Delivery',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.packing',
+        'description' => 'Local Packing Cost',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.paid',
+        'description' => 'Local Paid',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.status',
+        'description' => 'Local Status',
+
+      ]),
+      new Permission([
+        'type' => Order::TYPE_ADMIN,
+        'name' => 'admin.status.customer',
+        'description' => 'Local Customer Information',
+      ]),
     ]);
+
+    // $booking = Permission::create([
+    //   'type' => Booking::TYPE_ADMIN,
+    //   'name' => 'admin.booking',
+    //   'description' => 'All Local Booking Permissions',
+    // ]);
+    // $booking->children()->saveMany([
+
+    // ]);
 
     $this->enableForeignKeys();
   }

@@ -70,6 +70,7 @@ class bookingController extends Controller
      */
     public function store(Request $request)
     {
+
         if (Auth::check()) {
             $createCarton = new Carton();
             $createCarton->carton_number = $request->carton_number ?? null;
@@ -89,9 +90,18 @@ class bookingController extends Controller
                 $createBooking->productsTotalCost = $request->productsTotalCost[$key] ?? null;
                 $createBooking->othersProductName = $request->othersProductName[$key] ?? null;
                 $createBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
-                $createBooking->customer_name = $request->customer_name[$key] ?? null;
-                $createBooking->customer_phone = $request->customer_phone[$key] ?? null;
-                $createBooking->customer_address = $request->customer_address[$key] ?? null;
+                if (auth()->user()->type == 'user') {
+                    $createBooking->customer_name = auth()->user()->name;
+                    $createBooking->customer_phone = auth()->user()->phone;
+                    $createBooking->customer_address = auth()->user()->address;
+                }
+                if (auth()->user()->type == 'admin') {
+                    $createBooking->customer_name = $request->customer_name[$key] ?? null;
+                    $createBooking->customer_phone = $request->customer_phone[$key] ?? null;
+                    $createBooking->customer_address = $request->customer_address[$key] ?? null;
+                }
+
+
                 $createBooking->shipping_mark = $request->shipping_mark[$key] ?? null;
                 $createBooking->shipping_number = $request->shipping_number[$key] ?? null;
                 $createBooking->actual_weight = $request->actual_weight[$key] ?? null;
@@ -102,7 +112,7 @@ class bookingController extends Controller
                 if ($request->actual_weight[$key] != null && $request->unit_price[$key] != null) {
                     $createBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
                     // $createBooking->amount = $request->amount[$key] ?? null;
-                } else {
+                } elseif ($request->amount[$key] == null) {
                     $createBooking->amount = $request->amount[$key] ?? null;
                 }
                 $createBooking->paid = $request->paid[$key] ?? null;
@@ -115,7 +125,7 @@ class bookingController extends Controller
             if ($createBooking && $createCarton) {
                 return redirect()
                     ->back()
-                    ->withFlashSuccess('Your Booking Order Placed Successfully');
+                    ->with('message', 'Your Booking Order Placed Successfully');
             }
         } else {
             return view('frontend.auth.login');
