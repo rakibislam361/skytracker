@@ -344,20 +344,30 @@ $(function () {
     });
 
     $(document).on("keyup", ".actual_weight", function () {
-        // alert("hello");
         let total = 0;
         let weight = $(this).val();
         let product_id = $(this).attr("id2");
         let unit_price = $("#unit_price_" + product_id).val();
         let amount = Math.round(Number(weight) * Number(unit_price));
         $("#amount_" + product_id).val(amount);
-
         let val = 0;
-
         $(".invoiceTable tbody tr").each(function () {
             val += parseInt($(this).find(".amount").val());
         });
         $("#invoiceFooter").find(".total_due").text(Number(val).toFixed(2));
+        let packing = $("#invoiceFooter").find(".packing_cost").text();
+        let local = $("#invoiceFooter").find(".chinalocal").text();
+        let paid = $("#invoiceFooter").find(".paid").text();
+        let courier_bill = $("#invoiceFooter").find(".courier_bill").text();
+        let total_payable =
+            Number(courier_bill) +
+            Number(val) +
+            Number(packing) +
+            Number(local) -
+            Number(paid);
+        $("#invoiceFooter")
+            .find(".total_payable")
+            .text(Number(total_payable).toFixed(2));
     });
 
     $(document).on("keyup", ".unit_price", function () {
@@ -374,6 +384,19 @@ $(function () {
             val += parseInt($(this).find(".amount").val());
         });
         $("#invoiceFooter").find(".total_due").text(Number(val).toFixed(2));
+        let packing = $("#invoiceFooter").find(".packing_cost").text();
+        let local = $("#invoiceFooter").find(".chinalocal").text();
+        let paid = $("#invoiceFooter").find(".paid").text();
+        let courier_bill = $("#invoiceFooter").find(".courier_bill").text();
+        let total_payable =
+            Number(courier_bill) +
+            Number(val) +
+            Number(packing) +
+            Number(local) -
+            Number(paid);
+        $("#invoiceFooter")
+            .find(".total_payable")
+            .text(Number(total_payable).toFixed(2));
     });
 
     $(document).on("click", ".removeCourierBtn", function () {
