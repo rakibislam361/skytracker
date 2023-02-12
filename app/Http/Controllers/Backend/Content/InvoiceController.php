@@ -53,7 +53,6 @@ class InvoiceController extends Controller
         $customer_phone = [];
         $customer_address = [];
         $productsTotalCost = [];
-        // $user_id = [];
         $productQuantity = [];
         $totalCbm = [];
         $ctnQuantity = [];

@@ -1,4 +1,3 @@
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-cyan elevation-3">
     <a class="brand-link" href="{{ route('frontend.index') }}">
         <img src="{{ asset(get_setting('admin_logo')) }}" class="brand-image img-circle elevation-3" style="opacity: .8">

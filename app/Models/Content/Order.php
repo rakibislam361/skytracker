@@ -4,14 +4,11 @@ namespace App\Models\Content;
 
 use App\Domains\Auth\Models\User;
 use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Permission\Traits\HasRoles;
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
   use HasRoles;
-  //  HasFactory;
 
   public const TYPE_ADMIN = 'admin';
   public const TYPE_USER = 'user';

@@ -74,9 +74,6 @@ class InvoicesTable extends DataTableComponent
                 ->format(function ($value, $column, $row) {
                     return view('backend.invoice.includes.actions', ['invoice' => $row]);
                 }),
-
-
-
         ];
     }
 }

@@ -5,14 +5,6 @@
 @section('title', __('Create Booking'))
 
 @section('content')
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
-    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> --}}
-
     <div class="row justify-content-center">
         <div class="col-md-10">
             <form action="{{ route('frontend.content.booking') }}" method="post" enctype="multipart/form-data">
@@ -258,12 +250,4 @@
         </div>
 
     </div>
-    @if (session()->has('message'))
-        <script>
-            Swal.fire({
-                icon: "success",
-                text: "Your Booking Order Placed Successfully",
-            })
-        </script>
-    @endif
 @endsection

@@ -3,6 +3,9 @@
 @section('title', __('Manage booking'))
 
 @section('content')
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
     <x-backend.card>
         <x-slot name="header">
             @lang('Manage booking')
@@ -25,7 +28,6 @@
             <div style="padding-bottom: 20px;">
                 @include('backend.booking.includes.booking_filter')
             </div>
-            {{-- <livewire:backend.bookings-table /> --}}
             @include('backend.invoice.generate-modal')
             @include('backend.booking.includes.booking_table')
 
@@ -73,4 +75,20 @@
             </div>
         </x-slot>
     </x-backend.card>
+    @if (session()->has('Createmessage'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                text: "Your Booking Order Placed Successfully",
+            })
+        </script>
+    @endif
+    @if (session()->has('Updatemessage'))
+        <script>
+            Swal.fire({
+                icon: "success",
+                text: "Booking Order Updated Successfully",
+            })
+        </script>
+    @endif
 @endsection

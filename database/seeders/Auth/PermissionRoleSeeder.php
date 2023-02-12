@@ -407,16 +407,6 @@ class PermissionRoleSeeder extends Seeder
         'description' => 'Local Customer Information',
       ]),
     ]);
-
-    // $booking = Permission::create([
-    //   'type' => Booking::TYPE_ADMIN,
-    //   'name' => 'admin.booking',
-    //   'description' => 'All Local Booking Permissions',
-    // ]);
-    // $booking->children()->saveMany([
-
-    // ]);
-
     $this->enableForeignKeys();
   }
 }

@@ -6,44 +6,11 @@
 
 @section('content')
 
-
-    {{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script> --}}
-
     <div class="row justify-content-center">
         <div class="col-md-10">
 
             {{ html()->modelForm($booking, 'PATCH', route('admin.booking.update', $booking))->attribute('enctype', 'multipart/form-data')->open() }}
             @csrf
-            {{-- @dd($booking->bookings); --}}
-            {{-- @php
-                $cartons = $booking->cartons;
-                $cartonNO = $booking->cartons->carton_number;
-                $carton_number = [];
-                $shipping_mark = [];
-                $shipping_number = [];
-                $actual_weight = [];
-                $tracking_id = [];
-                $warehouse_qty = null;
-                $shipping_method = null;
-                $chinalocal = 0;
-                $packing_cost = 0;
-                
-                $product_name = explode(',', $booking->othersProductName);
-                foreach ($cartons as $key => $value) {
-                    $carton_number = explode(',', $value->carton_number);
-                    $shipping_mark = explode(',', $value->shipping_mark);
-                    $shipping_number = explode(',', $value->shipping_number);
-                    $actual_weight = explode(',', $value->actual_weight);
-                    $warehouse_qty = $value->warehouse_quantity;
-                    $shipping_method = $value->shipping_method;
-                    $chinalocal = $value->chinalocal;
-                    $packing_cost = $value->packing_cost;
-                    $tracking_id = explode(',', $value->tracking_id);
-                }
-                
-            @endphp --}}
             @php
                 $shipping_method = $booking->cartons->shipping_method ?? null;
                 $carton_number = $booking->cartons->carton_number ?? null;
@@ -305,6 +272,4 @@
 
         </div>
     </div>
-
-
 @endsection

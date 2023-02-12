@@ -124,8 +124,8 @@ class bookingController extends Controller
 
             if ($createBooking && $createCarton) {
                 return redirect()
-                    ->back()
-                    ->with('message', 'Your Booking Order Placed Successfully');
+                    ->route('admin.booking.index')
+                    ->with('Createmessage', 'Your Booking Order Placed Successfully');
             }
         } else {
             return view('frontend.auth.login');
@@ -267,7 +267,7 @@ class bookingController extends Controller
 
         return redirect()
             ->route('admin.booking.index')
-            ->withFlashSuccess('Booking Order Updated Successfully');
+            ->with('Updatemessage', 'Booking Order Updated Successfully');
     }
 
     /**
