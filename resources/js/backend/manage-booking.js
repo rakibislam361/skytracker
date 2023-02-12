@@ -597,7 +597,7 @@ $(function () {
 
     $(document).on("click", "#InvoiceButtonBook", function () {
         var hiddenInput = "";
-        var is_generate = false;
+        var generate = false;
         var total_amount = 0;
         let packing = null;
         let local = null;
@@ -606,9 +606,9 @@ $(function () {
             var item = $(this).data("value");
             var status = item.status;
             if (status == "received-in-BD-warehouse" || status == "delivered") {
-                is_generate = true;
+                generate = true;
             }
-            if (is_generate) {
+            if (generate) {
                 if (item.amount) {
                     total_amount += item.amount;
                 }
@@ -706,7 +706,7 @@ $(function () {
             } else {
                 Swal.fire({
                     icon: "warning",
-                    text: "Selected bookings are not ready for generate invoice",
+                    text: "Selected booking are not ready for generate invoice",
                 });
             }
         });

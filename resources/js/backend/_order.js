@@ -28,7 +28,7 @@ import axios from "axios";
             let status = $(this).closest("div").find(".order-status").text();
             $("#editOrderStatus").attr("action", href);
 
-            const exceptStatus = ["Waiting for Payment", "Partial Paid"];
+            const exceptStatus = ["Waiting for Payment", "partial-paid"];
             if (!exceptStatus.includes(status)) {
                 statusChangeFormModal
                     .find(`option[value=${status}]`)

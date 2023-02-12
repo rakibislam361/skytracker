@@ -15,7 +15,7 @@
         'refunded' => 'Refunded',
         'delivered' => 'Delivered',
         'Waiting for Payment' => 'Waiting for Payment',
-        'Partial Paid' => 'Partial Paid',
+        'Partial Paid' => 'partial-paid',
     ];
 @endphp
 
@@ -92,7 +92,7 @@
 
                         <div class="form-group">
                             @php
-                                unset($options['Waiting for Payment'], $options['Partial Paid']);
+                                unset($options['Waiting for Payment'], $options['partial-paid']);
                             @endphp
                             {{ html()->select('status', $options)->class('form-control')->attribute('maxlength', 255)->required() }}
                         </div> <!--  form-group-->

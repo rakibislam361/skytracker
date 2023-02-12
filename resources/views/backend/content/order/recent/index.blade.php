@@ -5,7 +5,7 @@
 @section('content')
     @php
         
-        $allOrdersCount = $orders ? $orders->where('status', 'Partial Paid')->count() : null;
+        $allOrdersCount = $orders ? $orders->where('status', 'partial-paid')->count() : null;
         $status = null;
         $partialCount = null;
         $onHold = null;

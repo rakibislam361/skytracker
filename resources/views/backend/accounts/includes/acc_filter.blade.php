@@ -41,7 +41,7 @@
                         <option @if (request('status', null) == 'purchased') selected @endif value="purchased">Purchase Completed
                         </option>
                         <option @if (request('status', null) == 're-order') selected @endif value="re-order">RE Order</option>
-                        <option @if (request('status', null) == 'Partial-Paid') selected @endif value="Partial-Paid">Partial Paid
+                        <option @if (request('status', null) == 'Partial-Paid') selected @endif value="partial-paid">Partial Paid
                         </option>
                         <option @if (request('status', null) == 'refund-please') selected @endif value="refund-please">Refund Please
                         </option>

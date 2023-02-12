@@ -36,24 +36,40 @@ class InvoicesTable extends DataTableComponent
                     return $this->html($href);
                 }),
 
-            Column::make('Customer Name', 'customer_name')->searchable(),
-            Column::make('Customer Phone', 'customer_phone')->searchable(),
+            Column::make('Customer Name', 'customer_name')->searchable()->format(function ($value, $column, $row) {
+                $customer = [];
+                if ($row->customer_name != null) {
+                    $customer = explode(',', $row->customer_name);
+                    $customer = array_unique($customer);
+                    $customer = implode(',', $customer);
+                }
+                return $customer;
+            }),
+            Column::make('Customer Phone', 'customer_phone')->searchable()->format(function ($value, $column, $row) {
+                $phone = [];
+                if ($row->customer_phone != null) {
+                    $phone = explode(',', $row->customer_phone);
+                    $phone = array_unique($phone);
+                    $phone = implode(',', $phone);
+                }
+                return $phone;
+            }),
             Column::make('Delivery Method', 'delivery_method')->searchable(),
-            Column::make('Amount', 'amount'),
+            Column::make('Amounts', 'amount'),
             Column::make('Courier Bill', 'total_courier'),
             Column::make('Paid', 'paid'),
 
-            // Column::make('Due', 'due')->format(function ($value, $column, $row) {
-            //     $amount = $row->amount;
-            //     $paid = $row->paid;
-            //     $courier = $row->total_courier;
-            //     $due = $amount - $paid + $courier;
-
-            //     return $due;
-            // }),
-
             Column::make('Payment Method', 'payment_method')->searchable(),
-            Column::make('Status', 'status')->searchable(),
+
+            Column::make('Status', 'status')->searchable()->format(function ($value, $column, $row) {
+                $status = [];
+                if ($row->status != null) {
+                    $status = explode(',', $row->status);
+                    $status = array_unique($status);
+                    $status = implode(',', $status);
+                }
+                return $status;
+            }),
             Column::make(__('Action'), 'action')
                 ->format(function ($value, $column, $row) {
                     return view('backend.invoice.includes.actions', ['invoice' => $row]);

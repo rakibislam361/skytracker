@@ -44,7 +44,6 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
         $product_name = null;
         $carton = null;
         $weight = null;

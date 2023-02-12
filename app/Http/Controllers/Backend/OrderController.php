@@ -361,7 +361,7 @@ class OrderController extends Controller
             'adjustment' => 'adjustment',
             'refunded' => 'refunded',
             'Waiting for Payment' => 'Waiting for Payment',
-            'Partial Paid' => 'Partial Paid',
+            'Partial Paid' => 'partial-paid',
         ];
     }
 
