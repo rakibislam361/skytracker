@@ -64,7 +64,7 @@
  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
- @if (session()->has('message'))
+ @if (session()->has('Createmessage'))
      <script>
          Swal.fire({
              icon: "success",

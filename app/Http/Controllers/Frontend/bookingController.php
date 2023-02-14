@@ -71,6 +71,7 @@ class bookingController extends Controller
     public function store(Request $request)
     {
         $amount = null;
+        $user = auth()->user()->type;
 
         if (Auth::check()) {
             $createCarton = new Carton();
@@ -124,10 +125,17 @@ class bookingController extends Controller
                 $createBooking->save();
             }
 
-            if ($createBooking && $createCarton) {
-                return redirect()
-                    ->route('admin.booking.index')
-                    ->with('Createmessage', 'Your Booking Order Placed Successfully');
+            if ($createBooking || $createCarton) {
+                if ($user == 'user') {
+                    return redirect()
+                        ->back()
+                        ->with('Createmessage', 'Your Booking Order Placed Successfully');
+                } else {
+
+                    return redirect()
+                        ->route('admin.booking.index')
+                        ->with('Createmessage', 'Your Booking Order Placed Successfully');
+                }
             }
         } else {
             return view('frontend.auth.login');
