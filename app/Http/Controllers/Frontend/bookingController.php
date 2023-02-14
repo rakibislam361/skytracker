@@ -70,6 +70,7 @@ class bookingController extends Controller
      */
     public function store(Request $request)
     {
+        $amount = null;
 
         if (Auth::check()) {
             $createCarton = new Carton();
@@ -109,12 +110,13 @@ class bookingController extends Controller
                 $createBooking->chinalocal = $request->chinalocal[$key] ?? null;
                 $createBooking->packing_cost = $request->packing_cost[$key] ?? null;
                 $createBooking->courier_bill = $request->courier_bill[$key] ?? null;
-                if ($request->actual_weight[$key] != null && $request->unit_price[$key] != null) {
-                    $createBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
-                    // $createBooking->amount = $request->amount[$key] ?? null;
-                } elseif ($request->amount[$key] == null) {
-                    $createBooking->amount = $request->amount[$key] ?? null;
-                }
+                // if (!$request->unit_price) {
+                //     $amount = 0;
+                // } else {
+                //     $amount = ($request->actual_weight[$key] * $request->unit_price[$key]) ?? null;
+                // }
+
+                // $createBooking->amount = $amount;
                 $createBooking->paid = $request->paid[$key] ?? null;
                 $createBooking->tracking_number = $request->tracking_number[$key] ?? null;
                 $createBooking->remarks = $request->remarks[$key] ?? null;
@@ -169,6 +171,7 @@ class bookingController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         // $updateCarton = Carton::with('bookings')->findOrFail($id);
         $updateBooking = Booking::with('cartons')->findOrFail($id);
 
@@ -213,12 +216,12 @@ class bookingController extends Controller
                 $updateBooking->chinalocal = $request->chinalocal[$key] ?? null;
                 $updateBooking->packing_cost = $request->packing_cost[$key] ?? null;
                 $updateBooking->courier_bill = $request->courier_bill[$key] ?? null;
-                if ($request->actual_weight[$key] != null && $request->unit_price[$key] != null) {
-                    $updateBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
-                    // $createBooking->amount = $request->amount[$key] ?? null;
-                } else {
-                    $updateBooking->amount = $request->amount[$key] ?? null;
-                }
+                // if ($request->unit_price[$key] != null) {
+                //     $updateBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
+                //     // $createBooking->amount = $request->amount[$key] ?? null;
+                // } else {
+                $updateBooking->amount = $request->amount[$key] ?? null;
+                // }
                 // $updateBooking->amount = $request->amount[$key] ?? null;
                 $updateBooking->paid = $request->paid[$key] ?? null;
                 $updateBooking->tracking_number = $request->tracking_number[$key] ?? null;
@@ -250,12 +253,13 @@ class bookingController extends Controller
                 $createBooking->chinalocal = $request->chinalocal[$key] ?? null;
                 $createBooking->packing_cost = $request->packing_cost[$key] ?? null;
                 $createBooking->courier_bill = $request->courier_bill[$key] ?? null;
-                if ($request->actual_weight[$key] != null && $request->unit_price[$key] != null) {
-                    $createBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
-                    // $createBooking->amount = $request->amount[$key] ?? null;
-                } else {
-                    $createBooking->amount = $request->amount[$key] ?? null;
-                }
+
+                // if ($request->unit_price[$key] != null) {
+                //     $createBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
+                //     // $createBooking->amount = $request->amount[$key] ?? null;
+                // } else {
+                $createBooking->amount = $request->amount[$key] ?? null;
+                // }
                 // $createBooking->amount = $request->amount[$key] ?? null;
                 $createBooking->paid = $request->paid[$key] ?? null;
                 $createBooking->tracking_number = $request->tracking_number[$key] ?? null;

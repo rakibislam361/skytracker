@@ -54,7 +54,6 @@
                                     </div>
 
                                     <div class="row">
-
                                         <div class="form-group col-md-6">
                                             <label for="date">Date</label>
                                             <input type="date" name="date[]" class="form-control"
@@ -194,7 +193,8 @@
                                                 <label for="status">Products Status</label>
                                                 <select class="form-control" name="status[]">
                                                     <option value="">Select</option>
-                                                    <option value="received-in-china-warehouse">Received in china warehouse
+                                                    <option value="received-in-china-warehouse">Received in china
+                                                        warehouse
                                                     </option>
                                                     <option value="shipped-from-china-warehouse">Shipped from china
                                                         warehouse
@@ -225,6 +225,7 @@
                                             </div>
                                         </div>
                                     @endif
+                                    {{-- <input type="hidden" id="user" value="{{ $logged_in_user->name }}"> --}}
                                     <div class="row">
                                         <div class="form-group col-md-6" style="margin-top:35px">
                                             <button class="btn btn-outline-success" id="add-new-book" type="button">+
@@ -245,7 +246,9 @@
                     </x-slot>
                 </x-backend.card>
             </form>
-
+            <div style="display: none">
+                @include('backend.booking.appened')
+            </div>
 
         </div>
 

@@ -5,7 +5,8 @@
 @section('title', __('Update Bookings'))
 
 @section('content')
-
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="js/jquery.czMore.js"></script>
     <div class="row justify-content-center">
         <div class="col-md-10">
 
@@ -65,8 +66,8 @@
                                     </div>
                                 </div>
                                 {{-- @foreach ($booking->bookings as $book) --}}
+                                {{-- <div id="add_new_book"> --}}
                                 <div class="row">
-
                                     <div class="form-group col-md-6">
                                         <label for="date">Date</label>
                                         <input type="date" name="date[]" class="form-control"
@@ -247,6 +248,7 @@
                                         </div>
                                     </div>
                                 @endif
+                                {{-- <input type="hidden" id="user" value="{{ $logged_in_user->name }}"> --}}
                                 <div class="row">
                                     <div class="form-group col-md-6" style="margin-top:35px">
                                         <button class="btn btn-outline-success" id="add-new-book" type="button">+
@@ -257,10 +259,15 @@
                                     </div>
 
                                 </div>
-                                {{-- @endforeach --}}
+
+                                {{-- </div> --}}
+
                             </td>
                         </tr>
                     </table>
+                    {{-- <div id="add_new_book">
+
+                    </div> --}}
 
                 </x-slot>
                 <x-slot name="footer">
@@ -269,7 +276,9 @@
             </x-backend.card>
 
             {{ html()->closeModelForm() }}
-
+            <div style="display: none">
+                @include('backend.booking.appened')
+            </div>
         </div>
     </div>
 @endsection

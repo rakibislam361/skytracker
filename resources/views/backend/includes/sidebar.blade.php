@@ -89,7 +89,7 @@
                         </ul>
                     </li>
                 @endif
-                @if ($logged_in_user->can('admin.order.carton_id'))
+                @if ($logged_in_user->can('admin.order.carton_id') || $logged_in_user->can('admin.status.status'))
                     <li class="nav-item {{ activeClass(Route::is('admin.booking.*'), 'menu-open') }}">
                         <x-utils.link-sidebar href="#" :text="__('Local Booking')" icon="nav-icon icon-star"
                             class="nav-link" rightIcon="fas fa-angle-left right" />
