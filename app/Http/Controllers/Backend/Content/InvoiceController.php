@@ -109,7 +109,6 @@ class InvoiceController extends Controller
         $remarks = implode(',', $remarks);
         $status = implode(',', $status);
 
-
         $createInvoice = new Invoice();
 
         $createInvoice->customer_name = $customer_name;
@@ -127,7 +126,7 @@ class InvoiceController extends Controller
         $createInvoice->product_name = $product_name;
 
         $createInvoice->product_cost = $productsTotalCost;
-        $createInvoice->user_id = auth()->user()->id ?? null;
+        $createInvoice->user_id = $booking->user_id ?? null;
         $createInvoice->product_qty = $productQuantity;
         $createInvoice->cbm = $booking->totalCbm;
         $createInvoice->carton_qty = $ctnQuantity;

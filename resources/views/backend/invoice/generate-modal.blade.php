@@ -189,14 +189,15 @@
                             </tr>
                         </tfoot>
                     </table>
-            </div>
-            <div class="modal-footer justify-content-start">
-                <button type="submit" class="btn btn-success" id="generateSubmitBtn">Generate
-                </button>
-                </form>
-                <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
-            </div>
 
+                    <div class="modal-footer justify-content-start">
+                        <button type="submit" class="btn btn-success" id="generateSubmitBtn">Generate
+                        </button>
+
+                        <button type="button" data-dismiss="modal" class="btn btn-primary">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

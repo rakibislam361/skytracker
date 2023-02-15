@@ -14,12 +14,12 @@
     <meta property="og:image" content="@yield('meta_image')">
     @yield('meta')
     {{-- favicon --}}
-    {{-- <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(get_setting('favicon')) }}">
     <link rel="manifest" href="{{ asset(get_setting('favicon')) }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-fontawesome-all.min.css') }}">
@@ -48,21 +48,81 @@
     <link href="{{ mix('css/backend.css') }}" rel="stylesheet">
     <livewire:styles />
     @stack('after-styles')
+    <style>
+        html,
+        body {
+            background-color: #fff;
+            color: #636b6f;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 200;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .full-height {
+            height: 100vh;
+        }
+
+        .flex-center {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .position-ref {
+            position: relative;
+        }
+
+        .top-right {
+            position: absolute;
+            right: 10px;
+            top: 18px;
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 84px;
+        }
+
+        .links>a {
+            color: #636b6f;
+            padding: 0 25px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: .1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .m-b-md {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 
-<body>
-
-    <script>
-        var settings = document.getElementById('settings_all').innerText;
-        window.b2b = settings ? JSON.parse(settings) : {};
-    </script>
-
+<body class="hold-transition sidebar-mini text-sm">
     <div class="wrapper" id="app">
+        <script>
+            var settings = document.getElementById('settings_all').innerText;
+            window.b2b = settings ? JSON.parse(settings) : {};
+        </script>
+        @include('frontend.includes.nav')
         @include('frontend.user.includes.sidebar')
-        <section class="content">
-            @yield('content')
-        </section>
 
+        <div class="content-wrapper">
+            <section class="content-header">
+                @include('includes.partials.messages')
+                @include('backend.includes.partials.breadcrumbs')
+            </section>
+
+            <section class="content">
+                @yield('content')
+            </section>
+
+        </div>
     </div>
     <!--app-->
     @stack('before-scripts')
@@ -71,8 +131,9 @@
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/backend.js') }}"></script>
+
     <livewire:scripts />
-    @stack('after-scripts')
+
     {{-- <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/334-js-popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/3741-js-bootstrap.min.js') }}"></script>
@@ -92,7 +153,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
     <script src="{{ asset('assets/js/9626-js-plugins.js') }}"></script>
     <script src="{{ asset('assets/js/2325-js-main.js') }}"></script> --}}
-
+    @stack('after-scripts')
 </body>
 
 </html>

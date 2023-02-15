@@ -202,7 +202,7 @@ class bookingController extends Controller
         foreach ($request->othersProductName as $key => $value) {
             if ($value == $updateBooking->othersProductName) {
                 $updateBooking->date = $request->date[$key];
-                $updateBooking->user_id = auth()->user()->id ?? null;
+                $updateBooking->user_id = $updateBooking->user_id ?? null;
                 if ($updateCarton->carton_number == $request->carton_number) {
                     $updateBooking->carton_id = $updateCarton->id ?? null;
                 } else {
