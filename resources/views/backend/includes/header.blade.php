@@ -12,13 +12,14 @@
             <a href="{{ route('admin.messaging.contact.index') }}" class="nav-link">Contacts</a>
         </li>
 
-        {{-- Wallet and local --}}
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('admin.order.index') }}" class="nav-link">Wallet</a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('admin.booking.index') }}" class="nav-link">Local</a>
-        </li>
+        @if ($logged_in_user->can('admin.status.status'))
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="{{ route('admin.booking.index') }}" class="nav-link">Local</a>
+            </li>
+        @endif
     </ul>
 
     <!-- Right navbar links -->
