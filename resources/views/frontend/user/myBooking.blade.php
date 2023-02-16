@@ -15,23 +15,28 @@
                             <th>Date</th>
                             <th>Product</th>
                             <th>Product Qty</th>
-                            <th>Carton Qty</th>
                             <th>Weight</th>
+                            <th>Carton Qty</th>
                             <th>Amount</th>
-                            <th>Paid</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($booking as $book)
+                            @php
+                                $amount = $book->actual_weight * $book->unit_price ?? 0;
+                                $courier = $book->courier_bill ?? 0;
+                                $chinalocal = $book->chinalocal ?? 0;
+                                $packing = $book->packing_cost ?? 0;
+                                $total_amount = $amount + $courier + $chinalocal + $packing;
+                            @endphp
                             <tr>
                                 <td>{{ $book->date ? date('d/m/Y', strtotime($book->date)) : 'N/A' }}</td>
                                 <td>{{ $book->othersProductName ?? 'N/A' }}</td>
                                 <td>{{ $book->productQuantity ?? 'N/A' }}</td>
-                                <td>{{ $book->ctnQuantity ?? 'N/A' }}</td>
                                 <td>{{ $book->actual_weight ?? 'N/A' }}</td>
-                                <td>{{ $book->amount ?? 'N/A' }}</td>
-                                <td>{{ $book->paid ?? 'N/A' }}</td>
+                                <td>{{ $book->ctnQuantity ?? 'N/A' }}</td>
+                                <td>{{ $total_amount ?? 'N/A' }}</td>
                                 <td>{{ $book->status ?? 'N/A' }}</td>
                             </tr>
                         @endforeach

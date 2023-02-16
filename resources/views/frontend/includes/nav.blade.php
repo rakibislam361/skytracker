@@ -1,17 +1,27 @@
 {{-- @include('frontend.style.bstyle') --}}
 
 
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 10px;">
 
     <ul class="navbar-nav">
-        <li class="nav-item">
+        <li class="nav-item" style="margin-top: 18px;">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
-        <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('frontend.index') }}" class="nav-link">Frontend</a>
+        <li>
+            <a class="brand-link" href="{{ route('frontend.index') }}">
+                <img src="{{ asset(get_setting('frontend_logo_menu')) }}" style="width:90px;height:40px;">
+            </a>
         </li>
     </ul>
+
+
+
     <ul class="navbar-nav ml-auto">
+        {{-- <li class="nav-link">
+            <a href="{{ route('frontend.pages.contact') }}">
+                <p>Support</p>
+            </a>
+        </li> --}}
         @if (config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
             <li>
                 <x-utils.link :text="__(getLocaleName(app()->getLocale()))" class="nav-link dropdown-toggle" id="navbarDropdownLanguageLink"

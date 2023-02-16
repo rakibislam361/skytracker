@@ -21,7 +21,10 @@ class DashboardController
      */
     public function index()
     {
-        return view('frontend.user.dashboard');
+        $user = auth()->user()->id;
+        $booking = Booking::with('cartons', 'user')->where('user_id', $user)->latest()->get();
+        $invoice = Invoice::where('user_id', $user)->latest()->get();
+        return view('frontend.user.dashboard', compact('booking', 'invoice'));
     }
 
     public function bookings()

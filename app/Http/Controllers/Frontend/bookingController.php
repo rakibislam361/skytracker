@@ -62,6 +62,13 @@ class bookingController extends Controller
         return view('backend.booking.create', compact('booking'));
     }
 
+    public function userBooking()
+    {
+        $booking = Booking::all();
+        return view('frontend.user.includes.add_book', compact('booking'));
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

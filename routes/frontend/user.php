@@ -3,6 +3,7 @@
 use App\Http\Controllers\Frontend\User\AccountController;
 use App\Http\Controllers\Frontend\User\DashboardController;
 use App\Http\Controllers\Frontend\User\ProfileController;
+use App\Http\Controllers\Frontend\bookingController;
 use Tabuna\Breadcrumbs\Trail;
 
 /*
@@ -32,3 +33,4 @@ Route::group(['as' => 'user.', 'middleware' => ['auth', 'password.expires', conf
 Route::get('booking}', [DashboardController::class, 'bookings'])->name('user.bookings');
 Route::get('invoice}', [DashboardController::class, 'invoices'])->name('user.invoices');
 Route::get('invoice/{invoice}', [DashboardController::class, 'details'])->name('user.invoices.details');
+Route::get('booking/create}', [bookingController::class, 'userBooking'])->name('user.bookings.create');
