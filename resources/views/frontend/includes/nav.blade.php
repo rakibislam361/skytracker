@@ -1,6 +1,3 @@
-{{-- @include('frontend.style.bstyle') --}}
-
-
 <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 10px;">
 
     <ul class="navbar-nav">
@@ -17,19 +14,19 @@
 
 
     <ul class="navbar-nav ml-auto">
-        {{-- <li class="nav-link">
+        <li class="nav-link">
             <a href="{{ route('frontend.pages.contact') }}">
                 <p>Support</p>
             </a>
-        </li> --}}
-        @if (config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
+        </li>
+        {{-- @if (config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
             <li>
                 <x-utils.link :text="__(getLocaleName(app()->getLocale()))" class="nav-link dropdown-toggle" id="navbarDropdownLanguageLink"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
 
                 @include('includes.partials.lang')
             </li>
-        @endif
+        @endif --}}
 
         @guest
             <li class="nav-item">

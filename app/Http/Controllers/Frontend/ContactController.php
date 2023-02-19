@@ -36,18 +36,21 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        $name = auth()->user()->name ?? null;
+        $phone = auth()->user()->phone ?? null;
+        $email = auth()->user()->email ?? null;
 
         $createContact = new Contact();
-        $createContact->name = $request->name;
-        $createContact->phone = $request->phone;
-        $createContact->email = $request->email;
+        $createContact->name = $name ?? null;
+        $createContact->phone = $phone ?? null;
+        $createContact->email = $email ?? null;
         $createContact->message = $request->message;
         $createContact->user_id = auth()->id();
         $createContact->save();
 
 
         return redirect()
-            ->route('frontend.index')
+            ->back()
             ->withFlashSuccess('Message sent successfully');
     }
 
