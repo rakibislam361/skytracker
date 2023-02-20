@@ -1,5 +1,5 @@
 <footer>
-    <div class="footer-wrap pt-50" data-background="img/bg/footer_bg.jpg">
+    <div class="footer-wrap pt-95 pb-150" data-background="img/bg/footer_bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-xl-3 col-lg-4 col-md-6">
@@ -34,12 +34,6 @@
                                 @foreach ($footer_lefts as $footer_left)
                                     <li><a href="/page/{{ $footer_left->slug }}"><i
                                                 class="fas fa-caret-right"></i>{{ $footer_left->title }}</a></li>
-                                    <!-- <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
-                                    </li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
-                                            Conditions</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
                                 @endforeach
                             </ul>
                         </div>
@@ -61,20 +55,7 @@
                                     <li><a href="/page/{{ $footer_right->slug }}"><i
                                                 class="fas fa-caret-right"></i>{{ $footer_right->title }}</a>
                                     </li>
-                                    <!-- <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
-                                    </li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
-                                            Conditions</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
                                 @endforeach
-                                <!-- <li><a href="#"><i class="fas fa-caret-right"></i> About us</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Delivery Information</a>
-                                    </li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Terms &amp;
-                                            Conditions</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Privacy Policy</a></li>
-                                    <li><a href="#"><i class="fas fa-caret-right"></i> Refund Policy</a></li> -->
                             </ul>
                         </div>
                     </div>

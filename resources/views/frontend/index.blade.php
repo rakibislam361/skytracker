@@ -54,6 +54,7 @@
 
     <!-- footer -->
     @include('frontend.content.footer')
+
     <!-- footer-end -->
     @include('frontend.style.js')
 </body>

@@ -74,6 +74,13 @@
 
 /* Normal desktop :992px. */
 @media (min-width: 992px) and (max-width: 1200px) {
+
+.col-md-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 1 0 33.333333%;
+    max-width: 40.333333%;
+}
 .header-container-p {
 	padding-left: 15px;
 	padding-right: 15px;
@@ -340,11 +347,18 @@ blockquote.classic-blockquote-post::after {
 	left: auto;
 }
 
+
 }
 
 
 /* Tablet desktop :768px. */
 @media (min-width: 768px) and (max-width: 991px) {
+	.col-md-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 1 0 33.333333%;
+    max-width: 50.333333%;
+}
 .header-container-p {
 	padding-left: 15px;
 	padding-right: 15px;
