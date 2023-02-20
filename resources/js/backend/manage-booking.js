@@ -8,110 +8,6 @@ $(function () {
     let itemNumber = 0;
 
     $("body")
-        .on("click", "#add-carton-btn", function (e) {
-            e.preventDefault();
-            ++i;
-            var input_element = `<tr>
-                                    <td>
-                                      <input type="text" name="carton_number[]" placeholder="carton number" class="form-control" />
-                                    </td>
-
-                                   <td class="text-right" style="width:1%"> 
-                                   <button type="button" id="add-carton-btn" class="btn btn-outline-success">+</button></td>
-
-                                      <td class="text-right" style="width:1%"> 
-                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button></td> 
-                                                                   
-                                 </tr>`;
-
-            $("#carton-number").append(input_element);
-        })
-
-        .on("click", "#add-weight-btn", function (e) {
-            e.preventDefault();
-            ++i;
-            var weight = `<tr>
-                                    <td>
-                                      <input type="text" name="actual_weight[]" id="weights" placeholder="carton weight" class="form-control" />
-                                    </td>
-
-                                   <td class="text-right" style="width:1%"> 
-                                   <button type="button" id="add-weight-btn" class="btn btn-outline-success">+</button></td>
-
-                                      <td class="text-right" style="width:1%"> 
-                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button></td> 
-                                                                   
-                                 </tr>`;
-
-            $("#booking-weight").append(weight);
-        })
-
-        .on("click", "#add-productName-btn", function (e) {
-            e.preventDefault();
-            ++i;
-            var input_element = `<tr>
-                                    <td>
-                                      <input type="text" name="othersProductName[]" placeholder="product name" class="form-control" />
-                                    </td>
-
-                                   <td class="text-right" style="width:1%"> 
-                                   <button type="button" id="add-productName-btn" class="btn btn-outline-success">+</button></td>
-
-                                      <td class="text-right" style="width:1%"> 
-                                      <button type="button" class="btn btn-outline-danger remove-tr">-</button></td> 
-                                                                   
-                                 </tr>`;
-
-            $("#product-name").append(input_element);
-        })
-        .on("click", "#add-shipping-mark-btn", function (e) {
-            e.preventDefault();
-            ++i;
-            var input_element = `<tr>
-                                   <td><input type="text" required="" name="shipping_mark[]"
-                                                placeholder="shipping mark" class="form-control" /></td>
-                                        <td class="text-right" style="width:1%"> <button type="button"
-                                                id="add-shipping-mark-btn" class="btn btn-outline-success">+</button></td>
-                                        <td class="text-right" style="width:1%"> <button type="button"
-                                                class="btn btn-outline-danger remove-tr">-</button></td>
-                                                                   
-                                 </tr>`;
-
-            $("#shipping-mark").append(input_element);
-        })
-        .on("click", "#add-shipping-number-btn", function (e) {
-            e.preventDefault();
-            ++i;
-            var input_element = `<tr>
-                                    <td><input type="text" name="shipping_number[]" placeholder="shipping number"
-                                                class="form-control" /></td>
-                                        <td class="text-right" style="width:1%"> <button type="button"
-                                                id="add-shipping-number-btn" class="btn btn-outline-success">+</button>
-                                        </td>
-                                        <td class="text-right" style="width:1%"> <button type="button"
-                                                class="btn btn-outline-danger remove-tr">-</button></td>
-                                                                   
-                                 </tr>`;
-
-            $("#shipping-number").append(input_element);
-        })
-        .on("click", "#add-tracking-id-btn", function (e) {
-            e.preventDefault();
-            ++i;
-            var input_element = `<tr>
-                                   <td><input type="text" name="tracking_id[]" placeholder="tracking number"
-                                                class="form-control" /></td>
-                                        <td class="text-right" style="width:1%"> <button type="button"
-                                                id="add-tracking-id-btn" class="btn btn-outline-success">+</button>
-                                        </td>
-                                        <td class="text-right" style="width:1%"> <button type="button"
-                                                class="btn btn-outline-danger remove-tr">-</button></td>
-                                                                   
-                                 </tr>`;
-
-            $("#tracking-id").append(input_element);
-        })
-
         .on("click", "#add-new-book", function (e) {
             e.preventDefault();
             ++i;
@@ -465,6 +361,11 @@ $(function () {
         $("input.checkboxItemBook:checked").each(function (index) {
             var item = $(this).data("value");
             var status = item.status;
+            let pro = item.othersProductName;
+            var product = pro.replace(" ", "&nbsp;");
+            let cart = item.cartons.carton_number;
+            var carton_no = cart.replace(" ", "&nbsp;");
+
             if (status == "received-in-BD-warehouse" || status == "delivered") {
                 generate = true;
             }
@@ -479,7 +380,7 @@ $(function () {
                             <td class=" align-middle">
                                 <div class="col">                                                                                    
                                         <input type="text" class="form-control" placeholder="product"
-                                            aria-label="Product Name" id="othersProductName" name="othersProductName[]" value=${item.othersProductName}>                                                                        
+                                            aria-label="Product Name" id="othersProductName" name="othersProductName[]" value=${product}>                                                                        
                                     </div>
                                 </div>
                             </td>
@@ -487,7 +388,7 @@ $(function () {
                           <td class="align-middle">                         
                                             <div class="col">
                                                 <input type="text" class="form-control" placeholder="carton"
-                                                    aria-label="Carton" id="carton_number" name="carton_number[]" value=${item.cartons.carton_number}
+                                                    aria-label="Carton" id="carton_number" name="carton_number[]" value=${carton_no}
                                                     aria-describedby="carton-addon2">
                                                
                                                 
