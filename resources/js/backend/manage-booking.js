@@ -25,25 +25,6 @@ $(function () {
             $(this).parents("tr").remove();
         });
 });
-function generate_process_related_data() {
-    var invoiceFooter = $("#invoiceFooter");
-    var courier_bill = invoiceFooter.find(".courier_bill").text();
-    var payment_method = invoiceFooter.find("#payment_method").val();
-    var delivery_method = invoiceFooter.find("#delivery_method").val();
-    var total_payable = invoiceFooter.find(".total_payable").text();
-    var total_due = invoiceFooter.find(".total_due").text();
-    var customer_id = invoiceFooter.find(".total_payable").attr("data-user");
-    var isNotify = $("#notifyUser").is(":checked") ? 1 : 0;
-    var related_data = {};
-    related_data.courier_bill = courier_bill;
-    related_data.payment_method = payment_method;
-    related_data.delivery_method = delivery_method;
-    related_data.total_due = total_due;
-    related_data.total_payable = total_payable;
-    related_data.user_id = customer_id;
-    related_data.isNotify = isNotify;
-    return related_data;
-}
 
 $(function () {
     const body = $(document);
