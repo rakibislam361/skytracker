@@ -61,46 +61,6 @@ $("#changeStatusButton").on("shown.bs.modal", function (event) {
     $(this).find("#status").trigger("change");
 });
 
-// $(document).on("submit", "#statusChargeForm", function(event) {
-//     event.preventDefault();
-//     var csrf = $('meta[name="csrf-token"]');
-//     $.ajax({
-//         type: "POST",
-//         url: $(this).attr("action"),
-//         data: $(this).serialize(),
-//         headers: {
-//             "X-CSRF-TOKEN": csrf.attr("content")
-//         },
-//         beforeSend: function() {
-//             // before loading...
-//         },
-//         success: function(response) {
-//             if (response.status) {
-//                 var orderItem = response.orderItem;
-//                 if (response.is_array) {
-//                     orderItem.map((item, key) => {
-//                         updateColumnValue(item);
-//                     });
-//                 } else {
-//                     updateColumnValue(orderItem);
-//                 }
-//             }
-//             csrf.attr("content", response.csrf);
-//         },
-//         error: function(xhr) {
-//             // if error occured
-//             // console.log('error', xhr);
-//         },
-//         complete: function() {
-//             $("#changeStatusButton").modal("hide");
-//             $(document)
-//                 .find("#statusSubmitBtn")
-//                 .removeAttr("disabled");
-//             window.location.reload();
-//         }
-//     });
-// });
-
 function updateColumnValue(itemData) {
     var itemRow = $(document).find("#" + itemData.id);
     if (itemData.order_number) {
