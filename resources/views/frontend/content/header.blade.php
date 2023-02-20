@@ -87,11 +87,9 @@
                                  @endif
 
                              @endauth
-                             {{-- <a href="{{ route('frontend.pages.tracking') }}" class="btn"
-                             data-target="#exampleModalLong">Track Your
-                             Order</a> --}}
-                             <a href="#" class="btn">Track Your
-                                 Order</a>
+                             <a href="{{ route('frontend.pages.tracking') }}" class="btn">Track Your Order</a>
+                             {{-- <a href="#" class="btn">Track Your
+                                 Order</a> --}}
                          </div>
                      </div>
                  </div>

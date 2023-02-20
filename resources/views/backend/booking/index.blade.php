@@ -6,9 +6,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
     <x-backend.card>
         <x-slot name="header">
             @lang('Manage booking')
+            <span>
+                <a href="{{ route('admin.booking.index') }}" class="btn btn-outline-primary"><i class="fa fa-refresh"
+                        aria-hidden="true"> Refresh</i></a></span>
         </x-slot>
         <x-slot name="headerActions">
             <div class="btn-group float-right" role="group" aria-label="header_button_group">
@@ -22,7 +27,6 @@
                 </button>
             </div>
             <x-utils.link :href="route('admin.booking.create')" icon="fas fa-plus" class="btn btn-sm btn-secondary" :text="__('Create Booking')" />
-
         </x-slot>
         <x-slot name="body">
             <div style="padding-bottom: 20px;">
