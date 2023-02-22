@@ -344,7 +344,6 @@
             </div>
             <div class="clear_both"></div>
         </div>
-        {{-- @dd('hi'); --}}
     </div>
     <script src="{{ asset('assets/plugins/print/print/jquery-2.0.3.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/print/bootstrap/dist/js/bootstrap.min.js') }}"></script>
