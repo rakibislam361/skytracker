@@ -27,7 +27,6 @@ class bookingController extends Controller
         $shipping_number = request('shipping_number', null);
 
         $booking = Booking::with('cartons')->latest();
-
         if ($customer_name) {
             $booking->where('customer_name', 'like', '%' . $customer_name . '%');
         }
@@ -46,6 +45,7 @@ class bookingController extends Controller
                 $query->where('carton_number', 'like', '%' . $carton_number . '%');
             });
         }
+
 
         $bookings = $booking->paginate(30);
         return view('backend.booking.index', compact('bookings'));

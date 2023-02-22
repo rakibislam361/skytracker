@@ -10,7 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.0/css/font-awesome.min.css" rel="stylesheet">
     <x-backend.card>
         <x-slot name="header">
-            @lang('Manage booking')
+            @lang('Manage Booking')
             <span>
                 <a href="{{ route('admin.booking.index') }}" class="btn btn-outline-primary"><i class="fa fa-refresh"
                         aria-hidden="true"> Refresh</i></a></span>

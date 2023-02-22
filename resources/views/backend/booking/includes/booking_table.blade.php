@@ -16,6 +16,7 @@
                 <th class="align-content-center text-center">Shipping Number</th>
                 <th class="align-content-center text-center">Actual Weight</th>
                 <th class="align-content-center text-center">Unit Price</th>
+                <th class="align-content-center text-center">Amount</th>
                 <th class="align-content-center text-center">Remarks</th>
                 <th class="align-content-center text-center">Status</th>
 
@@ -24,6 +25,12 @@
         </thead>
         <tbody>
             @foreach ($bookings as $booking)
+                @php
+                    $amount = 0;
+                    $weight = $booking->actual_weight ?? null;
+                    $price = $booking->unit_price ?? null;
+                    $amount = $weight * $price ?? null;
+                @endphp
                 <tr data-value="{{ $booking }}">
                     <td class="align-content-center text-center"><input type="checkbox" class="checkboxItemBook"
                             name="checkboxItemBook" id="checkboxItemBook" data-value="{{ $booking }}"
@@ -49,6 +56,7 @@
                     <td class="align-content-center text-center">{{ $booking->shipping_number ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $booking->actual_weight ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $booking->unit_price ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $amount ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $booking->remarks ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $booking->status ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">

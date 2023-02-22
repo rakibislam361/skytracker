@@ -16,10 +16,13 @@
             <label for="status">Status</label>
             <select class="form-control" name="status">
                 <option value="">Select</option>
-                <option value="received-in-china-warehouse">Received in china warehouse</option>
-                <option value="shipped-from-china-warehouse">Shipped from china warehouse</option>
-                <option value="received-in-BD-warehouse">Received in BD warehouse </option>
-                <option value="delivered">Delivered</option>
+                <option @if (request('status', null) == 'received-in-china-warehouse') selected @endif value="received-in-china-warehouse">Received
+                    in china warehouse</option>
+                <option @if (request('status', null) == 'shipped-from-china-warehouse') selected @endif value="shipped-from-china-warehouse">Shipped
+                    from china warehouse</option>
+                <option @if (request('status', null) == 'received-in-BD-warehouse') selected @endif value="received-in-BD-warehouse">Received in
+                    BD warehouse </option>
+                <option @if (request('status', null) == 'delivered') selected @endif value="delivered">Delivered</option>
             </select>
         </div>
 
