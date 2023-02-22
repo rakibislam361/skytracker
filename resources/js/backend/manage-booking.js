@@ -325,11 +325,6 @@ $(function () {
         $("#statusChargeForm").trigger("reset");
     });
 
-    $(document).on("hidden.bs.modal", "#generateInvoiceModal", function () {
-        var hiddenInput = "";
-        $(".invoiceItem").html(hiddenInput);
-    });
-
     $(document).on("click", "#InvoiceButtonBook", function () {
         var hiddenInput = "";
         var generate = false;
@@ -341,11 +336,11 @@ $(function () {
         let paid = null;
         $("input.checkboxItemBook:checked").each(function (index) {
             var item = $(this).data("value");
-            var status = item.status;
+            let status = item.status;
             let pro = item.othersProductName;
-            var product = pro.replace(" ", "&nbsp;");
+            let product = pro.replace(" ", "&nbsp;");
             let cart = item.cartons.carton_number;
-            var carton_no = cart.replace(" ", "&nbsp;");
+            let carton_no = cart.replace(" ", "&nbsp;");
 
             if (status == "received-in-BD-warehouse" || status == "delivered") {
                 generate = true;
@@ -460,5 +455,8 @@ $(function () {
                 });
             }
         });
+    });
+    $(document).on("hidden.bs.modal", "#generateInvoiceModal", function () {
+        $("#invoiceItem").html("");
     });
 });
