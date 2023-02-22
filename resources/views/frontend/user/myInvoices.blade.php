@@ -23,20 +23,9 @@
                             <th>Paid</th>
                         </tr>
                     </thead>
-                    {{-- @php
-                        $amount = [];
-                        $total_amount = 0;
-                        $courier = 0;
-                        
-                        foreach ($invoice as $inv) {
-                            if ($inv->amount != null) {
-                                $amount = explode(',', $inv->amount);
-                            }
-                        }
-                        
-                    @endphp --}}
                     <tbody>
                         @foreach ($invoice as $book)
+                        
                             <tr>
                                 <td>{{ $book->created_at ? date('d/m/Y', strtotime($book->created_at)) : 'N/A' }}</td>
                                 <td><a href="{{ route('frontend.user.invoices.details', $book->id) }}"
@@ -53,6 +42,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                @if ($invoice != null)
+                    {{ $invoice->withQueryString()->links() }}
+                @endif
             </div>
         </div>
     </div>

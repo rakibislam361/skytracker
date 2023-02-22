@@ -42,6 +42,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                @if ($booking != null)
+                    {{ $booking->withQueryString()->links() }}
+                @endif
             </div>
         </div>
     </div>

@@ -337,10 +337,12 @@ $(function () {
         $("input.checkboxItemBook:checked").each(function (index) {
             var item = $(this).data("value");
             let status = item.status;
-            let pro = item.othersProductName;
-            let product = pro.replace(" ", "&nbsp;");
-            let cart = item.cartons.carton_number;
-            let carton_no = cart.replace(" ", "&nbsp;");
+            // let pro = item.othersProductName;
+            let product = item.othersProductName;
+            // let product = pro.replace(" ", "&nbsp;");
+            // let cart = item.cartons.carton_number;
+            let carton_no = item.cartons.carton_number;
+            // let carton_no = cart.replace(" ", "&nbsp;");
 
             if (status == "received-in-BD-warehouse" || status == "delivered") {
                 generate = true;
@@ -356,7 +358,7 @@ $(function () {
                             <td class=" align-middle">
                                 <div class="col">                                                                                    
                                         <input type="text" class="form-control" placeholder="product"
-                                            aria-label="Product Name" id="othersProductName" name="othersProductName[]" value=${product}>                                                                        
+                                            aria-label="Product Name" id="othersProductName" name="othersProductName[]" value='${product}'>                                                                        
                                     </div>
                                 </div>
                             </td>
@@ -364,7 +366,7 @@ $(function () {
                           <td class="align-middle">                         
                                             <div class="col">
                                                 <input type="text" class="form-control" placeholder="carton"
-                                                    aria-label="Carton" id="carton_number" name="carton_number[]" value=${carton_no}
+                                                    aria-label="Carton" id="carton_number" name="carton_number[]" value='${carton_no}'
                                                     aria-describedby="carton-addon2">
                                                
                                                 
@@ -376,21 +378,21 @@ $(function () {
 
                                                    
                                                 <input type="text" class="form-control actual_weight" placeholder="actual weight"
-                                                    aria-label="Carton" id="actual_weight_${item.id}" id2="${item.id}" name="actual_weight[]" value=${item.actual_weight}
+                                                    aria-label="Carton" id="actual_weight_${item.id}" id2="${item.id}" name="actual_weight[]" value='${item.actual_weight}'
                                                     aria-describedby="carton-addon2">
                                                
                                             </div></td>  
                           <td class="text-right align-middle">
                          <div class="col">
                                                 <input type="text" class="form-control unit_price" placeholder="unit price"
-                                                    aria-label="Carton" id="unit_price_${item.id}" id2="${item.id}" name="unit_price[]" value=${item.unit_price}
+                                                    aria-label="Carton" id="unit_price_${item.id}" id2="${item.id}" name="unit_price[]" value='${item.unit_price}'
                                                     aria-describedby="carton-addon2">
                                                 
                                             </div></td>  
                           <td class="text-right align-middle">
                                             <div class="col">                  
                                                 <input type="text" class="form-control amount" placeholder="amount"
-                                                    aria-label="Carton" id="amount_${item.id}" id2="${item.id}" readonly name="amount[]" value=${amount}
+                                                    aria-label="Carton" id="amount_${item.id}" id2="${item.id}" readonly name="amount[]" value='${amount}'
                                                     aria-describedby="carton-addon2">
                                                
                                             </div>

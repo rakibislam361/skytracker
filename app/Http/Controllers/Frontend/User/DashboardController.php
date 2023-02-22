@@ -30,13 +30,17 @@ class DashboardController
     public function bookings()
     {
         $user = auth()->user()->id;
-        $booking = Booking::with('cartons', 'user')->where('user_id', $user)->latest()->get();
+        $bookings = Booking::with('cartons', 'user')->where('user_id', $user)->latest();
+
+        $booking = $bookings->paginate(10);
         return view('frontend.user.myBooking', compact('booking'));
     }
     public function invoices()
     {
         $user = auth()->user()->id;
-        $invoice = Invoice::where('user_id', $user)->latest()->get();
+        $invoices = Invoice::where('user_id', $user)->latest();
+
+        $invoice = $invoices->paginate(10);
         return view('frontend.user.myInvoices', compact('invoice'));
     }
     public function details($id)

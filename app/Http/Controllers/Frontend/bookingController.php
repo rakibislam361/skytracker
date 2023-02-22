@@ -37,7 +37,7 @@ class bookingController extends Controller
             $booking->where('status', $status);
         }
         if ($shipping_number) {
-            $booking->where('customer_name', $shipping_number);
+            $booking->where('shipping_number', 'like', '%' .  $shipping_number . '%');
         }
 
         if ($carton_number) {
