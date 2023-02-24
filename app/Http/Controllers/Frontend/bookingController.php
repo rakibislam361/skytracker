@@ -78,9 +78,10 @@ class bookingController extends Controller
     public function store(Request $request)
     {
         $amount = null;
-        $user = auth()->user()->type;
+
 
         if (Auth::check()) {
+            $user = auth()->user()->type;
             $createCarton = new Carton();
             $createCarton->carton_number = $request->carton_number ?? null;
             $createCarton->carton_weight = $request->carton_weight ?? null;
@@ -221,9 +222,22 @@ class bookingController extends Controller
                 $updateBooking->productsTotalCost = $request->productsTotalCost[$key] ?? null;
                 $updateBooking->othersProductName = $request->othersProductName[$key] ?? null;
                 $updateBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
-                $updateBooking->customer_name = $request->customer_name[$key] ?? null;
-                $updateBooking->customer_phone = $request->customer_phone[$key] ?? null;
-                $updateBooking->customer_address = $request->customer_address[$key] ?? null;
+
+                if ($updateBooking->customer_name != null) {
+                    $updateBooking->customer_name = $updateBooking->customer_name;
+                } else {
+                    $updateBooking->customer_name = $request->customer_name[$key] ?? null;
+                }
+                if ($updateBooking->customer_phone != null) {
+                    $updateBooking->customer_phone = $updateBooking->customer_phone;
+                } else {
+                    $updateBooking->customer_phone = $request->customer_phone[$key] ?? null;
+                }
+                if ($updateBooking->customer_address != null) {
+                    $updateBooking->customer_address = $updateBooking->customer_address;
+                } else {
+                    $updateBooking->customer_address = $request->customer_address[$key] ?? null;
+                }
                 $updateBooking->shipping_mark = $request->shipping_mark[$key] ?? null;
                 $updateBooking->shipping_number = $request->shipping_number[$key] ?? null;
                 $updateBooking->actual_weight = $request->actual_weight[$key] ?? null;
