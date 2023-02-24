@@ -10,7 +10,7 @@ use App\Domains\Products\Models\Product;
 
 use App\Models\Info;
 use App\Models\Notice;
-use App\Models\page;
+use App\Models\Page;
 
 class HomeController
 {
@@ -46,7 +46,7 @@ class HomeController
     }
     public function pageshow($slug)
     {
-        $page = page::where('slug', $slug)->get()->first();
+        $page = Page::where('slug', $slug)->get()->first();
         return view('frontend.content.dynamicpage', compact('page'));
     }
 }
