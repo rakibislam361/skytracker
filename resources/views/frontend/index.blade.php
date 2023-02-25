@@ -11,6 +11,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset(get_setting('frontend_logo_menu')) }}">
     <!-- Place favicon.ico in the root directory -->
 
+
     {{-- @extends('frontend.layouts.app') --}}
     @include('frontend.style.style')
     @include('includes.partials.messages')

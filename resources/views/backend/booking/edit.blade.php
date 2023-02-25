@@ -65,8 +65,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                {{-- @foreach ($booking->bookings as $book) --}}
-                                {{-- <div id="add_new_book"> --}}
+
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="date">Date</label>

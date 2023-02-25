@@ -337,12 +337,16 @@ $(function () {
         $("input.checkboxItemBook:checked").each(function (index) {
             var item = $(this).data("value");
             let status = item.status;
-            // let pro = item.othersProductName;
             let product = item.othersProductName;
-            // let product = pro.replace(" ", "&nbsp;");
-            // let cart = item.cartons.carton_number;
             let carton_no = item.cartons.carton_number;
-            // let carton_no = cart.replace(" ", "&nbsp;");
+            let price = 0;
+            let weight = 0;
+            if (item.unit_price != null) {
+                price = item.unit_price;
+            }
+            if (item.actual_weight != null) {
+                weight = item.actual_weight;
+            }
 
             if (status == "received-in-BD-warehouse" || status == "delivered") {
                 generate = true;
@@ -378,14 +382,14 @@ $(function () {
 
                                                    
                                                 <input type="text" class="form-control actual_weight" placeholder="actual weight"
-                                                    aria-label="Carton" id="actual_weight_${item.id}" id2="${item.id}" name="actual_weight[]" value='${item.actual_weight}'
+                                                    aria-label="Carton" id="actual_weight_${item.id}" id2="${item.id}" name="actual_weight[]" value='${weight}'
                                                     aria-describedby="carton-addon2">
                                                
                                             </div></td>  
                           <td class="text-right align-middle">
                          <div class="col">
                                                 <input type="text" class="form-control unit_price" placeholder="unit price"
-                                                    aria-label="Carton" id="unit_price_${item.id}" id2="${item.id}" name="unit_price[]" value='${item.unit_price}'
+                                                    aria-label="Carton" id="unit_price_${item.id}" id2="${item.id}" name="unit_price[]" value='${price}'
                                                     aria-describedby="carton-addon2">
                                                 
                                             </div></td>  

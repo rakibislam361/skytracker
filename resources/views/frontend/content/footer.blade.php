@@ -92,11 +92,30 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="companyLogos">
+                    <div class="sisters">
+                        <a href="https://www.skybuybd.com/" aria-label="">
+                            <img src="https://www.skybuybd.com/storage/setting/logo/foterlogo.png" alt=""
+                                loading="lazy"></a>
+                        <a href="https://www.skytrackbd.com/" aria-label="">
+                            <img src="{{ asset(get_setting('frontend_logo_footer')) }}" alt="" loading="lazy"
+                                style="margin:20px"></a>
+                        <a href="https://www.skyonebd.com/" target="_blank" rel="noopener noreferrer" aria-label="">
+                            <img src="https://www.skyonebd.com/storage/setting/logo/foter_logo.png" alt=""
+                                loading="lazy" style="padding: 0.75rem;"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
     <div class="copyright-wrap">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-12">
+                <div class="col-md-12">
                     <div class="copyright-text">
                         <p>{{ get_setting('copyright_text') }}</p>
                     </div>

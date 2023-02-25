@@ -46,7 +46,6 @@
                                         <div class="form-group col-md-12">
                                             <label for="shipping_method">Shipping Method</label>
                                             <select class="form-control" name="shipping_method">
-                                                <option value="">Select</option>
                                                 <option value="guangzhou">Guangzhou</option>
                                                 <option value="hongkong">Hongkong</option>
                                             </select>
