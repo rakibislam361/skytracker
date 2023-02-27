@@ -22,15 +22,17 @@ class DashboardController
     public function index()
     {
         $user = auth()->user()->id;
-        $booking = Booking::with('cartons', 'user')->where('user_id', $user)->latest()->get();
-        $invoice = Invoice::where('user_id', $user)->latest()->get();
+        $phone = auth()->user()->phone;
+        $booking = Booking::with('cartons', 'user')->where('user_id', $user)->orWhere('customer_phone', $phone)->latest()->get();
+        $invoice = Invoice::where('user_id', $user)->orWhere('customer_phone', $phone)->latest()->get();
         return view('frontend.user.dashboard', compact('booking', 'invoice'));
     }
 
     public function bookings()
     {
         $user = auth()->user()->id;
-        $bookings = Booking::with('cartons', 'user')->where('user_id', $user)->latest();
+        $phone = auth()->user()->phone;
+        $bookings = Booking::with('cartons', 'user')->where('user_id', $user)->orWhere('customer_phone', $phone)->latest();
 
         $booking = $bookings->paginate(10);
         return view('frontend.user.myBooking', compact('booking'));
@@ -38,7 +40,8 @@ class DashboardController
     public function invoices()
     {
         $user = auth()->user()->id;
-        $invoices = Invoice::where('user_id', $user)->latest();
+        $phone = auth()->user()->phone;
+        $invoices = Invoice::where('user_id', $user)->orWhere('customer_phone', $phone)->latest();
 
         $invoice = $invoices->paginate(10);
         return view('frontend.user.myInvoices', compact('invoice'));

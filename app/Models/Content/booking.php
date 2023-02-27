@@ -33,4 +33,8 @@ class Booking extends Model
     {
         return $this->belongsTo(Carton::class, 'carton_id', 'id');
     }
+    public function itemTrackStatus()
+    {
+        return $this->hasMany(ItemTracking::class, 'item_number', 'id');
+    }
 }

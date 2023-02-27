@@ -15,7 +15,7 @@
                          <p style="color: {{ get_setting('about_color_3') }}">
                              {{ get_setting('about_text_details') }}.
                          </p>
-                         <a href="#" class="btn mb-5">Contact Us</a>
+                         <a href="/page/about" class="btn mb-5">see more</a>
                      </div>
                  </div>
                  <div class="col-lg-8">

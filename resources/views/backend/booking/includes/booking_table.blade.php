@@ -14,6 +14,7 @@
                 <th class="align-content-center text-center">Shipping Mark</th>
                 <th class="align-content-center text-center">Carton Number</th>
                 <th class="align-content-center text-center">Shipping Number</th>
+                <th class="align-content-center text-center">Tracking Number</th>
                 <th class="align-content-center text-center">Actual Weight</th>
                 <th class="align-content-center text-center">Unit Price</th>
                 <th class="align-content-center text-center">Amount</th>
@@ -54,6 +55,7 @@
 
                     <td class="align-content-center text-center">{{ $booking->cartons->carton_number ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $booking->shipping_number ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $booking->tracking_number ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $booking->actual_weight ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $booking->unit_price ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $amount ?? 'N/A' }}</td>

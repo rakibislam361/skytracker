@@ -52,8 +52,8 @@ class SettingController extends Controller
       Setting::save_settings($data);
     }
 
-    
-    $data = \request()->only(['banner_color_1','banner_color_2','banner_color_3','banner_text_header', 'banner_text_bottom']);
+
+    $data = \request()->only(['banner_color_1', 'banner_color_2', 'banner_color_3', 'banner_text_header', 'banner_text_bottom']);
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('Banner section Updated Successfully');
   }
@@ -66,20 +66,20 @@ class SettingController extends Controller
       Setting::save_settings($data);
     }
 
-    $data = \request()->only(['btbanner_color_1','btbanner_color_2','btbanner_color_3','bottombanner_text_header', 'bottombanner_text_bottom','bottom_bg_color','bottom_video_link']);
+    $data = \request()->only(['btbanner_color_1', 'btbanner_color_2', 'btbanner_color_3', 'bottombanner_text_header', 'bottombanner_text_bottom', 'bottom_bg_color', 'bottom_video_link']);
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('Bottom Banner section Updated Successfully');
   }
   public function noticecolorstore(Request $request)
   {
-  
+
     if (\request()->hasFile('notice_image')) {
- 
+
       $data['notice_image'] = store_picture(\request()->file('notice_image'), 'setting/logo');
       Setting::save_settings($data);
     }
 
-    $data = \request()->only(['notice_color_1','notice_color_2','notice_color_3']);
+    $data = \request()->only(['notice_color_1', 'notice_color_2', 'notice_color_3']);
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('Bottom Banner section Updated Successfully');
   }
@@ -117,15 +117,15 @@ class SettingController extends Controller
       Setting::save_settings($data);
     }
 
-    
-    $data = \request()->only(['about_color_1','about_color_2','about_color_3','about_text_header', 'about_text_bottom','about_text_details','about_image_title_1','about_image_title_2','about_image_title_3','about_image_title_4','about_image_title_5','about_image_title_6']);
+
+    $data = \request()->only(['about_color_1', 'about_color_2', 'about_color_3', 'about_text_header', 'about_text_bottom', 'about_text_details', 'about_image_title_1', 'about_image_title_2', 'about_image_title_3', 'about_image_title_4', 'about_image_title_5', 'about_image_title_6']);
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('About section Updated Successfully');
   }
   public function apiStore(Request $request)
   {
 
-    $data = \request()->only(['api_url','api_email','api_password']);
+    $data = \request()->only(['api_url', 'api_email', 'api_password']);
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('Api section Updated Successfully');
   }
@@ -147,9 +147,9 @@ class SettingController extends Controller
       $data['work_image_3'] = store_picture(\request()->file('work_image_3'), 'setting/logo');
       Setting::save_settings($data);
     }
-    
-    
-    $data = \request()->only(['work_color_1','work_color_2','work_color_3','work_text_header', 'work_image_title_1','work_image_title_2','work_image_title_3','work_image_bottom_1','work_image_bottom_2','work_image_bottom_3']);
+
+
+    $data = \request()->only(['work_color_1', 'work_color_2', 'work_color_3', 'work_text_header', 'work_image_title_1', 'work_image_title_2', 'work_image_title_3', 'work_image_bottom_1', 'work_image_bottom_2', 'work_image_bottom_3']);
     Setting::save_settings($data);
     return redirect()->back()->withFlashSuccess('About section Updated Successfully');
   }
@@ -161,6 +161,9 @@ class SettingController extends Controller
 
     if (\request()->hasFile('meta_image')) {
       $data['meta_image'] = store_picture(\request()->file('meta_image'), 'setting/meta');
+    }
+    if (\request()->hasFile('wechat_qr')) {
+      $data['wechat_qr'] = store_picture(\request()->file('wechat_qr'), 'setting/meta');
     }
 
     if (\request()->hasFile('invoice_logo')) {
@@ -268,17 +271,17 @@ class SettingController extends Controller
   public function pagestore(Request $request)
   {
     $newImageName = time() . '.' . $request->image->extension();
-      $image = $request->image->move(public_path('setting/banner'), $newImageName);
-      $page =new Page;
-      $page->image = $newImageName;
-      $page->title = $request->title;
-      $page->slug = $request->slug;
-      $page->bgcolor = $request->bgcolor;
-      $page->hearder = $request->hearder;
-      $page->footer_left = $request->footer_left;
-      $page->footer_right = $request->footer_right;
-      $page->description = $request->description;
-      $page->save();
+    $image = $request->image->move(public_path('setting/banner'), $newImageName);
+    $page = new Page;
+    $page->image = $newImageName;
+    $page->title = $request->title;
+    $page->slug = $request->slug;
+    $page->bgcolor = $request->bgcolor;
+    $page->hearder = $request->hearder;
+    $page->footer_left = $request->footer_left;
+    $page->footer_right = $request->footer_right;
+    $page->description = $request->description;
+    $page->save();
     return redirect()->back()->withFlashSuccess('Page Create Successfully');
   }
   public function pageedit($id)

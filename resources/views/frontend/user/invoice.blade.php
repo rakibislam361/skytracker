@@ -87,7 +87,8 @@
                             $address = implode(',', $address);
                         }
                         
-                        $count = count($product);
+                        // $count = count($product);
+                        
                     @endphp
                     <div class="row" style="margin-bottom: 15px">
                         <div class="col-sm-4">
@@ -127,7 +128,6 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th scope="col" class="text-center">Date</th>
                                 <th scope="col" class="text-center">Product Name</th>
                                 <th scope="col" class="text-center">Shipping Mark</th>
                                 <th scope="col" class="text-center">Carton Number</th>
@@ -140,129 +140,225 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="text-center align-middle">
-                                    {{ date('d/m/Y', strtotime($invoice->created_at)) }}
-                                </td>
                                 <td class="text-center align-middle" style="padding: 0%">
+
                                     @foreach ($product as $p_name)
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    {{ $p_name ?? 'N/A' }}
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        @if ($p_name == null)
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        N/A
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        @else
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        {{ $p_name ?? 'N/A' }}
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        @endif
                                     @endforeach
+
                                 </td>
                                 <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($shipMark as $ship)
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    {{ $ship ?? 'N/A' }}
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        @if ($ship == null)
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        N/A
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        @else
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        {{ $ship ?? 'N/A' }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endif
                                     @endforeach
+
                                 </td>
                                 <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($carton as $cart)
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    {{ $cart ?? 'N/A' }}
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        @if ($cart == null)
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        N/A
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        @else
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        {{ $cart ?? 'N/A' }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($shipNo as $ship)
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    {{ $ship ?? 'N/A' }}
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        @if ($ship == null)
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        N/A
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        @else
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        {{ $ship ?? 'N/A' }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($cartonQty as $ctnQty)
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    {{ $ctnQty ?? 'N/A' }}
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        @if ($ctnQty == null)
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        N/A
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        @else
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        {{ $ctnQty ?? 'N/A' }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($actualWeight as $weight)
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    {{ $weight ?? 'N/A' }}
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        @if ($weight == null)
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        N/A
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @else
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        {{ $weight ?? 'N/A' }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($unit_price as $unit)
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    {{ $unit ?? 'N/A' }}
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        @if ($unit == null)
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        N/A
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        @else
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        {{ $unit ?? 'N/A' }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endif
                                     @endforeach
                                 </td>
                                 <td class="text-center align-middle" style="padding: 0%">
                                     @foreach ($amount as $amt)
-                                        <table class="table">
-                                            <tr>
-                                                <td>
-                                                    {{ $amt ?? 'N/A' }}
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        @if ($amt == null)
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        N/A
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        @else
+                                            <table class="table table-condensed" style="margin: 0px;">
+                                                <tr>
+                                                    <td>
+                                                        {{ $amt ?? 'N/A' }}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        @endif
                                     @endforeach
                                 </td>
                             </tr>
-                            @php
-                                $subtotal = 0;
-                                foreach ($amount as $amt) {
-                                    $subtotal += round($amt);
-                                }
-                            @endphp
-
                         </tbody>
+                        @php
+                            $subtotal = 0;
+                            $weight = 0;
+                            foreach ($amount as $amt) {
+                                $subtotal += round($amt);
+                            }
+                            foreach ($actualWeight as $key => $value) {
+                                $weight += $value;
+                            }
+                            
+                        @endphp
                         <tfoot id="invoiceFooter">
                             <tr>
-                                <td colspan="8" class="text-right">Subtotal</td>
+                                <td colspan="5" class="text-right">total</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $subtotal ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ $weight ?? 0 }}</span>
+                                </td>
+                                <td class="text-right">Subtotal</td>
+                                <td class="text-center align-middle">
+                                    {{ $subtotal ?? 0 }}
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="8" class="text-right">Courier Bill</td>
+                                <td colspan="7" class="text-right">Courier Bill</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->total_courier) ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ round($invoice->total_courier) ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="8" class="text-right">China Local Delivery</td>
+                                <td colspan="7" class="text-right">China Local Delivery</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->chinalocal) ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ round($invoice->chinalocal) ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="8" class="text-right">Packing Cost</td>
+                                <td colspan="7" class="text-right">Packing Cost</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ round($invoice->packing_cost) ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ round($invoice->packing_cost) ?? 0 }}</span>
                                 </td>
                             </tr>
                             @php
@@ -271,27 +367,27 @@
                                 
                             @endphp
                             <tr>
-                                <td colspan="8" class="text-right">Subtotal</td>
+                                <td colspan="7" class="text-right">Subtotal</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $total_sub }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ $total_sub }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="8" class="text-right">Paid</td>
+                                <td colspan="7" class="text-right">Paid</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $invoice->paid ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ $invoice->paid ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="8" class="text-right">Due</td>
+                                <td colspan="7" class="text-right">Due</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $due ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ $due ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="8" class="text-right">Total Payable</td>
+                                <td colspan="7" class="text-right">Total Payable</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id }}">{{ $due ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ $due ?? 0 }}</span>
                                 </td>
                             </tr>
                         </tfoot>
@@ -344,7 +440,6 @@
             </div>
             <div class="clear_both"></div>
         </div>
-        {{-- @dd('hi'); --}}
     </div>
     <script src="{{ asset('assets/plugins/print/print/jquery-2.0.3.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/print/bootstrap/dist/js/bootstrap.min.js') }}"></script>

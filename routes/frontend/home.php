@@ -51,12 +51,12 @@ Route::post('contact', [ContactController::class, 'store']);
 
 
 
-Route::get('tracking', [TrackingController::class, 'Tracking'])
-    ->name('pages.tracking')
-    ->breadcrumbs(function (Trail $trail) {
-        $trail->parent('frontend.index')
-            ->push(__('_track'), route('frontend.pages.tracking'));
-    });
+// Route::get('tracking', [TrackingController::class, 'Tracking'])
+//     ->name('pages.tracking')
+//     ->breadcrumbs(function (Trail $trail) {
+//         $trail->parent('frontend.index')
+//             ->push(__('_track'), route('frontend.pages.tracking'));
+//     });
 Route::get('track', [TrackingController::class, 'Track'])
     ->name('pages.shippingInformationModal')
     ->breadcrumbs(function (Trail $trail) {
@@ -80,3 +80,7 @@ Route::get('booking', [bookingController::class, 'index'])
             ->push(__('_booking'), route('frontend.content.booking'));
     });
 Route::post('booking', [bookingController::class, 'store'])->name('content.booking');
+
+// Route::get('tracking', [HomeController::class, 'trackOrder'])->name('track-order-form');
+Route::get('tracking', [HomeController::class, 'trackOrder'])->name('pages.tracking');
+Route::post('tracking', [HomeController::class, 'trackOrderFormSubmit'])->name('track-order-post');

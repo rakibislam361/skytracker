@@ -15,6 +15,11 @@
                             <p>{{ get_setting('office_email') }}</p>
                             <p><strong>Phone</strong></p>
                             <p>{{ get_setting('office_phone') }}</p>
+                            <p><strong>WeChat</strong></p>
+                            <img src="{{ asset(get_setting('meta_image')) }}" alt="WeChat QR"
+                                style="width: 50%;height: 50%;">
+
+
                         </div>
 
                     </div>

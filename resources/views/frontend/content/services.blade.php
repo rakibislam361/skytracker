@@ -64,6 +64,8 @@
 
                                                     @php
                                                         $add = get_setting('warehouse_address');
+                                                        $notice = get_setting('warehouse_notice');
+                                                        $notice_note = get_setting('warehouse_notice_note');
                                                     @endphp
 
                                                     <p>
@@ -82,54 +84,15 @@
                                                 </li>
 
                                                 <li>
-                                                    <ul>
-                                                        <div style="margin-top: 10px;">1. Receiving time: 10:00-19:00
-                                                            from Monday to Saturday,
-                                                            rest
-                                                            on
-                                                            Sundays. Be sure to contact by telephone before delivery,
-                                                            please
-                                                            call in advance for public holidays, thank you for your
-                                                            cooperation!</div>
-                                                        <div style="margin-top: 10px;">
-                                                            2. If the goods are delivered into the warehouse by express
-                                                            delivery or logistics, the uniform customer shipping mark
-                                                            shall
-                                                            be written on the outer packing and express delivery list or
-                                                            logistics list, and the packing list / warehouse receipt
-                                                            shall
-                                                            be printed and affixed to the outer packing, otherwise the
-                                                            warehouse shall refuse to accept the goods.</div>
-                                                        <div style="margin-top: 10px;">
-                                                            3. Without the permission of the warehouse, please do not
-                                                            send
-                                                            freight to pay or collect the goods, refuse to accept!
-                                                            (note: if
-                                                            the goods exceed 3KG, please pack the woven bag or
-                                                            protective
-                                                            film to prevent the damage of the goods! ) </div>
-                                                        <div style="margin-top: 10px;">
-                                                            4. This warehouse does not provide warehousing and unloading
-                                                            services, delivery please bring their own unloading
-                                                            personnel.
-                                                        </div>
-                                                        <div style="margin-top: 10px;">
-                                                            5. Please bring the packing form into the warehouse,
-                                                            according
-                                                            to the following information to fill in, if the packing list
-                                                            is
-                                                            not provided, the goods have not been sent away in time, our
-                                                            company is not responsible!</div>
+                                                    <textarea readonly cols='100' rows='20' style=" border: none;outline: none;">{{ $notice }}</textarea>
 
-                                                        <div style="margin-top: 25px; color: red;">
+                                                </li>
+                                                <li>
+                                                    <div style="color: red;">
 
-                                                            *Note: please pack according to export standard: carton +
-                                                            woven
-                                                            bag or protective film, outer box marked box number and
-                                                            shipping
-                                                            mark(Example: Sky-your name, Product Name, Product Qty) .
-                                                        </div>
-                                                    </ul>
+                                                        {{ $notice_note }}
+                                                    </div>
+
                                                 </li>
                                             </ul>
                                         </div>

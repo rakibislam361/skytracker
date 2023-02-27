@@ -331,6 +331,7 @@ $(function () {
                 selectstatus = itemValue.status;
             }
             $("#shipping_mark").val(shipping_mark);
+            $("#remarks").val(itemValue.remarks);
             $("#cbm").val(itemValue.cbm);
             $("#shipped_by").val(itemValue.shipped_by);
             $("div.status select").val(selectstatus);

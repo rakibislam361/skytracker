@@ -68,6 +68,7 @@
                         <textarea type="text" class="form-control" name="product_type" id="product_type" placeholder="Product Type"></textarea>
                     </div>
                     @endif
+
                     {{-- China Purchase Officer End --}}
                     @if ($logged_in_user->can('admin.order.shipping_from'))
                     <div class="form-group">
@@ -140,6 +141,11 @@
                     </div>
                     @endif
 
+                    <div class="form-group">
+                        <label for="remarks">Remarks</label>
+                        <textarea type="text" class="form-control" name="remarks" id="remarks" placeholder="remarks"></textarea>
+                    </div>
+
                     <div class="form-group status">
                         <label for="status">Status</label>
                         <select class="form-control" name="status" id="status">
@@ -150,6 +156,7 @@
                             @if ($logged_in_user->can('admin.order.status.on-hold'))
                             <option value="on-hold">On Hold</option>
                             @endif
+                            <option value="pending-to-pay">Pending To Pay</option>
                             @if ($logged_in_user->can('admin.order.status.purchased'))
                             <option value="purchased">Purchase Completed</option>
                             @endif

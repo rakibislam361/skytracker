@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Models\Content\Booking;
 use App\Models\Content\Carton;
+use App\Models\Content\ItemTracking;
 use App\Http\Controllers\Controller;
 use Auth;
 use PDF;
@@ -79,37 +80,60 @@ class bookingController extends Controller
     {
         $amount = null;
 
+        // dd($carton);
 
         if (Auth::check()) {
             $user = auth()->user()->type;
-            $createCarton = new Carton();
-            $createCarton->carton_number = $request->carton_number ?? null;
-            $createCarton->carton_weight = $request->carton_weight ?? null;
-            $createCarton->shipping_method = $request->shipping_method ?? null;
-            $createCarton->carton_status = $request->carton_status ?? null;
-            $createCarton->save();
+            $carton_no = $request->carton_number;
+            $carton = Carton::where('carton_number', $carton_no)->first();
+            if ($carton) {
+                $carton->carton_number = $request->carton_number ?? null;
+                $carton->carton_weight = $request->carton_weight ?? null;
+                $carton->shipping_method = $request->shipping_method ?? null;
+                $carton->carton_status = $request->carton_status ?? null;
+                $carton->save();
+            } else {
+                $createCarton = new Carton();
+                $createCarton->carton_number = $request->carton_number ?? null;
+                $createCarton->carton_weight = $request->carton_weight ?? null;
+                $createCarton->shipping_method = $request->shipping_method ?? null;
+                $createCarton->carton_status = $request->carton_status ?? null;
+                $createCarton->save();
+            }
 
             foreach ($request->othersProductName as $key => $value) {
                 $createBooking = new Booking();
+
                 $createBooking->date = $request->date[$key];
                 $createBooking->user_id = auth()->user()->id ?? null;
-                $createBooking->carton_id = $createCarton->id ?? null;
+                if ($carton) {
+                    $createBooking->carton_id = $carton->id;
+                } else {
+                    $createBooking->carton_id = $createCarton->id ?? null;
+                }
+
                 $createBooking->ctnQuantity = $request->ctnQuantity[$key] ?? null;
                 $createBooking->totalCbm = $request->totalCbm[$key] ?? null;
                 $createBooking->productQuantity = $request->productQuantity[$key] ?? null;
                 $createBooking->productsTotalCost = $request->productsTotalCost[$key] ?? null;
                 $createBooking->othersProductName = $request->othersProductName[$key] ?? null;
                 $createBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
+                $createBooking->delivery_method = $request->delivery_method[$key] ?? null;
                 if (auth()->user()->type == 'user') {
                     $createBooking->customer_name = auth()->user()->name;
                     $createBooking->customer_phone = auth()->user()->phone;
-                    $createBooking->customer_address = auth()->user()->address;
+                    if ($request->delivery_method[$key] == "on_address") {
+                        $createBooking->customer_address = $request->customer_address[$key] ?? null;
+                    } else {
+                        $createBooking->customer_address = auth()->user()->address;
+                    }
                 }
                 if (auth()->user()->type == 'admin') {
                     $createBooking->customer_name = $request->customer_name[$key] ?? null;
                     $createBooking->customer_phone = $request->customer_phone[$key] ?? null;
                     $createBooking->customer_address = $request->customer_address[$key] ?? null;
                 }
+
 
 
                 $createBooking->shipping_mark = $request->shipping_mark[$key] ?? null;
@@ -131,6 +155,34 @@ class bookingController extends Controller
                 $createBooking->remarks = $request->remarks[$key] ?? null;
                 $createBooking->status = $request->status[$key] ?? null;
                 $createBooking->save();
+                $step = null;
+
+                if ($request->status[$key]) {
+                    // dd($createBooking);
+                    $status = $request->status[$key];
+                    $order_id = $createBooking->id;
+
+                    if ($request->status[$key] == 'received-in-china-warehouse') {
+                        $step = 1;
+                    } elseif ($request->status[$key] == 'shipped-from-china-warehouse') {
+                        $step = 2;
+                    } elseif ($request->status[$key] == 'received-in-BD-warehouse') {
+                        $step = 3;
+                    } elseif ($request->status[$key] == 'delivered') {
+                        $step = 4;
+                    }
+                    $createBooking->update([
+                        'step' => $step,
+                    ]);
+
+                    $itemTrack = ItemTracking::where('item_number', $order_id)->where('step', $step)->first();
+
+                    if ($itemTrack) {
+                        $itemTrack->update(['step' =>  $step, 'status' => $status, 'step_change_date' => now()]);
+                    } else {
+                        ItemTracking::insert(['item_number' => $order_id, 'step' =>  $step, 'status' => $status, 'step_change_date' => now()]);
+                    }
+                }
             }
 
             if ($createBooking || $createCarton) {
@@ -209,6 +261,7 @@ class bookingController extends Controller
         }
         foreach ($request->othersProductName as $key => $value) {
             if ($value == $updateBooking->othersProductName) {
+
                 $updateBooking->date = $request->date[$key];
                 $updateBooking->user_id = $updateBooking->user_id ?? null;
                 if ($updateCarton->carton_number == $request->carton_number) {
@@ -250,13 +303,42 @@ class bookingController extends Controller
                 //     // $createBooking->amount = $request->amount[$key] ?? null;
                 // } else {
                 $updateBooking->amount = $request->amount[$key] ?? null;
-                // }
-                // $updateBooking->amount = $request->amount[$key] ?? null;
+
+
+
                 $updateBooking->paid = $request->paid[$key] ?? null;
                 $updateBooking->tracking_number = $request->tracking_number[$key] ?? null;
                 $updateBooking->remarks = $request->remarks[$key] ?? null;
                 $updateBooking->status = $request->status[$key] ?? null;
                 $updateBooking->save();
+
+                $step = null;
+
+                if ($request->status[$key]) {
+                    $status = $request->status[$key];
+                    $order_id = $updateBooking->id;
+
+                    if ($request->status[$key] == 'received-in-china-warehouse') {
+                        $step = 1;
+                    } elseif ($request->status[$key] == 'shipped-from-china-warehouse') {
+                        $step = 2;
+                    } elseif ($request->status[$key] == 'received-in-BD-warehouse') {
+                        $step = 3;
+                    } elseif ($request->status[$key] == 'delivered') {
+                        $step = 4;
+                    }
+                    $updateBooking->update([
+                        'step' => $step,
+                    ]);
+                    // $updateBooking->step = $step;
+                    $itemTrack = ItemTracking::where('item_number', $order_id)->where('step', $step)->first();
+
+                    if ($itemTrack) {
+                        $itemTrack->update(['step' =>  $step, 'status' => $status, 'step_change_date' => now()]);
+                    } else {
+                        ItemTracking::insert(['item_number' => $order_id, 'step' =>  $step, 'status' => $status, 'step_change_date' => now()]);
+                    }
+                }
             } else {
                 $createBooking = new Booking();
                 $createBooking->date = $request->date[$key];
@@ -283,6 +365,8 @@ class bookingController extends Controller
                 $createBooking->packing_cost = $request->packing_cost[$key] ?? null;
                 $createBooking->courier_bill = $request->courier_bill[$key] ?? null;
 
+
+
                 // if ($request->unit_price[$key] != null) {
                 //     $createBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
                 //     // $createBooking->amount = $request->amount[$key] ?? null;
@@ -295,6 +379,31 @@ class bookingController extends Controller
                 $createBooking->remarks = $request->remarks[$key] ?? null;
                 $createBooking->status = $request->status[$key] ?? null;
                 $createBooking->save();
+                if ($request->status[$key]) {
+                    $step = null;
+                    $status = $request->status[$key];
+                    $order_id = $createBooking->id;
+
+                    if ($request->status[$key] == 'received-in-china-warehouse') {
+                        $step = 1;
+                    } elseif ($request->status[$key] == 'shipped-from-china-warehouse') {
+                        $step = 2;
+                    } elseif ($request->status[$key] == 'received-in-BD-warehouse') {
+                        $step = 3;
+                    } elseif ($request->status[$key] == 'delivered') {
+                        $step = 4;
+                    }
+                    $createBooking->update([
+                        'step' => $step,
+                    ]);
+                    $itemTrack = ItemTracking::where('item_number', $order_id)->where('step', $step)->first();
+
+                    if ($itemTrack) {
+                        $itemTrack->update(['step' =>  $$step, 'status' => $status, 'step_change_date' => now()]);
+                    } else {
+                        ItemTracking::insert(['item_number' => $order_id, 'step' =>  $step, 'status' => $status, 'step_change_date' => now()]);
+                    }
+                }
             }
         }
 
@@ -322,8 +431,43 @@ class bookingController extends Controller
     public function statusUpdate(Request $request)
     {
         foreach ($request->booking_id as $key => $value) {
+            $step = null;
             $booking = Booking::with('cartons')->findOrFail($value);
             $booking->status = $request->status;
+            if ($request->status) {
+                if ($request->status == 'received-in-china-warehouse') {
+                    $step = 1;
+                } elseif ($request->status == 'shipped-from-china-warehouse') {
+                    $step = 2;
+                } elseif ($request->status == 'received-in-BD-warehouse') {
+                    $step = 3;
+                } elseif ($request->status == 'delivered') {
+                    $step = 4;
+                }
+                $booking->step = $step;
+            }
+
+
+
+            $status = $request->status;
+            $order_id = $value;
+
+            if ($status === 'received-in-china-warehouse') {
+                $step = 1;
+            } elseif ($status === 'shipped-from-china-warehouse') {
+                $step = 2;
+            } elseif ($status === 'received-in-BD-warehouse') {
+                $step = 3;
+            } elseif ($status === 'delivered') {
+                $step = 4;
+            }
+            $itemTrack = ItemTracking::where('item_number', $value)->where('step', $step)->first();
+
+            if ($itemTrack) {
+                $itemTrack->update(['step' =>  $step, 'status' => $status, 'step_change_date' => now()]);
+            } else {
+                ItemTracking::insert(['item_number' => $order_id, 'step' =>  $step, 'status' => $status, 'step_change_date' => now()]);
+            }
             $booking->save();
         }
         return redirect()

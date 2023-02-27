@@ -25,8 +25,16 @@
             {{ html()->text('meta_description', get_setting('meta_description'))->class('form-control')->placeholder('Meta description') }}
         </div> <!-- form-group-->
 
+
+
+
         <div class="form-group">
-            {{ html()->label('Meta Image (1200x630)')->for('frontend_logo_lg') }}
+            {{ html()->label('Office Phone')->for('office_phone') }}
+            {{ html()->text('office_phone', get_setting('office_phone'))->class('form-control')->placeholder('Office Phone') }}
+        </div> <!-- form-group-->
+
+        <div class="form-group">
+            {{ html()->label('WeChat QR')->for('wechat_qr') }}
             @php($fLogo = get_setting('meta_image', $demoImg))
             {{ html()->file('meta_image')->class('form-control-file image d-none')->id('meta_image')->acceptImage() }}
             <div>
@@ -35,12 +43,7 @@
                         alt="Image upload">
                 </label>
             </div>
-        </div> <!-- form-group-->
-
-        <div class="form-group">
-            {{ html()->label('Office Phone')->for('office_phone') }}
-            {{ html()->text('office_phone', get_setting('office_phone'))->class('form-control')->placeholder('Office Phone') }}
-        </div> <!-- form-group-->
+        </div>
 
         <div class="form-group">
             {{ html()->label('Office Email')->for('office_email') }}
@@ -54,8 +57,19 @@
 
         <div class="form-group">
             {{ html()->label('China Warehouse Address')->for('warehouse_address') }}
-            {{ html()->textarea('warehouse_address', get_setting('warehouse_address'))->rows(3)->class('form-control')->placeholder('Warehouse Address') }}
+            {{ html()->textarea('warehouse_address', get_setting('warehouse_address'))->rows(4)->class('form-control')->placeholder('Warehouse Address') }}
         </div> <!-- form-group-->
+
+        <div class="form-group">
+            {{ html()->label('Warehouse Notice')->for('warehouse_notice') }}
+            {{ html()->textarea('warehouse_notice', get_setting('warehouse_notice'))->rows(8)->class('form-control')->placeholder('Warehouse Notice') }}
+        </div> <!-- form-group-->
+
+        <div class="form-group">
+            {{ html()->label('Warehouse Notice Note')->for('warehouse_notice_note') }}
+            {{ html()->textarea('warehouse_notice_note', get_setting('warehouse_notice_note'))->rows(4)->class('form-control')->placeholder('Warehouse Notice Note') }}
+        </div> <!-- form-group-->
+
 
 
 
@@ -80,4 +94,5 @@
 
     </div> <!--  .card-body -->
     {{ html()->form()->close() }}
+
 </div> <!--  .card -->

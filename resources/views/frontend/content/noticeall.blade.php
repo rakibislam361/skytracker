@@ -52,21 +52,20 @@
         <section>
             <div class="container" style="padding:30px 0px">
                 <div class="row">
-                    @foreach($notices as $info)
+                    @foreach ($notices as $info)
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <img src="{{ asset('/setting/banner/' . $info->image) }}" class="img-fluid"
+                                        style="height:200px !important" alt="img"><br>
+                                    <span>{{ $info->updated_at }}</span><br><br>
+                                    <a href="/notice/details/{{ $info->id }}">
+                                        <h5> {{ $info->title }}</h5>
+                                    </a>
 
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <img src="{{ asset('/setting/banner/'.$info->image) }}" class="img-fluid" style="height:200px !important" alt="img"><br>
-                                <span>{{ $info->updated_at }}</span><br><br>
-                                <a href="/notice/details/{{ $info->id}}">
-                                    <h5> {{$info->title}}</h5>
-                                </a>
-
+                                </div>
                             </div>
                         </div>
-                    </div>
-
                     @endforeach
                 </div>
 

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Domains\Products\Models\Product;
-
-/**
- * Class HomeController.
- */
-
+use App\Models\Content\Booking;
+use App\Models\Content\Carton;
+use Illuminate\Http\Request;
 use App\Models\Info;
 use App\Models\Notice;
 use App\Models\Page;
@@ -48,5 +46,26 @@ class HomeController
     {
         $page = Page::where('slug', $slug)->get()->first();
         return view('frontend.content.dynamicpage', compact('page'));
+    }
+
+    public function trackOrder()
+    {
+        return view('frontend.pages.tracking');
+    }
+
+    public function trackOrderFormSubmit(Request $request)
+    {
+        $id = $request->tracking_id ?? null;
+
+        $bookings = Booking::where('tracking_number', $id)->with('itemTrackStatus')->first();
+
+        if ($bookings) {
+            return view('frontend.content.trackBookingForm', compact('bookings'));
+        }
+
+        // return redirect()->back()->withFlashDanger("Oops! Can't find any Item");
+        return redirect()
+            ->back()
+            ->with('message', 'Sorry!! Cannot Find any Product');
     }
 }
