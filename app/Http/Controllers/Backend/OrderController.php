@@ -351,7 +351,7 @@ class OrderController extends Controller
             'on-hold' => 'On Hold ',
             'processing' => 'Processing',
             'purchased' => 'Purchased Complete',
-            'pending-to-pay' => 'Pending To Pay',
+            'pending-to-pay' => 'pending-to-pay',
             'shipped-from-suppliers' => 'shipped-from-suppliers',
             'received-in-china-warehouse' => 'received-in-china-warehouse',
             'shipped-from-china-warehouse' => 'shipped-from-china-warehouse',
