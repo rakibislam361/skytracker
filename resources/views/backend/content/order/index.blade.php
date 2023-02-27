@@ -35,9 +35,10 @@
         <div class="card-body">
             <div class="badge badge-success" style="font-size: 100%; margin-bottom: 2px;">Total Items
                 = {{ $totalcount }}</div>
-            @if ($logged_in_user->can('admin.status.received-in-chinawarehouse') ||
-                $logged_in_user->can('admin.status.shipped-from-chinawarehouse') ||
-                $logged_in_user->can('admin.status.received-in-bdwarehouse'))
+            @if (
+                $logged_in_user->can('admin.status.received-in-chinawarehouse') ||
+                    $logged_in_user->can('admin.status.shipped-from-chinawarehouse') ||
+                    $logged_in_user->can('admin.status.received-in-bdwarehouse'))
                 <div class="badge badge-success" style="font-size: 100%; margin-bottom: 2px;">Total weight
                     = {{ $totalweight }} kg</div>
             @endif
@@ -76,6 +77,7 @@
                                     @if ($logged_in_user->can('admin.order.status.purchased'))
                                         <option value="purchased">Purchase Completed</option>
                                     @endif
+                                    <option value="pending-to-pay">Pending To Pay</option>
                                     @if ($logged_in_user->can('admin.order.status.re-order'))
                                         <option value="re-order">RE-Order</option>
                                     @endif
