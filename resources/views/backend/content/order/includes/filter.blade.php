@@ -20,8 +20,10 @@
                     <option @if (request('status', null) == 'partial-paid') selected @endif value="partial-paid">Partial Paid
                     </option>
                 @endif
-                <option @if (request('status', null) == 'pending-to-pay') selected @endif value="pending-to-pay">Pending To Pay
-                </option>
+                @if ($logged_in_user->can('admin.status.pending-to-pay'))
+                    <option @if (request('status', null) == 'pending-to-pay') selected @endif value="pending-to-pay">Pending To Pay
+                    </option>
+                @endif
                 @if ($logged_in_user->can('admin.status.delivery-after-holiday'))
                     <option @if (request('status', null) == 'delivery-after-holiday') selected @endif value="delivery-after-holiday">Delivery
                         after holiday</option>

@@ -3748,13 +3748,13 @@ label {
 .tracking-id-info > p {
 	font-size: 15px;
 	line-height: 1.5;
-	margin-bottom: 0;
+	margin-bottom: 20px;
 	color: #6d6d6d;
 }
 .tracking-id-info > p a {
 	font-weight: 600;
 	font-style: italic;
-	color: #e32222;
+	color: #4e148c;
 }
 .tracking-id-info p a:hover {
 	color: #18364a;
@@ -3792,7 +3792,7 @@ label {
 .tracking-list ul {
 	background: #fff;
 	display: flex;
-	align-items: center;
+	/* align-items: center; */
 	justify-content: space-between;
 	padding: 40px 45px;
 	position: relative;
@@ -3806,7 +3806,7 @@ label {
 	top: 66px;
 	height: 1px;
 	width: 700px;
-	border-top: 1px dashed #f08a8a;
+	border-top: 1px dashed #4e148c;
 	right: 0;
 	margin: 0 auto;
 	z-index: -1;
@@ -3815,7 +3815,7 @@ label {
 	height: 55px;
 	width: 55px;
 	text-align: center;
-	border: 1px dashed #f08a8a;
+	border: 1px dashed #4e148c;
 	line-height: 55px;
 	border-radius: 50%;
 	background: #f2f3f7;
@@ -3832,12 +3832,12 @@ label {
 	margin-bottom: 0;
 }
 .tracking-list ul li.active .tracking-list-icon {
-	background: #e32222;
+	background: #4e148c;
 	color: #fff;
-	border-color: #e32222;
+	border-color: #4e148c;
 }
 .tracking-list ul li.active .tracking-list-content p {
-	color: #e32222;
+	color: #4e148c;
 }
 .tracking-help p {
 	line-height: 1.5;
@@ -3847,8 +3847,18 @@ label {
 	margin-bottom: 0;
 }
 .tracking-help p a {
-	color: #e32222;
+	color: #4e148c;
 }
+
+.tracking-list ul li.current .tracking-list-icon {
+	background: #fb0606;
+	color: #fff;
+	border-color: #fb0606;
+}
+.tracking-list ul li.current .tracking-list-content p {
+	color: #fb0606;
+}
+
 
 
 /* 22. Blog */

@@ -143,7 +143,12 @@
 
                     <div class="form-group">
                         <label for="remarks">Remarks</label>
-                        <textarea type="text" class="form-control" name="remarks" id="remarks" placeholder="remarks"></textarea>
+                        <textarea type="text" class="form-control" rows="4" name="remarks" id="remarks" placeholder="remarks"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedback">Customer Feedback</label>
+                        <textarea type="text" class="form-control" rows="4" name="feedback" id="feedback" placeholder="customer feedback"></textarea>
                     </div>
 
                     <div class="form-group status">
@@ -156,7 +161,9 @@
                             @if ($logged_in_user->can('admin.order.status.on-hold'))
                             <option value="on-hold">On Hold</option>
                             @endif
+                            @if ($logged_in_user->can('admin.status.pending-to-pay'))
                             <option value="pending-to-pay">Pending To Pay</option>
+                            @endif
                             @if ($logged_in_user->can('admin.order.status.purchased'))
                             <option value="purchased">Purchase Completed</option>
                             @endif

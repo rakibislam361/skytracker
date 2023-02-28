@@ -64,12 +64,12 @@ Route::get('track', [TrackingController::class, 'Track'])
             ->push(__('_track'), route('frontend.pages.shippingInformationModal'));
     });
 
-Route::get('d2d', [d2dController::class, 'd2d'])
-    ->name('pages.d2d')
-    ->breadcrumbs(function (Trail $trail) {
-        $trail->parent('frontend.index')
-            ->push(__('_d2d'), route('frontend.pages.d2d'));
-    });
+// Route::get('d2d', [d2dController::class, 'd2d'])
+//     ->name('pages.d2d')
+//     ->breadcrumbs(function (Trail $trail) {
+//         $trail->parent('frontend.index')
+//             ->push(__('_d2d'), route('frontend.pages.d2d'));
+//     });
 Route::get('/info/{shipped_from}', [HomeController::class, 'index']);
 
 // Route::post('booking', [bookingController::class, 'store'])->name('booking');

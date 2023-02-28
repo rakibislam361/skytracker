@@ -43,7 +43,8 @@
 
                                 <div class="tracking-list">
                                     <ul>
-                                        <li class="deactive  @if ($step > 1 || $step == 1) active @endif ">
+                                        <li
+                                            class="deactive  @if ($step > 1) active @elseif($step == 1) current @endif ">
                                             <div class="tracking-list-icon">
                                                 {{-- <i class="flaticon-box"></i> --}}
                                                 <i class="flaticon-warehouse"></i>
@@ -53,11 +54,12 @@
                                             </div>
                                             @if ($step > 1 || $step == 1)
                                                 <div style="margin-top: 10px;">
-                                                    <small>{{ date('d/m/Y', strtotime($stepOne)) }}</small>
+                                                    <p>{{ date('d/m/Y', strtotime($stepOne)) }}</p>
                                                 </div>
                                             @endif
                                         </li>
-                                        <li class="deactive  @if ($step > 2 || $step == 2) active @endif ">
+                                        <li
+                                            class="deactive  @if ($step > 2) active @elseif($step == 2) current @endif ">
                                             <div class="tracking-list-icon">
                                                 <i class="flaticon-placeholder"></i>
                                             </div>
@@ -66,11 +68,12 @@
                                             </div>
                                             @if ($step > 2 || $step == 2)
                                                 <div style="margin-top: 10px;">
-                                                    <small>{{ date('d/m/Y', strtotime($stepTwo)) }}</small>
+                                                    <p>{{ date('d/m/Y', strtotime($stepTwo)) }}</p>
                                                 </div>
                                             @endif
                                         </li>
-                                        <li class="deactive  @if ($step > 3 || $step == 3) active @endif ">
+                                        <li
+                                            class="deactive  @if ($step > 3) active @elseif($step == 3) current @endif ">
                                             <div class="tracking-list-icon">
                                                 <i class="flaticon-warehouse"></i>
                                             </div>
@@ -79,11 +82,11 @@
                                             </div>
                                             @if ($step > 3 || $step == 3)
                                                 <div style="margin-top: 10px;">
-                                                    <small>{{ date('d/m/Y', strtotime($stepThree)) }}</small>
+                                                    <p>{{ date('d/m/Y', strtotime($stepThree)) }}</p>
                                                 </div>
                                             @endif
                                         </li>
-                                        <li class="deactive  @if ($step == 4) active @endif ">
+                                        <li class="deactive  @if ($step == 4) current @endif ">
                                             <div class="tracking-list-icon">
                                                 <i class="flaticon-box"></i>
                                             </div>
@@ -92,15 +95,15 @@
                                             </div>
                                             @if ($step == 4)
                                                 <div style="margin-top: 10px;">
-                                                    <small>{{ date('d/m/Y', strtotime($stepFour)) }}</small>
+                                                    <p>{{ date('d/m/Y', strtotime($stepFour)) }}</p>
                                                 </div>
                                             @endif
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="tracking-help">
+                                {{-- <div class="tracking-help">
                                     <p>MULTIPLE TRACKING NUMBERS | <a href="#">NEED HELP?</a></p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

@@ -87,6 +87,7 @@ class UserService extends BaseService
                 $user = $this->createUser([
                     'name' => $info->name,
                     'email' => $info->email,
+                    'phone' => $info->phone,
                     'address' => $info->address,
                     'provider' => $provider,
                     'provider_id' => $info->id,
@@ -121,6 +122,7 @@ class UserService extends BaseService
                 'type' => $data['type'],
                 'name' => $data['name'],
                 'email' => $data['email'],
+                'phone' => $data['phone'],
                 'address' => $data['address'],
                 'password' => $data['password'],
                 // 'email_verified_at' => isset($data['email_verified']) && $data['email_verified'] === '1' ? now() : null,

@@ -17,6 +17,10 @@
 
                                  <x-forms.post :action="route('frontend.auth.login')" id="loginForm">
                                      @csrf
+                                     {{-- <div class="cta-form-col d-flex justify-content-between"> <input type="text"
+                                             name="login" id="email" class="cta-email"
+                                             placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}"
+                                             maxlength="255" required autofocus autocomplete="email" /></div> --}}
                                      <div class="cta-form-col d-flex justify-content-between"> <input type="email"
                                              name="email" id="email" class="cta-email"
                                              placeholder="{{ __('E-mail Address') }}" value="{{ old('email') }}"
