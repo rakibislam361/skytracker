@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Invoice No : {{ $invoice->invoice_id }}</title>
-
-    {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/print/font-awesome/css/font-awesome.min.css') }}"> --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/print/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/print/bootstrap/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/print/order_print.css') }}" type="text/css" />
 </head>
@@ -46,6 +46,7 @@
                         $customer = [];
                         $phone = [];
                         $address = [];
+                        $sl_no = 0;
                         
                         if ($invoice->product_name != null) {
                             $product = explode(',', $invoice->product_name);
@@ -86,9 +87,7 @@
                             $address = array_unique($address);
                             $address = implode(',', $address);
                         }
-                        
                         // $count = count($product);
-                        
                     @endphp
                     <div class="row" style="margin-bottom: 15px">
                         <div class="col-sm-4">
@@ -128,6 +127,7 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
+                                <th scope="col" class="text-center">SL No</th>
                                 <th scope="col" class="text-center">Product Name</th>
                                 <th scope="col" class="text-center">Shipping Mark</th>
                                 <th scope="col" class="text-center">Carton Number</th>
@@ -140,6 +140,23 @@
                         </thead>
                         <tbody>
                             <tr>
+
+                                <td class="text-center align-middle" style="padding: 0%">
+                                    @foreach ($product as $sl)
+                                        @php
+                                            $sl_no += 1;
+                                        @endphp
+                                        <table class="table table-condensed" style="margin: 0px;">
+                                            <tr>
+                                                <td>
+                                                    {{ $sl_no }}
+                                                </td>
+                                            </tr>
+
+                                        </table>
+                                    @endforeach
+                                </td>
+
                                 <td class="text-center align-middle" style="padding: 0%">
 
                                     @foreach ($product as $p_name)
@@ -312,9 +329,9 @@
                                             <table class="table table-condensed" style="margin: 0px;">
                                                 <tr>
                                                     <td>
-                                                        {{ $amt ?? 'N/A' }}
-                                                    </td>
-                                                </tr>
+                                                        {{ abs($amt) ?? 'N/A' }}
+                                                        {{-- {{ number_format((float) $amt, 2, '.', '') ?? 'N/A' }} --}}
+                                                    </td </tr>
                                             </table>
                                         @endif
                                     @endforeach
@@ -325,7 +342,7 @@
                             $subtotal = 0;
                             $weight = 0;
                             foreach ($amount as $amt) {
-                                $subtotal += round($amt);
+                                $subtotal += $amt;
                             }
                             foreach ($actualWeight as $key => $value) {
                                 $weight += $value;
@@ -334,7 +351,7 @@
                         @endphp
                         <tfoot id="invoiceFooter">
                             <tr>
-                                <td colspan="5" class="text-right">total</td>
+                                <td colspan="6" class="text-right">total</td>
                                 <td class="text-center align-middle"><span
                                         data-user="{{ $invoice->user->id ?? null }}">{{ $weight ?? 0 }}</span>
                                 </td>
@@ -344,50 +361,50 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="text-right">Courier Bill</td>
+                                <td colspan="8" class="text-right">Courier Bill</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id ?? null }}">{{ round($invoice->total_courier) ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ $invoice->total_courier ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="text-right">China Local Delivery</td>
+                                <td colspan="8" class="text-right">China Local Delivery</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id ?? null }}">{{ round($invoice->chinalocal) ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ $invoice->chinalocal ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="text-right">Packing Cost</td>
+                                <td colspan="8" class="text-right">Packing Cost</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id ?? null }}">{{ round($invoice->packing_cost) ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ $invoice->packing_cost ?? 0 }}</span>
                                 </td>
                             </tr>
                             @php
-                                $total_sub = round($invoice->total_courier) + round($subtotal) + round($invoice->chinalocal) + round($invoice->packing_cost);
-                                $due = abs(round($total_sub)) - abs(round($invoice->paid));
+                                $total_sub = $invoice->total_courier + $subtotal + $invoice->chinalocal + $invoice->packing_cost;
+                                $due = abs($total_sub) - abs($invoice->paid);
                                 
                             @endphp
                             <tr>
-                                <td colspan="7" class="text-right">Subtotal</td>
+                                <td colspan="8" class="text-right">Subtotal</td>
                                 <td class="text-center align-middle"><span
                                         data-user="{{ $invoice->user->id ?? null }}">{{ $total_sub }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="text-right">Paid</td>
+                                <td colspan="8" class="text-right">Paid</td>
                                 <td class="text-center align-middle"><span
                                         data-user="{{ $invoice->user->id ?? null }}">{{ $invoice->paid ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="text-right">Due</td>
+                                <td colspan="8" class="text-right">Due</td>
                                 <td class="text-center align-middle"><span
                                         data-user="{{ $invoice->user->id ?? null }}">{{ $due ?? 0 }}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="text-right">Total Payable</td>
+                                <td colspan="8" class="text-right">Total Payable</td>
                                 <td class="text-center align-middle"><span
-                                        data-user="{{ $invoice->user->id ?? null }}">{{ $due ?? 0 }}</span>
+                                        data-user="{{ $invoice->user->id ?? null }}">{{ round($due) ?? 0 }}</span>
                                 </td>
                             </tr>
                         </tfoot>

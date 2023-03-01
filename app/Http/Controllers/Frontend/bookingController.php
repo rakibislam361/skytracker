@@ -48,7 +48,7 @@ class bookingController extends Controller
         }
 
 
-        $bookings = $booking->paginate(60);
+        $bookings = $booking->paginate(200);
         return view('backend.booking.index', compact('bookings'));
     }
 

@@ -60,11 +60,12 @@ $(function () {
         let weight = $(this).val();
         let product_id = $(this).attr("id2");
         let unit_price = $("#unit_price_" + product_id).val();
-        let amount = Math.round(Number(weight) * Number(unit_price));
-        $("#amount_" + product_id).val(amount);
+        let amount = Number(weight) * Number(unit_price);
+        let round_amount = Number(amount).toFixed(2);
+        $("#amount_" + product_id).val(round_amount);
         let val = 0;
         $(".invoiceTable tbody tr").each(function () {
-            val += parseInt($(this).find(".amount").val());
+            val += Number($(this).find(".amount").val());
         });
         $("#invoiceFooter").find(".total_due").text(Number(val).toFixed(2));
         let packing = $("#invoiceFooter").find(".packing_cost").text();
@@ -86,14 +87,14 @@ $(function () {
         let unit_price = $(this).val();
         let product_id = $(this).attr("id2");
         let weight = (weight = $("#actual_weight_" + product_id).val());
-        let amount = Math.round(Number(weight) * Number(unit_price));
-
-        $("#amount_" + product_id).val(amount);
+        let amount = Number(weight) * Number(unit_price);
+        let round_amount = Number(amount).toFixed(2);
+        $("#amount_" + product_id).val(round_amount);
 
         let val = 0;
 
         $(".invoiceTable tbody tr").each(function () {
-            val += parseInt($(this).find(".amount").val());
+            val += Number($(this).find(".amount").val());
         });
         $("#invoiceFooter").find(".total_due").text(Number(val).toFixed(2));
         let packing = $("#invoiceFooter").find(".packing_cost").text();
@@ -330,10 +331,12 @@ $(function () {
         var generate = false;
         var total_amount = 0;
         var amount = 0;
+        var round_amount = 0;
         let packing = null;
         let local = null;
         let courier = null;
         let paid = null;
+        let sl_no = 0;
         $("input.checkboxItemBook:checked").each(function (index) {
             var item = $(this).data("value");
             let status = item.status;
@@ -341,6 +344,7 @@ $(function () {
             let carton_no = item.cartons.carton_number;
             let price = 0;
             let weight = 0;
+            sl_no += 1;
             if (item.unit_price != null) {
                 price = item.unit_price;
             }
@@ -354,10 +358,12 @@ $(function () {
             if (generate) {
                 amount = Number(item.actual_weight) * Number(item.unit_price);
                 if (amount != null) {
+                    round_amount = Number(amount).toFixed(2);
                     total_amount += amount;
                 }
 
                 hiddenInput = `<tr>
+                          <td class=" align-middle">${sl_no}</td>
                           <td class=" align-middle">${item.customer_name}</td>
                             <td class=" align-middle">
                                 <div class="col">                                                                                    
@@ -396,7 +402,7 @@ $(function () {
                           <td class="text-right align-middle">
                                             <div class="col">                  
                                                 <input type="text" class="form-control amount" placeholder="amount"
-                                                    aria-label="Carton" id="amount_${item.id}" id2="${item.id}" readonly name="amount[]" value='${amount}'
+                                                    aria-label="Carton" id="amount_${item.id}" id2="${item.id}" readonly name="amount[]" value='${round_amount}'
                                                     aria-describedby="carton-addon2">
                                                
                                             </div>
@@ -404,23 +410,23 @@ $(function () {
                         </tr>`;
 
                 if (item.packing_cost != null) {
-                    packing += parseInt(item.packing_cost);
+                    packing += Number(item.packing_cost);
                 } else {
                     packing = 0;
                 }
 
                 if (item.chinalocal != null) {
-                    local += parseInt(item.chinalocal);
+                    local += Number(item.chinalocal);
                 } else {
                     local = 0;
                 }
                 if (item.courier_bill != null) {
-                    courier += parseInt(item.courier_bill);
+                    courier += Number(item.courier_bill);
                 } else {
                     courier = 0;
                 }
                 if (item.paid != null) {
-                    paid += parseInt(item.paid);
+                    paid += Number(item.paid);
                 } else {
                     paid = 0;
                 }

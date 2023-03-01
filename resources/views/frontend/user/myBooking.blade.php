@@ -17,6 +17,7 @@
                             <th>Product Qty</th>
                             <th>Weight</th>
                             <th>Carton Qty</th>
+                            <th>Tracking Number</th>
                             <th>Amount</th>
                             <th>Status</th>
                         </tr>
@@ -27,6 +28,7 @@
                                 $amount = $book->actual_weight * $book->unit_price ?? 0;
                                 $courier = $book->courier_bill ?? 0;
                                 $chinalocal = $book->chinalocal ?? 0;
+                                // $packing = intval($book->packing_cost ?? 0);
                                 $packing = $book->packing_cost ?? 0;
                                 $total_amount = $amount + $courier + $chinalocal + $packing;
                             @endphp
@@ -36,6 +38,7 @@
                                 <td>{{ $book->productQuantity ?? 'N/A' }}</td>
                                 <td>{{ $book->actual_weight ?? 'N/A' }}</td>
                                 <td>{{ $book->ctnQuantity ?? 'N/A' }}</td>
+                                <td>{{ $book->tracking_number ?? 'N/A' }}</td>
                                 <td>{{ $total_amount ?? 'N/A' }}</td>
                                 <td>{{ $book->status ?? 'N/A' }}</td>
                             </tr>

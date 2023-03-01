@@ -17,6 +17,7 @@
                     <table class="table table-bordered text-center invoiceTable">
                         <thead>
                             <tr>
+                                <th scope="col">SL No</th>
                                 <th scope="col">Customer</th>
                                 <th scope="col">Products</th>
                                 <th scope="col">Shipping Mark</th>
@@ -31,14 +32,14 @@
                         <tbody id="invoiceItem"></tbody>
                         <tfoot id="invoiceFooter">
                             <tr>
-                                <td colspan="8" class="text-right">Total Amount</td>
+                                <td colspan="9" class="text-right">Total Amount</td>
                                 <td class="align-middle"><span class="total_due">0.00</span></td>
                                 <div class="totalDue">
                                     {{-- hidden input field append here --}}
                                 </div>
                             </tr>
                             <tr>
-                                <td colspan="8" class="align-middle text-right">
+                                <td colspan="9" class="align-middle text-right">
                                     <div class="row">
                                         <div class="col">
                                             @php
@@ -91,7 +92,7 @@
                             </tr>
                             <tr>
                                 <div class="row">
-                                    <td colspan="8">
+                                    <td colspan="9">
                                         <div class="col-4 float-right">
                                             <p class="packing_cost_text m-0 text-right" style="display: none">
                                                 Packing Cost <a href="#"
@@ -113,7 +114,7 @@
                             </tr>
                             <tr>
                                 <div class="row">
-                                    <td colspan="8">
+                                    <td colspan="9">
                                         <div class="col-4 float-right">
                                             <p class="chinalocal_text m-0 text-right" style="display: none">
                                                 China Local Delivery <a href="#"
@@ -135,7 +136,7 @@
                             </tr>
                             <tr>
                                 <div class="row">
-                                    <td colspan="8">
+                                    <td colspan="9">
                                         <div class="col-4 float-right">
                                             <p class="paid_text m-0 text-right" style="display: none">
                                                 Paid <a href="#"
@@ -156,7 +157,7 @@
                             </tr>
 
                             <tr>
-                                <td colspan="8" class="text-right">Total Payable</td>
+                                <td colspan="9" class="text-right">Total Payable</td>
                                 <td class="align-middle"><span class="total_payable">0.00</span></td>
                                 <div class="totalPay">
                                     {{-- hidden input field append here --}}
