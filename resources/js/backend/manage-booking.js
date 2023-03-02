@@ -288,6 +288,7 @@ $(function () {
     }
     $(document).on("change", "#allSelectCheckboxBook", function () {
         var tbodyCheckbox = $("tbody").find("input.checkboxItemBook");
+
         if ($(this).is(":checked")) {
             tbodyCheckbox.prop("checked", true);
             enable_proceed_button();

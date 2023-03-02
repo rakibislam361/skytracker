@@ -14,6 +14,7 @@
             <span>
                 <a href="{{ route('admin.booking.index') }}" class="btn btn-outline-primary"><i class="fa fa-refresh"
                         aria-hidden="true"> Refresh</i></a></span>
+
         </x-slot>
         <x-slot name="headerActions">
             <div class="btn-group float-right" role="group" aria-label="header_button_group">
@@ -29,10 +30,16 @@
             <x-utils.link :href="route('admin.booking.create')" icon="fas fa-plus" class="btn btn-sm btn-secondary" :text="__('Create Booking')" />
         </x-slot>
         <x-slot name="body">
-            <div style="padding-bottom: 20px;">
+            <div style="margin-bottom: 10px;">
                 @include('backend.booking.includes.booking_filter')
             </div>
             @include('backend.invoice.generate-modal')
+            @php
+                $count = count($bookings);
+            @endphp
+            <div class="badge badge-pill badge-success" style="font-size: 100%; margin-bottom: 10px;">Total
+                Bookings
+                : {{ $count }}</div>
             @include('backend.booking.includes.booking_table')
 
 
