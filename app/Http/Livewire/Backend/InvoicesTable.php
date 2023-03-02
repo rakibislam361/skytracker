@@ -42,6 +42,8 @@ class InvoicesTable extends DataTableComponent
                     $customer = explode(',', $row->customer_name);
                     $customer = array_unique($customer);
                     $customer = implode(',', $customer);
+                } else {
+                    $customer = null;
                 }
                 return $customer;
             }),
@@ -51,6 +53,8 @@ class InvoicesTable extends DataTableComponent
                     $phone = explode(',', $row->customer_phone);
                     $phone = array_unique($phone);
                     $phone = implode(',', $phone);
+                } else {
+                    $phone = null;
                 }
                 return $phone;
             }),
