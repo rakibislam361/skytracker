@@ -1,3 +1,5 @@
+ {{-- @extends('frontend.layouts.app')
+ @section('content') --}}
  <section class="international-services pb-120 pt-70 fix">
      <div class="container">
          <div class="services-wrapper">
@@ -25,7 +27,8 @@
                              <div class="single-choose mb-40">
                                  <div class="choose-head">
                                      <div class="choose-icon mb-25">
-                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_1')) }}" alt="img" width="100px">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_1')) }}"
+                                             alt="img" width="100px">
                                      </div>
                                      <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}">
                                          <a href="#">{{ get_setting('about_image_title_1') }}</a>
@@ -38,7 +41,8 @@
                              <div class="single-choose mb-40">
                                  <div class="choose-head">
                                      <div class="choose-icon mb-25">
-                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_2')) }}" alt="img" width="100px">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_2')) }}"
+                                             alt="img" width="100px">
                                      </div>
                                      <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}">
                                          <a href="#">{{ get_setting('about_image_title_2') }}</a>
@@ -51,7 +55,8 @@
                              <div class="single-choose mb-40">
                                  <div class="choose-head">
                                      <div class="choose-icon mb-25">
-                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_3')) }}" alt="img" width="100px">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_3')) }}"
+                                             alt="img" width="100px">
                                      </div>
                                      <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}">
                                          <a href="#">{{ get_setting('about_image_title_3') }}</a>
@@ -64,7 +69,8 @@
                              <div class="single-choose mb-40">
                                  <div class="choose-head">
                                      <div class="choose-icon mb-25">
-                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_4')) }}" alt="img" width="100px">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_4')) }}"
+                                             alt="img" width="100px">
                                      </div>
                                      <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}">
                                          <a href="#">{{ get_setting('about_image_title_4') }}</a>
@@ -77,9 +83,11 @@
                              <div class="single-choose mb-40">
                                  <div class="choose-head">
                                      <div class="choose-icon mb-25">
-                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_5')) }}" alt="img" width="100px">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_5')) }}"
+                                             alt="img" width="100px">
                                      </div>
-                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a href="#">{{ get_setting('about_image_title_5') }}</a></h3>
+                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a
+                                             href="#">{{ get_setting('about_image_title_5') }}</a></h3>
                                  </div>
 
                              </div>
@@ -88,9 +96,11 @@
                              <div class="single-choose mb-40">
                                  <div class="choose-head">
                                      <div class="choose-icon mb-25">
-                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_6')) }}" alt="img" width="100px">
+                                         <img class="mx-auto d-block" src="{{ asset(get_setting('about_image_6')) }}"
+                                             alt="img" width="100px">
                                      </div>
-                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a href="#">{{ get_setting('about_image_title_6') }}</a></h3>
+                                     <h3 class="text-center" style="color: {{ get_setting('about_color_2') }}"><a
+                                             href="#">{{ get_setting('about_image_title_6') }}</a></h3>
                                  </div>
 
                              </div>
@@ -100,5 +110,8 @@
              </div>
          </div>
      </div>
-     <div class="overlay-title paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15" data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground" data-paroller-direction="horizontal">Cargo</div>
+     <div class="overlay-title paroller" data-paroller-factor="0.15" data-paroller-factor-lg="0.15"
+         data-paroller-factor-md="0.15" data-paroller-factor-sm="0.15" data-paroller-type="foreground"
+         data-paroller-direction="horizontal">Cargo</div>
  </section>
+ {{-- @endsection --}}

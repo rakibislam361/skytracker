@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(get_setting('favicon')) }}">
     <link rel="manifest" href="{{ asset(get_setting('favicon')) }}">
 
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-fontawesome-all.min.css') }}">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/css-slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}">
     <link href="{{ asset('icon_img/assets/icons/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/ionicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/linearicons.css') }}" rel="stylesheet">
@@ -38,14 +38,15 @@
     <link href="{{ asset('icon_img/assets/icons/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/fontawesome.css') }}" rel="stylesheet">
-
+    {{-- @include('frontend.style.style') --}}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(get_setting('favicon')) }}">
     <link rel="manifest" href="{{ asset(get_setting('favicon')) }}">
-    @include('includes.partials.messages')
     @stack('before-styles')
-    <link href="{{ mix('css/backend.css') }}" rel="stylesheet">
+    @if ($logged_in_user)
+        <link href="{{ mix('css/backend.css') }}" rel="stylesheet">
+    @endif
     <livewire:styles />
     @stack('after-styles')
     <style>
@@ -103,26 +104,35 @@
     </style>
 </head>
 
-<body class="hold-transition sidebar-mini text-sm">
-    <div class="wrapper" id="app">
+<body>
+    <div id="app">
         <script>
             var settings = document.getElementById('settings_all').innerText;
             window.b2b = settings ? JSON.parse(settings) : {};
         </script>
-        @include('frontend.includes.nav')
-        @include('frontend.user.includes.sidebar')
+        @if ($logged_in_user)
+            @include('frontend.includes.nav')
+            @include('frontend.user.includes.sidebar')
+        @else
+            @include('frontend.content.header')
+        @endif
+
+
 
         <div class="content-wrapper">
             <section class="content-header">
                 @include('includes.partials.messages')
-                @include('backend.includes.partials.breadcrumbs')
+                {{-- @include('backend.includes.partials.breadcrumbs') --}}
             </section>
 
             <section class="content">
                 @yield('content')
             </section>
-
+            @if (!$logged_in_user)
+                @include('frontend.content.footer')
+            @endif
         </div>
+
     </div>
     <!--app-->
     @stack('before-scripts')
@@ -130,11 +140,11 @@
         crossorigin="anonymous"></script>
     <script src="{{ mix('js/manifest.js') }}"></script>
     <script src="{{ mix('js/vendor.js') }}"></script>
-    <script src="{{ mix('js/backend.js') }}"></script>
+    <script src="{{ mix('js/frontend.js') }}"></script>
 
     <livewire:scripts />
 
-    {{-- <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor-jquery-1.12.4.min.js') }}"></script>
     <script src="{{ asset('assets/js/334-js-popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/3741-js-bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/5085-js-isotope.pkgd.min.js') }}"></script>
@@ -150,9 +160,9 @@
     <script src="{{ asset('assets/js/7521-js-jquery.scrollUp.min.js') }}"></script>
     <script src="{{ asset('assets/js/8228-js-imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/788-js-jquery.magnific-popup.min.js') }}"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script> --}}
     <script src="{{ asset('assets/js/9626-js-plugins.js') }}"></script>
-    <script src="{{ asset('assets/js/2325-js-main.js') }}"></script> --}}
+    <script src="{{ asset('assets/js/2325-js-main.js') }}"></script>
     @stack('after-scripts')
 </body>
 

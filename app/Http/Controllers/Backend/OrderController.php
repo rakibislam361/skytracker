@@ -390,8 +390,8 @@ class OrderController extends Controller
             'missing' => 'nullable|numeric|min:0|max:99999999',
             'adjustment' => 'nullable|numeric|max:99999999',
             'refunded' => 'nullable|numeric|min:0|max:99999999',
-            'remarks' => 'nullable|numeric|min:0|max:99999999',
-            'feedback' => 'nullable|numeric|min:0|max:99999999',
+            'remarks' => 'nullable|string',
+            'feedback' => 'nullable|string',
             'due_payment' => 'nullable|numeric|min:0|max:99999999',
             'last_payment' => 'nullable|numeric|min:0|max:99999999',
 

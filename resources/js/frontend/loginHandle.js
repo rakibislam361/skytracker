@@ -12,7 +12,6 @@ $(function () {
             $(".loginWithEmail").addClass("d-none");
         })
         .on("click", "#withEmailLogin", function () {
-            console.log("hi");
             $("#loginOption").html(
                 `<a href="#" id="withOtpLogin">Login With OTP</a>`
             );

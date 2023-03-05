@@ -7,6 +7,9 @@ use App\Rules\Captcha;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Domains\Auth\Models\User;
+use Illuminate\Support\Facades\Hash;
 use LangleyFoxall\LaravelNISTPasswordRules\PasswordRules;
 
 /**
@@ -109,5 +112,73 @@ class LoginController
         if (config('boilerplate.access.user.single_login')) {
             auth()->logoutOtherDevices($request->password);
         }
+    }
+
+    public function loginOtp()
+    {
+        $phone = request('phone');
+
+        if (!$phone) {
+            return response(['message' => 'Mobile number not valid', 'status' => false]);
+        }
+
+        $msg = [];
+        $otp_number = rand(1000, 9999);
+        $name = "ausbd_user";
+        $email = $phone . "@ausbd360.com";
+        $address = $email . "_" . $email . "_" . $phone;
+        $password = Hash::make($phone);
+
+        $user = User::where('phone', $phone)->first();
+        if (!$user) {
+            $insert_id = GroCustomer::insertGetId([
+                'name' => $name,
+                'phone' => $phone,
+                'email' => $email,
+                'address' => $address,
+                'password' => $password,
+                'customer_type' => 'b2b',
+                'del_status' => 'Live'
+            ]);
+            if ($insert_id) {
+                $user = User::create([
+                    'name' => $name,
+                    'phone' => $phone,
+                    'otp_code' => $otp_number,
+                    'email' => $email,
+                    'address' => $address,
+                    'password' => md5($password),
+                    'linked_id' => $insert_id,
+                    'email_verified_at' => now(),
+                ]);
+            }
+        } else {
+            $user->update(['otp_code' => $otp_number]);
+        }
+
+        $sms = singleSms($phone, "Your OTP code is {$otp_number}", '111');
+        $sms_status = getArrayKeyData($sms, 'status');
+        return response(['message' => 'OTP code Send you phone', 'status' => true, 'phone' => $phone, 'sms_status' => $sms_status]);
+    }
+
+    public function otpSubmit(Request $request)
+    {
+        $phone = request('phone');
+        $otp_code = request('otp');
+        $user = User::where('phone', $phone)->where('otp_code', $otp_code)->first();
+
+        if ($user) {
+            linked_customer_with_user($user);
+            updateUserBadge($user);
+            // spatie permission for customer role and approved
+            $user->givePermissionTo('approved-customer');
+            if (!$user->hasRole('Customerb2b') && !$user->hasRole('Administrator')) {
+                $user->assignRole('Customerb2b');
+            }
+            Auth::loginUsingId($user->id, true);
+            $msg = ['message' => 'Logged in successfully', 'code' => '200'];
+            return response(json_encode($msg));
+        }
+        return response(json_encode(['message' => 'Invalid request!', 'code' => '302']));
     }
 }

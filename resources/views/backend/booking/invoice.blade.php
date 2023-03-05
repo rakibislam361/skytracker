@@ -76,16 +76,22 @@
                             $customer = explode(',', $invoice->customer_name);
                             $customer = array_unique($customer);
                             $customer = implode(',', $customer);
+                        } else {
+                            $customer = null;
                         }
                         if ($invoice->customer_phone != null) {
                             $phone = explode(',', $invoice->customer_phone);
                             $phone = array_unique($phone);
                             $phone = implode(',', $phone);
+                        } else {
+                            $phone = null;
                         }
                         if ($invoice->customer_address != null) {
                             $address = explode(',', $invoice->customer_address);
                             $address = array_unique($address);
                             $address = implode(',', $address);
+                        } else {
+                            $address = null;
                         }
                         // $count = count($product);
                     @endphp

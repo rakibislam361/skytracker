@@ -5002,34 +5002,38 @@ blockquote.classic-blockquote-post::after {
 	background-color: white;
 }
 
-
 .companyLogos {
-            padding: 0.5rem 1rem 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+                padding: 0.5rem 1rem 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
 
-        .companyLogos .sisters {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            grid-gap: 1rem;
-            gap: 1rem;
-        }
+            }
 
-        .sisters a {
-            padding: 10px;
-            border: 1px solid #eaeaea;
-            box-shadow: 0 0 5px #006ab2 !important;
-            border-radius: 8px;
-            /* box-shadow: 0 0 4px rgb(0 0 0 / 20%); */
-        }
+            .companyLogos .sisters img {
+                width: 100%;
+                margin-right: 1rem;
+                padding: 0.5rem;
+                /* margin-bottom: 0.5rem; */
+                height: 80px;
+                object-fit: contain;
+            }
 
-        a,
-        button {
-            color: #1696e7;
-            outline: medium none;
-        }
+            .companyLogos .sisters {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: 1rem;
+                gap: 1rem;
+
+            }
+
+            .sisters a {
+                padding: 10px;
+                border: 1px solid #eaeaea;
+                box-shadow: 0 0 5px #006ab2 !important;
+                border-radius: 8px;
+                box-shadow: 0 0 4px rgb(0 0 0 / 20%);
+            }
 
         @media only screen and (min-width: 320px) and (max-width: 480px) {
            .companyLogos .sisters a {

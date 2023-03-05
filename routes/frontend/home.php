@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\TrackingController;
 use App\Http\Controllers\Frontend\bookingController;
+use App\Domains\Auth\Http\Controllers\Frontend\Auth\OtpLoginController;
 use App\Http\Controllers\Frontend\d2dController;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -84,3 +85,11 @@ Route::post('booking', [bookingController::class, 'store'])->name('content.booki
 // Route::get('tracking', [HomeController::class, 'trackOrder'])->name('track-order-form');
 Route::get('tracking', [HomeController::class, 'trackOrder'])->name('pages.tracking');
 Route::post('tracking', [HomeController::class, 'trackOrderFormSubmit'])->name('track-order-post');
+
+Route::group(
+    ['as' => 'ajax.', 'prefix' => 'ajax'],
+    function () {
+        Route::post('LHZLLfEpaQVdK0qCYDletmxqfKmklEXMr5m', [OtpLoginController::class, 'loginWithOtp']); // login with otp
+        Route::post('IEMsZPlg72Adiuc1pSVrkI6iiUzKXWykNhd', [OtpLoginController::class, 'OtpCodeVerify']); // login with otp
+    }
+);

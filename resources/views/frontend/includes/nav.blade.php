@@ -10,9 +10,6 @@
             </a>
         </li>
     </ul>
-
-
-
     <ul class="navbar-nav ml-auto">
         <li class="nav-link">
             <a href="{{ route('frontend.pages.contact') }}">
@@ -40,12 +37,12 @@
                 </li>
             @endif
         @else
-            <li class="nav-item dropdown ]">
+            <li class="nav-item dropdown">
                 <x-utils.link href="#" id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <x-slot name="text">
                         <img class="rounded-circle" style="max-height: 20px" src="{{ $logged_in_user->avatar }}" />
-                        {{ $logged_in_user->name }}
+                        {{ $logged_in_user->name }} <span class="caret"></span>
                     </x-slot>
                 </x-utils.link>
 
@@ -80,4 +77,4 @@
 {{-- @if (config('boilerplate.frontend_breadcrumbs'))
     @include('frontend.includes.partials.breadcrumbs')
 @endif --}}
-{{-- @include('frontend.style.js') --}}
+@include('frontend.style.js')
