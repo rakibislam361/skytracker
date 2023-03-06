@@ -114,6 +114,7 @@ $(function () {
     }
 
     $(document).on("click", "#otpSubmitBtn", function () {
+        $(".loginWithOtp").addClass("d-none");
         let phoneNumber = $('input[name="phone"]').val();
         let checkPhone = checkValidPhone(phoneNumber);
         if (checkPhone) {

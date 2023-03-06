@@ -23,6 +23,7 @@ class OrderController extends Controller
         try {
             $filter = [
                 'item_number' => request('item_number', null),
+                'carton_id' => request('carton_id', null),
                 'status' => request('status', null),
                 'shipping_from' => request('shipping_from', null),
                 'from_date' => request('from_date', null),

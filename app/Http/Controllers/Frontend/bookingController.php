@@ -120,12 +120,12 @@ class bookingController extends Controller
                 $createBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
                 $createBooking->delivery_method = $request->delivery_method[$key] ?? null;
                 if (auth()->user()->type == 'user') {
-                    $createBooking->customer_name = auth()->user()->name;
-                    $createBooking->customer_phone = auth()->user()->phone;
+                    $createBooking->customer_name = auth()->user()->name ?? null;
+                    $createBooking->customer_phone = auth()->user()->phone ?? null;
                     if ($request->delivery_method[$key] == "on_address") {
                         $createBooking->customer_address = $request->customer_address[$key] ?? null;
                     } else {
-                        $createBooking->customer_address = auth()->user()->address;
+                        $createBooking->customer_address = auth()->user()->address ?? null;
                     }
                 }
                 if (auth()->user()->type == 'admin') {

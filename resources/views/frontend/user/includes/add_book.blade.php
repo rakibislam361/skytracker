@@ -69,7 +69,8 @@
                     <fieldset>
                         <legend>Select Delivery Method:</legend>
                         <div>
-                            <input type="radio" id="ofiice_delivery" name="delivery_method[]" value="ofiice_delivery" />
+                            <input type="radio" id="ofiice_delivery" name="delivery_method[]" checked
+                                value="ofiice_delivery" />
                             <label for="ofiice_delivery">Office Delivery</label>
 
                             <input type="radio" id="on_address" name="delivery_method[]" value="on_address" />

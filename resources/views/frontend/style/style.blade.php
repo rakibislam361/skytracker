@@ -10,25 +10,3 @@
     <link rel="stylesheet" href="{{ asset('assets/css/css-default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}">
-    <style>
-        .booking-table table {
-            border: none;
-        }
-
-        .booking-table {
-            width: 100%;
-        }
-
-        .booking-table table,
-        td:nth-child(2) {
-            float: right;
-        }
-
-
-        .booking-table table,
-        tr,
-        td {
-            color: white;
-            font-size: 18px;
-        }
-    </style>

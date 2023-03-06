@@ -19,7 +19,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(get_setting('favicon')) }}">
     <link rel="manifest" href="{{ asset(get_setting('favicon')) }}">
 
-    <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/css-bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-fontawesome-all.min.css') }}">
@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/css-slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/css-style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/css-responsive.css') }}"> --}}
     <link href="{{ asset('icon_img/assets/icons/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/ionicons.min.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/linearicons.css') }}" rel="stylesheet">
@@ -38,7 +38,7 @@
     <link href="{{ asset('icon_img/assets/icons/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('icon_img/assets/icons/fontAwesome/css/fontawesome.css') }}" rel="stylesheet">
-    {{-- @include('frontend.style.style') --}}
+    @include('frontend.style.style')
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset(get_setting('favicon')) }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset(get_setting('favicon')) }}">

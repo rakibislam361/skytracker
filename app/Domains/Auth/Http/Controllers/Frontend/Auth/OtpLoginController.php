@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Frontend\Auth;
+namespace App\Domains\Auth\Http\Controllers\Frontend\Auth;
 
 use App\Events\Frontend\Auth\UserLoggedIn;
 use App\Events\Frontend\Auth\UserLoggedOut;
@@ -73,7 +73,7 @@ class OtpLoginController extends Controller
       'status' => $status,
       'response' => $response,
       'phone' => $phone,
-      'user_id' => $user_id
+      'model_id' => $user_id
     ]);
   }
 

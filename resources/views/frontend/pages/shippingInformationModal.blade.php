@@ -1,6 +1,28 @@
    @include('frontend.style.style')
    @include('frontend.content.header')
    @include('includes.partials.messages')
+   <style>
+       .booking-table table {
+           border: none;
+       }
+
+       .booking-table {
+           width: 100%;
+       }
+
+       .booking-table table,
+       td:nth-child(2) {
+           float: right;
+       }
+
+
+       .booking-table table,
+       tr,
+       td {
+           color: white;
+           font-size: 18px;
+       }
+   </style>
    <div class="container" style="padding-top:20px;padding-bottom:20px;">
        {{-- <div class="row ownmodal"> --}}
 

@@ -86,24 +86,17 @@
                                             </div>
                                         </x-forms.post>
                                     </div>
-                                    <div class="mt-4">
-                                        <a href="#" id="hasOTP">Already has an OTP ? Click Here</a><br>
-                                        <span id="loginOption">
-                                            <a href="#" id="withEmailLogin">Email Users ?
-                                                Click Here</a>
-                                        </span>
-                                    </div>
+
                                 </div>
                                 <div class="login_wrap otpSubmitCard d-none">
                                     <div class="padding_eight_all bg-white">
-                                        <div class="heading_s1">
-                                            <h4>
-                                                <button type="button" id="backToLoginCard"
-                                                    class="btn mr-2 p-0 text-danger">
+                                        <div class="heading_s1" style="margin-top: 50px;">
+                                            <h5>
+                                                <button type="button" id="backToLoginCard" class="btn mr-2 p-1">
                                                     <i class="icon-arrow-left"></i> Back
                                                 </button>
                                                 Verify Your Phone Number
-                                            </h4>
+                                            </h5>
                                         </div>
 
                                         <div class="otp_submit_form">
@@ -129,12 +122,18 @@
 
                                     </div>
                                 </div>
-
+                                <div class="mt-4">
+                                    <a href="#" id="hasOTP">Already has an OTP ? Click Here</a><br>
+                                    <span id="loginOption">
+                                        <a href="#" id="withEmailLogin">Email Users ?
+                                            Click Here</a>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                         <div class="tracking-help">
                             <p>New to Sky Track? | <a href="{{ route('frontend.auth.register') }}">Create
-                                    Account</a></p>
+                                    Account With Email</a></p>
                         </div>
                     </div>
                 </div>

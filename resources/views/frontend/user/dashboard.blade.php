@@ -4,6 +4,7 @@
 @section('content')
 
     @php
+        // dd($booking);
         $booking_count = count($booking);
         $total_paid = 0;
         $received = 0;
