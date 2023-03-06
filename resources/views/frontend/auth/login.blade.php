@@ -123,10 +123,19 @@
                                     </div>
                                 </div>
                                 <div class="mt-4">
-                                    <a href="#" id="hasOTP">Already has an OTP ? Click Here</a><br>
+
                                     <span id="loginOption">
-                                        <a href="#" id="withEmailLogin">Email Users ?
-                                            Click Here</a>
+                                        <div>
+                                            <a href="#" id="withEmailLogin" class="">Email Users ?
+                                                Click Here</a>
+                                        </div>
+                                        <div>
+                                            <a href="#" id="withOtpLogin" class="d-none">Login With OTP</a>
+                                        </div>
+                                        <div>
+                                            <a href="#" id="hasOTP" class="">Already has an OTP ? Click
+                                                Here</a>
+                                        </div>
                                     </span>
                                 </div>
                             </div>

@@ -3,20 +3,17 @@ import { productCart, loadingWebsite, loadingOutWebsite } from "./cartHelpers";
 $(function () {
     $("body")
         .on("click", "#withOtpLogin", function () {
-            $("#loginOption").html(
-                `<a href="#" id="hasOTP">Already has an OTP ? Click Here</a><br>
-                <a href="#" id="withEmailLogin">Email Users ? Click Here</a>`
-            );
-            $("#withEmailLogin").removeClass("btn-dark");
+            $(".oldOTP").html("");
+            $("#withOtpLogin").addClass("d-none");
+            $("#withEmailLogin").removeClass("d-none");
+            $("#hasOTP").removeClass("d-none");
             $(".loginWithOtp").removeClass("d-none");
             $(".loginWithEmail").addClass("d-none");
         })
         .on("click", "#withEmailLogin", function () {
-            $("#loginOption").html(
-                `<a href="#" id="withOtpLogin">Login With OTP</a>`
-            );
-
-            $("#withOtpLogin").removeClass("btn-dark");
+            $("#withOtpLogin").removeClass("d-none");
+            $("#withEmailLogin").addClass("d-none");
+            $("#hasOTP").removeClass("d-none");
             $(".loginWithOtp").addClass("d-none");
             $(".loginWithEmail").removeClass("d-none");
         })
@@ -26,6 +23,12 @@ $(function () {
                 ".oldOTP"
             ).html(`<input type="text" name="otp_code" class="form-control otp_code"
                  placeholder="OTP Code" maxlength="4" required="true" autofocus="true">`);
+            $("#hasOTP").addClass("d-none");
+            $("#withOtpLogin").removeClass("d-none");
+            $("#withEmailLogin").removeClass("d-none");
+            $("#hasOTP").addClass("d-none");
+            $(".loginWithOtp").removeClass("d-none");
+            $(".loginWithEmail").addClass("d-none");
         });
 
     function replace_phone_prefix(phone) {
