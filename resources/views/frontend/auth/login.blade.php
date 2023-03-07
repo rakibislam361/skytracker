@@ -25,7 +25,10 @@
                                             </div>
                                         </div> <!-- form-group -->
 
-                                        <div class="form-group oldOTP"></div>
+                                        <div class="form-group" style="margin-top: 10px;">
+                                            <div class="input-group oldOTP">
+                                            </div>
+                                        </div>
 
                                         {{ html()->hidden('remember')->value(1) }}
 

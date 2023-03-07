@@ -34,14 +34,14 @@
                                          @if ($logged_in_user->isAdmin())
                                              <li>
                                                  <a href="{{ route('admin.dashboard') }}">
-                                                     {{ $logged_in_user->name }} </a>
+                                                     {{ $logged_in_user->name ?? 'Admin' }} </a>
                                              </li>
                                          @endif
 
                                          @if ($logged_in_user->isUser())
                                              <li>
                                                  <a href="{{ route('frontend.user.dashboard') }}">
-                                                     {{ $logged_in_user->name }} </a>
+                                                     {{ $logged_in_user->name ?? 'User' }} </a>
                                              </li>
                                          @endif
                                      @else
@@ -54,8 +54,8 @@
 
                                      @endauth
                                      </li>
-                                     {{-- <li><a href="{{ route('frontend.pages.tracking') }}">Tracking</a></li> --}}
-                                     <li><a href="#">Support</a></li>
+                                     <li><a href="{{ route('frontend.pages.tracking') }}">Track Your order</a></li>
+                                     {{-- <li><a href="#">Support</a></li> --}}
 
                                  </ul>
                              </nav>
@@ -69,14 +69,14 @@
                                  @if ($logged_in_user->isAdmin())
                                      <li>
                                          <a href="{{ route('admin.dashboard') }}" class="btn">
-                                             {{ $logged_in_user->name }} </a>
+                                             {{ $logged_in_user->name ?? 'Admin' }} </a>
                                      </li>
                                  @endif
 
                                  @if ($logged_in_user->isUser())
                                      <li>
                                          <a href="{{ route('frontend.user.dashboard') }}" class="btn">
-                                             {{ $logged_in_user->name }} </a>
+                                             {{ $logged_in_user->name ?? 'User' }} </a>
                                      </li>
                                  @endif
                              @else

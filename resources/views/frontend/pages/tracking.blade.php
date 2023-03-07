@@ -9,7 +9,6 @@
 
     <div class="col-md-12">
         <main>
-            {{-- @dd($bookings); --}}
             <div class="tracking-area pt-95 pb-115">
                 <div class="container">
                     <div class="row justify-content-center">

@@ -16,6 +16,7 @@ $(function () {
             $("#hasOTP").removeClass("d-none");
             $(".loginWithOtp").addClass("d-none");
             $(".loginWithEmail").removeClass("d-none");
+            $(".otpSubmitCard").addClass("d-none");
         })
         .on("click", "#hasOTP", function () {
             $("#otpSubmitBtn").text("Login");
@@ -29,6 +30,7 @@ $(function () {
             $("#hasOTP").addClass("d-none");
             $(".loginWithOtp").removeClass("d-none");
             $(".loginWithEmail").addClass("d-none");
+            $(".otpSubmitCard").addClass("d-none");
         });
 
     function replace_phone_prefix(phone) {
@@ -130,7 +132,8 @@ $(function () {
     });
 
     $(document).on("click", "#backToLoginCard", function () {
-        $(".loginSubmitCard").removeClass("d-none");
+        $(".loginWithOtp").removeClass("d-none");
+        $(".loginWithEmail").addClass("d-none");
         $(".otpSubmitCard").addClass("d-none");
     });
 

@@ -16,14 +16,6 @@
                 <p>Support</p>
             </a>
         </li>
-        {{-- @if (config('boilerplate.locale.status') && count(config('boilerplate.locale.languages')) > 1)
-            <li>
-                <x-utils.link :text="__(getLocaleName(app()->getLocale()))" class="nav-link dropdown-toggle" id="navbarDropdownLanguageLink"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" />
-
-                @include('includes.partials.lang')
-            </li>
-        @endif --}}
 
         @guest
             <li class="nav-item">
@@ -42,7 +34,7 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <x-slot name="text">
                         <img class="rounded-circle" style="max-height: 20px" src="{{ $logged_in_user->avatar }}" />
-                        {{ $logged_in_user->name }} <span class="caret"></span>
+                        {{ $logged_in_user->name ?? 'User' }} <span class="caret"></span>
                     </x-slot>
                 </x-utils.link>
 
@@ -68,18 +60,11 @@
             </li>
         @endguest
     </ul>
-    {{-- </div> --}}
-    <!--navbar-collapse-->
 
-    <!--container-->
 </nav>
 
-{{-- @if (config('boilerplate.frontend_breadcrumbs'))
-    @include('frontend.includes.partials.breadcrumbs')
-@endif --}}
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
     crossorigin="anonymous"></script>
 <script src="{{ mix('js/manifest.js') }}"></script>
 <script src="{{ mix('js/vendor.js') }}"></script>
 <script src="{{ mix('js/backend.js') }}"></script>
-{{-- @include('frontend.style.js') --}}
