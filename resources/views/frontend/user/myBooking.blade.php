@@ -23,10 +23,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @dd($booking); --}}
                         @foreach ($booking as $book)
                             @php
-                                // dd($book);
                                 $amount = $book->actual_weight * $book->unit_price ?? 0;
                                 $courier = $book->courier_bill ?? 0;
                                 $chinalocal = $book->chinalocal ?? 0;

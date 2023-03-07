@@ -57,7 +57,6 @@
                 @yield('content')
             </section> <!-- section -->
         </div> <!-- content -->
-
         {{-- @include('backend.includes.footer') --}}
     </div>
 

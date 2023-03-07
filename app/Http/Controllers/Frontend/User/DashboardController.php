@@ -21,59 +21,33 @@ class DashboardController
      */
     public function index()
     {
-        $data = [];
-        // $null = null;
         $user = auth()->user()->id;
-        $phone = auth()->user()->phone ?? 'helLo';
-        $book = Booking::with('cartons', 'user')->latest()->get();
-        foreach ($book as $key => $value) {
-            // dd($value);
-            if ($value->customer_phone != null) {
-                $data[] = $value->customer_phone;
-            }
-        }
-        // if ($phone = null) {
-        //     $phone = 0;
-        // }
-        // dd($data);
-        // if ($phone != null) {
-        // $booking = Booking::with('cartons', 'user')->whereNotIn('customer_phone', $data)->where('user_id', $user)->orWhere('customer_phone', $phone)->latest()->get();
+        $phone = auth()->user()->phone ?? 'helLOpHoNe';
+
         $booking = Booking::with('cartons', 'user')->where('user_id', $user)->orWhere('customer_phone', '=', $phone)->latest()->get();
         $invoice = Invoice::where('user_id', $user)->orWhere('customer_phone', $phone)->latest()->get();
-        // } else {
-        //     $booking = [];
-        //     $invoice = [];
-        // }
+
         return view('frontend.user.dashboard', compact('booking', 'invoice'));
     }
 
     public function bookings()
     {
         $user = auth()->user()->id;
-        $phone = auth()->user()->phone ?? 'helLo';
+        $phone = auth()->user()->phone ?? 'helLOpHoNe';
 
-
-        // if ($phone != null) {
         $bookings = Booking::with('cartons', 'user')->where('user_id', $user)->orWhere('customer_phone', '=', $phone)->latest();
-
         $booking = $bookings->paginate(10);
-        // } else {
-        //     $booking = [];
-        // }
 
         return view('frontend.user.myBooking', compact('booking'));
     }
     public function invoices()
     {
         $user = auth()->user()->id;
-        $phone = auth()->user()->phone ?? 'helLo';
-        // if ($phone != null) {
-        $invoices = Invoice::where('user_id', $user)->orWhere('customer_phone', $phone)->latest();
+        $phone = auth()->user()->phone ?? 'helLOpHoNe';
 
+        $invoices = Invoice::where('user_id', $user)->orWhere('customer_phone', $phone)->latest();
         $invoice = $invoices->paginate(10);
-        // } else {
-        //     $invoice = [];
-        // }
+
         return view('frontend.user.myInvoices', compact('invoice'));
     }
     public function details($id)

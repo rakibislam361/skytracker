@@ -4,7 +4,6 @@
 @section('content')
 
     @php
-        // dd($booking);
         $booking_count = count($booking);
         $total_paid = 0;
         $received = 0;
@@ -13,7 +12,6 @@
         $packing = 0;
         $amount = 0;
         foreach ($booking as $book) {
-            // $total_paid += $book->paid;
             if ($book->status == 'delivered') {
                 $received += 1;
             }
@@ -91,7 +89,7 @@
                 <!-- small box -->
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h5>Received Parcel</h5>
+                        <h5>Received</h5>
 
                         <p>{{ $received ?? '0' }}</p>
                     </div>

@@ -105,7 +105,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div class="wrapper" id="app">
         <script>
             var settings = document.getElementById('settings_all').innerText;
             window.b2b = settings ? JSON.parse(settings) : {};
@@ -132,7 +132,7 @@
                 @include('frontend.content.footer')
             @endif
         </div>
-
+        {{-- @include('backend.includes.footer') --}}
     </div>
     <!--app-->
     @stack('before-scripts')

@@ -1,7 +1,7 @@
 <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="padding: 10px;">
 
     <ul class="navbar-nav">
-        <li class="nav-item" style="margin-top: 18px;">
+        <li class="nav-item">
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li>
@@ -11,7 +11,7 @@
         </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-        <li class="nav-link">
+        <li class="nav-link d-none d-sm-inline-block">
             <a href="{{ route('frontend.pages.contact') }}">
                 <p>Support</p>
             </a>
@@ -77,4 +77,9 @@
 {{-- @if (config('boilerplate.frontend_breadcrumbs'))
     @include('frontend.includes.partials.breadcrumbs')
 @endif --}}
-@include('frontend.style.js')
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+    crossorigin="anonymous"></script>
+<script src="{{ mix('js/manifest.js') }}"></script>
+<script src="{{ mix('js/vendor.js') }}"></script>
+<script src="{{ mix('js/backend.js') }}"></script>
+{{-- @include('frontend.style.js') --}}

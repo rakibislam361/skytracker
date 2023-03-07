@@ -1,9 +1,4 @@
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-cyan elevation-3">
-    {{-- <a class="brand-link" href="{{ route('frontend.index') }}">
-    <img src="{{ asset(get_setting('frontend_logo_menu')) }}" class="brand-image img-circle elevation-3">
-    <span class="brand-text font-weight-light">{{ app_name() }}</span>
-    </a> --}}
     <div class="w-100 text-center py-3 border-bottom">
         <a href="{{ route('frontend.user.account') }}">
             <div class="rounded-circle d-inline-block adm-profile-container"><img src="/img/business.png" alt="image"
