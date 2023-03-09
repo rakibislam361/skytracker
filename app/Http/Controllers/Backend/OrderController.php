@@ -31,7 +31,7 @@ class OrderController extends Controller
             ];
             $receivedData = $this->orderList($filter);
             $ordersData = $receivedData->data->result;
-            $page = $ordersData->current_page;
+            $totalcount = $ordersData->total ?? 0;
             $totalweight = 0;
             $order = [];
 
@@ -118,7 +118,7 @@ class OrderController extends Controller
                     }
                 }
             }
-            $totalcount = count($order);
+
             $orders = $this->paginate($order, 30);
             $orders->withPath('');
 
