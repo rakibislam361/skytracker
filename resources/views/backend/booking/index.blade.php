@@ -34,9 +34,6 @@
                 @include('backend.booking.includes.booking_filter')
             </div>
             @include('backend.invoice.generate-modal')
-            @php
-                $count = count($bookings);
-            @endphp
             <div class="badge badge-pill badge-success" style="font-size: 100%; margin-bottom: 10px;">Total
                 Bookings
                 : {{ $count }}</div>

@@ -46,10 +46,11 @@ class bookingController extends Controller
                 $query->where('carton_number', 'like', '%' . $carton_number . '%');
             });
         }
-
+        $bookingCount = $booking->get();
+        $count = count($bookingCount);
 
         $bookings = $booking->paginate(200);
-        return view('backend.booking.index', compact('bookings'));
+        return view('backend.booking.index', compact('bookings', 'count'));
     }
 
     /**
