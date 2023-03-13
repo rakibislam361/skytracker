@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 use App\Traits\PaginationTrait;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -18,7 +19,7 @@ class OrderController extends Controller
      *
      * @return Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
             $filter = [
@@ -28,8 +29,8 @@ class OrderController extends Controller
                 'shipping_from' => request('shipping_from', null),
                 'from_date' => request('from_date', null),
                 'to_date' => request('to_date', null),
-                'page' => request()->page ?? null,
-                // 'page1' => request()->p1 ?? null,
+                // 'currentPage' => request()->input('page', 1),
+                // 'perPage' => request()->input('per_page', 30),
             ];
 
             $receivedData = $this->orderList($filter);
