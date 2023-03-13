@@ -1188,7 +1188,11 @@ blockquote::before {
 	left: 0;
 }
 .blog-details-img {
-	display: block;
+	/* display: block; */
+	    display: flex;
+    align-items: center;
+    /* margin: 45px 0 40px; */
+    flex-direction: column;
 }
 .blog-details-img img:first-child {
 	margin-right: 0;

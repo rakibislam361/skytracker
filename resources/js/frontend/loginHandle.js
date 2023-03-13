@@ -3,6 +3,7 @@ import { productCart, loadingWebsite, loadingOutWebsite } from "./cartHelpers";
 $(function () {
     $("body")
         .on("click", "#withOtpLogin", function () {
+            $("#otpSubmitBtn").text("SEND OTP");
             $(".oldOTP").html("");
             $("#withOtpLogin").addClass("d-none");
             $("#withEmailLogin").removeClass("d-none");

@@ -4353,9 +4353,10 @@ blockquote.classic-blockquote-post::after {
 	margin-bottom: 10px;
 }
 .blog-details-img {
-	display: flex;
-	align-items: center;
-	margin: 45px 0 40px;
+	    display: flex;
+    align-items: center;
+    margin: 45px 0 40px;
+    flex-direction: column;
 }
 .blog-details-img img:first-child {
 	margin-right: 20px;

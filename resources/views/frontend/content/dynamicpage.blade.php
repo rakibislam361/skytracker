@@ -104,7 +104,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="dots"></li>
-                        <li style="font-size: 32px;" class="breadcrumb-item active" aria-current="page">{{$page->title}}</li>
+                        <li style="font-size: 32px;" class="breadcrumb-item active" aria-current="page">
+                            {{ $page->title }}</li>
                         <li class="dots2"></li>
                     </ol>
                 </nav>
@@ -114,21 +115,13 @@
 
         <!-- slider-area -->
         <section class="banner" style="padding:30px 0px">
-
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-
-                        {!! $page->description !!}
-                    </div>
-
+                <div class="blog-details-img">
+                    {!! $page->description !!}
                 </div>
             </div>
         </section>
         <!-- slider-area-end -->
-
-
-
 
     </main>
     <!-- main-area-end -->

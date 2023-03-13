@@ -34,8 +34,7 @@
 
                                         <div class="form-group" style="margin: 10px">
                                             <button type="submit" id="otpSubmitBtn" class="btn btn-primary"
-                                                name="login">Send
-                                                Verification</button>
+                                                name="login">Send OTP</button>
                                         </div>
                                     </div>
 
