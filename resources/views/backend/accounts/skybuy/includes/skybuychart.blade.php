@@ -29,6 +29,10 @@
                                 <option @if (request('status', null) == 'purchased') selected @endif value="purchased">Purchase
                                     Completed
                                 </option>
+                                <option @if (request('status', null) == 'shipped-from-suppliers') selected @endif
+                                    value="shipped-from-suppliers">Shipped
+                                    From Suppliers
+                                </option>
                                 <option @if (request('status', null) == 're-order') selected @endif value="re-order">RE Order
                                 </option>
                                 <option @if (request('status', null) == 'Partial-Paid') selected @endif value="Partial-Paid">Partial

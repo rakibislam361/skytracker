@@ -1,5 +1,6 @@
+{{-- <link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap4.min.css" rel="stylesheet"> --}}
 <div class="table-responsive">
-    <table class="table table-hover table-bordered mb-0 order-table table-striped" id="tableSelected">
+    <table class="table table-hover table-bordered mb-0 order-table table-striped orderTable" id="tableSelected">
         <thead>
             <tr>
                 <th class="align-content-center text-center">Select<input type="checkbox" id="allSelectCheckbox"
@@ -93,7 +94,9 @@
             @endforeach
         </tbody>
     </table>
+
     @if ($orders != null)
-        {{ $orders->withQueryString()->links() }}
+        {!! $orders->links() !!}
+        {{-- {{ $orders->withQueryString()->links() }} --}}
     @endif
 </div>

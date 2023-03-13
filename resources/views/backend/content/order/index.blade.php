@@ -3,7 +3,7 @@
 @section('title', 'Manage Orders')
 
 @section('content')
-    @php
+    {{-- @php
         $status = null;
         $allOrdersCount = $orders->where('status', 'partial-paid')->count();
         $partialCount = null;
@@ -12,7 +12,7 @@
         $refundedCount = null;
         $processingCount = null;
         $purchasedCount = null;
-    @endphp
+    @endphp --}}
 
     <div class="card">
         <div class="card-header">

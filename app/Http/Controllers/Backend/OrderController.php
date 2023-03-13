@@ -28,8 +28,12 @@ class OrderController extends Controller
                 'shipping_from' => request('shipping_from', null),
                 'from_date' => request('from_date', null),
                 'to_date' => request('to_date', null),
+                'page' => request()->page ?? null,
+                // 'page1' => request()->p1 ?? null,
             ];
+
             $receivedData = $this->orderList($filter);
+            $paginator = $receivedData->data->result;
             $ordersData = $receivedData->data->result;
             $totalcount = $ordersData->total ?? 0;
             $totalweight = 0;
@@ -118,11 +122,14 @@ class OrderController extends Controller
                     }
                 }
             }
+            $count = !empty($order) && count($order) > 0 ? $order : null;
+            $orders = $count;
 
-            $orders = $this->paginate($order, 30);
+
+            $orders = $this->paginate($order, 30)->withQueryString();
             $orders->withPath('');
 
-            return view('backend.content.order.index', compact('orders', 'totalcount', 'order', 'totalweight'));
+            return view('backend.content.order.index', compact('orders', 'totalcount', 'order', 'totalweight', 'paginator'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()

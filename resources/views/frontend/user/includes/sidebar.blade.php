@@ -5,7 +5,7 @@
                     class="rounded-circle elevation-2" style="width:70px;height:70px;"></div>
         </a>
         <p class="text-center text-color-2 mt-2 mb-0 font-17 font-md-15 font-medium">
-            {{ $logged_in_user->name ?? 'User' }}
+            {{ $logged_in_user->name ?? 'User' }} 
         </p>
     </div>
     <div class="sidebar">
