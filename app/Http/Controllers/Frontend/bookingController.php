@@ -81,8 +81,6 @@ class bookingController extends Controller
     {
         $amount = null;
 
-        // dd($carton);
-
         if (Auth::check()) {
             $user = auth()->user()->type;
             $carton_no = $request->carton_number;
@@ -144,13 +142,7 @@ class bookingController extends Controller
                 $createBooking->chinalocal = $request->chinalocal[$key] ?? null;
                 $createBooking->packing_cost = $request->packing_cost[$key] ?? null;
                 $createBooking->courier_bill = $request->courier_bill[$key] ?? null;
-                // if (!$request->unit_price) {
-                //     $amount = 0;
-                // } else {
-                //     $amount = ($request->actual_weight[$key] * $request->unit_price[$key]) ?? null;
-                // }
 
-                // $createBooking->amount = $amount;
                 $createBooking->paid = $request->paid[$key] ?? null;
                 $createBooking->tracking_number = $request->tracking_number[$key] ?? null;
                 $createBooking->remarks = $request->remarks[$key] ?? null;
@@ -159,7 +151,6 @@ class bookingController extends Controller
                 $step = null;
 
                 if ($request->status[$key]) {
-                    // dd($createBooking);
                     $status = $request->status[$key];
                     $order_id = $createBooking->id;
 
@@ -226,7 +217,6 @@ class bookingController extends Controller
     public function edit($id)
     {
         $booking = Booking::with('cartons')->findOrFail($id);
-        // $booking = Carton::with('bookings')->findOrFail($id);
 
         return view('backend.booking.edit', compact('booking'));
     }
@@ -240,8 +230,6 @@ class bookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        // $updateCarton = Carton::with('bookings')->findOrFail($id);
         $updateBooking = Booking::with('cartons')->findOrFail($id);
 
         $updateCarton = $updateBooking->cartons;

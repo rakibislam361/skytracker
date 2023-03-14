@@ -132,7 +132,6 @@
                 @include('frontend.content.footer')
             @endif
         </div>
-        {{-- @include('backend.includes.footer') --}}
     </div>
     <!--app-->
     @stack('before-scripts')
@@ -160,7 +159,6 @@
     <script src="{{ asset('assets/js/7521-js-jquery.scrollUp.min.js') }}"></script>
     <script src="{{ asset('assets/js/8228-js-imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/js/788-js-jquery.magnific-popup.min.js') }}"></script>
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCo_pcAdFNbTDCAvMwAD19oRTuEmb9M50c"></script> --}}
     <script src="{{ asset('assets/js/9626-js-plugins.js') }}"></script>
     <script src="{{ asset('assets/js/2325-js-main.js') }}"></script>
     @stack('after-scripts')
