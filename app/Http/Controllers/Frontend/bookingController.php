@@ -240,7 +240,7 @@ class bookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
+
         // $updateCarton = Carton::with('bookings')->findOrFail($id);
         $updateBooking = Booking::with('cartons')->findOrFail($id);
 
@@ -277,20 +277,20 @@ class bookingController extends Controller
                 $updateBooking->othersProductName = $request->othersProductName[$key] ?? null;
                 $updateBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
 
-                if ($updateBooking->customer_name != null) {
-                    $updateBooking->customer_name = $updateBooking->customer_name;
-                } else {
+                if ($request->customer_name[$key]) {
                     $updateBooking->customer_name = $request->customer_name[$key] ?? null;
-                }
-                if ($updateBooking->customer_phone != null) {
-                    $updateBooking->customer_phone = $updateBooking->customer_phone;
                 } else {
+                    $updateBooking->customer_name = $updateBooking->customer_name ?? null;
+                }
+                if ($request->customer_phone[$key]) {
                     $updateBooking->customer_phone = $request->customer_phone[$key] ?? null;
-                }
-                if ($updateBooking->customer_address != null) {
-                    $updateBooking->customer_address = $updateBooking->customer_address;
                 } else {
+                    $updateBooking->customer_phone = $updateBooking->customer_phone ?? null;
+                }
+                if ($request->customer_address[$key]) {
                     $updateBooking->customer_address = $request->customer_address[$key] ?? null;
+                } else {
+                    $updateBooking->customer_address = $updateBooking->customer_address ?? null;
                 }
                 $updateBooking->shipping_mark = $request->shipping_mark[$key] ?? null;
                 $updateBooking->shipping_number = $request->shipping_number[$key] ?? null;
@@ -299,10 +299,7 @@ class bookingController extends Controller
                 $updateBooking->chinalocal = $request->chinalocal[$key] ?? null;
                 $updateBooking->packing_cost = $request->packing_cost[$key] ?? null;
                 $updateBooking->courier_bill = $request->courier_bill[$key] ?? null;
-                // if ($request->unit_price[$key] != null) {
-                //     $updateBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
-                //     // $createBooking->amount = $request->amount[$key] ?? null;
-                // } else {
+
                 $updateBooking->amount = $request->amount[$key] ?? null;
 
 

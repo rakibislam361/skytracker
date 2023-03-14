@@ -5,11 +5,11 @@
             <input type="text" id="item_number" name="item_number" class="form-control"
                 value="{{ request('item_number', null) }}" placeholder="item number">
         </div>
-        {{-- <div class="col-md-2">
+        <div class="col-md-2">
             <label for="carton_id">Carton ID</label>
             <input type="text" id="carton_id" name="carton_id" class="form-control"
                 value="{{ request('carton_id', null) }}" placeholder="Carton Id">
-        </div> --}}
+        </div>
 
         <div class="col-md-2">
             <label for="status">Status</label>
@@ -82,7 +82,7 @@
             </select>
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-2">
             <label for="shipping_from">Shipping From</label>
             <select class="form-control" name="shipping_from">
                 <option value="">Select GZ/HK</option>
@@ -92,9 +92,9 @@
         </div>
 
 
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <label for="date">From date</label>
                     <input type="date" id="startdate" class="form-control" name="from_date"
                         value="{{ request('from_date', null) ? date('Y-m-d', strtotime(request('from_date', null))) : '' }}">
@@ -104,7 +104,7 @@
                     <input type="date" id="enddate" name="to_date" class="form-control"
                         value="{{ request('to_date', null) ? date('Y-m-d', strtotime(request('to_date', null))) : '' }}">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <button type="submit" class="btn btn-outline-primary" style="margin-top:29px;" id="filter"
                         name="filter"><i class="fa fa-search"></i> Search</button>
                 </div>

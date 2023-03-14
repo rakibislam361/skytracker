@@ -3,17 +3,6 @@
 @section('title', 'Manage Orders')
 
 @section('content')
-    {{-- @php
-        $status = null;
-        $allOrdersCount = $orders->where('status', 'partial-paid')->count();
-        $partialCount = null;
-        $onHold = null;
-        $icompleteCount = null;
-        $refundedCount = null;
-        $processingCount = null;
-        $purchasedCount = null;
-    @endphp --}}
-
     <div class="card">
         <div class="card-header">
             <div class="row">
