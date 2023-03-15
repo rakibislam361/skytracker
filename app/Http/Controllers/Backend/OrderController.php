@@ -25,6 +25,7 @@ class OrderController extends Controller
             $filter = [
                 'item_number' => request('item_number', null),
                 'carton_id' => request('carton_id', null),
+                'customer' => request('customer', null),
                 'status' => request('status', null),
                 'shipping_from' => request('shipping_from', null),
                 'from_date' => request('from_date', null),
@@ -121,11 +122,7 @@ class OrderController extends Controller
                     }
                 }
             }
-            $count = !empty($order) && count($order) > 0 ? $order : null;
-            $orders = $count;
-
-
-            $orders = $this->paginate($order, 30)->withQueryString();
+            $orders = $this->paginate($order, 50)->withQueryString();
             $orders->withPath('');
 
             return view('backend.content.order.index', compact('orders', 'totalcount', 'order', 'totalweight', 'paginator'));
