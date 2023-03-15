@@ -98,6 +98,5 @@
     @if ($orders != null)
         <div class="pagination">
             {!! $orders->links() !!}
-            {{-- {{ $orders->withQueryString()->links() }} --}}
         </div>
     @endif
