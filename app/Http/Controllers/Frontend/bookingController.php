@@ -364,13 +364,13 @@ class bookingController extends Controller
                     $status = $request->status[$key];
                     $order_id = $createBooking->id;
 
-                    if ($request->status[$key] == 'received-in-china-warehouse') {
+                    if ($status == 'received-in-china-warehouse') {
                         $step = 1;
-                    } elseif ($request->status[$key] == 'shipped-from-china-warehouse') {
+                    } elseif ($status == 'shipped-from-china-warehouse') {
                         $step = 2;
-                    } elseif ($request->status[$key] == 'received-in-BD-warehouse') {
+                    } elseif ($status == 'received-in-BD-warehouse') {
                         $step = 3;
-                    } elseif ($request->status[$key] == 'delivered') {
+                    } elseif ($status == 'delivered') {
                         $step = 4;
                     }
                     $createBooking->update([
