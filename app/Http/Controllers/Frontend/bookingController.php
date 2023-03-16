@@ -264,6 +264,7 @@ class bookingController extends Controller
                 $updateBooking->productsTotalCost = $request->productsTotalCost[$key] ?? null;
                 $updateBooking->othersProductName = $request->othersProductName[$key] ?? null;
                 $updateBooking->bookingProduct = $request->bookingProduct[$key] ?? null;
+                $updateBooking->delivery_method = $updateBooking->delivery_method ?? null;
 
                 if ($request->customer_name[$key]) {
                     $updateBooking->customer_name = $request->customer_name[$key] ?? null;
@@ -351,15 +352,8 @@ class bookingController extends Controller
                 $createBooking->packing_cost = $request->packing_cost[$key] ?? null;
                 $createBooking->courier_bill = $request->courier_bill[$key] ?? null;
 
-
-
-                // if ($request->unit_price[$key] != null) {
-                //     $createBooking->amount = $request->actual_weight[$key] * $request->unit_price[$key];
-                //     // $createBooking->amount = $request->amount[$key] ?? null;
-                // } else {
                 $createBooking->amount = $request->amount[$key] ?? null;
-                // }
-                // $createBooking->amount = $request->amount[$key] ?? null;
+
                 $createBooking->paid = $request->paid[$key] ?? null;
                 $createBooking->tracking_number = $request->tracking_number[$key] ?? null;
                 $createBooking->remarks = $request->remarks[$key] ?? null;
