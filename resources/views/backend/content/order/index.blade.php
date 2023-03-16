@@ -69,6 +69,9 @@
                                     @if ($logged_in_user->can('admin.status.pending-to-pay'))
                                         <option value="pending-to-pay">Pending To Pay</option>
                                     @endif
+                                    @if ($logged_in_user->can('admin.status.after-sales-services'))
+                                        <option value="after-sales-services">After Sales Services</option>
+                                    @endif
                                     @if ($logged_in_user->can('admin.order.status.re-order'))
                                         <option value="re-order">RE-Order</option>
                                     @endif

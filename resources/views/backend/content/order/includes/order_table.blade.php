@@ -1,4 +1,3 @@
-{{-- <link href="https://cdn.datatables.net/1.13.3/css/dataTables.bootstrap4.min.css" rel="stylesheet"> --}}
 <div class="table-responsive">
     <table class="table table-hover table-bordered mb-0 order-table table-striped orderTable" id="tableSelected">
         <thead>
@@ -25,11 +24,11 @@
                     {{-- local delivery --}}
                     <th class="align-content-center text-center">China Local Delivery</th>
                 @endif
-
-                {{-- <th class="align-content-center text-center">Product Name</th> --}}
                 <th class="align-content-center text-center">Products Value</th>
                 <th class="align-content-center text-center">Remarks</th>
                 <th class="align-content-center text-center">Feedback</th>
+                <th class="align-content-center text-center">Claim</th>
+                <th class="align-content-center text-center">Solution</th>
                 <th class="align-content-center text-center">Warehouse Qty</th>
                 <th class="align-content-center text-center">Carton Number</th>
                 <th class="align-content-center text-center">CBM</th>
@@ -41,8 +40,7 @@
                 <th class="align-content-center text-center">Actual Weight</th>
                 <th class="align-content-center text-center">Warehouse Weight</th>
                 <th class="align-content-center text-center">Status</th>
-
-                <th>Actions</th>
+                {{-- <th>Actions</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -62,34 +60,34 @@
                     @endif
 
                     @if ($logged_in_user->can('admin.order.order_rmb.edit'))
-                        <td class="align-content-center text-center">{{ $order->order_item_rmb ?? '' }}</td>
+                        <td class="align-content-center text-center">{{ $order->order_item_rmb ?? 'N/A' }}</td>
                     @endif
 
                     @if ($logged_in_user->can('admin.order.purchase.edit'))
-                        <td class="align-content-center text-center">{{ $order->purchase_rmb ?? '' }}</td>
+                        <td class="align-content-center text-center">{{ $order->purchase_rmb ?? 'N/A' }}</td>
                     @endif
 
                     @if ($logged_in_user->can('admin.order.localdelivery.edit'))
-                        <td class="align-content-center text-center">{{ $order->china_local_delivery_rmb ?? '' }}
+                        <td class="align-content-center text-center">{{ $order->china_local_delivery_rmb ?? 'N/A' }}
                         </td>
                     @endif
-
-                    {{-- <td class="align-content-center text-center">{{ $order->name ?? 'N/A' }}</td> --}}
                     <td class="align-content-center text-center">{{ $order->product_value ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $order->remarks ?? 'N/A' }}</td>
                     <td class="align-content-center text-center">{{ $order->feedback ?? 'N/A' }}</td>
-                    <td class="align-content-center text-center">{{ $order->chn_warehouse_qty ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->carton_id ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->cbm ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->shipped_by ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->product_type ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->shipping_from ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->shipping_mark ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->tracking_number ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->actual_weight ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->chn_warehouse_weight ?? '' }}</td>
-                    <td class="align-content-center text-center">{{ $order->status ?? '' }}</td>
-                    <td class="align-content-center text-center"><a>Edit</a></td>
+                    <td class="align-content-center text-center">{{ $order->claim ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->solution ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->chn_warehouse_qty ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->carton_id ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->cbm ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->shipped_by ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->product_type ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->shipping_from ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->shipping_mark ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->tracking_number ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->actual_weight ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->chn_warehouse_weight ?? 'N/A' }}</td>
+                    <td class="align-content-center text-center">{{ $order->status ?? 'N/A' }}</td>
+                    {{-- <td class="align-content-center text-center"><a>Edit</a></td> --}}
                 </tr>
             @endforeach
         </tbody>

@@ -216,6 +216,7 @@ class OrderController extends Controller
 
             $receivedData = $this->recentorderList($filter);
             $ordersData = $receivedData->data->result;
+            $totalcount = $ordersData->total;
             $amount = 0;
             $order = [];
 
@@ -265,7 +266,7 @@ class OrderController extends Controller
                 $orders = $this->paginate($count, 30);
                 $orders->withPath('');
             }
-            return view('backend.content.order.recent.index', compact('orders', 'amount'));
+            return view('backend.content.order.recent.index', compact('orders', 'amount', 'totalcount'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()
@@ -361,6 +362,7 @@ class OrderController extends Controller
             'processing' => 'Processing',
             'purchased' => 'Purchased Complete',
             'pending-to-pay' => 'pending-to-pay',
+            'after-sales-services' => 'after-sales-services',
             'shipped-from-suppliers' => 'shipped-from-suppliers',
             'received-in-china-warehouse' => 'received-in-china-warehouse',
             'shipped-from-china-warehouse' => 'shipped-from-china-warehouse',
@@ -396,6 +398,8 @@ class OrderController extends Controller
             'refunded' => 'nullable|numeric|min:0|max:99999999',
             'remarks' => 'nullable|string',
             'feedback' => 'nullable|string',
+            'claim' => 'nullable|string',
+            'solution' => 'nullable|string',
             'due_payment' => 'nullable|numeric|min:0|max:99999999',
             'last_payment' => 'nullable|numeric|min:0|max:99999999',
 

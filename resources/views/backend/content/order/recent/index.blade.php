@@ -3,17 +3,6 @@
 @section('title', 'Recent Orders')
 
 @section('content')
-    @php
-        
-        $allOrdersCount = $orders ? $orders->where('status', 'partial-paid')->count() : null;
-        $status = null;
-        $partialCount = null;
-        $onHold = null;
-        $icompleteCount = null;
-        $refundedCount = null;
-        $processingCount = null;
-        $purchasedCount = null;
-    @endphp
 
     <div class="card">
         <div class="card-header">
@@ -21,6 +10,8 @@
             @include('backend.content.order.recent.includes.recent_filter')
         </div>
         <div class="card-body">
+            <div class="badge badge-success" style="font-size: 100%; margin-bottom: 5px;">Total Orders
+                = {{ $totalcount }}</div>
             @include('backend.content.order.recent.includes.recent_order_table')
         </div> <!-- card-body-->
     </div>
