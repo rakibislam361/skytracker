@@ -89,7 +89,7 @@
                         if ($invoice->customer_address != null) {
                             $address = explode(',', $invoice->customer_address);
                             $address = array_unique($address);
-                            $address = implode(',', $address);
+                            $address = implode(',', $address); 
                         } else {
                             $address = null;
                         }

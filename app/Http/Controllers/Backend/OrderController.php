@@ -9,6 +9,7 @@ use Illuminate\View\View;
 use App\Traits\PaginationTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Content\OrderItem;
 
 class OrderController extends Controller
 {
@@ -22,21 +23,52 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         try {
-            $filter = [
-                'item_number' => request('item_number', null),
-                'carton_id' => request('carton_id', null),
-                'customer' => request('customer', null),
-                'status' => request('status', null),
-                'shipping_from' => request('shipping_from', null),
-                'from_date' => request('from_date', null),
-                'to_date' => request('to_date', null),
-            ];
+            // $filter = [
+            //     'item_number' => request('item_number', null),
+            //     'carton_id' => request('carton_id', null),
+            //     'customer' => request('customer', null),
+            //     'status' => request('status', null),
+            //     'shipping_from' => request('shipping_from', null),
+            //     'from_date' => request('from_date', null),
+            //     'to_date' => request('to_date', null),
+            // ];
+            $item_number = request('item_number', null);
+            $carton = request('carton_id', null);
+            $customer = request('customer', null);
+            $status = request('status', null);
+            $shipping_from = request('shipping_from', null);
+            $from_date = request('from_date', null);
+            $to_date = request('to_date', null);
 
-            $receivedData = $this->orderList($filter);
-            $paginator = $receivedData->data->result;
-            $ordersData = $receivedData->data->result;
-            $totalcount = $ordersData->total ?? 0;
+            $ordersData = OrderItem::latest();
+            if ($item_number) {
+                $ordersData->where('id', $item_number);
+            }
+            if ($carton) {
+                $ordersData->where('carton_id', 'like', '%' . ',' . '%' . $carton . '%' . ',' . '%')
+                    ->orWhere('carton_id', 'like', '%' . $carton . '%')
+                    ->orWhere('carton_id', 'like', '%' . ',' . '%' . $carton . '%')
+                    ->orWhere('carton_id', 'like', '%' . $carton . '%' . ',' . '%');
+            }
+
+            if ($customer) {
+                $ordersData->where('user_name', 'like', '%' . $customer . '%')
+                    ->orWhere('phone', $customer)
+                    ->orWhere('first_name', 'like', '%' . $customer . '%')
+                    ->orWhere('last_name', 'like', '%' . $customer . '%');
+            }
+            if ($status) {
+                $ordersData->where('status', $status);
+            }
+            if ($shipping_from) {
+                $ordersData->where('shipping_from', $shipping_from);
+            }
+            if ($from_date && $to_date) {
+                $ordersData->whereBetween('created_at', [$from_date, $to_date]);
+            }
+            $totalcount = count($ordersData->get());
             $totalweight = 0;
+            $ordersData = $ordersData->get();
             $order = [];
 
             $userRole = auth()
@@ -44,14 +76,15 @@ class OrderController extends Controller
                 ->roles->first();
             $roles = $userRole ? $userRole->name : null;
             if ($roles == 'Administrator') {
-                foreach ($ordersData->data as $data) {
+                foreach ($ordersData as $data) {
                     $order[] = $data;
+                    // dd($data);
                     if ($data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
                         $totalweight += $data->actual_weight;
                     }
                 }
             } else {
-                foreach ($ordersData->data as $data) {
+                foreach ($ordersData as $data) {
                     if ($data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
                         $totalweight += $data->actual_weight;
                     }
@@ -125,7 +158,7 @@ class OrderController extends Controller
             $orders = $this->paginate($order, 50)->withQueryString();
             $orders->withPath('');
 
-            return view('backend.content.order.index', compact('orders', 'totalcount', 'order', 'totalweight', 'paginator'));
+            return view('backend.content.order.index', compact('orders', 'totalcount', 'order', 'totalweight'));
         } catch (\Exception $e) {
             return redirect()
                 ->back()
@@ -136,7 +169,8 @@ class OrderController extends Controller
     public function update($id)
     {
         $data = $this->validateOrderItems();
-
+        $id = request()->order_item_id;
+        $update = OrderItem::findOrFail($id);
         if (request()->chn_warehouse_weight) {
             $data['chn_warehouse_weight'] = implode(',', request()->chn_warehouse_weight);
         }
@@ -159,8 +193,14 @@ class OrderController extends Controller
         }
 
         unset($data['shipping_charge'], $data['quantity'], $data['product_value'], $data['first_payment']);
+
         if ($data['order_update'] == 'withoutajax') {
             unset($data['order_update']);
+            if ($update) {
+                unset($data['order_item_id']);
+                $update->update($data);
+            }
+            $data['order_item_id'] = request()->order_item_id;
             $orderResponse = $this->order_update($data);
             if (!($orderResponse = null)) {
                 return redirect()
@@ -175,6 +215,12 @@ class OrderController extends Controller
 
         if ($data['order_update'] == null) {
             unset($data['order_update']);
+            if ($update) {
+                unset($data['order_item_id']);
+                $update->update($data);
+            }
+            $data['order_item_id'] = request()->order_item_id;
+            // $update->update($data);
             $orderResponse = $this->order_update($data);
             return $orderResponse;
         }
@@ -184,9 +230,15 @@ class OrderController extends Controller
     {
         $order_items_id = request('order_item_id', []);
         $status = request('status', null);
-        $orderResponse = $this->order_item_status_update($status, $order_items_id);
+        // dd($order_items_id);
 
-        if ($orderResponse) {
+        $orderResponse = $this->order_item_status_update($status, $order_items_id);
+        foreach ($order_items_id as $data) {
+            $update = OrderItem::findOrFail($data);
+            $update->status = $status;
+            $update->save();
+        }
+        if ($orderResponse && $update) {
             return redirect()
                 ->back()
                 ->withFlashSuccess('Items Status Updated Successfully');
@@ -227,6 +279,7 @@ class OrderController extends Controller
 
             if ($roles == 'Administrator') {
                 foreach ($ordersData->data as $data) {
+                    // dd($data->address);
                     $order[] = $data;
                 }
             } elseif ($roles == 'BD Purchase Officer') {

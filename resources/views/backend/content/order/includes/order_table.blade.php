@@ -55,8 +55,8 @@
                     <td class="align-content-center text-center">{{ $order->order_id ?? 'N/A' }}</td>
 
                     @if ($logged_in_user->hasAllAccess())
-                        <td class="align-content-center text-center">{{ $order->user->name ?? 'N/A' }}</td>
-                        <td class="align-content-center text-center"> {{ $order->user->phone ?? 'N/A' }} </td>
+                        <td class="align-content-center text-center">{{ $order->user_name ?? 'N/A' }}</td>
+                        <td class="align-content-center text-center"> {{ $order->phone ?? 'N/A' }} </td>
                     @endif
 
                     @if ($logged_in_user->can('admin.order.order_rmb.edit'))

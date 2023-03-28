@@ -11,19 +11,12 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset(get_setting('frontend_logo_menu')) }}">
     <!-- Place favicon.ico in the root directory -->
 
-
     {{-- @extends('frontend.layouts.app') --}}
     @include('frontend.style.style')
     @include('includes.partials.messages')
 </head>
 
 <body>
-
-    <!-- preloader  -->
-    {{-- @include('frontend.content.preloader') --}}
-    <!-- preloader end -->
-
-    <!-- header-start -->
     <header>
         @include('frontend.content.header')
     </header>
@@ -57,6 +50,7 @@
 
     <!-- footer-end -->
     @include('frontend.style.js')
+    </div>
 </body>
 
 </html>
