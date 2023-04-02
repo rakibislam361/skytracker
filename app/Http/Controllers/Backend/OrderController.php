@@ -23,54 +23,59 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         try {
-            // $filter = [
-            //     'item_number' => request('item_number', null),
-            //     'carton_id' => request('carton_id', null),
-            //     'customer' => request('customer', null),
-            //     'status' => request('status', null),
-            //     'shipping_from' => request('shipping_from', null),
-            //     'from_date' => request('from_date', null),
-            //     'to_date' => request('to_date', null),
-            // ];
-            $item_number = request('item_number', null);
-            $carton = request('carton_id', null);
-            $customer = request('customer', null);
-            $status = request('status', null);
-            $shipping_from = request('shipping_from', null);
-            $from_date = request('from_date', null);
-            $to_date = request('to_date', null);
+            $filter = [
+                'item_number' => request('item_number', null),
+                'carton_id' => request('carton_id', null),
+                'customer' => request('customer', null),
+                'status' => request('status', null),
+                'shipping_from' => request('shipping_from', null),
+                'from_date' => request('from_date', null),
+                'to_date' => request('to_date', null),
+            ];
+            // $item_number = request('item_number', null);
+            // $carton = request('carton_id', null);
+            // $customer = request('customer', null);
+            // $status = request('status', null);
+            // $shipping_from = request('shipping_from', null);
+            // $from_date = request('from_date', null);
+            // $to_date = request('to_date', null);
 
-            $ordersData = OrderItem::latest();
-            if ($item_number) {
-                $ordersData->where('id', $item_number);
-            }
-            if ($carton) {
-                $ordersData->where('carton_id', 'like', '%' . ',' . '%' . $carton . '%' . ',' . '%')
-                    ->orWhere('carton_id', 'like', '%' . $carton . '%')
-                    ->orWhere('carton_id', 'like', '%' . ',' . '%' . $carton . '%')
-                    ->orWhere('carton_id', 'like', '%' . $carton . '%' . ',' . '%');
-            }
+            // $ordersData = OrderItem::latest();
+            // if ($item_number) {
+            //     $ordersData->where('id', $item_number);
+            // }
+            // if ($carton) {
+            //     $ordersData->where('carton_id', 'like', '%' . ',' . '%' . $carton . '%' . ',' . '%')
+            //         ->orWhere('carton_id', 'like', '%' . $carton . '%')
+            //         ->orWhere('carton_id', 'like', '%' . ',' . '%' . $carton . '%')
+            //         ->orWhere('carton_id', 'like', '%' . $carton . '%' . ',' . '%');
+            // }
 
-            if ($customer) {
-                $ordersData->where('user_name', 'like', '%' . $customer . '%')
-                    ->orWhere('phone', $customer)
-                    ->orWhere('first_name', 'like', '%' . $customer . '%')
-                    ->orWhere('last_name', 'like', '%' . $customer . '%');
-            }
-            if ($status) {
-                $ordersData->where('status', $status);
-            }
-            if ($shipping_from) {
-                $ordersData->where('shipping_from', $shipping_from);
-            }
-            if ($from_date && $to_date) {
-                $ordersData->whereBetween('created_at', [$from_date, $to_date]);
-            }
-            $totalcount = count($ordersData->get());
+            // if ($customer) {
+            //     $ordersData->where('user_name', 'like', '%' . $customer . '%')
+            //         ->orWhere('phone', $customer)
+            //         ->orWhere('first_name', 'like', '%' . $customer . '%')
+            //         ->orWhere('last_name', 'like', '%' . $customer . '%');
+            // }
+            // if ($status) {
+            //     $ordersData->where('status', $status);
+            // }
+            // if ($shipping_from) {
+            //     $ordersData->where('shipping_from', $shipping_from);
+            // }
+            // if ($from_date && $to_date) {
+            //     $ordersData->whereBetween('created_at', [$from_date, $to_date]);
+            // }
+            // $totalcount = count($ordersData->get());
+            // $totalweight = 0;
+            // $ordersData = $ordersData->get();
+            // $order = [];
+            $receivedData = $this->orderList($filter);
+            $paginator = $receivedData->data->result;
+            $ordersData = $receivedData->data->result->data;
+            $totalcount = $receivedData->data->result->total ?? 0;
             $totalweight = 0;
-            $ordersData = $ordersData->get();
             $order = [];
-
             $userRole = auth()
                 ->user()
                 ->roles->first();
@@ -78,7 +83,6 @@ class OrderController extends Controller
             if ($roles == 'Administrator') {
                 foreach ($ordersData as $data) {
                     $order[] = $data;
-                    // dd($data);
                     if ($data->status == 'received-in-china-warehouse' || $data->status == 'shipped-from-china-warehouse' || $data->status == 'received-in-BD-warehouse') {
                         $totalweight += $data->actual_weight;
                     }
