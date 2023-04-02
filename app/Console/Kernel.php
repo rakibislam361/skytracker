@@ -121,8 +121,8 @@ class Kernel extends ConsoleKernel
         //     }
         // })->everyMinute();
 
-        $schedule->command('demo:cron')
-            ->everyMinute();
+        // $schedule->command('demo:cron')
+        //     ->everyMinute();
     }
 
     /**
