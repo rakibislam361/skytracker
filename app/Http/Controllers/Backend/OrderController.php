@@ -71,7 +71,6 @@ class OrderController extends Controller
             // $ordersData = $ordersData->get();
             // $order = [];
             $receivedData = $this->orderList($filter);
-            $paginator = $receivedData->data->result;
             $ordersData = $receivedData->data->result->data;
             $totalcount = $receivedData->data->result->total ?? 0;
             $totalweight = 0;
